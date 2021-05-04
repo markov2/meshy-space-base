@@ -1,0 +1,15 @@
+<p>All constants in the '<code>ms:</code>' namespace are camel-cased,
+starting with a capital (elements and attributes are lower-cased,
+identifiers full capitals) by convension.</p>
+
+<ul>
+<li><code><a href="algorithms.html">ms:Algo.</a></code> names for
+algorithms, like gzip or base64;</li>
+<li><code>ms:Lang[123].</code> names for languages, in ISO-639-[123] form;</li>
+<li><code>ms:App.</code> names output of various applications which are
+    used;</li>
+<li><code>ms:Sum.</code> names checksum algoritms;</li>
+<li><code>ms:Type.</code>, application like (MIME-)type;</li>
+<li><code>ms:{Error,Warning,Notice,Info}.</code>, status codes;</li>
+<li>Other TODO</li>
+</ul>

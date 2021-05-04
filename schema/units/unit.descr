@@ -1,0 +1,138 @@
+=short
+
+<p>The <i>unit</i> is the base of everything: objects which MAY be
+useful to be cached.  It is the great uniforming data quantity, a
+generalization of many protocols and system features.</p>
+
+=schema
+
+==xml
+<element name="unit" type="ms:_unit" abstract="true" />
+
+<complexType name="_unit">
+  <sequence>
+    <element name="type"      type="ms:constant" />
+    <group   ref="ms:meta-data"  />
+    <group   ref="ms:life-cycle" />
+    <element name="owner"     type="ms:unit-id" minOccurs="0" maxOccurs="unbounded" />
+    <element ref="ms:payload" minOccurs="0" />
+    <element ref="ms:has"     minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+  <attribute name="id" ref="ms:unit-id" use="required" />
+</complexType>
+==end
+
+=description
+
+<p>A <i>unit</i> is a logically coherent set of data: bytes with some  
+facts about those bytes.  Units have various roles, like configuration,
+identities, collections of information, or simply a sequence of bytes.
+Units have many elements and attributes, which are often not used: it
+is very beneficial to implementations to have a strong uniform object
+base.</p>
+
+<p>Units usually have many relations (<SCHEMA>ms:has</SCHEMA>) which
+tell you about owner, data which were used to create it, and much
+more.  This very much depends on the role you have designed for your
+unit.</p>
+
+<p>One of the applications of units, is the Meshy Space Concept.
+The concept assigns logic roles to units via the <code>type</code>
+element (in <SCHEMA>ms:meta-data</SCHEMA>).</p>
+
+<p><b>WARNING:</b> unit <code>ids</code> are quite different
+from <code>xsd:id</code> identifiers: study the differences in
+<SCHEMA>ms:unit-id</SCHEMA>!</p>
+
+=attribute id
+
+<p>The unique identifier for this information unit is used to be
+referred to, either within this same information structure, or from
+other information structures.  Applications will decide to cache
+the units based on this <code>ms:id</code> for performance.</p>
+
+=element type
+
+<p>The type of data which is contained in the unit.  This is equivalent to
+the type of objects in programs.  The data itself may come in a serialization
+(<code>format</code>) which can be converted to the indicated type.</p>
+
+=group life-cycle
+
+<p>A number of fields are used to control the progress of the unit:
+when it was created, was deprecated, and is to be removed.  The base
+is the version of the unit.  There is only one version of a unit in
+your cache: the newest.</p>
+
+=group meta-data
+
+<p>A number of fields describe what the unit represents.  If the unit
+contains a payload, it gives facts about the payload.  All these facts
+are independent from the way the payload is being transported and
+stored.</p>
+
+=element owner
+
+<p>Refers to the current owner or group of owners of this unit, and its
+descendants.  Owners MAY have different rules than client representing
+other identities.</p>
+
+<p>Information about the creator, publisher, and modifiers of the unit
+are in the history of the unit.</p>
+
+=element payload
+
+<p>The <code>payload</code> is a <i>substitutionGroup</i>, which
+means that the element can be filled in by other element in that
+group. See <SCHEMA>ms:payload</SCHEMA> for a list of alternatives.</p>
+
+<p>Structural elements may only contain any "direct" payload, but only
+references to other units.</p>
+
+=element has
+
+<p>The unit <i>has</i> logical relations to other units, which are
+often packaged in a different data collection, maybe on a different
+server.  See <SCHEMA>ms:has</SCHEMA>.</p>
+
+=example demonstrating a simple unit
+
+==xml
+<ms:unit ms:id="cc:ASDJKDJO12314A">
+  <ms:name>https://markov.solutions/index.html</ms:name>
+  <ms:has ms:is="cc:Warc.Request"  ms:ref="cc:ASDJKDJO12314A-req">
+  <ms:has ms:is="cc:Warc.Response" ms:ref="cc:ASDJKDJO12314A-resp">
+  <ms:has ms:is="cc:Warc.Links"    ms:ref="cc:ASDJKDJO12314A-links">
+</ms:unit>
+<ms:unit ms:id="cc:ASDJKDJO12314A-req">
+  <ms:type>cc:Warc.Request</ms:type>
+  <ms:resource ms:href="cc:202102warc-00000">
+    <ms:address>#12314151+11515</ms:address>
+    <ms:format>mime-type:application/x-warc.request</ms:format>
+    <ms:encoded>ms:Alg.Gzip</ms:encoded>
+  </ms:resource>
+  <ms:size>34516</ms:size>
+  <ms:charset>iso-5988-1</ms:charset>
+  <ms:languages>ms:Lang3.Nld 1</ms:languages>
+</ms:unit>
+<ms:unit ms:id="cc:ASDJKDJO12314A-resp" />
+<ms:unit ms:id="cc:ASDJKDJO12314A-links" />
+==end
+
+<p>The units are separately storable and retrievable.  The can have
+many kinds of relations, which is expressed by the <code>ms:is</code>
+attribute.  The <code>ms:is</code> does not need to be the type of
+the unit where it refers to, but it often is: the application which
+follows the relation should understand it.</p>
+
+=discuss Caching units based on <code>ms:id</code>
+
+<p class="list">The IDs are unique, because they are QName types:
+namespaced strings.  Their uniqueness extends the full data-structure
+which is being processed.  When you ask the "owner" of the id namespace,
+you can get three answers:</p>
+<ul>
+<li>the same information;</li>
+<li>a newer version of the same information (update); or</li>
+<li>a denial of existince: removed (or never stored in the service)</li>
+</ul>

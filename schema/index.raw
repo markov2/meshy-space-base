@@ -1,0 +1,56 @@
+<h1>The base schema</h1>
+
+<blockquote>Important design committees have demonstrated that you can build huge
+schemas with very little expression power.  This has given XML (schemas)
+a bad name.  This base schema for MSI tries to avoid those pitfalls with
+various shameless simplifications.</blockquote>
+
+<p>The elements in <i>base</i> use standards when they exist.  There are many
+standards, and people have put a lot of effort in composing them.  Meshy Space
+defines a uniform use of them.</p>
+<ul>
+<li><a href="/schemas/base/ms.xsd">Download</a> the full schema. (Most browsers
+    will not show it, as it is XML: do "view source")</li>
+</ul>
+
+<h2>The <code>unit</code></h2>
+
+<p>This <b>base</b> schema defines the <SCHEMA>ms:unit</SCHEMA>
+of operation.  It could have been named <i>object</i>, <i>atom</i>,
+<i>item</i>, <i>entry</i>, <i>file</i>, <i>quantum</i>, or <i>blob</i>:
+the unit is an sequence of octets (bytes) with some meaning.  When you
+merge the features for these abstract thingies in many application,
+you get a unified idea about managing data.</p>
+
+<h2>Elements grouped in categories</h2>
+
+<p>For easier access, the components defined by this schema are split
+into a few accessible categories.  This is for documentation only: they form
+one namespace and one XML schema.</p>
+
+<dl>
+<dt><a href="constants/">constants</a> in the <code>ms:</code> namespace.</dt>
+<dd>many sets of namespaced constants are used, mainly to explictly refer to
+    values defined in RFCs, IANA, and other standardization bodies.</dd>
+
+<dt><a href="payloads/">payloads</a></dt>
+<dd>contain the data of each unit (in-lined) or as reference.  Some payloads
+    are native to the Meshy Space infrastructure.</dd>
+
+<dt><a href="units/">units</a></dt>
+<dd>addressable data units: the core feature of MSI.</dd>
+
+<dt><a href="values/">values</a></dt>
+<dd>representations of basic values, like expressions and numbers.</dd>
+
+</dl>
+
+<h2>The schema header</h2>
+
+<XML>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" version="0.1.0"
+   elementFormDefault="qualified" attributeFormDefault="qualified"
+   targetNamespace="https://schemas.meshy.space/base.xsd"
+   xmlns:ms="https://schemas.meshy.space/base.xsd"
+>
+</XML>

@@ -1,0 +1,44 @@
+=short
+
+<p>The <i>ms:unit-id</i> is a unique label for a <SCHEMA>ms:unit</SCHEMA>.
+
+=schema
+
+==xml
+<simpleType name="unit-id">
+  <restriction base="string">
+    <pattern value="[a-zA-Z0-9]+:" />
+  </restriction>
+</simpleType>
+
+==end
+
+=description
+
+<p>Meshy Space Interfaces (usually) are large and dynamic; they exchange
+a lot of information.  Also, MSI attempts to keep the meta-data in
+manageable chunks (units) which can be transported separately.  To be
+able to have chunck refer to other chunks, we use unique identifiers:
+they are namespace qualified, to avoid accidental confusion
+between identifiers received from different sources.</p>
+
+=discuss Why <code>ms:unit-id</code> is not the same as <code>xsd:id</code>
+
+<p>The <code>ms:unit-id</code> <b>is different</b> from the <code>xsd:id</code>,
+both in type as in concept.  Both are identifiers &mdash;used to assign
+a unique label to an object of data&mdash; and both can be referred to.
+But both the value of an ID and the interpretation of a reference
+differs.</p>
+
+<p>The most visible difference is that <code>ms:id</code> values are
+namespace qualified.  The exchanged data may have different origins
+which may accidentally use the same value.  For instance, a database
+row id may very well be used as unique identifier... but everyone
+starts counting at "<code>1</code>".</p>
+
+=discuss Why not defined as an <code>xsd:QName</code>?
+
+<p>When we would use a QName, XML validators or parsers may complain about
+missing namespace declarations.  However, in MSI, it is very common to
+receive information inside units where the namespace is not understood.</p>
+

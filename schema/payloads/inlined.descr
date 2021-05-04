@@ -1,0 +1,55 @@
+=short
+
+<p>Add any kind of data directly inside a unit.</p>
+
+=schema
+
+==xml
+<element name="inlined" substitutionGroup="ms:payload">
+  <complexType>
+    <complexContent>
+      <extension base="ms:_payload">
+        <sequence>
+          <element name="encoded" type="ms:encoding" default="" />
+          <element name="blob" type="string" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</element>
+==end
+
+=description
+
+<p>This element let you store the data of the unit inside the serialization
+of the unit.  Especially when your data-set is modest, you may not want to
+offer side-channel bulk data transport.  For instance, when you have a
+few words of utf-8 encoded text.</p>
+
+<p>The data for <i>inlined</i> elements is foreign to the MSI, so needs
+to be wrapped-up some way: it is <code>encoded</code> into a <code>blob</code>
+of bytes.  Often, it is base64 encoded.</p>
+
+<p>Blobs can be used for anything: bulk parameter to calls, signatures,
+passing encryption keys, images, etc.</p>
+
+<h2>Efficient bulk use of blobs</h2>
+
+<p>Any unit's data, and even units themselves, can be stored
+together in a blob: a blob can, for instance be a <code>zip</code> or
+<code>tar.gz</code> archive, which offers addressable elements.  It is
+far more efficient to combine many small blobs into a single dedicated
+unit: compression, cache tuning, and data processing in general will
+benefit.</p>
+
+=element encoded
+
+<p>Explains how the data was serialized into bytes.  See
+<SCHEMA>ms:encoding</SCHEMA>.  You need to undo the encodings to get
+the bytes in the <code>unit.format</code>, to get the product of the
+described type.</p>
+
+=element blob
+
+<p>A (XML-) string containing the unit's data in <code>encoded</code> form.
+Usually, encodings make the blanks insignificant.</p>

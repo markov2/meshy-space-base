@@ -1,0 +1,52 @@
+=short
+
+<p>The <i>expression</i> is referred to by name, typically in attributes
+named like <i>value</i>.  They are formatted as common in many C-like
+programming languages.
+
+=schema
+
+==xml
+<element name="expression" type="ms:_expression" abstract="true" />
+
+<complexType name="_expression">
+  <simpleContent>
+    <extension base="string">
+      <attribute name="name" ref="ms:ref" use="required"/>
+    </extension>
+  </simpleContent>
+</complexType>
+==end
+
+=description
+
+<p>The <i>expression</i> results in any kind of computed value.</p>
+
+<p>The syntax of conditions mimics any C-like language.  You may use
+other defined expressions by name.  Also, the service may offer additional
+names which produce values.</p>
+
+<p>Numbers may have a trailing k, M, G, T, or P to indicate powers
+of 1024.  <code>true</code> and <code>false</code> represent values
+<code>0</code> and <code>1</code> respectively.</p>
+
+<p>Services MAY decide to refuse all expressions which it has not
+predefined itself.  Those are run-time errors.  Also, they MAY refuse
+expressions which it cannot be handled fast enough.  Changing the
+accepted syntax must be reflected in &mdash;at least a minor&mdash;
+version increment and be documented.</p>
+
+=example simpelest form: a constant
+
+==xml
+<ms:max-download>500k</ms:max-download>
+==json
+{ "ms:max-download" : "500k" }
+==end
+
+=discuss no pre-parsed expressions
+
+<p>Many XML schemas bend themselves in strange and complex ways to store a
+parsed version if expressions.  That makes using them needlessly complex:
+a simple expression parser on the receiving side makes it easier to
+configure to receive data.</p>

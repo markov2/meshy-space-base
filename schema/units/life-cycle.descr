@@ -1,0 +1,104 @@
+
+=short
+
+<p>A group of fields which maintain the status of the unit; units
+may require maintenance, even when you do not like it.</p>
+
+=schema
+
+==xml
+<group name="life-cycle">
+  <sequence>
+    <element ref="ms:version" minOccurs="0" />
+    <element name="created"    type="dateTime" minOccurs="0" />
+    <element name="updated"    type="dateTime" minOccurs="0" />
+    <element name="deprecated" type="dateTime" minOccurs="0" />
+    <element name="expires"    type="dateTime" minOccurs="0" />
+    <element name="revisit"    type="duration" default="1H"  />
+  </sequence>
+</group>
+==end
+
+=description
+
+<p>The <code>version</code> MUST be upgraded each time the unit
+sses any change.  It is used to invalidate cached values.
+Versions are sortable strings.  Only the newest version of a
+unit should be used by your program: older versions have value.</p>
+
+<p>The <code>version</code> defaults to <code>updated</code>.
+On its turn, <code>updated</code> defaults to <code>created</code>.
+
+<p>For each of the time-stamps, you will not see who has set or changed
+them inside the unit itself: that's quite expensive.  The collection of
+units may have a separate archive which contains or produces change-logs.</p>
+
+=element version
+
+<p>See <SCHEMA>ms:version</SCHEMA>.  Defaults to the value of
+<code>updated</code>, which contains a date which is string-sortable.</p>
+
+=element created
+
+<p>This tells you something about the moment data has been collected for
+the first time: the moment the <code>id</code> appears in the system.</p>
+
+=element updated
+
+<p>The "last-modified" time-stamp reflects any change on the data or
+meta-data of the unit.  This includes changed detected in the
+references the unit <code>has</code> to other data.</p>
+
+<p>The <code>version</code> is already increased on each of the updates,
+which will automatically upgrade all copies of the unit.  The version
+may look like a date, but does not need to be.</p>
+
+<p><code>Updated</code> defaults to <code>created</code>.</p>
+
+=element deprecated
+
+<p>When a unit has a deprecated time which is in the past, then attempts
+should be made to warn the user of data in the unit.  Details can be
+found in the unit's change-log.  Warnings MUST be throttled to an
+acceptable level, say a maximum of once per hour.
+
+=element expires
+
+<p>When a unit has expired, it SHALL NOT be used anymore.  It MUST
+be thrown away within a reasonable period, but at least within
+one hour after expiration.</p>
+
+<p>Also units which are packaged may expire.  In this case, the whole
+package is expired.  When there are still units inside that package which
+are not expired, you MUST either expire them as well or repackage them.
+Probably the latter.  This may be expensive.</p>
+
+=element revisit
+
+<p>The maximum in which you have to check whether you still have the
+latest version of a unit.  When you use a cached unit (of any type)
+you must check whether the collection which contains that unit has
+to be upgraded, using the <SCHEMA>ms:Op.upgrade</SCHEMA> operation.
+All reported changes need to be processed before you can continue.</p>
+
+<p>It is RECOMMENDED to have a background process performing this task,
+such that "normal" processed are not delayed in the synchronization.
+Upgrades of units are shown as atomic operations.</p>
+
+<p>It is RECOMMENDED to revisit the units at least every half of the
+revisit duration.  You SHALL have revisited the unit before the timespan
+has ended, or throw the cached version of the unit away.</p>
+
+<p>You SHALL not keep the version unit in any form after the revisit
+timespan has passed without revision attempt, to comply to law.</p>
+
+=discuss Repackaging after expiration
+
+<p>We cannot tolerate the distribution of expired data, because
+their termination means that the license has expired or the content
+is withdrawn.  For instance, the unit may contain illegal content.
+Or has broken content.  You do not have a choice: repackaging and
+redistribution is obligatory.</p>
+
+<p>You do not have to repackage the unit's data on updates or
+deprecations: simply patch the meta-data of the unit.</p>

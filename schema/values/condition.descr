@@ -1,0 +1,51 @@
+
+=short
+
+<p>The <tt>condition</tt> is referred to by name, typically in attributes
+named like <tt>when</tt> or <tt>unless</tt>.  They are formatted as
+common in many C-like programming languages.</p>
+
+=schema
+
+==xml
+<element name="condition" type="ms:_condition"
+   substitutionGroup="ms:expression" abstract="false" />
+
+<simpleType name="_condition">
+  <restriction base="ms:_expression" />
+</simpleType>
+==end
+
+=description
+
+<p>The <tt>condition</tt> contains an expression which results in a logic
+<i>true</i> or <i>false</i> value.  It is typically referred to by name in
+<tt>when</tt> or <tt>unless</tt> attributes, or in other expressions.</p>
+
+<p>When the expression is evaluated to "<tt>0</tt>" (zero) or
+"<tt>\s*</tt>" (a blank value), it is interpreted as <i>false</i>.
+All other values are <i>true</i>.</p>
+
+<p>As any other kind of <tt>expression</tt>, the server MAY refuse
+your conditional expression.</p>
+
+=example chained conditions
+
+==xml
+<ms:condition name="my:take-all">true</ms:condition>
+<ms:select-item when="my:item.size < 500k || my:take-all" />
+==json
+{
+   "ms:condition" : {
+     "ms:name"  : "my:take-all",
+     "ms:value" : true
+   },
+   "ms:select-item" : {
+     "ms:when" : "my.item.size < 500k || my:take-all"
+   }
+}
+==end
+
+<p>The <code>take-all</code> here is an expression of the simpelest type:
+a boolean constant value "<code>true</code>".  It also shows you can
+refer to parameters which are offered by the interpreter of the expression.</p>

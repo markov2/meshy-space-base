@@ -1,0 +1,49 @@
+
+=short
+
+<p>The <i>version</i> of an <SCHEMA>ms:unit</SCHEMA> is used to determine wheter the
+unit has changed.  Only the newest should be kept: the older must be removed.</p>
+
+=schema
+
+==xml
+<element name="version">
+  <simpleType>
+    <restriction base="string">
+      <pattern value="[[:ascii:]]+" />
+    </restriction>
+  </simpleType>
+</element>
+==end
+
+=description
+
+<p>Comparing utf-8 is really hard, unless you restrict the characters to the ascii
+namespace.</p>
+
+=discuss Representing complex versions, like 5.18.7-alpha2
+
+<p>There are many versioning schemes which work very differently: often
+incompatible.  For instance, software packages are often released with
+versions like <code>5.18.7-alpha2</code>.  To be able to understand
+whether this is newer or older than <code>5.9.2</code> you have to
+interpret the string according to some rules which are not standardized.</p>
+
+<p class="list">In MSI, you could do:</p>
+<XML>
+<ms:product ms:id="cpan:perl" ms:version="5.018.007">
+  <ms:name>Perl 5.18.7</ms:name>
+</ms:product>
+</XML>
+
+<p>In this case, you cannot keep older releases of Perl.  When you do want
+to keep all major versions, you could organize your collection like this:</p>
+<XML>
+<ms:product ms:id="cpan:perl-5.18" ms:version="5.018.007">
+  <ms:name>Perl 5.18.7</ms:name>
+</ms:product>
+<ms:product ms:id="cpan:perl-5.19" ms:version="5.019.003">
+  <ms:name>Perl 5.19.3</ms:name>
+</XML>
+<p>And so on.  For each <SCHEMA>ms:id</SCHEMA>, there is only one valid version:
+the one with the highest sorting.</p>

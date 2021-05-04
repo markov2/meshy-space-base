@@ -1,0 +1,72 @@
+=short
+
+<p>A unit <i>has</i> references to an other unit for a certain
+reason.</p>
+
+=schema
+
+==xml
+<element name="has" type="ms:has" />
+
+<complexType name="_has">
+  <complexContent>
+    <extension base="ms:unit-ref">
+      <sequence />
+      <attribute name="is"    type="ms:constant" default="ms:Role.Unknown" />
+      <attribute name="seqnr" type="ms:long" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p class="list">We can think of many reasons for relations.  The reason
+is expressed via the "<code>is</code>" attribute, which contains a
+name-spaced constant.</p>
+
+=example in the Meshy Space Concept frame
+
+<p>Not all inter-unit relations are the same: some are generic enough
+to be defined by MSI, where other have a looser or non-standardized
+relation.  It may also be smart to put lesser-used information about
+a unit into a separat unit: for instance the history of the unit.</p>
+
+==xml
+<ms:unit ms:id="mine:User.Markov">
+  <ms:type>msc:Role.Identity</ms:type>
+</ms:unit>
+<ms:unit ms:id="mine:Source.puppy" />
+  <ms:type>ms:Mime.application/rpm</ms:type>
+  <ms:version>3.14</ms.version>
+  <ms:address>puppy-src-3.14.rpm</ms:address>
+</ms:unit>
+<ms:unit ms:id="mine:Dist.puppy">
+  <ms:type>ms:Mime.application/rpm</ms:type>
+  <ms:version>3.14</ms.version>
+  <ms:address>puppy-src-3.14.rpm</ms:address>
+  <ms:owner>mine:User.Markov</ms:owner>
+  <ms:has ms:ref="mine:Source.puppy" ms:is="mine:Source" />
+</ms:unit>
+==end
+
+=attribute is
+
+<p>The <code>ms:is</code> attribute explains the <code>ms:has</code> relation.  When
+the relation unknown, the client may need to collect the related unit to inspect its
+content.</p>
+
+<p>The relation may also be in a namespace which the client does not understand.  In
+that case, the client is RECOMMENDED to ignore the relation.  The client MAY warn its
+user that there is information which is not understood.</p>
+
+<p>When you download a unit, you can specify the namespaces and relations of the
+related units to be downloaded in the same go as well.  For instance, within the
+Meshy Space Concept, a request for a certain <code>msc:Role.Collection</code> with
+ask to include the related unit with relation <code>msc:Role.Rules</code>.  Or
+more general, for all <code>msc:Role.*</code> units.</p>
+
+=attribute seqnr
+
+<p>When there are multiple relations which are of the same kind (same <code>ms:is</code>),
+they may need to be ordered like an array.</p>

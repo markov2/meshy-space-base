@@ -1,0 +1,35 @@
+
+=short
+
+<p>Base for different kinds of payloads: <code>unit.type</code> specific data.</p>
+
+=schema
+
+==xml
+<element name="payload" type="ms:_payload" />
+
+<complexType name="_payload">
+  <sequence>
+     <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
+     <element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+</complexType>
+==end
+
+<p>One <SCHEMA>ms:unit</SCHEMA> can only contain one payload element.
+This may cleanly integrate with MSI, using the same schema's and
+standards (native), but may also be foreign to it: not interpretable
+by a Meshy Space compatible server.</p>
+
+<p class="list"><code>ms:payload</code> is extended via substitutionGroups
+by</p>
+<ul>
+<li><SCHEMA>ms:packaged</SCHEMA>: stored inside a more complex
+    structure in another unit;</li>
+<li><SCHEMA>ms:inlined</SCHEMA> means packaged in-situ.  This is less
+    efficient than the <i>packaged</i> when you want to compress
+    and sign the information;</li>
+<li><SCHEMA>ms:native</SCHEMA> is the substitutionGroup base for
+    elements which are native to Meshy Space, and may also be extended
+    by other schemas which the server knows of.</li>
+</ul>

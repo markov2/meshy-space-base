@@ -1,0 +1,73 @@
+=short
+
+<p>Your data is serialized into bytes which can be stored.  The <i>packaged</i>
+element refers to an other unit which maintains those bytes for you.</p>
+
+=schema
+
+==xml
+<element name="packaged">
+  <complexType>
+    <complexContent>
+      <extension base="ms:unit-ref">
+        <sequence>
+          <element name="address"   type="anyURI" />
+          <element ref="ms:encoded" default="" />
+          <element ref="ms:format"  minOccurs="0" />
+          <element ref="ms:authorization" minOccurs="0" />
+          <element name="size"      type="long" minOccurs="0" />
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+</element>
+==end
+
+=description
+
+<p>You will find this unit on <code>ms:address</code> in the
+<SCHEMA>ms:unit</SCHEMA> to <code>ms:ref</code>.  The referenced data
+has <code>size</code> octets, which is informative.</p>
+
+=element address
+
+<p>The <code>address</code> has an interpretation for the data type of
+the unit you are refering to.  For example: that other unit is a tar
+archive, and your address is a filename inside that archive.  Or the
+other unit is a link into a website, and your address is relative to it.
+The address may also be absolute.</p>
+
+<p>The interpretation of the address will be done at run-time.</p>
+
+<p>The path to this unit may offer multiple resources for this unit,
+which use the same address relative to very different ways to store it.
+For instance, it can be a filename within a zip archive, or a separate
+filename loadable via https.  Usually, the resource defines (and removes)
+the encoding.</p>
+
+=element size
+
+<p>The optional <i>size</i> is an estimate of the total number
+of octets for the referenced object, in encoded state.<p>
+
+<p>The value is informational only.  You MAY publish a size which is
+<i>maximum 10% higher</i> than the actual size: do not spend too much
+time housekeeping the exact value.  Downloaded, the data may be a bit
+larger anyway, caused by file-system overhead.</p>
+
+=element encoded
+
+<p>Explains how the data was serialized into bytes.  See
+<SCHEMA>ms:encoding</SCHEMA>.  You need to undo the encodings to get the
+octets in the <code>format</code>; to get the product of the described
+type.</p>
+
+<p>When not specified, client will try to guess the encoding from the
+address.  For instance, when the address ends with <code>.gz</code>, than
+the data is guessed to be <code>ms:Algo.Gzip</code> encoded.</p>
+
+<p><b>Be aware</b> that the client may not wish to undo all encodings.
+For instance: the client may wish to keep the data in compressed state.
+When your files are huge, you may want to keep them compressed, because
+redoing compression may take minutes.  Or your library can read
+compressed files itself.</p>
