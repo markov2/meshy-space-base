@@ -7,10 +7,9 @@
 ==xml
 <simpleType name="UnitID">
   <restriction base="string">
-    <pattern value="[a-zA-Z0-9]+:" />
+    <pattern value="[a-zA-Z0-9]+\:.*" />
   </restriction>
 </simpleType>
-
 ==end
 
 =description
@@ -38,7 +37,8 @@ starts counting at "<code>1</code>".</p>
 
 =discuss Why not defined as an <code>xsd:QName</code>?
 
-<p>When we would use a QName, XML validators or parsers may complain about
-missing namespace declarations.  However, in MSI, it is very common to
-receive information inside units where the namespace is not understood.</p>
+<p>When we would use the standard QName definition, XML parsers
+(and validators) could complain about missing namespace declarations.
+However, in MSI it is very common to receive information inside units
+where the namespace is not understood (yet).</p>
 

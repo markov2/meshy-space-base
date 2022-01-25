@@ -12,8 +12,8 @@ reason.</p>
   <complexContent>
     <extension base="ms:unitRef">
       <sequence />
-      <attribute name="is"    type="ms:constant" default="ms:Role/Unknown" />
-      <attribute name="seqnr" type="ms:long" />
+      <attribute name="is" type="ms:Constant" default="ms:Role/Unknown" />
+      <attribute name="seqnr" type="unsignedLong" default="1" />
     </extension>
   </complexContent>
 </complexType>
@@ -33,7 +33,7 @@ relation.  It may also be smart to put lesser-used information about
 a unit into a separat unit: for instance the history of the unit.</p>
 
 ==xml
-<ms:unit ms:id="mine:User.Markov">
+<ms:unit ms:id="mine:User/Markov">
   <ms:type>msc:Role/Identity</ms:type>
 </ms:unit>
 <ms:unit ms:id="mine:Source/puppy" />
@@ -41,7 +41,7 @@ a unit into a separat unit: for instance the history of the unit.</p>
   <ms:type>ms:Mime/application/rpm</ms:type>
   <ms:address>puppy-src-3.14.rpm</ms:address>
 </ms:unit>
-<ms:unit ms:id="mine:Dist.puppy">
+<ms:unit ms:id="mine:Dist/puppy">
   <ms:name>puppy 3.14</ms:name>
   <ms:type>ms:Mime/application/rpm</ms:type>
   <ms:address>puppy-3.14.rpm</ms:address>

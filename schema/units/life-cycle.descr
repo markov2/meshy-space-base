@@ -22,16 +22,18 @@ may require maintenance, even when you do not like it.</p>
 =description
 
 <p>The <code>revision</code> MUST be upgraded each time the unit
-sses any change.  It is used to invalidate cached values.
-Versions are sortable strings.  Only the newest revision of a
+sees any change: it is used to invalidate cached values.
+Revisions are sortable strings.  Only the newest revision of a
 unit should be used by your program: older revisions have value.</p>
 
-<p>The <code>revision</code> defaults to <code>updated</code>.
-On its turn, <code>updated</code> defaults to <code>created</code>.
+<p>The <code>revision</code> defaults to <code>updated</code>, which
+is a ordered date format.  On its turn, <code>updated</code> defaults
+to <code>created</code>.</p>
 
-<p>For each of the time-stamps, you will not see who has set or changed
-them inside the unit itself: that's quite expensive.  The collection of
-units may have a separate archive which contains or produces change-logs.</p>
+<p>For each of the time-stamps, you will not see who has set or
+changed them inside the unit itself: that could become quite expensive.
+The collection of units may have a separate archive which contains or
+produces change-logs.  See <SCHEMA>msc:Type/ChangeLog</SCHEMA>.</p>
 
 =element revision
 
