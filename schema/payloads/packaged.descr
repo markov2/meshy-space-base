@@ -1,33 +1,40 @@
 =short
 
 <p>Your data is serialized into bytes which can be stored.  The <i>packaged</i>
-element refers to an other unit which maintains those bytes for you.</p>
+element refers to in internet location which contains those bytes for you.</p>
 
 =schema
 
 ==xml
-<element name="packaged">
-  <complexType>
-    <complexContent>
-      <extension base="ms:unit-ref">
-        <sequence>
-          <element name="address"   type="anyURI" />
-          <element ref="ms:encoded" default="" />
-          <element ref="ms:format"  minOccurs="0" />
-          <element ref="ms:authorization" minOccurs="0" />
-          <element name="size"      type="long" minOccurs="0" />
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-</element>
+<element name="packaged" type="ms:Packaged" />
+
+<complexType name="ms:Packaged">
+  <complexContent>
+    <extension base="ms:Native">
+      <sequence>
+        <element name="source"        type="min:UnitRef" maxOccurs="unbounded" />
+        <element name="address"       type="anyURI"  />
+        <element ref="ms:encoded"     type="ms:Encoding" default="" />
+        <element ref="ms:format"      minOccurs="0" />
+        <element name="download-size" type="long" minOccurs="0" />
+        <element ref="ms:authorization" minOccurs="0" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
 ==end
 
 =description
 
 <p>You will find this unit on <code>ms:address</code> in the
-<SCHEMA>ms:unit</SCHEMA> to <code>ms:ref</code>.  The referenced data
-has <code>size</code> octets, which is informative.</p>
+<SCHEMA>ms:unit</SCHEMA> to <code>ms:UnitRef</code>.  The referenced
+data has about <code>download-size</code> octets.</p>
+
+=element source
+
+<p>Which unit contains the packaged data.  There MAY be more than one
+source, and conditions MAY select the alternatives which are
+available to you.</p>
 
 =element address
 
@@ -45,10 +52,10 @@ For instance, it can be a filename within a zip archive, or a separate
 filename loadable via https.  Usually, the resource defines (and removes)
 the encoding.</p>
 
-=element size
+=element download-size
 
-<p>The optional <i>size</i> is an estimate of the total number
-of octets for the referenced object, in encoded state.<p>
+<p>An estimate of the total number of octets for the referenced object,
+in encoded state.<p>
 
 <p>The value is informational only.  You MAY publish a size which is
 <i>maximum 10% higher</i> than the actual size: do not spend too much
@@ -64,10 +71,15 @@ type.</p>
 
 <p>When not specified, client will try to guess the encoding from the
 address.  For instance, when the address ends with <code>.gz</code>, than
-the data is guessed to be <code>ms:Algo.Gzip</code> encoded.</p>
+the data is guessed to be <code>ms:Algo/Gzip</code> encoded.</p>
 
 <p><b>Be aware</b> that the client may not wish to undo all encodings.
 For instance: the client may wish to keep the data in compressed state.
 When your files are huge, you may want to keep them compressed, because
 redoing compression may take minutes.  Or your library can read
 compressed files itself.</p>
+
+=element authorization
+
+<p>You probably need the authorization information to collect the data
+from the <code>address</code>.</p>

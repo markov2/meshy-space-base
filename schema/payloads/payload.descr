@@ -6,9 +6,9 @@
 =schema
 
 ==xml
-<element name="payload" type="ms:_payload" />
+<element name="payload" type="ms:Payload" />
 
-<complexType name="_payload">
+<complexType name="Payload">
   <sequence>
      <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
      <element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" />
@@ -30,6 +30,6 @@ by</p>
     efficient than the <i>packaged</i> when you want to compress
     and sign the information;</li>
 <li><SCHEMA>ms:native</SCHEMA> is the substitutionGroup base for
-    elements which are native to Meshy Space, and may also be extended
-    by other schemas which the server knows of.</li>
+    elements which are native to Meshy Space (Concept), and may also be
+    extended by other schemas which the server knows of.</li>
 </ul>

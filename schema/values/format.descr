@@ -6,7 +6,7 @@ do not have an official mime-type, therefore we add namespaces.</p>
 =schema
 
 ==xml
-<element name="format" type="ms:constant" />
+<element name="format" type="ms:Constant" />
 ==end
 
 =description
@@ -18,12 +18,12 @@ list</a> is maintained by IANA.  For those types, use the <code>mime-type:</code
 
 <p class="list">Example use of formats which have a IANA registration:</p>
 <XML>
-<ms:format>ms:Mime.image/gif</ms:format>
-<ms:format>ms:Mime.application/pdf</ms:format>
+<ms:format>ms:Mime/image/gif</ms:format>
+<ms:format>ms:Mime/application/pdf</ms:format>
 </XML>
 <JSON>
-"ms:format": "ms:Mime.image/gif",
-"ms:format": "ms:Mime.application/pdf",
+"ms:format": "ms:Mime/image/gif",
+"ms:format": "ms:Mime/application/pdf",
 </JSON>
 
 <p>Applications which handle IANA mime-types must handle them case-insensitive,
@@ -53,12 +53,12 @@ your own.</p>
 
 <p class="list">Examples: (WARC is an ISO standard)</p>
 <XML>
-<ms:format>ms:Mime.application/x-warc.archive</ms:format>
-<ms:format>ms:Mime.application/vnd.x-osf.meeting</ms:format>
-<ms:format>myns:Type.SyslogErrors</ms:format>
+<ms:format>ms:Mime/application/x-warc.archive</ms:format>
+<ms:format>ms:Mime/application/vnd.x-osf.meeting</ms:format>
+<ms:format>myns:Type/SyslogErrors</ms:format>
 </XML>
 <JSON>
-"ms:format": "ms:Mime.application/x-warc.archive",
-"ms:format": "ms:Mime.application/vnd.x-osf.meeting",
-"ms:format": "myns:Type.syslogErrors",
+"ms:format": "ms:Mime/application/x-warc.archive",
+"ms:format": "ms:Mime/application/vnd.x-osf.meeting",
+"ms:format": "myns:Type/syslogErrors",
 </JSON>

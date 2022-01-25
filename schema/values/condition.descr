@@ -8,11 +8,11 @@ common in many C-like programming languages.</p>
 =schema
 
 ==xml
-<element name="condition" type="ms:_condition"
+<element name="condition" type="ms:Condition"
    substitutionGroup="ms:expression" abstract="false" />
 
-<simpleType name="_condition">
-  <restriction base="ms:_expression" />
+<simpleType name="Condition">
+  <restriction base="ms:Expression" />
 </simpleType>
 ==end
 

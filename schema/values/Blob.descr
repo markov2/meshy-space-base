@@ -1,0 +1,29 @@
+=short
+
+<p>Data in some field may be encoded: serialized, base64, compressed,
+and more.  These algorithms have pre-defined constants.  This field
+contains the data plus a list of applied steps.</p>
+
+=schema
+
+==xml
+
+<complexType name="Blob">
+  <simpleContent>    
+    <extension base="string"/>
+    <attribute name="encoded" type="ms:Encoding" default="" />
+  </simpleContent>
+</complexType>
+
+==end
+
+=description
+
+<p>Elements of this type contain data which MAY be encapsulated to
+be able to fit in the message.  The packaged data MAY be a structure,
+not UTF8, contain characters which XML does not like, or pure binary.</p>
+
+=attribute encoded
+
+<p>The <SCHEMA>ms:Encoding</SCHEMA> which has been applied to the
+data, to end-up with the content of the element of type <code>Blob</code>.</p>

@@ -1,0 +1,34 @@
+=short
+
+<p>Elements of type <i>ms:Constant</i> contain a flag which tells the client
+something. Maybe the client or server understands what the flag means, maybe
+not.</p>
+
+=schema
+
+==xml
+<simpleType name="Constant" type="xsd:QName" />
+==end
+
+=description
+
+<p>Constants are QNames: qualified names, which represents the standardization
+board via the namespace.  Constants are artificially grouped in their own
+path components. The grouping MAY also contain sub-groupings.</p>
+
+<p>Extensions may add their own constants to enumation sets which are
+defined by Meshy Space itself, when they feel the need.  One SHALL not
+use numeric values to represent anything else than a numeric value.</p>
+
+=example Constant grouping
+
+<p>For instance: the following example has three layers of grouping:
+<code>Mime</code>, <code>text</code>, and <code>html</code>.
+
+<CODE>
+msc:Mime/text/html
+</CODE>
+
+<p>You cannot see whether <code>Mime</code> is a grouping which only
+contains constants, or whether <code>Mime/text/</code> together groups a
+constant collection. You should not want to have ungrouped constants.</p>

@@ -8,17 +8,17 @@ the (network) location where bytes can be collected.  It publishes
 =schema
 
 ==xml
-<element name="publication" type="_publication" substitutionGroup="ms:unit" />
+<element name="publication" type="Publication" substitutionGroup="ms:unit" />
 
-<complexType name="_publication">
+<complexType name="publication">
   <complexContent>
-    <extension base="ms:_unit">
+    <extension base="ms:Unit">
       <sequence>
         <choice>
-           <element name="address" type="anyURI" />
-           <element name="blob" type="string" />
+          <element name="address" type="anyURI" />
+          <element name="blob"    type="string" />
         </choice>
-        <element name="collection" type="ms:_ref" minOccurs="0" maxOccurs="unbounded" />
+        <element name="collection" type="ms:unitRef" minOccurs="0" maxOccurs="unbounded" />
       </sequence>
     </extension>
   </complexContent>

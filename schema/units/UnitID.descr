@@ -1,11 +1,11 @@
 =short
 
-<p>The <i>ms:unit-id</i> is a unique label for a <SCHEMA>ms:unit</SCHEMA>.
+<p>A unique label for a <SCHEMA>ms:unit</SCHEMA>.
 
 =schema
 
 ==xml
-<simpleType name="unit-id">
+<simpleType name="UnitID">
   <restriction base="string">
     <pattern value="[a-zA-Z0-9]+:" />
   </restriction>
@@ -22,15 +22,15 @@ able to have chunck refer to other chunks, we use unique identifiers:
 they are namespace qualified, to avoid accidental confusion
 between identifiers received from different sources.</p>
 
-=discuss Why <code>ms:unit-id</code> is not the same as <code>xsd:id</code>
+=discuss Why <code>ms:UnitID</code> is not the same as <code>xsd:ID</code>
 
-<p>The <code>ms:unit-id</code> <b>is different</b> from the <code>xsd:id</code>,
+<p>The <code>ms:UnitID</code> <b>is different</b> from the <code>xsd:ID</code>,
 both in type as in concept.  Both are identifiers &mdash;used to assign
 a unique label to an object of data&mdash; and both can be referred to.
 But both the value of an ID and the interpretation of a reference
 differs.</p>
 
-<p>The most visible difference is that <code>ms:id</code> values are
+<p>The most visible difference is that <code>ms:ID</code> values are
 namespace qualified.  The exchanged data may have different origins
 which may accidentally use the same value.  For instance, a database
 row id may very well be used as unique identifier... but everyone

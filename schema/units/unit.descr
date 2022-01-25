@@ -7,18 +7,18 @@ generalization of many protocols and system features.</p>
 =schema
 
 ==xml
-<element name="unit" type="ms:_unit" abstract="true" />
+<element name="unit" type="ms:Unit" abstract="true" />
 
-<complexType name="_unit">
+<complexType name="Unit">
   <sequence>
     <element name="type"      type="ms:constant" />
     <group   ref="ms:meta-data"  />
     <group   ref="ms:life-cycle" />
-    <element name="owner"     type="ms:unit-id" minOccurs="0" maxOccurs="unbounded" />
+    <element name="owner"     type="ms:unitID" minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:payload" minOccurs="0" />
     <element ref="ms:has"     minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute name="id" ref="ms:unit-id" use="required" />
+  <attribute name="id" ref="ms:unitID" use="required" />
 </complexType>
 ==end
 
@@ -42,7 +42,7 @@ element (in <SCHEMA>ms:meta-data</SCHEMA>).</p>
 
 <p><b>WARNING:</b> unit <code>ids</code> are quite different
 from <code>xsd:id</code> identifiers: study the differences in
-<SCHEMA>ms:unit-id</SCHEMA>!</p>
+<SCHEMA>ms:unitID</SCHEMA>!</p>
 
 =attribute id
 
@@ -61,7 +61,7 @@ the type of objects in programs.  The data itself may come in a serialization
 
 <p>A number of fields are used to control the progress of the unit:
 when it was created, was deprecated, and is to be removed.  The base
-is the version of the unit.  There is only one version of a unit in
+is the revision of the unit.  There is only one revision of a unit in
 your cache: the newest.</p>
 
 =group meta-data

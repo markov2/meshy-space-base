@@ -9,7 +9,7 @@ may require maintenance, even when you do not like it.</p>
 ==xml
 <group name="life-cycle">
   <sequence>
-    <element ref="ms:version" minOccurs="0" />
+    <element ref="ms:revision" minOccurs="0" />
     <element name="created"    type="dateTime" minOccurs="0" />
     <element name="updated"    type="dateTime" minOccurs="0" />
     <element name="deprecated" type="dateTime" minOccurs="0" />
@@ -21,21 +21,21 @@ may require maintenance, even when you do not like it.</p>
 
 =description
 
-<p>The <code>version</code> MUST be upgraded each time the unit
+<p>The <code>revision</code> MUST be upgraded each time the unit
 sses any change.  It is used to invalidate cached values.
-Versions are sortable strings.  Only the newest version of a
-unit should be used by your program: older versions have value.</p>
+Versions are sortable strings.  Only the newest revision of a
+unit should be used by your program: older revisions have value.</p>
 
-<p>The <code>version</code> defaults to <code>updated</code>.
+<p>The <code>revision</code> defaults to <code>updated</code>.
 On its turn, <code>updated</code> defaults to <code>created</code>.
 
 <p>For each of the time-stamps, you will not see who has set or changed
 them inside the unit itself: that's quite expensive.  The collection of
 units may have a separate archive which contains or produces change-logs.</p>
 
-=element version
+=element revision
 
-<p>See <SCHEMA>ms:version</SCHEMA>.  Defaults to the value of
+<p>See <SCHEMA>ms:revision</SCHEMA>.  Defaults to the value of
 <code>updated</code>, which contains a date which is string-sortable.</p>
 
 =element created
@@ -49,8 +49,8 @@ the first time: the moment the <code>id</code> appears in the system.</p>
 meta-data of the unit.  This includes changed detected in the
 references the unit <code>has</code> to other data.</p>
 
-<p>The <code>version</code> is already increased on each of the updates,
-which will automatically upgrade all copies of the unit.  The version
+<p>The <code>revision</code> is already increased on each of the updates,
+which will automatically upgrade all copies of the unit.  The revision
 may look like a date, but does not need to be.</p>
 
 <p><code>Updated</code> defaults to <code>created</code>.</p>
@@ -76,7 +76,7 @@ Probably the latter.  This may be expensive.</p>
 =element revisit
 
 <p>The maximum in which you have to check whether you still have the
-latest version of a unit.  When you use a cached unit (of any type)
+latest revision of a unit.  When you use a cached unit (of any type)
 you must check whether the collection which contains that unit has
 to be upgraded, using the <SCHEMA>ms:Op.upgrade</SCHEMA> operation.
 All reported changes need to be processed before you can continue.</p>
@@ -87,9 +87,9 @@ Upgrades of units are shown as atomic operations.</p>
 
 <p>It is RECOMMENDED to revisit the units at least every half of the
 revisit duration.  You SHALL have revisited the unit before the timespan
-has ended, or throw the cached version of the unit away.</p>
+has ended, or throw the cached revision of the unit away.</p>
 
-<p>You SHALL not keep the version unit in any form after the revisit
+<p>You SHALL not keep the revision unit in any form after the revisit
 timespan has passed without revision attempt, to comply to law.</p>
 
 =discuss Repackaging after expiration

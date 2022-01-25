@@ -7,12 +7,12 @@ programming languages.
 =schema
 
 ==xml
-<element name="expression" type="ms:_expression" abstract="true" />
+<element name="expression" type="ms:Expression" abstract="true" />
 
-<complexType name="_expression">
+<complexType name="Expression">
   <simpleContent>
     <extension base="string">
-      <attribute name="name" ref="ms:ref" use="required"/>
+      <attribute name="name" type="string" use="required"/>
     </extension>
   </simpleContent>
 </complexType>
@@ -35,14 +35,6 @@ predefined itself.  Those are run-time errors.  Also, they MAY refuse
 expressions which it cannot be handled fast enough.  Changing the
 accepted syntax must be reflected in &mdash;at least a minor&mdash;
 version increment and be documented.</p>
-
-=example simpelest form: a constant
-
-==xml
-<ms:max-download>500k</ms:max-download>
-==json
-{ "ms:max-download" : "500k" }
-==end
 
 =discuss no pre-parsed expressions
 

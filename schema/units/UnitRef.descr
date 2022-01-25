@@ -1,0 +1,41 @@
+=short
+
+<p>Type <i>ms:UnitRef</i> is a reference to some <SCHEMA>ms:unit</SCHEMA>.
+That unit does not need to be in the current message.</p>
+
+=schema
+
+==xml
+<complexType name="UnitRef">
+  <attribute name="ref"    type="ms:UnitID" use="required" />
+  <attribute name="when"   type="ms:Condition" />
+  <attribute name="unless" type="ms:Condition" />
+</complexType>
+==end
+
+=description
+
+<p>Elements and attributes of type <code>ms:UnitRef</code>
+refer to a <SCHEMA>ms:unit</SCHEMA> by its unique identifying
+<SCHEMA>ms:UnitID</SCHEMA>.  The units are kept "small", to enable
+flexible reconfiguration, so references are used often.</p>
+
+<p><b>WARNING:</b> this type is not the same as an <code>xsd:IDREF</code>,
+which MUST refer inside the document.</p>
+
+=attribute ref
+
+<p>Attribute <code>ms:ref</code> refers to a <SCHEMA>ms:unit</SCHEMA>
+with the expected type.  On purpose, the XML schema itself does not
+guarentee that the destination unit is as expected: this would make the
+schema far more complex.  It needs runtime validation anyway.</p>
+
+=attribute when
+
+<p>Only use the unit where this points to <i>when</i> a certain condition
+is met.</p>
+
+=attribute unless
+
+<p>Use the unit where this points to only when the condition does
+not match.  The hidden feeling is: usually it does match.</p>
