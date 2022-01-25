@@ -10,7 +10,7 @@ reason.</p>
 
 <complexType name="Has">
   <complexContent>
-    <extension base="ms:unitRef">
+    <extension base="ms:UnitRef">
       <sequence />
       <attribute name="is" type="ms:Constant" default="ms:Role/Unknown" />
       <attribute name="seqnr" type="unsignedLong" default="1" />

@@ -24,11 +24,11 @@
 <p>This element let you store the data of the unit inside the serialization
 of the unit.  Especially when your data-set is modest, you may not want to
 offer side-channel bulk data transport.  For instance, when you have a
-few words of utf-8 encoded text.</p>
+few words of UTF-8 encoded text.</p>
 
 <p>The data for <i>inlined</i> elements is foreign to the MSI, so probably
 needs to be wrapped-up some way: it is encoded into a <code>blob</code>
-of bytes.  Often, it is base64 encoded.</p>
+of bytes.  Often, it is Base64 encoded.</p>
 
 <p>Blobs can be used for anything: bulk parameter to calls, signatures,
 passing encryption keys, images, etc.</p>
@@ -44,5 +44,5 @@ benefit.</p>
 
 =element blob
 
-<p>An (XML-) string containing the unit's data (probably in encoded form).
+<p>A string containing the unit's data (probably in encoded form).
 Usually, encodings make the blanks insignificant.</p>

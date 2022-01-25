@@ -1,7 +1,7 @@
 =short
 
 <p>Your data is serialized into bytes which can be stored.  The <i>packaged</i>
-element refers to in internet location which contains those bytes for you.</p>
+element refers to an internet location which contains those bytes.</p>
 
 =schema
 
@@ -16,7 +16,7 @@ element refers to in internet location which contains those bytes for you.</p>
         <element name="address"       type="anyURI"  />
         <element ref="ms:encoded"     type="ms:Encoding" default="" />
         <element ref="ms:format"      minOccurs="0" />
-        <element name="download-size" type="long" minOccurs="0" />
+        <element name="download-size" type="unsignedLong" minOccurs="0" />
         <element ref="ms:authorization" minOccurs="0" />
       </sequence>
     </extension>
@@ -26,7 +26,7 @@ element refers to in internet location which contains those bytes for you.</p>
 
 =description
 
-<p>You will find this unit on <code>ms:address</code> in the
+<p>You will find this unit on <code>address</code> in the
 <SCHEMA>ms:unit</SCHEMA> to <code>ms:UnitRef</code>.  The referenced
 data has about <code>download-size</code> octets.</p>
 

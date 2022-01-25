@@ -1,0 +1,76 @@
+=short
+
+<p>Elements which give facts about the payload which is defined by the
+unit, independent from how the payload is included.</p>
+
+=schema
+
+==xml
+<group name="meta">
+  <sequence>
+    <element name="type"     type="ms:Constant" />
+    <element name="name"     type="string" minOccurs="0" />
+    <element name="size"     type="ms:numeric" minOccurs="0" />
+    <element name="language" type="ms:Constant" minOccurs="0" />
+    <element name="charset"  type="string" minOccurs="0" />
+  </sequence>
+</group>
+==end
+
+=element type
+
+<p>The type of data which is contained in the payload of this unit.
+This is equivalent to the type of attachments in emails.  The data itself
+may come in a serialization (<code>format</code>) which can be converted
+to the indicated type.</p>
+
+=element name
+
+<p>A unit may have a name.  This name may be useful for tracing and
+debugging, but also have a usefull name.</p>
+
+<p><strong>Be warned</strong> that the name is (like everything else)
+in the UTF8 charset.  See the discussion below about the problem with
+using filenames here.</p>
+
+=element size
+
+<p>The real size of the decoded product, <b>not</b> including
+the addition components the <code>unit has</code>.</p>
+
+=element language
+
+<p>The main language used in the payload, when it contains text.
+This fact MAY be used by search filters. Values are constants in
+one of the <code>ms:Lang[123]</code> sets.</p>
+
+<p>The concept of language in text is complex: more details about
+contained languages may be included in other ways.</p>
+
+=element charset
+
+<p><code>Charset</code> is a common abbreviation of <i>character
+set</i>.  Which charset is used by the payload data is only useful
+for applications which process that data.  Binary data formats,
+like images, will not contain a charset specification.</p>
+
+<p>See the page with all
+<a href="https://www.iana.org/assignments/character-sets/character-sets.xhtml">character-sets at IANA</a>.</p>
+
+=discuss Using filenames as name
+
+<p>When you want to use a filename as <code>name</code> (which makes a
+good case), you will need to include an encoded version of the filename
+because those often are UTF-16 (NTFS) or "bytes" (UNIX/Linux).</p>
+
+<p>Also, the use of hidden files (leading dot on UNIX/Linux) and hidden
+meta-data directories (<code>__MACOSX</code> on Apple) will complicate
+the set-up.  It hurts even more when file-systems are considered
+case-insensitive, may contain control characters, and use white-spaces.
+Some operating systems use UTF8 for <code>ö</code>, other use <code>o +
+"</code>, which are not equivalent under simple comparison.</p>
+
+<p>This Meshy Space Base does not solve any of the problems.  Extensions,
+like the Meshy Space <i>Concept</i> may offer a solution.  When you are
+not using such extensions, than limit your application to case-sensitive
+ascii printables without blanks.</p>

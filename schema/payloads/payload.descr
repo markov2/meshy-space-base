@@ -16,6 +16,8 @@
 </complexType>
 ==end
 
+=description
+
 <p>One <SCHEMA>ms:unit</SCHEMA> can only contain one payload element.
 This may cleanly integrate with MSI, using the same schema's and
 standards (native), but may also be foreign to it: not interpretable

@@ -1,0 +1,23 @@
+=short
+
+<p>Unpacked XML data from know namespaces.</p>
+
+=schema
+
+==xml
+<element name="native" type="ms:Native"
+    substitutionGroup="ms:payload" abstract="true" />
+
+<complexType name="Native">
+  <complexContent>
+    <extension base="ms:Payload" />
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Elements which are defined by Meshy Space <i>Base</i> of <i>Concept</i>
+do use namespaces which are understood by every "unit" handling application
+and can therefore be processed in readible XML form.  Other payloads are
+exchanged either in-lined or external file form.</p>

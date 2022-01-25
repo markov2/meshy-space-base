@@ -11,8 +11,7 @@ generalization of many protocols and system features.</p>
 
 <complexType name="Unit">
   <sequence>
-    <element name="type"      type="ms:Constant" />
-    <group   ref="ms:meta-data"  />
+    <group   ref="ms:meta"  />
     <group   ref="ms:life-cycle" />
     <element name="owner"     type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:payload" minOccurs="0" />
@@ -38,7 +37,7 @@ unit.</p>
 
 <p>One of the applications of units, is the Meshy Space Concept.
 The concept assigns logic roles to units via the <code>type</code>
-element (in <SCHEMA>ms:meta-data</SCHEMA>).</p>
+element (in <SCHEMA>ms:meta</SCHEMA>).</p>
 
 <p><b>WARNING:</b> unit <code>ids</code> are quite different
 from <code>xsd:id</code> identifiers: study the differences in
@@ -51,12 +50,6 @@ referred to, either within this same information structure, or from
 other information structures.  Applications will decide to cache
 the units based on this <code>ms:id</code> for performance.</p>
 
-=element type
-
-<p>The type of data which is contained in the unit.  This is equivalent to
-the type of objects in programs.  The data itself may come in a serialization
-(<code>format</code>) which can be converted to the indicated type.</p>
-
 =group life-cycle
 
 <p>A number of fields are used to control the progress of the unit:
@@ -64,7 +57,7 @@ when it was created, was deprecated, and is to be removed.  The base
 is the revision of the unit.  There is only one revision of a unit in
 your cache: the newest.</p>
 
-=group meta-data
+=group meta
 
 <p>A number of fields describe what the unit represents.  If the unit
 contains a payload, it gives facts about the payload.  All these facts
@@ -99,21 +92,26 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
 
 ==xml
 <ms:unit ms:id="cc:ASDJKDJO12314A">
-  <ms:name>https://markov.solutions/index.html</ms:name>
-  <ms:has ms:is="cc:Warc.Request"  ms:ref="cc:ASDJKDJO12314A-req">
-  <ms:has ms:is="cc:Warc.Response" ms:ref="cc:ASDJKDJO12314A-resp">
-  <ms:has ms:is="cc:Warc.Links"    ms:ref="cc:ASDJKDJO12314A-links">
+  <ms:meta>
+    <ms:type>cc:Type/Warc.Result</ms:type>
+    <ms:name>https://markov.solutions/index.html</ms:name>
+  </ms:meta>
+  <ms:has ms:is="cc:Type/Warc.Request"  ms:ref="cc:ASDJKDJO12314A-req">
+  <ms:has ms:is="cc:Type/Warc.Response" ms:ref="cc:ASDJKDJO12314A-resp">
+  <ms:has ms:is="cc:Type/Warc.Links"    ms:ref="cc:ASDJKDJO12314A-links">
 </ms:unit>
 <ms:unit ms:id="cc:ASDJKDJO12314A-req">
-  <ms:type>cc:Warc.Request</ms:type>
+  <ms:meta>
+    <ms:type>cc:Type/Warc.Request</ms:type>
+    <ms:size>34516</ms:size>
+    <ms:language>ms:Lang3/Nld</ms:language>
+    <ms:charset>iso-5988-1</ms:charset>
+  </ms:meta>
   <ms:resource ms:href="cc:202102warc-00000">
     <ms:address>#12314151+11515</ms:address>
-    <ms:format>mime-type:application/x-warc.request</ms:format>
-    <ms:encoded>ms:Alg.Gzip</ms:encoded>
+    <ms:format>cc:Format/warc/record</ms:format>
+    <ms:encoded>ms:Algo/Gzip</ms:encoded>
   </ms:resource>
-  <ms:size>34516</ms:size>
-  <ms:charset>iso-5988-1</ms:charset>
-  <ms:languages>ms:Lang3.Nld 1</ms:languages>
 </ms:unit>
 <ms:unit ms:id="cc:ASDJKDJO12314A-resp" />
 <ms:unit ms:id="cc:ASDJKDJO12314A-links" />
