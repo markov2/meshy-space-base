@@ -1,0 +1,61 @@
+=short
+
+<p>Migrate one namespaced location to a new location.</p>
+
+=schema
+
+==xml
+<element name="ns-rewrite" type="ms:NsRewrite" />
+
+<complexType name="NsRewrite">
+  <sequence />
+  <attribute name="old" type="string" use="required" />
+  <attribute name="new" type="string" use="optional" />
+</complexType>
+==end
+
+=description 
+
+<p>When a lookup is made for a Unit in this Namespace (or Subspace),
+first is checked whether parts of the requested are in need for a rewrite.
+One or more leading components of the path which is looked-up are
+replace by the <code>new</code> component.</p>
+
+<p>The rewrite SHALL only be used to migrate from an old structure in
+the namespace into a new structure.  There may be many Units distributed
+to use the expired structure, and it is very probably you are not able
+to recall them all.  Therefore, you define the new structure as an
+explicit mapping.
+
+<p>Clients which search for Units SHALL apply the rewrite rules and then
+continue to work with that result.  The <code>old</code> path components
+are to disappear.</p>
+
+<p>The rewrite rule SHALL not describe changes to be made in Subspaces;
+not start with components which address a Subspace.  In such case, the
+rewrite rule MUST be mode to that Subspace.</p>
+
+<p>Rewrite rules SHALL be applied in the order as they appear in the
+definition, although confusion can better be avoided.</p>
+
+=attribute old
+
+<p>Contains one or more path components, even until a Unit's name.</p>
+
+<p>Let's given an example: <code>old/location/config</code>.  This
+can address various Units, which depends on the (externally hidden)
+internal structure of the Namespace.  For instance, in the old situation
+<code>config</code> could refer to a Subspace any other kind of Unit.  But
+also <code>old/location</code> as Subspace and <code>config/network</code>
+as Unit would be affected.</p>
+
+=attribute new
+
+<p>The replacement path component.  It may start with a prefix for
+the same of for an other namespace.  In either case, it is an absolute
+rewrite.  Otherwise, it is a relative replacement.  "Up one directory"
+(<code>".."</code>) and "this directory" (<code>"."</code>) are not
+supported: dots are meaningless characters.</p>
+
+<p>When the first component of your <code>new</code> path contains a
+colon (<code>":"</code>), then you MUST use an absolute path.</p>

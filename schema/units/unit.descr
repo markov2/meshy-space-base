@@ -45,7 +45,7 @@ from <code>xsd:id</code> identifiers: study the differences in
 
 =attribute id
 
-<p>The unique identifier for this information unit is used to be
+<p>The unique identifier for this information Unit is used to be
 referred to, either within this same information structure, or from
 other information structures.  Applications will decide to cache
 the units based on this <code>ms:id</code> for performance.</p>

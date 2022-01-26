@@ -1,0 +1,22 @@
+<h1>Constants for Roles</h1>
+
+<p>Meshy Space base object <SCHEMA>ms:unit</SCHEMA> has many relations.
+The client MAY understand these relations.  The relations have a Role,
+and end in a Unit of a certain <a href="types.html">Type</a>.
+See also the <a href="/schemas/concept/constants/roles.html">concept Roles</a>.</p>
+
+<p>The <code>is</code> attribute of the <SCHEMA>ms:has</SCHEMA> elements
+in a <SCHEMA>ms:unit</SCHEMA> describe the relation.  When that value
+is in the <code>ms:</code> namespace, you will find it described below.</p>
+
+<p>Roles do not need to refer to Units with only one specific Type: the
+application client must be able to handle (ignore) unexpected Types.</p>
+
+<dl>
+<dt><code>ms:Role/Subspace</code></dt>
+<dd>Used as reference from a parent Namespace or Sub(name)space.  This
+    will result in a <code>ms:Type/Namespace</code> Unit.
+</dd>
+</dl>
+
+</table>

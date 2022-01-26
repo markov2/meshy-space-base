@@ -1,0 +1,59 @@
+=short
+
+<p>Units belong to a Namespace.  The namespace may have structure,
+and may have a complex life-cycle.</p>
+
+=schema
+
+==xml
+<element name="namespace" type="ms:Namespace"
+   substitutionGroup="ms:native" />
+
+<complexType name="Namespace">
+  <extension base="ms:Native">
+    <sequence>
+      <element name="prefix" type="string" />
+      <element name="path-separator" type="string" default="/" />
+      <element ref="ms:ns-rewrite" minOccurs="0" maxOccurs="unbounded" />
+      <element ref="ms:subspace"   minOccurs="0" maxOccurs="unbounded" />
+    </sequence>
+  </extension>
+</complexType>
+==end
+
+=description
+
+<p>The namespace groups units into sets.  In the Meshy Space Concept abstraction,
+they become Collections (<SCHEMA>msc:Collection</SCHEMA>).
+
+<p>The <code>id</code> of this Unit is blank, to indicate that it is ruling
+the namespace or subspace; when you query a namespace for its blank Unit, you
+get the <i>root</i> Namespace Unit.</p>
+
+=element prefix
+
+<p>The prefix which the data in the Units contained in the Namespace preferrably 
+use to indicate to the namespace where they are part of.  Some storage formats,
+like XML, will be self-contained.  Other serializations may not support prefix
+to namespace mappings internally.</p>
+
+=element path-separator
+
+<p>Tells Clients (but also the server) which character (or characters) are to
+be used to separate components of the part.  It is RECOMMENDED to stick to the
+default separator, because it does mimic HTTP syntax.</p>
+
+=element ns-rewrite
+
+<p>Rewrite rules (<SCHEMA>ms:ns-rewrite</SCHEMA>) are used to migrate from one
+namespace structure into a new one.  <SCHEMA>ms:UnitID</SCHEMA>s can survive
+very long, so you SHOULD support old structures when your set-up changes.</p>
+
+<p>This is <b>NOT</b> a symbolic link, hard link, temporary or permanent
+redirection: the old structure SHOULD be rewritten whenever achievable.</p>
+
+=element subspace
+
+<p>Subspaces (<SCHEMA>ms:subspace</SCHEMA>) are "children" of a Namespace
+or other Subspaces.  They have a location with respect to their "parent".
+They may have their own rules.</p>

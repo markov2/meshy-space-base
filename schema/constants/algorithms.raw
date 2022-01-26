@@ -27,8 +27,7 @@ you may define other algorithmic constants.</p>
 <div>
    <div>
    <h4>Definition</h4>
-<p>Base64 is defined by <a href="https://tools.ietf.org/html/rfc4648">RFC4648</a>
-section 6.  See also
+<p>Base64 is defined by [% rfc(4648) %] section 6.  See also
 <a href="https://en.wikipedia.org/wiki/Base64">Wikipedia on Base64</a>.</p>
    </div>
    <div>
@@ -53,8 +52,7 @@ padding. Decoders SHOULD accept strings with missing padding.</p>
 <div>
    <div>
    <h4>Definition</h4>
-<p>Gzip implementations are conform
-<a href="https://tools.ietf.org/html/rfc1952">RFC1952</a> (1996!).
+<p>Gzip implementations are conform [% rfc(1952) %] (1996!).
 The primar implementation is managed via
 <a href="https://www.gnu.org/software/gzip/">GNU Gzip</a>, but there are
 a few more.
@@ -88,8 +86,7 @@ to handle these streams at all.</p>
    <h4>Definition</h4>
 
 <p>Hexadecimal (always abbreviated to "Hex") encoding is also called Base16
-encoding.  It is standardized in
-<a href="https://tools.ietf.org/html/rfc4648">RFC4648</a> section 8.</p>
+encoding.  It is standardized in [% rfc(4648) %] section 8.</p>
    </div>
    <div>
    <h4>Compatibility</h4>

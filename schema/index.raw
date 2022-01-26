@@ -1,9 +1,11 @@
 <h1>The base schema</h1>
 
-<blockquote>Important design committees have demonstrated that you can build huge
+<blockquote style="border-left: 5px solid red">
+Important design committees have demonstrated that you can build huge
 schemas with very little expression power.  This has given XML (schemas)
-a bad name.  This base schema for MSI tries to avoid those pitfalls with
-various shameless simplifications.</blockquote>
+a (deserved) bad name.  This base schema for MSI tries to avoid those
+pitfalls with various shameless simplifications.
+</blockquote>
 
 <p>The elements in <i>base</i> use standards when they exist.  There are many
 standards, and people have put a lot of effort in composing them.  Meshy Space
@@ -32,6 +34,9 @@ one namespace and one XML schema.</p>
 <dt><a href="constants/">constants</a> in the <code>ms:</code> namespace.</dt>
 <dd>many sets of namespaced constants are used, mainly to explictly refer to
     values defined in RFCs, IANA, and other standardization bodies.</dd>
+
+<dt><a href="namespaces/">namespaces</a> are used to group units into
+    manageable sets.  It defines access.</dt>
 
 <dt><a href="payloads/">payloads</a></dt>
 <dd>contain the data of each unit (in-lined) or as reference.  Some payloads

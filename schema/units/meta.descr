@@ -9,10 +9,10 @@ unit, independent from how the payload is included.</p>
 <group name="meta">
   <sequence>
     <element name="type"     type="ms:Constant" />
-    <element name="name"     type="string" minOccurs="0" />
-    <element name="size"     type="ms:numeric" minOccurs="0" />
-    <element name="language" type="ms:Constant" minOccurs="0" />
-    <element name="charset"  type="string" minOccurs="0" />
+    <element name="name"     type="string"       minOccurs="0" />
+    <element name="size"     type="unsignedLong" minOccurs="0" />
+    <element name="language" type="ms:Constant"  minOccurs="0" />
+    <element name="charset"  type="string"       minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -54,7 +54,8 @@ set</i>.  Which charset is used by the payload data is only useful
 for applications which process that data.  Binary data formats,
 like images, will not contain a charset specification.</p>
 
-<p>See the page with all
+<p>The content of this field is defined by [% rfc('2978') %].
+See the page with all
 <a href="https://www.iana.org/assignments/character-sets/character-sets.xhtml">character-sets at IANA</a>.</p>
 
 =discuss Using filenames as name

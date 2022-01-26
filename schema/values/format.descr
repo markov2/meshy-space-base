@@ -11,10 +11,11 @@ do not have an official mime-type, therefore we add namespaces.</p>
 
 =description
 
-<p>MIME-types explain what a sequence of bytes represents.  They are standardized
-by IETF via <a href="https://tools.ietf.org/html/rfc6838">RFC6838</a>.  The
-<a href="https://www.iana.org/assignments/media-types/media-types.xhtml">official
-list</a> is maintained by IANA.  For those types, use the <code>mime-type:</code> prefix.</p>
+<p>MIME-types explain what a sequence of bytes represents.
+They are standardized by IETF via [% rfc(6838) %].  The
+<a href="https://www.iana.org/assignments/media-types/media-types.xhtml"
+>official list</a> is maintained by IANA.  For those types, use the
+<code>ms:Mime/</code> prefix.</p>
 
 <p class="list">Example use of formats which have a IANA registration:</p>
 <XML>

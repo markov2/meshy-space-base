@@ -4,6 +4,7 @@ namespace: <code>ms:</code></p>
 <p class="list">Categories:</p>
 <ul>
 <li><a href="/schemas/base/constants/">constants</a></li>
+<li><a href="/schemas/base/namespaces/">namespaces</a></li>
 <li><a href="/schemas/base/payloads/">payloads</a></li>
 <li><a href="/schemas/base/units/">units</a></li>
 <li><a href="/schemas/base/values/">values</a></li>
