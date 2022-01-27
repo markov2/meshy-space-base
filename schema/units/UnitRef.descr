@@ -7,7 +7,7 @@ That unit does not need to be in the current message.</p>
 
 ==xml
 <complexType name="UnitRef">
-  <attribute name="ref"    type="ms:UnitID" use="required" />
+  <attribute name="ref"    type="token" use="required" />
   <attribute name="when"   type="ms:Condition" />
   <attribute name="unless" type="ms:Condition" />
 </complexType>
@@ -16,19 +16,36 @@ That unit does not need to be in the current message.</p>
 =description
 
 <p>Elements and attributes of type <code>ms:UnitRef</code>
-refer to a <SCHEMA>ms:unit</SCHEMA> by its unique identifying
-<SCHEMA>ms:UnitID</SCHEMA>.  The units are kept "small", to enable
-flexible reconfiguration, so references are used often.</p>
+refer to a <SCHEMA>ms:unit</SCHEMA> instance.  This can be in a
+namespace qualified form or in a relative form.  The accepted
+syntax mimics HTTP URI syntax as defined by [% rfc(3986) %].</p>
 
-<p><b>WARNING:</b> this type is not the same as an <code>xsd:IDREF</code>,
-which MUST refer inside the document.</p>
+<p>When the <code>ref</code> matches with <code>/^(\w+):/</code>, it
+is an absolute reference.  Otherwise, it is a reference relative to the
+absolute path to the Unit in which it is used.  Absolute and relative path
+resolution may pass through Namespaces and Subspaces which have different
+rules, for instance for Access.</p>
+
+<p>The prefix may not be known when the data is received: it SHOULD
+be linked to a namespace only when it is actually used by an
+application.</p>
+
+<p><b>Be aware</b> that the path components need to be compared in NFJK
+normalized form.  One Unit may use multiple path compontents in its
+<code>unit-id</code> (of type <SCHEMA>ms:UnitID</SCHEMA>).</p>
 
 =attribute ref
 
-<p>Attribute <code>ms:ref</code> refers to a <SCHEMA>ms:unit</SCHEMA>
-with the expected type.  On purpose, the XML schema itself does not
-guarentee that the destination unit is as expected: this would make the
-schema far more complex.  It needs runtime validation anyway.</p>
+<p>When a relative reference is used which starts with the
+<code>path-separator</code> of the Unit's Subspace, it is considered
+relative to the root of the namespace.  That character is not part of
+the absolute address of the Unit.  Example: when the Unit on
+<code>p:a/b/c</code> refers to <code>/c/d</code>, it ends-up
+on address <code>p:c/d</code>.</p>
+
+<p><b>WARNING:</b> this reference is not the same as a
+<code>xsd:IDREF</code>, which MUST refer inside the XML document when
+the document is being read.</p>
 
 =attribute when
 
@@ -39,3 +56,82 @@ is met.</p>
 
 <p>Use the unit where this points to only when the condition does
 not match.  The hidden feeling is: usually it does match.</p>
+
+=discuss Mixing path-seperators
+
+<p>Because the World is flawed, we may end-up with inconsequent
+path separators.  When using absolute Unit addresses, you need to
+follow the preference of the Namespace.  This may be different
+for Subspaces: the external user cannot see this.</p>
+
+<p>When the reference does not start with a prefix, but does start
+with the <code>path-separator</code> or the <i>root</i> namespace,
+it will resolve starting at the root Unit, not relative to the
+Unit where the reference was found.</p>
+
+=example Absolute references
+
+<p>When your <code>ref</code>erence starts with a prefix, like
+<code>pref:</code> (some word characters followed by a colon), then
+the reference is <i>absolute</i>.  Examples:</p>
+
+<CODE>
+pref:                # refers to the root ms:namespace unit
+pref:a
+pref:image/logo.png
+</CODE>
+
+<p>You may recognize the <code>.png</code> as a filename extension.
+This does not have a meaning here: each Unit has a unit.meta.type
+attribute which contains the (mime-)type of the contained data.</p>
+
+<p>Even absolute references may contain <code>".."</code> and
+<code>"."</code> path components.</p>
+
+=example Relative references
+
+<p>When the <code>ref</code>erence is not absolute, it is considered
+relative.  In this case, there are two variations: when the reference
+starts with the <code>path-separator</code> of the <i>root</i>
+namespace, it will use that Unit as starting point of the address
+resolving.  Otherwise, it will use the Unit in which the reference
+was found as start.</p>
+
+<p>Examples, starting from the Unit at address <code>pref:a/b</code>:</p>
+<CODE>
+ref="c"        --> pref:a/c
+ref="../c"     --> pref:c
+ref="/c"       --> pref:c    (via root)
+ref="d/.././f" --> pref:f
+</CODE>
+
+=example Designed with mixed path-separators
+
+<p>Say, your Namespace describes DNS PTR records.  You may design the
+top with separator <code>'/'</code> and two Subspaces with UnitIDs
+<code>ipv4</code> and <code>ipv6</code>.  For Subspace <code>ipv4</code>
+you use path-separator <code>'.'</code>, in <code>ipv6</code> you use
+separator <code>':'</code>.</p>
+
+<p>Within Subspace <code>ipv4</code>, you create Subspaces named
+<code>"127"</code> and <code>"192.168"</code>.  For absolute reference,
+there is no difference between having a Subspace <code>"192"</code> which
+contains a Unit (probably Subspace) <code>168</code> or having a Unit
+with UnitID <code>"192.168"</code> at once.</p>
+
+<p>When you expect a lot of Units, you probably want to have many
+Subspaces with each a complex (Access) configuration.  In a small
+data-set, everything is in the root namespace.  You will be able to
+reorganize the Subspace structure in existing namespaces under fly.</p>
+
+<p>Now, we can write a small program (not implemented yet):</p>
+<PERL>
+my $ms = Meshy::Space->new;
+$ms->prefix(net => 'https://example.org/network');
+
+my $unit = $ms->getUnit("net:ipv4/192.168.12.1");
+print $unit->meta->name;  # --> "router of 192.168.12"
+</PERL>
+
+<p>Be aware that <code>ms:unit</code> objects have all and more
+features as DNS zone files, like cache expiration and distribution.</p>

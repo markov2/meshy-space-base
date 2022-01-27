@@ -12,9 +12,9 @@ element refers to an internet location which contains those bytes.</p>
   <complexContent>
     <extension base="ms:Native">
       <sequence>
-        <element name="source"        type="min:UnitRef" maxOccurs="unbounded" />
+        <element name="source"        type="ms:UnitRef" maxOccurs="unbounded" />
         <element name="address"       type="anyURI"  />
-        <element ref="ms:encoded"     type="ms:Encoding" default="" />
+        <element name="encoded"       type="ms:Encoding" default="" />
         <element ref="ms:format"      minOccurs="0" />
         <element name="download-size" type="unsignedLong" minOccurs="0" />
         <element ref="ms:authorization" minOccurs="0" />

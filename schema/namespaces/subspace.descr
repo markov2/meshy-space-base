@@ -71,7 +71,7 @@ reality.</p>
 
 <p>When a reference of a Unit is followed, you start at the
 top Namespace description.  First apply namespace rewrite rules
-(<SCHEMA>ms:ns-rewrite</SCHEMA>) on the remaining of the path.  Look
+(<SCHEMA>ms:moved</SCHEMA>) on the remaining of the path.  Look
 for matching Subspaces for the rewritten path (MAY be in a different
 namespace).  Recursively go through the Subspaces.  Meanwhile: construct
 a new absolute path from the rewrites.  The Unit's name CAN also

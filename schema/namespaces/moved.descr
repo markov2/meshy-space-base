@@ -5,9 +5,9 @@
 =schema
 
 ==xml
-<element name="ns-rewrite" type="ms:NsRewrite" />
+<element name="moved" type="ms:Moved" />
 
-<complexType name="NsRewrite">
+<complexType name="Moved">
   <sequence />
   <attribute name="old" type="string" use="required" />
   <attribute name="new" type="string" use="optional" />

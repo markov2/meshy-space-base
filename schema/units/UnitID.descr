@@ -1,44 +1,57 @@
 =short
 
-<p>A unique label for a <SCHEMA>ms:unit</SCHEMA>.
+<p>A unique label for a <SCHEMA>ms:unit</SCHEMA>, within a Namespace.</p>
 
 =schema
 
 ==xml
-<simpleType name="UnitID">
-  <restriction base="string">
-    <pattern value="[a-zA-Z0-9]+\:.*" />
-  </restriction>
-</simpleType>
+<simpleType name="UnitID" type="token" />
 ==end
 
 =description
 
-<p>Meshy Space Interfaces (usually) are large and dynamic; they exchange
-a lot of information.  Also, MSI attempts to keep the meta-data in
-manageable chunks (units) which can be transported separately.  To be
-able to have chunck refer to other chunks, we use unique identifiers:
-they are namespace qualified, to avoid accidental confusion
-between identifiers received from different sources.</p>
+<p>The <code>UnitID</code> uniquely identifies a <SCHEMA>ms:unit</SCHEMA>
+with in <SCHEMA>ms:Namespace</SCHEMA> or Subspace.  You may best compare
+this with a filename with in directory.</p>
 
-=discuss Why <code>ms:UnitID</code> is not the same as <code>xsd:ID</code>
+<p class="list">This identifier has a few rules, which distinguishes it
+from the standard <code>xsd:ID</code>:</p>
+<ul>
+<li>it is a <code>xsd:token</code>, which means that whitespaces are
+    collapsed;</li>
+<li>the uniqueness is preserved within a Namespace, but messages may
+    list Units from different namespaces, hence within a message the
+    attribute may not be unique;</li>
+<li>the Namespace defines a <code>path-separator</code> (<i>sep</i>);
+    by default a <code>'/'</code>.  When a <i>sep</i> is used in a
+    <code>UnitID</code>, it splits the token in <i>path</i> components.
+    The <i>path</i> has a meaning in the context of references to
+    Units (<SCHEMA>ms:UnitRef</SCHEMA>);</li>
+<li>the <code>UnitID</code> may use the <i>sep</i> character, but <b>not</b>
+    as first character, as last character, or twice in a row;
+<li><i>path</i> compenents will not be <code>'.'</code> nor
+    <code>'..'</code>; an</li>
+<li>the value SHALL be unique within its enclosing Subspace or Namespace,
+    when in its NFJK normalized form.</li>
+</ul>
 
-<p>The <code>ms:UnitID</code> <b>is different</b> from the <code>xsd:ID</code>,
-both in type as in concept.  Both are identifiers &mdash;used to assign
-a unique label to an object of data&mdash; and both can be referred to.
-But both the value of an ID and the interpretation of a reference
-differs.</p>
+=discuss Restictions on <code>'/'</code>, <code>'.'</code>, <code>'..'</code>
 
-<p>The most visible difference is that <code>ms:ID</code> values are
-namespace qualified.  The exchanged data may have different origins
-which may accidentally use the same value.  For instance, a database
-row id may very well be used as unique identifier... but everyone
-starts counting at "<code>1</code>".</p>
+<p>Some restrictions are set because the UnitID is used as part in relative
+and absolute addressing via <SCHEMA>ms:UnitRef</SCHEMA>.  Especially
+the relative addressing support syntax as used for HTTP URLs
+([% rfc(3986) %]).</p>
 
-=discuss Why not defined as an <code>xsd:QName</code>?
+<p>It depends on the <code>path-separator</code> setting in the enclosing
+<SCHEMA>ms:namespace</SCHEMA>
 
-<p>When we would use the standard QName definition, XML parsers
-(and validators) could complain about missing namespace declarations.
-However, in MSI it is very common to receive information inside units
-where the namespace is not understood (yet).</p>
+=discuss NFJK normalization
 
+<p>Operation systems and editors use different Unicode ways to
+express exactly the same.  For instance, <code>ö</code> can
+be represented as single symbol, but also as two: <code>" + o</code>.
+Algorithms which find a UnitID must compare the path components in
+NFJK form.  Probably, an index is built mapping the normalized form
+of the UnitID to the Unit object, which is rather cheap.</p>
+
+<p>See <a href="https://unicode.org/reports/tr15/">Unicode TR15</a>.</p>
