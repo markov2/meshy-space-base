@@ -1,0 +1,44 @@
+=short
+
+<p>Declares additional prefixes used in the context.</p>
+
+=schema
+
+==xml
+<element name="use" type="ms:Use" />
+
+<complexType name="Use">
+  <sequence />
+  <attribute name="prefix"    type="token"  use="required" />
+  <attribute name="namespace" type="anyURI" />
+</complexType>
+==end
+
+=description
+
+<p>Units and data which is distributed in a Namespace may use other
+namespaces, and refer to those via prefixes.  Some data formats (like
+XML) are very careful with prefixes, where other data formats do not
+support them in a clean way.</p>
+
+<p>These prefix specifications are commonly found in the Namespace
+and Subnamespace Units, but may appear in any Unit.</p>
+
+<p><b>Warning:</b> Where elements of type <SCHEMA>ms:UnitRef</SCHEMA>
+(may) use a <code>prefix</code>, they are not XML QName typed: the
+data itself may not contain the prefix declarations.  Prefix declarations
+are extended with the ones defined by the context of Subspace and
+top Namespace Units.</p>
+
+=attribute prefix
+
+<p>Prefixes cannot use (unencoded) whitespace. It is permitted to
+use more than one prefix for the same namespace.</p>
+
+=attribute namespace
+
+<p>The URI which is the root of the Meshy Space server instance.</p>
+
+<p>When the <code>namespace</code> attribute is missing, the prefix
+is used as alternative for the current Namespace.  Therefore, top
+level Namespace will need such element.</p>

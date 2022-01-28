@@ -1,34 +1,44 @@
 =short
 
-<p>Elements of type <i>ms:Constant</i> contain a flag which tells the client
-something. Maybe the client or server understands what the flag means, maybe
-not.</p>
+<p>Elements of type <i>ms:Constant</i> contain a flag which tells
+something by its pure existence.  Maybe the processor understands
+what the flag means, maybe not.</p>
 
 =schema
 
 ==xml
-<simpleType name="Constant" type="xsd:QName" />
+<simpleType name="Constant" type="ms:UnitRef" />
 ==end
 
 =description
 
-<p>Constants are QNames: qualified names, which represents the standardization
-board via the namespace.  Constants are artificially grouped in their own
-path components. The grouping MAY also contain sub-groupings.</p>
+<p>A Constant is used express something.  It does not relate to
+a value, but implicitly it means "true": it's use indicates
+something.</p>
+
+<p>Constants are represented by (absolute or relative) unit
+reference (<SCHEMA>ms:UnitRef</SCHEMA>).  Traditionally, the
+<SCHEMA>ms:UnitID</SCHEMA> component of the address is in capitals.</p>
+
+<p>Often, the Unit with the Address will not exist, but of it does exist
+then it may keep track of the history of the constant, define ownership,
+and contain documentation.</p>
 
 <p>Extensions may add their own constants to enumeration sets, which are
 defined by Meshy Space itself, when they feel the need.  One SHALL not
 use numeric values to represent anything else than a numeric value.</p>
 
-=example Constant grouping
+<h4>Constant grouping</h4>
 
 <p>For instance: the following example has three layers of grouping:
 <code>Mime</code>, <code>text</code>, and <code>html</code>.
 
 <CODE>
-msc:Mime/text/html
+ms:Mime/text/html
 </CODE>
 
 <p>You cannot see whether <code>Mime</code> is a grouping which only
 contains constants, or whether <code>Mime/text/</code> together groups a
-constant collection. You should not want to have ungrouped constants.</p>
+constant collection. You should not want to have ungrouped constants.
+Nor do you want to merge constants into Subspaces which also contain
+other data.</p>

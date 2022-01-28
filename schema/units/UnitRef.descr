@@ -6,11 +6,7 @@ That unit does not need to be in the current message.</p>
 =schema
 
 ==xml
-<complexType name="UnitRef">
-  <attribute name="ref"    type="token" use="required" />
-  <attribute name="when"   type="ms:Condition" />
-  <attribute name="unless" type="ms:Condition" />
-</complexType>
+<simpleType name="UnitRef" type="token" />
 ==end
 
 =description
@@ -46,16 +42,6 @@ on address <code>p:c/d</code>.</p>
 <p><b>WARNING:</b> this reference is not the same as a
 <code>xsd:IDREF</code>, which MUST refer inside the XML document when
 the document is being read.</p>
-
-=attribute when
-
-<p>Only use the unit where this points to <i>when</i> a certain condition
-is met.</p>
-
-=attribute unless
-
-<p>Use the unit where this points to only when the condition does
-not match.  The hidden feeling is: usually it does match.</p>
 
 =discuss Mixing path-seperators
 

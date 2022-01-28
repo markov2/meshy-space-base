@@ -14,7 +14,7 @@ element refers to an internet location which contains those bytes.</p>
       <sequence>
         <element name="source"        type="ms:UnitRef" maxOccurs="unbounded" />
         <element name="address"       type="anyURI"  />
-        <element name="encoded"       type="ms:Encoding" default="" />
+        <element ref="ms:encoded"     default="" />
         <element ref="ms:format"      minOccurs="0" />
         <element name="download-size" type="unsignedLong" minOccurs="0" />
         <element ref="ms:authorization" minOccurs="0" />
@@ -65,7 +65,7 @@ larger anyway, caused by file-system overhead.</p>
 =element encoded
 
 <p>Explains how the data was serialized into bytes.  See
-<SCHEMA>ms:encoding</SCHEMA>.  You need to undo the encodings to get the
+<SCHEMA>ms:encoded</SCHEMA>.  You need to undo the encodings to get the
 octets in the <code>format</code>; to get the product of the described
 type.</p>
 

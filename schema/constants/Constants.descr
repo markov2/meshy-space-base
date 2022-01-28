@@ -1,0 +1,15 @@
+=short
+
+<p>A list of <SCHEMA>ms:Constant</SCHEMA> values.</p>
+
+=schema
+
+==xml
+<simpleType name="Constants">
+  <list itemType="ms:Constant" />
+</simpleType>
+==end
+
+=description
+
+<p>Zero or more constants, glued into one string separated by blanks.</p>

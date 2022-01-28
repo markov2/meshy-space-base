@@ -9,21 +9,68 @@ reason.</p>
 <element name="has" type="ms:Has" />
 
 <complexType name="Has">
-  <complexContent>
-    <extension base="ms:UnitRef">
-      <sequence />
-      <attribute name="is" type="ms:Constant" default="ms:Role/Unknown" />
-      <attribute name="seqnr" type="unsignedLong" default="1" />
-    </extension>
-  </complexContent>
+  <sequence>
+     <element name="type"  type="ms:Constant" minOccurs="0" />
+  <sequence />
+  <attribute name="seqnr"  type="unsignedLong" default="1" />
+  <attribute name="is" type="ms:Constant" default="ms:Role/Unknown" />
+  <attribute name="when"   type="ms:Condition" />
+  <attribute name="unless" type="ms:Condition" />
 </complexType>
 ==end
 
 =description
 
 <p class="list">We can think of many reasons for relations.  The reason
-is expressed via the "<code>is</code>" attribute, which contains a
-name-spaced constant.</p>
+is expressed via the <code>ms:is</code> attribute, which contains a
+name-spaced constant.  The attributes are typical selectors to find
+the right relation to follow, the elements are informational.</p>
+
+=attribute is
+
+<p>The <code>ms:is</code> attribute explains the <code>ms:has</code>
+relation.  When the relation unknown, the client may need to collect
+the related unit to inspect its content, but that is expensive so
+should be avoided.</p>
+
+<p>The relation (constant) may also be unknown to the client.  In that
+case, the client is RECOMMENDED to ignore the relation.  The client MAY
+warn its user that there is information which is not understood.</p>
+
+<p>When you download a unit, you can specify the namespaces and
+relations of the related units to be downloaded in the same go as well.
+For instance, within the Meshy Space Concept, a request for a certain
+<code>msc:Role/Collection</code> with ask to include the related unit
+with relation <code>msc:Role/Rules</code>.  Or more general, for all
+<code>msc:Role/</code> units.</p>
+
+=element type
+
+<p>The type of the content of Unit where this relation refers to, which
+MAY optimize some processes.  This is indicative only: the processors
+SHALL check whether is field is correct, and MAY cast a warning on
+mistakes.</p>
+
+<p>Usually, this element is not really useful: the processor can better
+retreive the Unit and then check whether it is able to handle it.
+Many relations have different objects.  For instance, the Identity
+of the owner of the Unit can be a single person, a group, and so on.
+Which kind of Identity it is, does not really matter in the main code
+of the processor.</p>
+
+=attribute seqnr
+
+<p>When there are multiple relations which are of the same kind (same
+<code>ms:is</code>), they may need to be ordered like an array.</p>
+
+=attribute when
+
+<p>Only use the relation <i>when</i> a certain condition is met.</p>
+
+=attribute unless
+
+<p>Use the relation when the condition does not match.  The hidden
+feeling is: usually it does match.</p>
 
 =example in the Meshy Space Concept frame
 
@@ -33,42 +80,76 @@ relation.  It may also be smart to put lesser-used information about
 a unit into a separate unit: for instance the history of the unit.</p>
 
 ==xml
-<ms:unit ms:id="mine:User/Markov">
-  <ms:type>msc:Role/Identity</ms:type>
+<ms:unit ms:id="MarkOv">               <!-- in dist:User/ -->
+  <ms:meta>
+     <ms:type>msc:Role/Identity</ms:type>
+  </ms:meta>
+  <msc:indentity />
 </ms:unit>
-<ms:unit ms:id="mine:Source/puppy" />
-  <ms:name>puppy 3.14 sources</ms:name>
-  <ms:type>ms:Mime/application/rpm</ms:type>
-  <ms:address>puppy-src-3.14.rpm</ms:address>
+<ms:unit ms:id="Sources">              <!-- in dist: -->
+  <ms:meta>
+    <ms:type>msc:Collection</ms:type>  <!-- is a Subspace -->
+  </ms:meta>
+  <ms:has ms:is="dist:Role/Source" ms:ref="puppy-src-3.14.rpm" />
+  <ms:has ms:is="dist:Role/Source" ms:ref="wolf-src-12.2.rpm" />
 </ms:unit>
-<ms:unit ms:id="mine:Dist/puppy">
-  <ms:name>puppy 3.14</ms:name>
-  <ms:type>ms:Mime/application/rpm</ms:type>
-  <ms:address>puppy-3.14.rpm</ms:address>
-  <ms:owner>mine:User/Markov</ms:owner>
-  <ms:has ms:ref="mine:Source/puppy" ms:is="mine:Source" />
+<ms:unit ms:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
+  <ms:meta>
+    <ms:name>puppy 3.14 sources</ms:name>
+    <ms:type>ms:Mime/application/rpm</ms:type>
+  </ms:meta>
+  <ms:extern />
 </ms:unit>
+<ms:unit ms:id="puppy-3.14.rpm">      <!-- in dist:Package/ -->
+  <ms:meta>
+    <ms:name>puppy 3.14</ms:name>
+    <ms:type>ms:Mime/application/rpm</ms:type>
+    <ms:owner>dist:User/MarkOv</ms:owner>
+  </ms:meta>
+  <ms:extern />
+  <ms:has ms:ref="dist:Sources/puppy" ms:is="dist:Role/Source" />
+</ms:unit>
+==json
+"ms:unit" : {
+  "ms:id" : "MarkOv",               // in dist:User/
+  "ms:meta" : {
+    "ms:type" : "msc:Role/Identity"
+  },
+  "msc:identity" : {}
+},
+"ms:unit" : {
+  "ms:id": "Sources",               // in dist:
+  "ms:meta" : {
+    "ms:type" : "msc:Collection",   // is a Subspace
+  },
+  "ms:has" : [ {
+    "ms:is" : "dist:Role/Source",
+    "ms:ref" : "puppy-src-3.14.rpm"
+  }, {
+    "ms:is" : "dist:Role/Source",
+    "ms:ref" : "wolf-src-12.2.rpm"
+  } ]
+},
+"ms:unit" : {
+  "ms:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
+  "ms:meta" : {
+    "ms:name": "puppy 3.14 sources",
+    "ms:type": "ms:Mime/application/rpm"
+  },
+  "ms:extern" : {}
+},
+"ms:unit" : {
+  "ms:id" : "puppy-3.14.rpm",       // in dist:Package/
+  "ms:meta" : {
+    "ms:name" : "puppy 3.14",
+    "ms:type" : "ms:Mime/application/rpm",
+    "ms:owner" : "dist:User/MarkOv"
+  },
+  "ms:extern" : {},
+  "ms:has" : [ {
+     "ms:ref" : "dist:Sources/puppy",
+     "ms:is" : "dist:Role/Source"
+  } ]
+}
 ==end
 
-=attribute is
-
-<p>The <code>ms:is</code> attribute explains the <code>ms:has</code>
-relation.  When the relation unknown, the client may need to collect
-the related unit to inspect its content.</p>
-
-<p>The relation may also be in a namespace which the client does
-not understand.  In that case, the client is RECOMMENDED to ignore
-the relation.  The client MAY warn its user that there is information
-which is not understood.</p>
-
-<p>When you download a unit, you can specify the namespaces and
-relations of the related units to be downloaded in the same go as well.
-For instance, within the Meshy Space Concept, a request for a certain
-<code>msc:Role/Collection</code> with ask to include the related unit
-with relation <code>msc:Role/Rules</code>.  Or more general, for all
-<code>msc:Role/</code> units.</p>
-
-=attribute seqnr
-
-<p>When there are multiple relations which are of the same kind (same
-<code>ms:is</code>), they may need to be ordered like an array.</p>

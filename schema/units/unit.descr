@@ -11,9 +11,10 @@ generalization of many protocols and system features.</p>
 
 <complexType name="Unit">
   <sequence>
-    <group   ref="ms:meta"  />
+    <group   ref="ms:meta" />
     <group   ref="ms:life-cycle" />
     <element name="owner"     type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
+    <element ref="ms:use"     minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:payload" minOccurs="0" />
     <element ref="ms:has"     minOccurs="0" maxOccurs="unbounded" />
   </sequence>
@@ -73,6 +74,12 @@ other identities.</p>
 <p>Information about the creator, publisher, and modifiers of the unit
 are in the history of the unit.</p>
 
+=element use
+
+<p>Declare prefix to namespaces mappings, which are used in any of the
+<SCHEMA>ms:UnitRef</SCHEMA> typed elements and attributes.
+Implemented in <SCHEMA>ms:use</SCHEMA>.</p>
+
 =element payload
 
 <p>The <code>payload</code> is a <i>substitutionGroup</i>, which
@@ -91,30 +98,37 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
 =example demonstrating a simple unit
 
 ==xml
-<ms:unit ms:id="cc:ASDJKDJO12314A">
+<ms:unit ms:id="">  <!-- all in the same namespace 'cc' -->
   <ms:meta>
-    <ms:type>cc:Type/Warc.Result</ms:type>
+    <ms:type="ms:Role/Namespace" />
+  </ms:meta>
+  <ms:use prefix="cc" namespace="https://..." />
+</ms:unit>
+<ms:unit ms:id="ASDJKDJO12314A">
+  <ms:meta>
+    <ms:type>Type/Warc.Result</ms:type>
     <ms:name>https://markov.solutions/index.html</ms:name>
   </ms:meta>
-  <ms:has ms:is="cc:Type/Warc.Request"  ms:ref="cc:ASDJKDJO12314A-req">
-  <ms:has ms:is="cc:Type/Warc.Response" ms:ref="cc:ASDJKDJO12314A-resp">
-  <ms:has ms:is="cc:Type/Warc.Links"    ms:ref="cc:ASDJKDJO12314A-links">
+  <ms:has ms:is="cc:Type/Warc.Request"  ms:ref="ASDJKDJO12314A-req">
+  <ms:has ms:is="cc:Type/Warc.Response" ms:ref="ASDJKDJO12314A-resp">
+  <ms:has ms:is="cc:Type/Warc.Links"    ms:ref="ASDJKDJO12314A-links">
 </ms:unit>
-<ms:unit ms:id="cc:ASDJKDJO12314A-req">
+<ms:unit ms:id="ASDJKDJO12314A-req">
   <ms:meta>
     <ms:type>cc:Type/Warc.Request</ms:type>
     <ms:size>34516</ms:size>
     <ms:language>ms:Lang3/Nld</ms:language>
     <ms:charset>iso-5988-1</ms:charset>
   </ms:meta>
-  <ms:resource ms:href="cc:202102warc-00000">
+  <ms:external ms:href="/Repo/202102warc-00000">
     <ms:address>#12314151+11515</ms:address>
     <ms:format>cc:Format/warc/record</ms:format>
     <ms:encoded>ms:Algo/Gzip</ms:encoded>
-  </ms:resource>
+  </ms:external>
 </ms:unit>
-<ms:unit ms:id="cc:ASDJKDJO12314A-resp" />
-<ms:unit ms:id="cc:ASDJKDJO12314A-links" />
+<ms:unit ms:id="ASDJKDJO12314A-resp" />
+<ms:unit ms:id="ASDJKDJO12314A-links" />
+<ms:unit ms:id="Type/Warc.Result" />  <!-- etc -->
 ==end
 
 <p>The units are separately storable and retrievable.  The can have
