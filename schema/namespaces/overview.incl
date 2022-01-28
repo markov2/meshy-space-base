@@ -1,0 +1,8 @@
+<p>Namespaces group <SCHEMA>ms:unit</SCHEMA>s, like directories do for
+files on a harddisk.  Namespace are really important to keep the Units
+from different sources organized.</p>
+
+<p>For the real smart behavior, see <SCHEMA>msc:Collection</SCHEMA>
+which implements replication, mirroring, and such features on an
+conceptual level.</p>
+

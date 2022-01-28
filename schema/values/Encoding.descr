@@ -14,7 +14,7 @@ data to get to a result.</p>
 
 =description
 
-<p>Elements or attributes may indicated that data is encoded or
+<p>Elements or attributes may indicate that data is encoded or
 needs to be encoded.  Either data which is included in the
 message, or which can be downloaded from (or uploaded to) an
 external source.</p>

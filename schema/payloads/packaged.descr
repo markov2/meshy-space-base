@@ -32,14 +32,14 @@ data has about <code>download-size</code> octets.</p>
 
 =element source
 
-<p>Which unit contains the packaged data.  There MAY be more than one
-source, and conditions MAY select the alternatives which are
+<p>Describes which unit contains the packaged data.  There MAY be more
+than one source, and conditions MAY select the alternatives which are
 available to you.</p>
 
 =element address
 
 <p>The <code>address</code> has an interpretation for the data type of
-the unit you are refering to.  For example: that other unit is a tar
+the unit you are referring to.  For example: that other unit is a tar
 archive, and your address is a filename inside that archive.  Or the
 other unit is a link into a website, and your address is relative to it.
 The address may also be absolute.</p>
@@ -49,7 +49,7 @@ The address may also be absolute.</p>
 <p>The path to this unit may offer multiple resources for this unit,
 which use the same address relative to very different ways to store it.
 For instance, it can be a filename within a zip archive, or a separate
-filename loadable via https.  Usually, the resource defines (and removes)
+filename loadable via HTTPS.  Usually, the resource defines (and removes)
 the encoding.</p>
 
 =element download-size
@@ -69,8 +69,8 @@ larger anyway, caused by file-system overhead.</p>
 octets in the <code>format</code>; to get the product of the described
 type.</p>
 
-<p>When not specified, client will try to guess the encoding from the
-address.  For instance, when the address ends with <code>.gz</code>, than
+<p>When not specified, the client will try to guess the encoding from the
+address.  For instance, when the address ends with <code>.gz</code>, then
 the data is guessed to be <code>ms:Algo/Gzip</code> encoded.</p>
 
 <p><b>Be aware</b> that the client may not wish to undo all encodings.

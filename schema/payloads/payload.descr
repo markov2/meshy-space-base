@@ -33,5 +33,5 @@ by</p>
     and sign the information;</li>
 <li><SCHEMA>ms:native</SCHEMA> is the substitutionGroup base for
     elements which are native to Meshy Space (Concept), and MAY also be
-    extended by other schemas which every server is expect to know of.</li>
+    extended by other schemas which every server is expected to know of.</li>
 </ul>

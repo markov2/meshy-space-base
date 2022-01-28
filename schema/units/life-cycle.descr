@@ -27,7 +27,7 @@ Revisions are sortable strings.  Only the newest revision of a
 unit should be used by your program: older revisions have value.</p>
 
 <p>The <code>revision</code> defaults to <code>updated</code>, which
-is a ordered date format.  On its turn, <code>updated</code> defaults
+is an ordered date format.  On its turn, <code>updated</code> defaults
 to <code>created</code>.</p>
 
 <p>For each of the time-stamps, you will not see who has set or
@@ -43,13 +43,13 @@ produces change-logs.  See <SCHEMA>msc:Type/ChangeLog</SCHEMA>.</p>
 =element created
 
 <p>This tells you something about the moment data has been collected for
-the first time: the moment the <code>id</code> appears in the system.</p>
+the first time: the moment the Unit appeared in the system.</p>
 
 =element updated
 
 <p>The "last-modified" time-stamp reflects any change on the data or
-meta-data of the unit.  This includes changed detected in the
-references the unit <code>has</code> to other data.</p>
+meta-data of the unit.  This includes changes detected in the
+references which the unit <code>has</code> to other data.</p>
 
 <p>The <code>revision</code> is already increased on each of the updates,
 which will automatically upgrade all copies of the unit.  The revision
@@ -70,7 +70,7 @@ acceptable level, say a maximum of once per hour.
 be thrown away within a reasonable period, but at least within
 one hour after expiration.</p>
 
-<p>Also units which are packaged may expire.  In this case, the whole
+<p>Also, Units which are packaged may expire.  In this case, the whole
 package is expired.  When there are still units inside that package which
 are not expired, you MUST either expire them as well or repackage them.
 Probably the latter.  This may be expensive.</p>

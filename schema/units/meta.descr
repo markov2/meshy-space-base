@@ -1,7 +1,7 @@
 =short
 
-<p>Elements which give facts about the payload which is defined by the
-unit, independent from how the payload is included.</p>
+<p>Elements which give facts about the payload, which is defined by the
+unit, independent of how the payload is included.</p>
 
 =schema
 
@@ -26,8 +26,9 @@ to the indicated type.</p>
 
 =element name
 
-<p>A unit may have a name.  This name may be useful for tracing and
-debugging, but also have a usefull name.</p>
+<p>A unit may have a name which is shown to users.  The name defaults
+to the Unit's <code>unit-id</code>.  The chosen unit-ids may not be
+the nicest way to present the Unit to a person.</p>
 
 <p><strong>Be warned</strong> that the name is (like everything else)
 in the UTF8 charset.  See the discussion below about the problem with
@@ -62,7 +63,7 @@ See the page with all
 
 <p>When you want to use a filename as <code>name</code> (which makes a
 good case), you will need to include an encoded version of the filename
-because those often are UTF-16 (NTFS) or "bytes" (UNIX/Linux).</p>
+because those are often <code>UTF-16</code> (NTFS) or "bytes" (UNIX/Linux).</p>
 
 <p>Also, the use of hidden files (leading dot on UNIX/Linux) and hidden
 meta-data directories (<code>__MACOSX</code> on Apple) will complicate
@@ -73,5 +74,5 @@ Some operating systems use UTF8 for <code>ö</code>, other use <code>o +
 
 <p>This Meshy Space Base does not solve any of the problems.  Extensions,
 like the Meshy Space <i>Concept</i> may offer a solution.  When you are
-not using such extensions, than limit your application to case-sensitive
-ascii printables without blanks.</p>
+not using such extensions, then limit your application to case-sensitive
+ASCII printables without blanks.</p>

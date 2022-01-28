@@ -46,6 +46,6 @@ your conditional expression.</p>
 }
 ==end
 
-<p>The <code>take-all</code> here is an expression of the simpelest type:
+<p>The <code>take-all</code> here is an expression of the simplest type:
 a boolean constant value "<code>true</code>".  It also shows you can
 refer to parameters which are offered by the interpreter of the expression.</p>

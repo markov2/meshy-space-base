@@ -31,7 +31,7 @@ be linked to a namespace only when it is actually used by an
 application.</p>
 
 <p><b>Be aware</b> that the path components need to be compared in NFJK
-normalized form.  One Unit may use multiple path compontents in its
+normalized form.  One Unit may use multiple path components in its
 <code>unit-id</code> (of type <SCHEMA>ms:UnitID</SCHEMA>).</p>
 
 =attribute ref
@@ -59,7 +59,7 @@ not match.  The hidden feeling is: usually it does match.</p>
 
 =discuss Mixing path-seperators
 
-<p>Because the World is flawed, we may end-up with inconsequent
+<p>Because the World is flawed, we may end-up with inconsistent
 path separators.  When using absolute Unit addresses, you need to
 follow the preference of the Namespace.  This may be different
 for Subspaces: the external user cannot see this.</p>

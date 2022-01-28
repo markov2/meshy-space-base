@@ -1,7 +1,7 @@
 
 =short
 
-<p>The <i>revision</i> of an <SCHEMA>ms:unit</SCHEMA> is used to determine
+<p>The <i>revision</i> of a <SCHEMA>ms:unit</SCHEMA> is used to determine
 whether the unit has changed.  Only the newest revision should be kept:
 the older MUST be removed immediately.  String order determines age
 order.</p>
@@ -12,7 +12,7 @@ order.</p>
 <element name="revision">
   <simpleType>
     <restriction base="string">
-      <pattern value="[A-Za-z0-9;,.=#{}<> -]+" />
+      <pattern value="[A-Za-z0-9_;,.=#{}<> -]+" />
     </restriction>
   </simpleType>
 </element>
@@ -20,7 +20,7 @@ order.</p>
 
 =description
 
-<p><i>Revisions</i> are subtilely different from <i>versions</i>:
+<p><i>Revisions</i> are subtlety different from <i>versions</i>:
 where in your mind you may have a (software) version-for-test and a
 version-for-production, this really is not the purpose of this field.
 The name "revision" should make it clear that it is about the unit
@@ -28,11 +28,11 @@ itself.  The only valid unit, is the one with the highest revision.</p>
 
 <p>It is very well possible that multiple revisions of the same unit
 exist on different servers.  However, within hours the mirroring
-features of the unit collections will have replaced or deleted the
+features of the Unit collections will have replaced or deleted the
 old revisions.</p>
 
 <p>Comparing UTF-8 is really hard, unless you restrict the characters
-to the ascii namespace.</p>
+to the ASCII namespace.</p>
 
 =discuss Convenient revision schemes
 

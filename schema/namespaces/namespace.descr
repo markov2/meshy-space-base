@@ -1,6 +1,5 @@
 =short
 
-aa
 <p>Units belong to a Namespace.  The namespace may have structure,
 and may have a complex life-cycle.</p>
 
@@ -39,7 +38,7 @@ requires a <code>prefix</code> and has <code>"/"</code> as default for
 =element prefix
 
 <p>The prefix which the data in the Units contained in the Namespace
-preferrably use to indicate to the namespace where they are part of.  Some
+preferably used to indicate to the namespace where they are part of.  Some
 storage formats, like XML, will be self-contained.  Other serializations
 may not support prefix to namespace mappings internally.</p>
 

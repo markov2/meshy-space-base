@@ -17,7 +17,7 @@ the <SCHEMA>ms:Native</SCHEMA> payload to be expected.</p>
     <SCHEMA>ms:namespace</SCHEMA>.</dd>
 
 <dt><code>ms:Type/Resource</code></dt>
-<dd>Describes to get to data storage.  The data is octets which are probably
+<dd>Describes to get to data storage.  The data is octets, which are probably
     packed and compressed.  It may be part of a larger resource.
     (Computer people call Resources "files", "archives", "urls", or "zips")
 </dd>

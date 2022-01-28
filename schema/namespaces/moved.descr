@@ -52,7 +52,7 @@ as Unit would be affected.</p>
 =attribute new
 
 <p>The replacement path component.  It may start with a prefix for
-the same of for an other namespace.  In either case, it is an absolute
+the same of for another namespace.  In either case, it is an absolute
 rewrite.  Otherwise, it is a relative replacement.  "Up one directory"
 (<code>".."</code>) and "this directory" (<code>"."</code>) are not
 supported: dots are meaningless characters.</p>

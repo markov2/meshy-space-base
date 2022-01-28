@@ -1,6 +1,6 @@
 =short
 
-<p>A unit <i>has</i> references to an other unit for a certain
+<p>A unit <i>has</i> references to another unit for a certain
 reason.</p>
 
 =schema
@@ -28,9 +28,9 @@ name-spaced constant.</p>
 =example in the Meshy Space Concept frame
 
 <p>Not all inter-unit relations are the same: some are generic enough
-to be defined by MSI, where other have a looser or non-standardized
+to be defined by MSI, where others have a looser or non-standardized
 relation.  It may also be smart to put lesser-used information about
-a unit into a separat unit: for instance the history of the unit.</p>
+a unit into a separate unit: for instance the history of the unit.</p>
 
 ==xml
 <ms:unit ms:id="mine:User/Markov">

@@ -16,7 +16,7 @@ not.</p>
 board via the namespace.  Constants are artificially grouped in their own
 path components. The grouping MAY also contain sub-groupings.</p>
 
-<p>Extensions may add their own constants to enumation sets which are
+<p>Extensions may add their own constants to enumeration sets, which are
 defined by Meshy Space itself, when they feel the need.  One SHALL not
 use numeric values to represent anything else than a numeric value.</p>
 

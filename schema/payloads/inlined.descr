@@ -36,7 +36,7 @@ passing encryption keys, images, etc.</p>
 <h2>Efficient bulk use of blobs</h2>
 
 <p>Any unit's data, and even units themselves, can be stored
-together in a blob: a blob can, for instance be a <code>zip</code> or
+together in a blob: a blob can, for instance, be a <code>zip</code> or
 <code>tar.gz</code> archive, which offers addressable elements.  It is
 far more efficient to combine many small blobs into a single dedicated
 unit: compression, cache tuning, and data processing in general will

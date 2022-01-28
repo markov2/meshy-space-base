@@ -6,7 +6,7 @@ and end in a Unit of a certain <a href="types.html">Type</a>.
 See also the <a href="/schemas/concept/constants/roles.html">concept Roles</a>.</p>
 
 <p>The <code>is</code> attribute of the <SCHEMA>ms:has</SCHEMA> elements
-in a <SCHEMA>ms:unit</SCHEMA> describe the relation.  When that value
+in a <SCHEMA>ms:unit</SCHEMA> describes the relation.  When that value
 is in the <code>ms:</code> namespace, you will find it described below.</p>
 
 <p>Roles do not need to refer to Units with only one specific Type: the

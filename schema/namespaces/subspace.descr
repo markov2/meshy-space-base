@@ -57,7 +57,7 @@ path <code>"namespace:a/b/"</code>:</p>
 <li><code>'/a/b/'</code></li>
 </ul>
 
-<p>This mimics how http servers map to a directory structure on disk,
+<p>This mimics how HTTP-servers map to a directory structure on disk,
 where the user does not know whether the namespace is homogeneous or
 not simply based on the Unit reference.  This enabled smooth storage
 redesign on the supplier side.</p>

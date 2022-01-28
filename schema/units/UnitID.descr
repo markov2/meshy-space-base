@@ -17,7 +17,7 @@ this with a filename with in directory.</p>
 <p class="list">This identifier has a few rules, which distinguishes it
 from the standard <code>xsd:ID</code>:</p>
 <ul>
-<li>it is a <code>xsd:token</code>, which means that whitespaces are
+<li>it is a <code>xsd:token</code>, which means that whitespace is
     collapsed;</li>
 <li>the uniqueness is preserved within a Namespace, but messages may
     list Units from different namespaces, hence within a message the
@@ -29,13 +29,13 @@ from the standard <code>xsd:ID</code>:</p>
     Units (<SCHEMA>ms:UnitRef</SCHEMA>);</li>
 <li>the <code>UnitID</code> may use the <i>sep</i> character, but <b>not</b>
     as first character, as last character, or twice in a row;
-<li><i>path</i> compenents will not be <code>'.'</code> nor
+<li><i>path</i> components will not be <code>'.'</code> nor
     <code>'..'</code>; an</li>
 <li>the value SHALL be unique within its enclosing Subspace or Namespace,
     when in its NFJK normalized form.</li>
 </ul>
 
-=discuss Restictions on <code>'/'</code>, <code>'.'</code>, <code>'..'</code>
+=discuss Restrictions on <code>'/'</code>, <code>'.'</code>, <code>'..'</code>
 
 <p>Some restrictions are set because the UnitID is used as part in relative
 and absolute addressing via <SCHEMA>ms:UnitRef</SCHEMA>.  Especially
@@ -47,9 +47,9 @@ the relative addressing support syntax as used for HTTP URLs
 
 =discuss NFJK normalization
 
-<p>Operation systems and editors use different Unicode ways to
+<p>Operating Systems and editors use different Unicode ways to
 express exactly the same.  For instance, <code>ö</code> can
-be represented as single symbol, but also as two: <code>" + o</code>.
+be represented as a single symbol, but also as two: <code>" + o</code>.
 Algorithms which find a UnitID must compare the path components in
 NFJK form.  Probably, an index is built mapping the normalized form
 of the UnitID to the Unit object, which is rather cheap.</p>

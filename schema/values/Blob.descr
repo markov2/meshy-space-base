@@ -1,6 +1,6 @@
 =short
 
-<p>Data in some field may be encoded: serialized, base64, compressed,
+<p>Data in some field may be encoded: serialized, Base64, compressed,
 and more.  These algorithms have pre-defined constants.  This field
 contains the data plus a list of applied steps.</p>
 

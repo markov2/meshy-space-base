@@ -1,6 +1,6 @@
 <p>All constants in the '<code>ms:</code>' namespace are camel-cased,
-starting with a capital (elements and attributes are lower-cased,
-identifiers full capitals) by convension.</p>
+starting with a capital (elements and attributes are lower-cased) by
+convention.</p>
 
 <ul>
 <li><code><a href="algorithms.html">ms:Algo/</a></code> names for

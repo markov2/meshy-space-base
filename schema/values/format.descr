@@ -33,7 +33,7 @@ and expect that the "<code>x-</code>" may disappear in the future.</p>
 <h3>Missing MIME-types</h2>
 
 <p>Although the official IANA list contains about 3000 mime-types, that
-forms just the tip of the ice-berg of data interpretations.  When your
+forms just the tip of the iceberg of data interpretations.  When your
 distributed row of bytes has no official mime-type (yet), you must pick
 your own.</p>
 
@@ -48,7 +48,7 @@ your own.</p>
 <li>When your data reflects some well-defined schema element, you can use
     that.  Append <code>+xml</code> or <code>+json</code> to express the
     serialization used.</li>
-<li>otherwise: <code>format</code> is just an name-spaced constant, so
+<li>otherwise: <code>format</code> is just a name-spaced constant, so
     you could define one constant within your own namespace.</li>
 </ol>
 
