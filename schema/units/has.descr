@@ -81,47 +81,35 @@ a unit into a separate unit: for instance the history of the unit.</p>
 
 ==xml
 <ms:unit ms:id="MarkOv">               <!-- in dist:User/ -->
-  <ms:meta>
-     <ms:type>msc:Role/Identity</ms:type>
-  </ms:meta>
+  <ms:type>msc:Role/Identity</ms:type>
   <msc:indentity />
 </ms:unit>
 <ms:unit ms:id="Sources">              <!-- in dist: -->
-  <ms:meta>
-    <ms:type>msc:Collection</ms:type>  <!-- is a Subspace -->
-  </ms:meta>
+  <ms:type>msc:Collection</ms:type>  <!-- is a Subspace -->
   <ms:has ms:is="dist:Role/Source" ms:ref="puppy-src-3.14.rpm" />
   <ms:has ms:is="dist:Role/Source" ms:ref="wolf-src-12.2.rpm" />
 </ms:unit>
 <ms:unit ms:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
-  <ms:meta>
-    <ms:name>puppy 3.14 sources</ms:name>
-    <ms:type>ms:Mime/application/rpm</ms:type>
-  </ms:meta>
+  <ms:name>puppy 3.14 sources</ms:name>
+  <ms:type>ms:Mime/application/rpm</ms:type>
   <ms:extern />
 </ms:unit>
 <ms:unit ms:id="puppy-3.14.rpm">      <!-- in dist:Package/ -->
-  <ms:meta>
-    <ms:name>puppy 3.14</ms:name>
-    <ms:type>ms:Mime/application/rpm</ms:type>
-    <ms:owner>dist:User/MarkOv</ms:owner>
-  </ms:meta>
+  <ms:name>puppy 3.14</ms:name>
+  <ms:type>ms:Mime/application/rpm</ms:type>
+  <ms:owner>dist:User/MarkOv</ms:owner>
   <ms:extern />
   <ms:has ms:ref="dist:Sources/puppy" ms:is="dist:Role/Source" />
 </ms:unit>
 ==json
 "ms:unit" : {
   "ms:id" : "MarkOv",               // in dist:User/
-  "ms:meta" : {
-    "ms:type" : "msc:Role/Identity"
-  },
+  "ms:type" : "msc:Role/Identity"
   "msc:identity" : {}
 },
 "ms:unit" : {
   "ms:id": "Sources",               // in dist:
-  "ms:meta" : {
-    "ms:type" : "msc:Collection",   // is a Subspace
-  },
+  "ms:type" : "msc:Collection",   // is a Subspace
   "ms:has" : [ {
     "ms:is" : "dist:Role/Source",
     "ms:ref" : "puppy-src-3.14.rpm"
@@ -132,19 +120,15 @@ a unit into a separate unit: for instance the history of the unit.</p>
 },
 "ms:unit" : {
   "ms:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
-  "ms:meta" : {
-    "ms:name": "puppy 3.14 sources",
-    "ms:type": "ms:Mime/application/rpm"
-  },
+  "ms:name": "puppy 3.14 sources",
+  "ms:type": "ms:Mime/application/rpm"
   "ms:extern" : {}
 },
 "ms:unit" : {
   "ms:id" : "puppy-3.14.rpm",       // in dist:Package/
-  "ms:meta" : {
-    "ms:name" : "puppy 3.14",
-    "ms:type" : "ms:Mime/application/rpm",
-    "ms:owner" : "dist:User/MarkOv"
-  },
+  "ms:name" : "puppy 3.14",
+  "ms:type" : "ms:Mime/application/rpm",
+  "ms:owner" : "dist:User/MarkOv"
   "ms:extern" : {},
   "ms:has" : [ {
      "ms:ref" : "dist:Sources/puppy",

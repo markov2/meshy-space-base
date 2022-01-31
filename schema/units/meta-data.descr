@@ -6,7 +6,7 @@ unit, independent of how the payload is included.</p>
 =schema
 
 ==xml
-<group name="meta">
+<group name="meta-data">
   <sequence>
     <element name="type"     type="ms:Constant" />
     <element name="name"     type="string"       minOccurs="0" />

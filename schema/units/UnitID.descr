@@ -5,7 +5,11 @@
 =schema
 
 ==xml
-<simpleType name="UnitID" type="token" />
+<simpleType name="UnitID">
+  <restriction base="xs:string">
+    <pattern value="\S+" />
+  </restriction>
+</simpleType>
 ==end
 
 =description
@@ -17,22 +21,34 @@ this with a filename with in directory.</p>
 <p class="list">This identifier has a few rules, which distinguishes it
 from the standard <code>xsd:ID</code>:</p>
 <ul>
-<li>it is a <code>xsd:token</code>, which means that whitespace is
-    collapsed;</li>
-<li>the uniqueness is preserved within a Namespace, but messages may
-    list Units from different namespaces, hence within a message the
-    attribute may not be unique;</li>
-<li>the Namespace defines a <code>path-separator</code> (<i>sep</i>);
+<li>The UnitID is to interpreted in the context of references to
+    Units (<SCHEMA>ms:UnitRef</SCHEMA>) with a Subspace;</li>
+<li>The Subspace defines a <code>path-separator</code> (<i>sep</i>);
     by default a <code>'/'</code>.  When a <i>sep</i> is used in a
-    <code>UnitID</code>, it splits the token in <i>path</i> components.
-    The <i>path</i> has a meaning in the context of references to
-    Units (<SCHEMA>ms:UnitRef</SCHEMA>);</li>
-<li>the <code>UnitID</code> may use the <i>sep</i> character, but <b>not</b>
+    <code>UnitID</code>, it splits the value in <i>path</i> components.
+<li>That <i>sep</i> SHALL not be Percent-encoded.</li>
+<li>The <code>UnitID</code> may use the <i>sep</i> character, but <b>not</b>
     as first character, as last character, or twice in a row;
-<li><i>path</i> components will not be <code>'.'</code> nor
-    <code>'..'</code>; an</li>
-<li>the value SHALL be unique within its enclosing Subspace or Namespace,
-    when in its NFJK normalized form.</li>
+<li>Path-components will not be <code>'.'</code> nor <code>'..'</code>, which
+    are used in relative paths (see <SCHEMA>ms:UnitRef</SCHEMA>);</li>
+<li>The UnitID is normalized URL-Encoded, which means that &mdash;in each
+    path component&mdash; all <i>reserved characters</i> and the <i>sep</i>
+    SHALL be percent-encoded, and all <i>unreserved characters</i> SHALL not
+    be percent-encoded according to
+    [% rfc(3986) %] and explained
+    <a href="https://en.wikipedia.org/wiki/Percent-encoding">on Wikipedia</a>.</li>
+<li>It is RECOMMENDED to limit UnitIDs to printable, non-whitespace ASCII.  Use
+    the <code>unit.name</code> to keep the UTF-8 name of the Unit.</li>
+<li>Multi-byte UTF-8 in the path-component MUST be normalized into NFKC form
+    before percent-encoding.  Percent-encoding is per byte separately, as
+    practice in URIs.
+    See <a href="https://unicode.org/reports/tr15/">TR15</a> of the Unicode
+    consortium and [% rfc(3986) %] section 2.5.</li>
+<li>In its encoded form, the UnitID SHALL be unique within its enclosing Subspace.</li>
+<li>The uniqueness is preserved within a Subspace, but messages may
+    list UnitIDs from different namespaces in relative addressing form.
+    Hence within a message, the attribute may not be unique.  (This is
+    incompatible with XMLs concept of IDs);</li>
 </ul>
 
 =discuss Restrictions on <code>'/'</code>, <code>'.'</code>, <code>'..'</code>
@@ -45,13 +61,17 @@ the relative addressing support syntax as used for HTTP URLs
 <p>It depends on the <code>path-separator</code> setting in the enclosing
 <SCHEMA>ms:namespace</SCHEMA>
 
-=discuss NFJK normalization
+=discuss NFKC normalization
 
 <p>Operating Systems and editors use different Unicode ways to
 express exactly the same.  For instance, <code>ö</code> can
 be represented as a single symbol, but also as two: <code>" + o</code>.
-Algorithms which find a UnitID must compare the path components in
-NFJK form.  Probably, an index is built mapping the normalized form
-of the UnitID to the Unit object, which is rather cheap.</p>
+These (and other kinds of) alternatives make comparison for the human
+idea of "equality" hard.</p>
+
+<p>It is RECOMMENDED not to use UnitIDs which are based on an external
+source, for instance a filename: these may require utf-8 normalization
+and percent-encoding.  On the other hand: this way they are easier to
+discover than via the <code>unit.name</code> field.</p>
 
 <p>See <a href="https://unicode.org/reports/tr15/">Unicode TR15</a>.</p>

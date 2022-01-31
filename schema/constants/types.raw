@@ -2,7 +2,7 @@
 
 <p>The Meshy Space base object <SCHEMA>ms:unit</SCHEMA> is extremely
 flexible, but not expressive.  The types listen below are used in
-the <code>unit.meta.type</code> field to describe the extension of
+the <code>unit.type</code> field to describe the extension of
 the <SCHEMA>ms:Native</SCHEMA> payload to be expected.</p>
 
 <p>See also the intelligent

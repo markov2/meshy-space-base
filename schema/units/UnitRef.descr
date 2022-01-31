@@ -26,6 +26,11 @@ rules, for instance for Access.</p>
 be linked to a namespace only when it is actually used by an
 application.</p>
 
+<p>It is RECOMMENDED not to use absolute references within the same Namespace
+(to use prefixes which refer to the context of the Unit itself).  This will
+make a restructuring of a namespace harder, because Units will need to be
+rewritten.</p>
+
 <p><b>Be aware</b> that the path components need to be compared in NFJK
 normalized form.  One Unit may use multiple path components in its
 <code>unit-id</code> (of type <SCHEMA>ms:UnitID</SCHEMA>).</p>
@@ -68,7 +73,7 @@ pref:image/logo.png
 </CODE>
 
 <p>You may recognize the <code>.png</code> as a filename extension.
-This does not have a meaning here: each Unit has a unit.meta.type
+This does not have a meaning here: each Unit has a <code>unit.type</code>
 attribute which contains the (mime-)type of the contained data.</p>
 
 <p>Even absolute references may contain <code>".."</code> and
@@ -116,7 +121,7 @@ my $ms = Meshy::Space->new;
 $ms->prefix(net => 'https://example.org/network');
 
 my $unit = $ms->getUnit("net:ipv4/192.168.12.1");
-print $unit->meta->name;  # --> "router of 192.168.12"
+print $unit->name;  # --> "Gateway for 192.168.12"
 </PERL>
 
 <p>Be aware that <code>ms:unit</code> objects have all and more
