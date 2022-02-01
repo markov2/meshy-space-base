@@ -1,0 +1,36 @@
+<h1>Constants defining Mime</h1>
+
+<p>MIME-types explain what a sequence of bytes represents.
+They are standardized by IETF via [% rfc(6838) %].  The
+<a href="https://www.iana.org/assignments/media-types/media-types.xhtml"
+>official list</a> is maintained by IANA.  For those types, use the
+<code>ms:Mime/</code> prefix.</p>
+
+<p class="list">Example use of formats which have a IANA registration:</p>
+<CODE>
+ms:Mime/image/gif
+ms:Mime/application/pdf
+</CODE>
+
+<p>Applications which handle IANA mime-types must handle them case-insensitive,
+and expect that the "<code>x-</code>" may disappear in the future.</p>
+
+<h4>Missing MIME-types</h4>
+
+<p>You can freely create Mime-type look-alikes in your own namespace.  Of course,
+when there is a strong preference to use the standard definitions, but IANA
+registration processes are a lot of work and often overkill.</p>
+
+<p>You MAY decide to organize your own MIME's in the same way as the
+standard types, but there is not need for it.  Especially when the
+payload of the unit is not an external source, it is useful to use
+<code>Type/" constants.</p>
+
+<p class="list">Examples:</p>
+<CODE>
+myns:Mime/application/warc.archive
+myns:Mime/application/vnd.osf.meeting
+myns:Type/SyslogErrors
+</CODE>
+
+</div>

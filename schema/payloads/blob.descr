@@ -1,0 +1,34 @@
+=short
+
+<p>The data is included in this <SCHEMA>ms:unit</SCHEMA> object itself.</p>
+
+=schema
+
+==xml
+<element name="blob" type="ms:Blob" substitutionGroup="ms:data" />
+
+<contentType name="ms:Blob">
+  <simpleContent>
+    <restriction base="ms:Data">
+    <attribute name="encoded" type="ms:Encoding" default="" />
+  </simpleContent>
+</contentType>
+==end
+
+=description
+
+<p>Elements of this type contain data which MAY be encapsulated to be
+able to fit in the message. The packaged data MAY be a structure, not
+UTF8, contain characters which XML does not like, or pure binary.</p>
+
+=attribute encoding
+
+<p class="list">The encoding attribute is an abbreviation.  The following
+two are the same:</p>
+<XML>
+<ms:blob ms:encoding="ms:Algo/Base64">DATA</ms:blob>
+
+<ms:encoding algo="ms:Algo/Base64">
+  <ms:blob>DATA</ms:blob>
+</ms:encoding>
+</XML>

@@ -1,0 +1,59 @@
+<h1>Payload examples</h1>
+
+<p><font color="red">Sorry, this needs more work.</font></p>
+
+<h4>Unit contains all information to find an image</h4>
+
+<XML>
+<ms:unit>
+  <ms:type>image/jpeg<ms:/type>
+  <ms:name>logo.jpg</ms:name>
+  <ms:size>12k</ms:size>
+  <ms:inlined>
+    <ms:packaged algo="ms:Algo/Tar">
+      <ms:size>300k</ms:size>
+      <ms:entry>logo-50x124.jpg</ms:entry>
+      <ms:compressed algo="ms:Algo/Gzip">
+        <ms:size>50k</ms:size>
+        <ms:fetch uri="https://a.tar.gz" />
+      </ms:compressed>
+    </ms:packaged>
+    <ms:signature algo="ms:Algo/SHA1">
+      <ms:encoded algo="ms:Algo/Base64">
+        <ms:blob>SGVsbG8sIFdvcmxkIQo=</ms:blob>
+      </ms:encoded>
+    </ms:signature>
+  </ms:inlined>
+</ms:unit>
+</XML>
+
+<h4>Unit refers to another unit to find an image</h4>
+
+<XML>
+<ms:unit>
+  <ms:type>image/jpeg</ms:type>
+  <ms:name>logo.jpg</ms:name>
+  <ms:size>12k</ms:size>
+  <ms:inlined>
+    <ms:packaged algo="ms:Algo/Tar">
+      <ms:resource ref="my:a" />
+      <ms:entry>logo-50x124.jpg</ms:entry>
+    </ms:packaged>
+    <ms:signature algo="ms:Algo/SHA1">
+      <ms:blob algo="ms:Algo/Base64">SGVsbG8sIFdvcmxkIQo=</ms:blob>
+    </ms:signature>
+  </ms:inlined>
+</ms:unit>
+
+<ms:unit ms:id="my:a">
+  <ms:type>application/tar</ms:type>
+  <ms:size>300k</ms:size>
+  <ms:inlined>
+    <ms:compressed algo="Gzip">
+      <ms:size>50k</ms:size>
+      <ms:fetch uri="https://a.tar.gz" />
+    </ms:compressed>
+  </ms:inlined>
+</ms:unit>
+</XML>
+

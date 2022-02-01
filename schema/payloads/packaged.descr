@@ -6,18 +6,13 @@ element refers to an internet location which contains those bytes.</p>
 =schema
 
 ==xml
-<element name="packaged" type="ms:Packaged" />
+<element name="packaged" type="ms:Packaged" substitutionGroup="ms:data" />
 
 <complexType name="ms:Packaged">
   <complexContent>
-    <extension base="ms:Native">
+    <extension base="ms:Inline">
       <sequence>
-        <element name="source"        type="ms:UnitRef" maxOccurs="unbounded" />
-        <element name="address"       type="anyURI"  />
-        <element ref="ms:encoded"     default="" />
-        <element ref="ms:format"      minOccurs="0" />
-        <element name="download-size" type="unsignedLong" minOccurs="0" />
-        <element ref="ms:authorization" minOccurs="0" />
+        <element name="entry" type="ms:token" />
       </sequence>
     </extension>
   </complexContent>
@@ -26,60 +21,4 @@ element refers to an internet location which contains those bytes.</p>
 
 =description
 
-<p>You will find this unit on <code>address</code> in the
-<SCHEMA>ms:unit</SCHEMA> to <code>ms:UnitRef</code>.  The referenced
-data has about <code>download-size</code> octets.</p>
-
-=element source
-
-<p>Describes which unit contains the packaged data.  There MAY be more
-than one source, and conditions MAY select the alternatives which are
-available to you.</p>
-
-=element address
-
-<p>The <code>address</code> has an interpretation for the data type of
-the unit you are referring to.  For example: that other unit is a tar
-archive, and your address is a filename inside that archive.  Or the
-other unit is a link into a website, and your address is relative to it.
-The address may also be absolute.</p>
-
-<p>The interpretation of the address will be done at run-time.</p>
-
-<p>The path to this unit may offer multiple resources for this unit,
-which use the same address relative to very different ways to store it.
-For instance, it can be a filename within a zip archive, or a separate
-filename loadable via HTTPS.  Usually, the resource defines (and removes)
-the encoding.</p>
-
-=element download-size
-
-<p>An estimate of the total number of octets for the referenced object,
-in encoded state.<p>
-
-<p>The value is informational only.  You MAY publish a size which is
-<i>maximum 10% higher</i> than the actual size: do not spend too much
-time housekeeping the exact value.  Downloaded, the data may be a bit
-larger anyway, caused by file-system overhead.</p>
-
-=element encoded
-
-<p>Explains how the data was serialized into bytes.  See
-<SCHEMA>ms:encoded</SCHEMA>.  You need to undo the encodings to get the
-octets in the <code>format</code>; to get the product of the described
-type.</p>
-
-<p>When not specified, the client will try to guess the encoding from the
-address.  For instance, when the address ends with <code>.gz</code>, then
-the data is guessed to be <code>ms:Algo/Gzip</code> encoded.</p>
-
-<p><b>Be aware</b> that the client may not wish to undo all encodings.
-For instance: the client may wish to keep the data in compressed state.
-When your files are huge, you may want to keep them compressed, because
-redoing compression may take minutes.  Or your library can read
-compressed files itself.</p>
-
-=element authorization
-
-<p>You probably need the authorization information to collect the data
-from the <code>address</code>.</p>
+=element entry

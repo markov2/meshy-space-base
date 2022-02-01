@@ -1,0 +1,26 @@
+=short
+
+<p>Fetch the data from an external source.</p>
+
+=schema
+
+==xml
+<element name="fetch" type="ms:Fetch" substitutionGroup="ms:data" />
+
+<complexType name="ms:Fetch">
+  <complexContent>
+    <extension base="ms:Data">
+      <sequence>
+        <element ref="ms:authorization" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+      <attribute name="uri" type="AnyURI" use="required" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+=attribute uri
+
+=element authorization

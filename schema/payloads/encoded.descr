@@ -1,0 +1,22 @@
+=short
+
+<p>The data is provided in encoded form.</p>
+
+=schema
+
+==xml
+<element name="encoded" type="ms:Encoded" substitutionGroup="ms:data" />
+
+<complexType name="ms:Encoded">
+  <complexContent>
+    <extension base="ms:Inlined" />
+    <attribute name="Algo" type="ms:Constant" use="required" />
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+=attribute Algo
+
+

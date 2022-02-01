@@ -12,7 +12,8 @@ convention.</p>
 <li><code>ms:Lang[123]/</code> names for languages, in ISO-639-[123] form;</li>
 <li><code>ms:Currency/</code> for new and old coins in ISO-4217 abbreviations;</li>
 <li><code>ms:Sum/</code> names checksum algorithms;</li>
-<li><code>ms:Mime/</code> contains all official MIME-types as defined by IANA;</li>
+<li><code><a href="mime.html">ms:Mime/</a></code> contains all official
+    MIME-types as defined by IANA;</li>
 <li><code>ms:{Error,Warning,Notice,Info}/</code>, status codes;</li>
 <li>Other TODO</li>
 </ul>

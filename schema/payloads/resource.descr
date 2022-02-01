@@ -1,0 +1,24 @@
+=short
+
+<p>Refers of the content of another <SCHEMA>ms:unit</SCHEMA> to provide the
+requested data.</p>
+
+=schema
+
+==xml
+<element name="resource" type="ms:Resource"
+   substitutionGroup="ms:data" />
+
+<complexType name="ms:Resource">
+  <complexContent>
+    <extension base="ms:Data:>
+      <sequence />
+      <attribute name="ref" type="ms:UnitRef" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+=attribute ref

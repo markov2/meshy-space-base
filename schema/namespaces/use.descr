@@ -32,8 +32,11 @@ top Namespace Units.</p>
 
 =attribute prefix
 
-<p>Prefixes cannot use (unencoded) whitespace. It is permitted to
-use more than one prefix for the same namespace.</p>
+<p>Prefixes are restricted to <code>\w[\w-]*</code> in ASCII space.</p>
+
+<p>It is permitted to use more than one prefix for the same namespace, but
+using the same prefix twice in one Subspace for different namespaces is an
+error.</p>
 
 =attribute namespace
 

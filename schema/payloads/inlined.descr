@@ -12,7 +12,10 @@
   <complexContent>
     <extension base="ms:Payload">
       <sequence>
-        <element name="blob" type="ms:Blob" />
+        <group name="ms:meta-data" />
+        <element ref="ms:data" />
+        <element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="ms:encrypted" minOccurs="0" maxOccurs="unbounded" />
       </sequence>
     </extension>
   </complexContent>
@@ -42,7 +45,11 @@ far more efficient to combine many small blobs into a single dedicated
 unit: compression, cache tuning, and data processing in general will
 benefit.</p>
 
-=element blob
+=group meta-data
 
-<p>A string containing the unit's data (probably in encoded form).
-Usually, encodings make the blanks insignificant.</p>
+=element data
+
+=element signature
+
+=element encrypted
+
