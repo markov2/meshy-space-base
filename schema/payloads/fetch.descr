@@ -5,11 +5,12 @@
 =schema
 
 ==xml
-<element name="fetch" type="ms:Fetch" substitutionGroup="ms:data" />
+<element name="fetch" type="ms:Fetch"
+  substitutionGroup="ms:inlined" />
 
 <complexType name="ms:Fetch">
   <complexContent>
-    <extension base="ms:Data">
+    <extension base="ms:Inlined">
       <sequence>
         <element ref="ms:authorization" minOccurs="0" maxOccurs="unbounded" />
       </sequence>

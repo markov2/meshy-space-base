@@ -12,7 +12,8 @@
   <complexContent>
     <extension base="ms:Payload">
       <sequence>
-        <group name="ms:meta-data" />
+        <group   name="ms:meta-data" />
+        <element name="size" type="unsignedLong" />
         <element ref="ms:data" />
         <element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" />
         <element ref="ms:encrypted" minOccurs="0" maxOccurs="unbounded" />
@@ -53,3 +54,7 @@ benefit.</p>
 
 =element encrypted
 
+=element size
+
+<p>The number of octets (bytes) of the actual payload, not included
+the size of indirect units used.</p>

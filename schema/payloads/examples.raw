@@ -1,59 +1,157 @@
 <h1>Payload examples</h1>
 
-<p><font color="red">Sorry, this needs more work.</font></p>
+<p>On this page, a few possibilities to maintain bytes.  The specification
+may be quite hard to grasp without extensive example.</p>
 
 <h4>Unit contains all information to find an image</h4>
 
+<p>In the example below, the <SCHEMA>ms:unit</SCHEMA> describes an image
+which is part of a <i>tar</i>-archive which is gzip-compressed.  This is
+a common format in the UNIX/Linux environment.</p>
 <XML>
 <ms:unit>
-  <ms:type>image/jpeg<ms:/type>
+  <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
   <ms:size>12k</ms:size>
   <ms:inlined>
-    <ms:packaged algo="ms:Algo/Tar">
+    <ms:packaged ms:algo="ms:Algo/Tar">
       <ms:size>300k</ms:size>
       <ms:entry>logo-50x124.jpg</ms:entry>
-      <ms:compressed algo="ms:Algo/Gzip">
+      <ms:compressed ms:algo="ms:Algo/Gzip">
         <ms:size>50k</ms:size>
-        <ms:fetch uri="https://a.tar.gz" />
+        <ms:fetch ms:uri="https://a.tar.gz" />
       </ms:compressed>
     </ms:packaged>
-    <ms:signature algo="ms:Algo/SHA1">
-      <ms:encoded algo="ms:Algo/Base64">
+    <ms:signature ms:algo="ms:Algo/SHA1">
+      <ms:encoded ms:algo="ms:Algo/Base64">
         <ms:blob>SGVsbG8sIFdvcmxkIQo=</ms:blob>
       </ms:encoded>
     </ms:signature>
   </ms:inlined>
 </ms:unit>
 </XML>
+<JSON>
+"ms:unit" : {
+  "ms:type" : "ms:Mime/image/jpeg",
+  "ms:name" : "logo.jpg",
+  "ms:size" : "12k",
+  "ms:inlined" : {
+    "ms:packaged" : {
+      "ms:algo" : "ms:Algo/Tar",
+      "ms:size" : "300k",
+      "ms:entry" : "logo-50x124.jpg",
+      "ms:compressed" : {
+        "ms:algo" : "ms:Algo/Gzip",
+        "ms:size" : "50k",
+        "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
+      }
+    },
+    "ms:signature" : {
+      "ms:algo" : "ms:Algo/SHA1",
+      "ms:encoded" : {
+        "ms:algo" : "ms:Algo/Base64",
+        "ms:blob" : { "_" : "SGVsbG8sIFdvcmxkIQo=" }
+      }
+    }
+  }
+}
+</JSON>
+<p>Probably, the SHA1 signature type includes Base64 encoding, so it
+should not be specified explicitly.  However, it is included in the
+example to demonstrate how it could work.</p>
 
 <h4>Unit refers to another unit to find an image</h4>
 
+<p>Getting to the data which is distributed via a unit is potentionally
+recursive.  In the example below, the details about where to get the
+<i>tar</i>-archive is contained in an other unit.  Of course, that
+<i>resource</i> can be shared easily by units which describe the separate
+data elements in that tar.</p>
+
 <XML>
-<ms:unit>
-  <ms:type>image/jpeg</ms:type>
+<ms:unit ms:id="default-logo.jpg">
+  <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
   <ms:size>12k</ms:size>
   <ms:inlined>
-    <ms:packaged algo="ms:Algo/Tar">
-      <ms:resource ref="my:a" />
+    <ms:packaged ms:algo="ms:Algo/Tar">
+      <ms:resource ms:ref="dist:style" />
       <ms:entry>logo-50x124.jpg</ms:entry>
     </ms:packaged>
-    <ms:signature algo="ms:Algo/SHA1">
-      <ms:blob algo="ms:Algo/Base64">SGVsbG8sIFdvcmxkIQo=</ms:blob>
+    <ms:signature ms:algo="ms:Algo/SHA1">
+      <ms:blob ms:encoded="ms:Algo/Base64">SGV...kIQo=</ms:blob>
     </ms:signature>
   </ms:inlined>
 </ms:unit>
 
-<ms:unit ms:id="my:a">
+<!-- in the Namespace with prefix "dist" -->
+<ms:unit ms:id="style">
   <ms:type>application/tar</ms:type>
   <ms:size>300k</ms:size>
   <ms:inlined>
-    <ms:compressed algo="Gzip">
+    <ms:compressed ms:algo="ms:Algo/Gzip">
       <ms:size>50k</ms:size>
-      <ms:fetch uri="https://a.tar.gz" />
+      <ms:fetch ms:uri="https://a.tar.gz" />
     </ms:compressed>
   </ms:inlined>
 </ms:unit>
 </XML>
+<JSON>
+"ms:unit" : {
+  "ms:id" : "default-logo.jpg",
+  "ms:type" : "ms:Mime/image/jpeg",
+  "ms:name" : "logo.jpg",
+  "ms:size" : "12k",
+  "ms:inlined" : {
+    "ms:packaged" : {
+      "ms:algo" : "ms:Algo/Tar",
+      "ms:resource" : { "ms:ref" : "dist:style" },
+      "ms:entry" : "logo-50x124.jpg"
+    },
+    "ms:signature" : {
+      "ms:algo" : "ms:Algo/SHA1",
+      "ms:blob" : {
+         "ms:encoded" : "ms:Algo/Base64",
+         "_" : "SGV...kIQo="
+      }
+    }
+  }
+},
 
+"ms:unit" : {
+  "ms:id" : "style",
+  "ms:type" : "application/tar",
+  "ms:size" : "300k",
+  "ms:inlined" : {
+    "ms:compressed" : {
+      "ms:algo" : "ms:Algo/Gzip",
+      "ms:size" : "50k",
+      "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
+    }
+  }
+}
+</JSON>
+<p>The second unit is in namespace "<code>dist</code>".</p>
+
+<h4>Packing units with Native payload.</h4>
+
+<p>Although the Native payloads can be specified directly, there
+may be cases where you want to transport that content like other
+other data.  For instance, when you want to be able to check the
+signature of them, or when they grow that large that compression
+is useful.  This is possible as well, as the example below shows:</p>
+
+<XML>
+<ms:unit ms:id="config">
+  <ms:type>msc:Type/Collection</ms:type>
+  <ms:inline>
+    <ms:type>ms:Type/Native</ms:type>
+    <ms:blob ms:compressed="ms:Algo/Gzip" ms:encoded="ms:Algo/Base64">
+        ...
+    </ms:blob>
+    <ms:signature>
+       ...
+    </ms:signature>
+  </ms:inline>
+</ms:unit>
+</XML>

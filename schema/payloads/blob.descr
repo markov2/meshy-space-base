@@ -10,7 +10,8 @@
 <contentType name="ms:Blob">
   <simpleContent>
     <restriction base="ms:Data">
-    <attribute name="encoded" type="ms:Encoding" default="" />
+    <attribute name="encoded"    type="ms:Constant" default="" />
+    <attribute name="compressed" type="ms:Constant" default="" />
   </simpleContent>
 </contentType>
 ==end
@@ -21,14 +22,38 @@
 able to fit in the message. The packaged data MAY be a structure, not
 UTF8, contain characters which XML does not like, or pure binary.</p>
 
-=attribute encoding
+=attribute encoded
 
-<p class="list">The encoding attribute is an abbreviation.  The following
-two are the same:</p>
+<p class="list">The <code>encoded</code> attribute is an abbreviation.
+The following two are the same:</p>
 <XML>
 <ms:blob ms:encoding="ms:Algo/Base64">DATA</ms:blob>
 
-<ms:encoding algo="ms:Algo/Base64">
+<ms:encoded algo="ms:Algo/Base64">
   <ms:blob>DATA</ms:blob>
-</ms:encoding>
+</ms:encoded>
 </XML>
+
+=attribute compressed
+
+<p>The <code>compressed</code> attribute is an abbreviation.
+It is nearly always encompanied by the <code>encoding</code> attribute,
+because compression algorithms usually produce binary output.</p>
+
+<p class="list">The following two are the same:</p>
+<XML>
+<ms:blob
+   ms:compressed="ms:Algo/Gzip"
+   ms:encoded="ms:Algo/Base64">
+    DATA
+</ms:blob>
+
+<ms:encoded algo="ms:Algo/Base64">
+  <ms:compressed algo="ms:Algo/Gzip">
+    <ms:blob>
+      DATA
+    </ms:blob>
+  </ms:compressed>
+</ms:encoded>
+</XML>
+

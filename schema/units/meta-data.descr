@@ -10,7 +10,6 @@ unit, independent of how the payload is included.</p>
   <sequence>
     <element name="type"     type="ms:Constant" />
     <element name="name"     type="string"       minOccurs="0" />
-    <element name="size"     type="unsignedLong" minOccurs="0" />
     <element name="language" type="ms:Constant"  minOccurs="0" />
     <element name="charset"  type="string"       minOccurs="0" />
   </sequence>
@@ -26,18 +25,15 @@ to the indicated type.</p>
 
 =element name
 
-<p>A unit may have a name which is shown to users.  The name defaults
-to the Unit's <code>unit-id</code>.  The chosen unit-ids may not be
-the nicest way to present the Unit to a person.</p>
+<p>A unit may have a name which is shown to users.  The chosen unit-ids
+may not be the nicest way to present the Unit to a person.</p>
+
+<p>The name defaults to the percent-decoded version of Unit's
+<code>id</code>.</p>
 
 <p><strong>Be warned</strong> that the name is (like everything else)
 in the UTF8 charset.  See the discussion below about the problem with
 using filenames here.</p>
-
-=element size
-
-<p>The real size of the decoded product, <b>not</b> including
-the addition components the <code>unit has</code>.</p>
 
 =element language
 
@@ -72,7 +68,8 @@ case-insensitive, may contain control characters, and use white-spaces.
 Some operating systems use UTF8 for <code>ö</code>, other use <code>o +
 "</code>, which are not equivalent under simple comparison.</p>
 
-<p>This Meshy Space Base does not solve any of the problems.  Extensions,
-like the Meshy Space <i>Concept</i> may offer a solution.  When you are
-not using such extensions, then limit your application to case-sensitive
-ASCII printables without blanks.</p>
+<p>This Meshy Space Base does not solve any of these problems.  Extensions,
+like the Meshy Space <i>Concept</i> may offer a better solution.  They start
+with using the filename's precise byte-sequence percent-encoded as unit
+<code>id</code>, and a readable UTF-8 version of it as <code>name</code>.
+Search on <code>name</code> can be made case-insensitive.</p>

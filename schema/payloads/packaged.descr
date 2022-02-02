@@ -6,7 +6,8 @@ element refers to an internet location which contains those bytes.</p>
 =schema
 
 ==xml
-<element name="packaged" type="ms:Packaged" substitutionGroup="ms:data" />
+<element name="packaged" type="ms:Packaged"
+  substitutionGroup="ms:inline" />
 
 <complexType name="ms:Packaged">
   <complexContent>
