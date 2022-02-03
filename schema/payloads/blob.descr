@@ -5,11 +5,12 @@
 =schema
 
 ==xml
-<element name="blob" type="ms:Blob" substitutionGroup="ms:data" />
+<element name="blob" type="ms:Blob"
+   substitutionGroup="ms:data-source" />
 
 <contentType name="ms:Blob">
   <simpleContent>
-    <restriction base="ms:Data">
+    <restriction base="ms:DataSource">
     <attribute name="encoded"    type="ms:Constant" default="" />
     <attribute name="compressed" type="ms:Constant" default="" />
   </simpleContent>
@@ -24,17 +25,25 @@ UTF8, contain characters which XML does not like, or pure binary.</p>
 
 =attribute encoded
 
+<p>Contains a <a href="../constant/encode.html">encoding constant</a>
+which explains which serialization has taken place (after the
+optional compression)</p>
+
 <p class="list">The <code>encoded</code> attribute is an abbreviation.
 The following two are the same:</p>
 <XML>
-<ms:blob ms:encoding="ms:Algo/Base64">DATA</ms:blob>
+<ms:blob ms:encoded="ms:Encode/Base64">DATA</ms:blob>
 
-<ms:encoded algo="ms:Algo/Base64">
+<ms:encoded ms:by="ms:Encode/Base64">
   <ms:blob>DATA</ms:blob>
 </ms:encoded>
 </XML>
 
 =attribute compressed
+
+<p>Contains a <a href="../constant/compress.html">compression constant</a>
+which explains which compression has taken place (before the
+optional encoding)</p>
 
 <p>The <code>compressed</code> attribute is an abbreviation.
 It is nearly always encompanied by the <code>encoding</code> attribute,
@@ -43,13 +52,13 @@ because compression algorithms usually produce binary output.</p>
 <p class="list">The following two are the same:</p>
 <XML>
 <ms:blob
-   ms:compressed="ms:Algo/Gzip"
-   ms:encoded="ms:Algo/Base64">
+   ms:compressed="ms:Compress/Gzip"
+   ms:encoded="ms:Encode/Base64">
     DATA
 </ms:blob>
 
-<ms:encoded algo="ms:Algo/Base64">
-  <ms:compressed algo="ms:Algo/Gzip">
+<ms:encoded ms:by="ms:Encode/Base64">
+  <ms:compressed ms:by="ms:Compress/Gzip">
     <ms:blob>
       DATA
     </ms:blob>

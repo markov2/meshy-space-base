@@ -6,13 +6,11 @@
 =schema
 
 ==xml
-<element name="payload" type="ms:Payload" abstract="true" />
+<element name="payload" type="ms:Payload"
+   abstract="true" />
 
 <complexType name="Payload">
-  <sequence>
-     <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
-     <element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" />
-  </sequence>
+  <sequence />
 </complexType>
 ==end
 
@@ -23,15 +21,14 @@ This may cleanly integrate with MSI, using the same schema's and
 standards (native), but may also be foreign to it: not interpretable
 by a Meshy Space compatible server.</p>
 
-<p class="list"><code>ms:payload</code> is extended via substitutionGroups
-by</p>
+<p class="list"><code>ms:payload</code> is extended via the XSD construct
+<i>substitutionGroups</i>:</p>
 <ul>
-<li><SCHEMA>ms:packaged</SCHEMA>: stored inside a more complex
-    structure in another unit;</li>
-<li><SCHEMA>ms:inlined</SCHEMA> means packaged in-situ.  This is less
-    efficient than the <i>packaged</i> when you want to compress
-    and sign the information;</li>
 <li><SCHEMA>ms:native</SCHEMA> is the substitutionGroup base for
     elements which are native to Meshy Space (Concept), and MAY also be
     extended by other schemas which every server is expected to know of.</li>
+<li><SCHEMA>ms:content</SCHEMA> is the substitutionGroup base for
+    elements which contain bytes of data.</li>
 </ul>
+
+<p class="list">The supported structurek

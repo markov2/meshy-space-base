@@ -1,0 +1,35 @@
+=short
+
+<p>Add any kind of data directly inside a unit.</p>
+
+=schema
+
+==xml
+<element name="content" type="ms:Content"
+    substitutionGroup="ms:payload" />
+
+<complexType name="Content">
+  <complexContent>
+    <extension base="ms:Payload">
+      <sequence>
+        <element ref="ms:data" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>The <code>content</code> of a <SCHEMA>ms:unit</SCHEMA> is a non-native
+payload: data which is interpreted by applications, not by the Meshy
+Space (Concept) infrastructure itself.</p>
+
+<p>The content MAY produce bytes which exactly match the unit's
+<code>type</code>, but usually it is a serialization of the needed data.
+The data type SHALL have a pre-specified conversion into the right type.
+For instance, the unit type is a <code>my:Type/NetworkConfig</code>
+(flexible serialization), but the data type is a
+<code>ms:Mime/application/json</code> (JSON file).
+
+=element data

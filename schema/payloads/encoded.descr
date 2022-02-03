@@ -5,18 +5,23 @@
 =schema
 
 ==xml
-<element name="encoded" type="ms:Encoded" substitutionGroup="ms:data" />
+<element name="encoded" type="ms:Encoded"
+   substitutionGroup="ms:data-apply" />
 
 <complexType name="ms:Encoded">
   <complexContent>
-    <extension base="ms:Inlined" />
-    <attribute name="Algo" type="ms:Constant" use="required" />
+    <extension base="ms:DataApply" />
+    <attribute name="by" type="ms:Constant" use="required" />
   </complexContent>
 </complexType>
 ==end
 
 =description
 
-=attribute Algo
+=attribute by
+
+<p><p>Refers to the constant for a
+<a href="../constants/encode.html">serialization algorithm</a>.</p>
+
 
 

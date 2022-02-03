@@ -1,0 +1,25 @@
+=short
+
+<p>Abstract base-class for various data source elements.</p>
+
+=schema
+
+==xml
+<element name="data-source" type="ms:DataSource"
+   abstract="true" />
+
+<complexType name="ms:DataSource">
+  <sequence />
+</complexType>
+==end
+
+=description
+
+<p>Extensions describe how to get bytes (octets).  The following
+methods are provided by default:</p>
+
+<ul>
+<li><SCHEMA>ms:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
+<li><SCHEMA>ms:resource</SCHEMA>, contained in another Unit; and</li>
+<li><SCHEMA>ms:blob</SCHEMA>, inlined in this Unit.</li>
+</ul>

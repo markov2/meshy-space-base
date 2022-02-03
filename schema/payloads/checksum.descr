@@ -1,0 +1,48 @@
+=short
+
+<p>One checksum on bytes.</p>
+
+=schema
+
+==xml
+<element name="checksum">
+  <complexType>
+    <simpleContent>
+      <extension base="token">
+        <attribute name="by" type="ms:Constant" use="required" />
+      </extension>
+    </simpleContent>
+  </complexType>
+</element>
+==end
+
+=description
+
+<p>Contains a checksum of the byte content.</p>
+
+<p><b>Be aware</b> that MD5 sums are fast but not safe against directed attacks.
+SHA1 sums are close to be breached.  When you do trust the source of your
+bytes, there is nothing wrong with them.  But when your data is transported
+over multiple or unprotected infrastructure, then you should use better sums.</p>
+
+=attribute by
+
+<p>The Constant which indicates which kind of sum has been
+applied.  In the <code>ms:</code> namespace, they are named
+<code>ms:Checksum/&lt;something&gt;</code>.</p>
+
+=example Distributing a sum with remote files
+
+<XML>
+<ms:unit id="cv.html">
+  <ms:type>ms:Mime/text/html</ms:type>
+  <ms:content>
+    <ms:checksum ms:by="ms:Checksum/MD5">
+       490201fd0ae7192044e0a18f270182e3
+    </ms:checksum>
+    <ms:checksum ms:by="ms:Checksum/SHA256">
+       03bea1dc02b7756f7393ba0d10121081f7348542769f2328bd93c262a719a46f
+    </ms:checksum>
+  <ms:content>
+</ms:unit>
+</XML>

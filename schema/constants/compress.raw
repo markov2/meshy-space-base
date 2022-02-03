@@ -1,0 +1,50 @@
+<h1>Constants defining Compression</h1>
+
+<p>The <code>ms:Compress/</code> Subspace is used to explicitly refer
+to (versions of) compressions algorithms.</p>
+
+<div id="compress" class="accordion listing">
+
+<h3>Algorithm: <code>ms:Compress/Bzip2</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+   </div>
+</div>
+
+<h3>Algorithm: <code>ms:Compress/Gzip</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+<p>Gzip implementations conform [% rfc(1952) %] (1996!).
+The primer implementation is managed via
+<a href="https://www.gnu.org/software/gzip/">GNU Gzip</a>, but there are
+a few more.
+See also <a href="https://en.wikipedia.org/wiki/Gzip">Wikipedia</a>.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>As far as we know, all implementations are compatible.</p>
+   </div>
+</div>
+
+<h3>Algorithm: <code>ms:Compress/GzipMultiStream</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+<p>You can produce files which contain concatenated gzip compressed (see
+<code>ms:Compress/Gzip</code>) blocks ("Streams").  The file-format does
+not maintain an index over these streams.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>Some applications require this, some readers need to enable some
+"multi stream" flag to understand it.  Some implementations are not able
+to handle these streams at all.</p>
+   </div>
+</div>
+
+</div>

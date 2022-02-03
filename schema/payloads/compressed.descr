@@ -5,18 +5,20 @@
 =schema
 
 ==xml
-<element name="compressed" type="ms:Compressed" substitutionGroup="ms:data" />
+<element name="compressed" type="ms:Compressed"
+   substitutionGroup="ms:data-apply" />
 
 <complexType name="ms:Compressed">
   <complexContent>
-    <extension base="ms:Inlined" />
-    <attribute name="Algo" type="ms:Constant" use="required" />
+    <extension base="ms:DataApply" />
+    <attribute name="by" type="ms:Constant" use="required" />
   </complexContent>
 </complexType>
 ==end
 
 =description
 
-=attribute Algo
+=attribute by
 
-
+<p>Refers to the constant for a
+<a href="../constants/compress.html">compression algorithm</a>.</p>

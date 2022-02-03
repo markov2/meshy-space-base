@@ -3,17 +3,22 @@ starting with a capital (elements and attributes are lower-cased) by
 convention.</p>
 
 <ul>
-<li><code><a href="algorithms.html">ms:Algo/</a></code> names for
-    algorithms, like gzip or base64;</li>
-<li><code><a href="types.html">ms:Type/</a></code> lists <code>unit.type</code>
-    values which indicate native payload structures;</li>
-<li><code><a href="roles.html">ms:Role/</a></code> is used to express
-    the relation in <SCHEMA>ms:has</SCHEMA> attribute <code>is</code>;</li>
-<li><code>ms:Lang[123]/</code> names for languages, in ISO-639-[123] form;</li>
+<li><code>ms:Checksum/</code> names checksum algorithms, like <code>MD5</code>
+    and <code>SHA1</code>;</li>
+<li><code><a href="compress.html">ms:Compress/</a></code> names for
+    compression algorithms, like <code>gzip</code> or <code>bzip2</code>;</li>
 <li><code>ms:Currency/</code> for new and old coins in ISO-4217 abbreviations;</li>
-<li><code>ms:Sum/</code> names checksum algorithms;</li>
+<li><code><a href="encode.html">ms:Encode/</a></code> names for
+    serialization algorithms, like <code>base64</code> and <code>hex</code>;</li>
+<li><code>ms:Lang[123]/</code> names for languages, in ISO-639-[123] form;</li>
 <li><code><a href="mime.html">ms:Mime/</a></code> contains all official
     MIME-types as defined by IANA;</li>
+<li><code><a href="pack.html">ms:Pack/</a></code> lists names for packagers, like
+    <code>tar</code>;</li>
+<li><code><a href="roles.html">ms:Role/</a></code> is used to express
+    the relation in <SCHEMA>ms:has</SCHEMA> attribute <code>is</code>;</li>
+<li><code><a href="types.html">ms:Type/</a></code> lists <code>unit.type</code>
+    values which indicate native payload structures;</li>
 <li><code>ms:{Error,Warning,Notice,Info}/</code>, status codes;</li>
 <li>Other TODO</li>
 </ul>

@@ -100,29 +100,31 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
 ==xml
 <ms:unit ms:id="">  <!-- all in the same namespace 'cc' -->
   <ms:type="ms:Role/Namespace" />
-  <ms:use prefix="cc" namespace="https://..." />
+  <ms:use ms:prefix="cc" ms:namespace="https://..." />
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A">
-  <ms:type>Type/Warc.Result</ms:type>
+  <ms:type>cc:Type/Warc/Result</ms:type>
   <ms:name>https://markov.solutions/index.html</ms:name>
-  <ms:has ms:is="cc:Type/Warc.Request"  ms:ref="ASDJKDJO12314A-req">
-  <ms:has ms:is="cc:Type/Warc.Response" ms:ref="ASDJKDJO12314A-resp">
-  <ms:has ms:is="cc:Type/Warc.Links"    ms:ref="ASDJKDJO12314A-links">
+  <ms:has ms:is="cc:Type/Warc/Request"  ms:ref="ASDJKDJO12314A-req">
+  <ms:has ms:is="cc:Type/Warc/Response" ms:ref="ASDJKDJO12314A-resp">
+  <ms:has ms:is="cc:Type/Warc/Links"    ms:ref="ASDJKDJO12314A-links">
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A-req">
   <ms:type>cc:Type/Warc.Request</ms:type>
-  <ms:size>34516</ms:size>
   <ms:language>ms:Lang3/Nld</ms:language>
-  <ms:charset>iso-5988-1</ms:charset>
-  <ms:external ms:href="/Repo/202102warc-00000">
+  <ms:charset>iso-8859-1</ms:charset>
     <ms:address>#12314151+11515</ms:address>
-    <ms:format>cc:Format/warc/record</ms:format>
-    <ms:encoded>ms:Algo/Gzip</ms:encoded>
-  </ms:external>
+  <ms:content>
+    <ms:type>cc:Pack/Warc/record</ms:type>
+    <ms:size>34516</ms:size>
+    <ms:compressed ms:by="ms:Compress/Gzip">
+      <ms:fetch ms:href="cc:/Repo/202102warc-00000" />
+    </ms:compressed>
+  </ms:content>
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A-resp" />
 <ms:unit ms:id="ASDJKDJO12314A-links" />
-<ms:unit ms:id="Type/Warc.Result" />  <!-- etc -->
+<ms:unit ms:id="Type/Warc/Result" />  <!-- etc -->
 ==end
 
 <p>The units are separately storable and retrievable.  The can have

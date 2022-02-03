@@ -13,21 +13,21 @@ a common format in the UNIX/Linux environment.</p>
   <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
   <ms:size>12k</ms:size>
-  <ms:inlined>
-    <ms:packaged ms:algo="ms:Algo/Tar">
+  <ms:content>
+    <ms:packaged ms:by="ms:Pack/Tar">
       <ms:size>300k</ms:size>
       <ms:entry>logo-50x124.jpg</ms:entry>
-      <ms:compressed ms:algo="ms:Algo/Gzip">
+      <ms:compressed ms:by="ms:Compress/Gzip">
         <ms:size>50k</ms:size>
         <ms:fetch ms:uri="https://a.tar.gz" />
       </ms:compressed>
     </ms:packaged>
-    <ms:signature ms:algo="ms:Algo/SHA1">
-      <ms:encoded ms:algo="ms:Algo/Base64">
+    <ms:checksum ms:by="ms:Checksum/SHA1">
+      <ms:encoded ms:by="ms:Encode/Base64">
         <ms:blob>SGVsbG8sIFdvcmxkIQo=</ms:blob>
       </ms:encoded>
-    </ms:signature>
-  </ms:inlined>
+    </ms:checksum>
+  </ms:content>
 </ms:unit>
 </XML>
 <JSON>
@@ -35,28 +35,28 @@ a common format in the UNIX/Linux environment.</p>
   "ms:type" : "ms:Mime/image/jpeg",
   "ms:name" : "logo.jpg",
   "ms:size" : "12k",
-  "ms:inlined" : {
+  "ms:content" : {
     "ms:packaged" : {
-      "ms:algo" : "ms:Algo/Tar",
+      "ms:by" : "ms:Pack/Tar",
       "ms:size" : "300k",
       "ms:entry" : "logo-50x124.jpg",
       "ms:compressed" : {
-        "ms:algo" : "ms:Algo/Gzip",
+        "ms:by" : "ms:Compress/Gzip",
         "ms:size" : "50k",
         "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
       }
     },
-    "ms:signature" : {
-      "ms:algo" : "ms:Algo/SHA1",
+    "ms:checksum" : {
+      "ms:by" : "ms:Checksum/SHA1",
       "ms:encoded" : {
-        "ms:algo" : "ms:Algo/Base64",
+        "ms:by" : "ms:Encode/Base64",
         "ms:blob" : { "_" : "SGVsbG8sIFdvcmxkIQo=" }
       }
     }
   }
 }
 </JSON>
-<p>Probably, the SHA1 signature type includes Base64 encoding, so it
+<p>Probably, the SHA1 checksum type includes Base64 encoding, so it
 should not be specified explicitly.  However, it is included in the
 example to demonstrate how it could work.</p>
 
@@ -73,27 +73,27 @@ data elements in that tar.</p>
   <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
   <ms:size>12k</ms:size>
-  <ms:inlined>
-    <ms:packaged ms:algo="ms:Algo/Tar">
+  <ms:content>
+    <ms:packaged ms:by="ms:Pack/Tar">
       <ms:resource ms:ref="dist:style" />
       <ms:entry>logo-50x124.jpg</ms:entry>
     </ms:packaged>
-    <ms:signature ms:algo="ms:Algo/SHA1">
-      <ms:blob ms:encoded="ms:Algo/Base64">SGV...kIQo=</ms:blob>
-    </ms:signature>
-  </ms:inlined>
+    <ms:checksum ms:by="ms:Checksum/SHA1">
+      <ms:blob ms:encoded="ms:Encode/Base64">SGV...kIQo=</ms:blob>
+    </ms:checksum>
+  </ms:content>
 </ms:unit>
 
 <!-- in the Namespace with prefix "dist" -->
 <ms:unit ms:id="style">
   <ms:type>application/tar</ms:type>
   <ms:size>300k</ms:size>
-  <ms:inlined>
-    <ms:compressed ms:algo="ms:Algo/Gzip">
+  <ms:content>
+    <ms:compressed ms:by="ms:Compress/Gzip">
       <ms:size>50k</ms:size>
       <ms:fetch ms:uri="https://a.tar.gz" />
     </ms:compressed>
-  </ms:inlined>
+  </ms:content>
 </ms:unit>
 </XML>
 <JSON>
@@ -102,16 +102,16 @@ data elements in that tar.</p>
   "ms:type" : "ms:Mime/image/jpeg",
   "ms:name" : "logo.jpg",
   "ms:size" : "12k",
-  "ms:inlined" : {
+  "ms:content" : {
     "ms:packaged" : {
-      "ms:algo" : "ms:Algo/Tar",
+      "ms:by" : "ms:Pack/Tar",
       "ms:resource" : { "ms:ref" : "dist:style" },
       "ms:entry" : "logo-50x124.jpg"
     },
-    "ms:signature" : {
-      "ms:algo" : "ms:Algo/SHA1",
+    "ms:checksum" : {
+      "ms:by" : "ms:Checksum/SHA1",
       "ms:blob" : {
-         "ms:encoded" : "ms:Algo/Base64",
+         "ms:encoded" : "ms:Encode/Base64",
          "_" : "SGV...kIQo="
       }
     }
@@ -122,9 +122,9 @@ data elements in that tar.</p>
   "ms:id" : "style",
   "ms:type" : "application/tar",
   "ms:size" : "300k",
-  "ms:inlined" : {
+  "ms:content" : {
     "ms:compressed" : {
-      "ms:algo" : "ms:Algo/Gzip",
+      "ms:by" : "ms:Compress/Gzip",
       "ms:size" : "50k",
       "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
     }
@@ -146,12 +146,13 @@ is useful.  This is possible as well, as the example below shows:</p>
   <ms:type>msc:Type/Collection</ms:type>
   <ms:inline>
     <ms:type>ms:Type/Native</ms:type>
-    <ms:blob ms:compressed="ms:Algo/Gzip" ms:encoded="ms:Algo/Base64">
+    <ms:blob ms:compressed="ms:Compress/Gzip"
+       ms:encoded="ms:Encode/Base64">
         ...
     </ms:blob>
-    <ms:signature>
+    <ms:checksum>
        ...
-    </ms:signature>
+    </ms:checksum>
   </ms:inline>
 </ms:unit>
 </XML>

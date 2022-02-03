@@ -7,11 +7,11 @@ requested data.</p>
 
 ==xml
 <element name="resource" type="ms:Resource"
-   substitutionGroup="ms:inline" />
+   substitutionGroup="ms:data-source" />
 
 <complexType name="ms:Resource">
   <complexContent>
-    <extension base="ms:Inline">
+    <extension base="ms:DataSource">
       <sequence />
       <attribute name="ref" type="ms:UnitRef" />
     </extension>

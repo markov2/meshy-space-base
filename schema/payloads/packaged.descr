@@ -7,11 +7,11 @@ element refers to an internet location which contains those bytes.</p>
 
 ==xml
 <element name="packaged" type="ms:Packaged"
-  substitutionGroup="ms:inline" />
+  substitutionGroup="ms:data-apply" />
 
 <complexType name="ms:Packaged">
   <complexContent>
-    <extension base="ms:Inline">
+    <extension base="ms:DataApply">
       <sequence>
         <element name="entry" type="ms:token" />
       </sequence>

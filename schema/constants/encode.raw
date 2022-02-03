@@ -1,0 +1,50 @@
+<h1>Constants defining Encodings</h1>
+
+<p>The <code>ms:Encode/</code> Subspace is used to explicitly refer
+to (versions of) serialization algorithms.</p>
+
+[%### Template for each row
+<h3>Algorithm: <code>ms:Encode/</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+   </div>
+</div>
+%]
+
+<div id="algorithms" class="accordion listing">
+
+<h3>Algorithm: <code>ms:Encode/Base64</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+<p>Base64 is defined by [% rfc(4648) %] section 6.  See also
+<a href="https://en.wikipedia.org/wiki/Base64">Wikipedia on Base64</a>.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>Clients must accept Base64 encoded strings with blanks like new-lines
+on any location in the string.  Encoders SHOULD implement
+padding. Decoders SHOULD accept strings with missing padding.</p>
+   </div>
+</div>
+
+<h3>Algorithm: <code>ms:Encode/Hex</code></h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+
+<p>Hexadecimal (always abbreviated to "Hex") encoding is also called Base16
+encoding.  It is standardized in [% rfc(4648) %] section 8.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>Clients must accept Base64 encoded strings with blanks like new-lines on
+any location.</p>
+   </div>
+</div>
+
+</div>

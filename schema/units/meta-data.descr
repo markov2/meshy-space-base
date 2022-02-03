@@ -9,9 +9,9 @@ unit, independent of how the payload is included.</p>
 <group name="meta-data">
   <sequence>
     <element name="type"     type="ms:Constant" />
-    <element name="name"     type="string"       minOccurs="0" />
-    <element name="language" type="ms:Constant"  minOccurs="0" />
-    <element name="charset"  type="string"       minOccurs="0" />
+    <element name="name"     type="token"         minOccurs="0" />
+    <element name="language" type="ms:Constants"  minOccurs="0" />
+    <element name="charset"  type="token"         minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -37,7 +37,7 @@ using filenames here.</p>
 
 =element language
 
-<p>The main language used in the payload, when it contains text.
+<p>The languages used in the payload, when it contains text.
 This fact MAY be used by search filters. Values are constants in
 one of the <code>ms:Lang[123]</code> sets.</p>
 

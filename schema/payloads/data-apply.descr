@@ -1,0 +1,78 @@
+=short
+
+<p>Abstract base-class for various data processing elements.</p>
+
+=schema
+
+==xml
+<element name="data-apply" type="ms:DataApply"
+  abstract="true" />
+
+<complexType name="ms:DataApply">
+  <sequence>
+    <group   name="ms:meta-data" />
+    <element name="size" type="unsignedLong" minOccurs="0" />
+    <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
+    <!-- element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <!-- element ref="ms:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <choice>
+      <element ref="ms:data-apply" />
+      <element ref="ms:data-source" />
+    </choice>
+  </sequence>
+</complexType>
+==end
+
+=description
+
+<p>Elements which extend this describe processing actions needed to
+undo transport wrappings.  Processors have hard-coded algorithms to
+perform these tasks.</p>
+
+<p>The <code>meta-data</code>, <code>size</code>, <code>checksum</code>,
+<code>signature</code>s, and <code>encrypted</code> facts describe
+the result of the <code>data-apply</code> or <code>data-source</code>
+activities.</p>
+
+<p>Some <code>data-source</code> components may be able to fill-in 
+values for the meta-data.  For instance, the <SCHEMA>ms:fetch</SCHEMA>
+can derive a default <code>name</code> and <type>type</type> based on
+its <code>uri</code> attribute.</p>
+
+=group meta-data
+
+<p>These elements describe characteristics of the result of the
+<code>data-apply</code> or <code>data-source</code>.</p>
+
+=element data-apply
+
+<p>Describes processing has has been done on the bytes, which you
+probably want to undo before using the data.  This element can be
+<SCHEMA>ms:encoded</SCHEMA>,
+<SCHEMA>ms:compressed</SCHEMA>, or
+<SCHEMA>ms:packaged</SCHEMA>.</p>
+
+=element data-source
+
+<p>Describes the location where the processed bytes are.  This element
+can be
+<SCHEMA>ms:blob</SCHEMA>,
+<SCHEMA>ms:resource</SCHEMA>, or
+<SCHEMA>ms:fetch</SCHEMA>.</p>
+
+=element checksum
+
+<p>Checksums may add some protection when the data is
+<SCHEMA>ms:fetch</SCHEMA>ed from a different source than the sum.
+Specifically: when the data is on an external server and the checksum
+is included in a <SCHEMA>ms:blob</SCHEMA> in this Unit.
+See <SCHEMA>ms:checksum</SCHEMA>.</p>
+
+=element signature
+
+=element encrypted
+
+=element size
+
+<p>The number of octets (bytes) of the actual payload, not including
+the size of indirect units used.</p>
