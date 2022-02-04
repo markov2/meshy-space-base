@@ -24,13 +24,13 @@ registration processes are a lot of work and often overkill.</p>
 <p>You MAY decide to organize your own MIME's in the same way as the
 standard types, but there is not need for it.  Especially when the
 payload of the unit is not an external source, it is useful to use
-<code>Type/" constants.</p>
+your own <code>myns:Type/</code> constants.</p>
 
 <p class="list">Examples:</p>
 <CODE>
 myns:Mime/application/warc.archive
 myns:Mime/application/vnd.osf.meeting
-myns:Type/SyslogErrors
+myns:Type/Warc/Archive
 </CODE>
 
 </div>

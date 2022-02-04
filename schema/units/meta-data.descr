@@ -39,7 +39,7 @@ using filenames here.</p>
 
 <p>The languages used in the payload, when it contains text.
 This fact MAY be used by search filters. Values are constants in
-one of the <code>ms:Lang[123]</code> sets.</p>
+one of the <SCHEMA>ms:Language/</SCHEMA> sets.</p>
 
 <p>The concept of language in text is complex: more details about
 contained languages may be included in other ways.</p>

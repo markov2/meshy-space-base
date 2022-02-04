@@ -15,7 +15,7 @@
         <element ref="ms:authorization" minOccurs="0" maxOccurs="unbounded" />
         <element name="user-agent" type="token" minOccurs="0" />
       </sequence>
-      <attribute name="uri" type="AnyURI" use="required" />
+      <attribute name="href" type="AnyURI" use="required" />
     </extension>
   </complexContent>
 </complexType>
@@ -28,7 +28,7 @@ browser-like user agent.</p>
 
 <p>Redirections and retries MAY be hidden, but errors MUST be reported.</p>
 
-=attribute uri
+=attribute href
 
 =element authorization
 

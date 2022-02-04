@@ -2,23 +2,31 @@
 starting with a capital (elements and attributes are lower-cased) by
 convention.</p>
 
+[%# When you add a descriptive page for any of the constants, then also
+  # add an '=index' line to Constant.descr, so it can be used in <SCHEMA>
+  # references.
+ %]
+
 <ul>
 <li><code>ms:Checksum/</code> names checksum algorithms, like <code>MD5</code>
     and <code>SHA1</code>;</li>
-<li><code><a href="compress.html">ms:Compress/</a></code> names for
-    compression algorithms, like <code>gzip</code> or <code>bzip2</code>;</li>
+<li><SCHEMA>ms:Compress/</SCHEMA> names for compression algorithms, like
+    <code>gzip</code> or <code>bzip2</code>;</li>
+<li><code>ms:Country/</code> for new and old countries, as listed in
+    <a href="https://www.iso.org/iso-3166-country-codes.html">ISO-3166-[123]</a>;</li>
 <li><code>ms:Currency/</code> for new and old coins in ISO-4217 abbreviations;</li>
-<li><code><a href="encode.html">ms:Encode/</a></code> names for
-    serialization algorithms, like <code>base64</code> and <code>hex</code>;</li>
-<li><code>ms:Lang[123]/</code> names for languages, in ISO-639-[123] form;</li>
-<li><code><a href="mime.html">ms:Mime/</a></code> contains all official
+<li><SCHEMA>ms:Encode/</SCHEMA> names for serialization algorithms, like
+    <code>base64</code> and <code>hex</code>;</li>
+<li><SCHEMA>ms:Gender/</SCHEMA> lists standard representations
+    of gender data;</li>
+<li><code>ms:Language/</code> names for languages, in ISO-639-[123] form;</li>
+<li><SCHEMA>ms:Mime/</SCHEMA> contains all official
     MIME-types as defined by IANA;</li>
-<li><code><a href="pack.html">ms:Pack/</a></code> lists names for packagers, like
-    <code>tar</code>;</li>
-<li><code><a href="roles.html">ms:Role/</a></code> is used to express
-    the relation in <SCHEMA>ms:has</SCHEMA> attribute <code>is</code>;</li>
-<li><code><a href="types.html">ms:Type/</a></code> lists <code>unit.type</code>
-    values which indicate native payload structures;</li>
+<li><SCHEMA>ms:Pack/</SCHEMA> lists names for packagers, like <code>tar</code>;</li>
+<li><SCHEMA>ms:Role/</SCHEMA> is used to express the relation in
+    <SCHEMA>ms:has</SCHEMA> attribute <code>is</code>;</li>
+<li><SCHEMA>ms:Type/</SCHEMA> lists <code>unit.type</code> values which indicate 
+    <SCHEMA>ms:native</SCHEMA> payload structures;</li>
 <li><code>ms:{Error,Warning,Notice,Info}/</code>, status codes;</li>
 <li>Other TODO</li>
 </ul>

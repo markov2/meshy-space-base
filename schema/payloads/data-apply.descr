@@ -37,7 +37,7 @@ activities.</p>
 <p>Some <code>data-source</code> components may be able to fill-in 
 values for the meta-data.  For instance, the <SCHEMA>ms:fetch</SCHEMA>
 can derive a default <code>name</code> and <type>type</type> based on
-its <code>uri</code> attribute.</p>
+its <code>href</code> attribute.</p>
 
 =group meta-data
 

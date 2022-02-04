@@ -100,7 +100,7 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
 ==xml
 <ms:unit ms:id="">  <!-- all in the same namespace 'cc' -->
   <ms:type="ms:Role/Namespace" />
-  <ms:use ms:prefix="cc" ms:namespace="https://..." />
+  <ms:use ms:prefix="cc" ms:endpoint="https://..." />
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A">
   <ms:type>cc:Type/Warc/Result</ms:type>
@@ -110,15 +110,17 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
   <ms:has ms:is="cc:Type/Warc/Links"    ms:ref="ASDJKDJO12314A-links">
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A-req">
-  <ms:type>cc:Type/Warc.Request</ms:type>
-  <ms:language>ms:Lang3/Nld</ms:language>
-  <ms:charset>iso-8859-1</ms:charset>
-    <ms:address>#12314151+11515</ms:address>
+  <ms:type>cc:Type/Warc/Request</ms:type>
+  <ms:language>ms:Language/Nld</ms:language>
   <ms:content>
-    <ms:type>cc:Pack/Warc/record</ms:type>
+    <ms:type>cc:Type/Warc/record</ms:type>
+    <ms:charset>iso-8859-1</ms:charset>
     <ms:size>34516</ms:size>
     <ms:compressed ms:by="ms:Compress/Gzip">
-      <ms:fetch ms:href="cc:/Repo/202102warc-00000" />
+       <ms:packaged ms:by="ms:Pack/Warc/Archive">
+         <ms:fetch ms:href="cc:/Repo/202102warc-00000" />
+         <ms:entry>#12314151+11515</ms:entry>
+       </ms:packaged>
     </ms:compressed>
   </ms:content>
 </ms:unit>

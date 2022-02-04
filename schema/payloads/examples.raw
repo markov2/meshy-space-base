@@ -12,15 +12,15 @@ a common format in the UNIX/Linux environment.</p>
 <ms:unit>
   <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
-  <ms:size>12k</ms:size>
   <ms:content>
+    <ms:size>12121</ms:size>
     <ms:packaged ms:by="ms:Pack/Tar">
-      <ms:size>300k</ms:size>
-      <ms:entry>logo-50x124.jpg</ms:entry>
+      <ms:size>314156</ms:size>
       <ms:compressed ms:by="ms:Compress/Gzip">
-        <ms:size>50k</ms:size>
-        <ms:fetch ms:uri="https://a.tar.gz" />
+        <ms:size>51234</ms:size>
+        <ms:fetch ms:href="https://e.com/style.tar.gz" />
       </ms:compressed>
+      <ms:entry>logo-50x124.jpg</ms:entry>
     </ms:packaged>
     <ms:checksum ms:by="ms:Checksum/SHA1">
       <ms:encoded ms:by="ms:Encode/Base64">
@@ -34,17 +34,19 @@ a common format in the UNIX/Linux environment.</p>
 "ms:unit" : {
   "ms:type" : "ms:Mime/image/jpeg",
   "ms:name" : "logo.jpg",
-  "ms:size" : "12k",
   "ms:content" : {
+    "ms:size" : "12121",
     "ms:packaged" : {
       "ms:by" : "ms:Pack/Tar",
-      "ms:size" : "300k",
-      "ms:entry" : "logo-50x124.jpg",
+      "ms:size" : "314156",
       "ms:compressed" : {
         "ms:by" : "ms:Compress/Gzip",
-        "ms:size" : "50k",
-        "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
-      }
+        "ms:size" : "51234",
+        "ms:fetch" : {
+          "ms:href" : "https://e.com/style.tar.gz"
+        }
+      },
+      "ms:entry" : "logo-50x124.jpg"
     },
     "ms:checksum" : {
       "ms:by" : "ms:Checksum/SHA1",
@@ -72,10 +74,10 @@ data elements in that tar.</p>
 <ms:unit ms:id="default-logo.jpg">
   <ms:type>ms:Mime/image/jpeg</ms:type>
   <ms:name>logo.jpg</ms:name>
-  <ms:size>12k</ms:size>
   <ms:content>
+    <ms:size>12121</ms:size>
     <ms:packaged ms:by="ms:Pack/Tar">
-      <ms:resource ms:ref="dist:style" />
+      <ms:resource ms:ref="dist:style.tar" />
       <ms:entry>logo-50x124.jpg</ms:entry>
     </ms:packaged>
     <ms:checksum ms:by="ms:Checksum/SHA1">
@@ -85,13 +87,13 @@ data elements in that tar.</p>
 </ms:unit>
 
 <!-- in the Namespace with prefix "dist" -->
-<ms:unit ms:id="style">
-  <ms:type>application/tar</ms:type>
-  <ms:size>300k</ms:size>
+<ms:unit ms:id="style.tar">
+  <ms:type>ms:Mime/application/tar</ms:type>
   <ms:content>
+    <ms:size>314156</ms:size>
     <ms:compressed ms:by="ms:Compress/Gzip">
-      <ms:size>50k</ms:size>
-      <ms:fetch ms:uri="https://a.tar.gz" />
+      <ms:size>51234</ms:size>
+      <ms:fetch ms:href="https://e.com/style.tar.gz" />
     </ms:compressed>
   </ms:content>
 </ms:unit>
@@ -101,11 +103,11 @@ data elements in that tar.</p>
   "ms:id" : "default-logo.jpg",
   "ms:type" : "ms:Mime/image/jpeg",
   "ms:name" : "logo.jpg",
-  "ms:size" : "12k",
   "ms:content" : {
+    "ms:size" : "12121",
     "ms:packaged" : {
       "ms:by" : "ms:Pack/Tar",
-      "ms:resource" : { "ms:ref" : "dist:style" },
+      "ms:resource" : { "ms:ref" : "dist:style.tar" },
       "ms:entry" : "logo-50x124.jpg"
     },
     "ms:checksum" : {
@@ -119,19 +121,19 @@ data elements in that tar.</p>
 },
 
 "ms:unit" : {
-  "ms:id" : "style",
-  "ms:type" : "application/tar",
-  "ms:size" : "300k",
+  "ms:id" : "style.tar",
+  "ms:type" : "ms:Mime/application/tar",
   "ms:content" : {
+    "ms:size" : "314156",
     "ms:compressed" : {
       "ms:by" : "ms:Compress/Gzip",
-      "ms:size" : "50k",
-      "ms:fetch" : { "ms:uri" : "https://a.tar.gz" }
+      "ms:size" : "51234",
+      "ms:fetch" : { "ms:href" : "https://e.com/style.tar.gz" }
     }
   }
 }
 </JSON>
-<p>The second unit is in namespace "<code>dist</code>".</p>
+<p>The second unit "<code>style.tar</code>" is in namespace "<code>dist</code>".</p>
 
 <h4>Packing units with Native payload.</h4>
 
@@ -144,7 +146,7 @@ is useful.  This is possible as well, as the example below shows:</p>
 <XML>
 <ms:unit ms:id="config">
   <ms:type>msc:Type/Collection</ms:type>
-  <ms:inline>
+  <ms:content>
     <ms:type>ms:Type/Native</ms:type>
     <ms:blob ms:compressed="ms:Compress/Gzip"
        ms:encoded="ms:Encode/Base64">
@@ -153,6 +155,6 @@ is useful.  This is possible as well, as the example below shows:</p>
     <ms:checksum>
        ...
     </ms:checksum>
-  </ms:inline>
+  </ms:content>
 </ms:unit>
 </XML>

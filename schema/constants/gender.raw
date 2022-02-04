@@ -1,0 +1,25 @@
+<h1>Gender</h1>
+
+<dl>
+<dt><code>ms:Gender/Female</code></dt>
+<dd>The person would like to be addressed as female.</dd>
+
+<dt><code>ms:Gender/Male</code></dt>
+<dd>The person would like to be addressed as male.</dd>
+
+<dt><code>ms:Gender/Other</code></dt>
+<dd>The person does not want to be addressed as male or female.
+</dd>
+
+<dt><code>ms:Gender/Undisclosed</code></dt>
+<dd>You may want to know it, but I do not tell you (and I may
+    not know it either)
+</dd>
+
+<dt><code>ms:Gender/Unknown</code></dt>
+<dd>You MAY want to know it, but I really don't know the gender
+    of this identity.
+</dd>
+</dl>
+
+</table>

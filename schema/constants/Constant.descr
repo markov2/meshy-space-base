@@ -10,6 +10,14 @@ what the flag means, maybe not.</p>
 <simpleType name="Constant" type="ms:UnitRef" />
 ==end
 
+=index Compress/ constants/compress.html
+=index Encode/   constants/encode.html
+=index Gender/   constants/gender.html
+=index Mime/     constants/mime.html
+=index Pack/     constants/pack.html
+=index Role/     constants/role.html
+=index Type/     constants/type.html
+
 =description
 
 <p>A Constant is used express something.  It does not relate to

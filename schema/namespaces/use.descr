@@ -8,7 +8,9 @@
 <element name="use" type="ms:Use" />
 
 <complexType name="Use">
-  <sequence />
+  <sequence>
+    <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
   <attribute name="prefix"    type="token"  use="required" />
   <attribute name="namespace" type="anyURI" />
 </complexType>
@@ -45,3 +47,15 @@ error.</p>
 <p>When the <code>namespace</code> attribute is missing, the prefix
 is used as alternative for the current Namespace.  Therefore, top
 level Namespace will need such element.</p>
+
+=element endpoint
+
+<p>Explains where to contact the <code>namespace</code>.  When this element
+is missing, the endpoint is the same as the namespace.</p>
+
+<p>The <code>namespace</code> looks like an endpoint of service but may also
+bee shown to users.  The real endpoint may also change over time.  You may
+need to add transport parameters like authorization or a port number
+to help users to reach the server.  To avoid unclean <code>namespace</code>,
+you can add a <code>endpoint</code> elements.  You MAY also give alternative
+endpoints for the same namespace.</p>
