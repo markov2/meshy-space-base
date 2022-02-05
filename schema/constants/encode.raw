@@ -3,21 +3,9 @@
 <p>The <code>ms:Encode/</code> Subspace is used to explicitly refer
 to (versions of) serialization algorithms.</p>
 
-[%### Template for each row
-<h3>Algorithm: <code>ms:Encode/</code></h3>
-<div>
-   <div>
-   <h4>Definition</h4>
-   </div>
-   <div>
-   <h4>Compatibility</h4>
-   </div>
-</div>
-%]
+<div id="encode" class="accordion constants">
 
-<div id="algorithms" class="accordion listing">
-
-<h3>Algorithm: <code>ms:Encode/Base64</code></h3>
+<h3 name="Base64">ms:Encode/Base64</h3>
 <div>
    <div>
    <h4>Definition</h4>
@@ -32,7 +20,7 @@ padding. Decoders SHOULD accept strings with missing padding.</p>
    </div>
 </div>
 
-<h3>Algorithm: <code>ms:Encode/Hex</code></h3>
+<h3 base="Hex">ms:Encode/Hex</h3>
 <div>
    <div>
    <h4>Definition</h4>
@@ -44,6 +32,24 @@ encoding.  It is standardized in [% rfc(4648) %] section 8.</p>
    <h4>Compatibility</h4>
 <p>Clients must accept Base64 encoded strings with blanks like new-lines on
 any location.</p>
+   </div>
+</div>
+
+<h3 base="Hex">ms:Encode/QP</h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+
+<p>Quote-Printable (QP) encoding is often used in email bodies, because
+it keeps the text mainly readible.
+It is standardized in [% rfc(2045) %] section 6.7.</p>.  You can also
+find <a href="https://en.wikipedia.org/wiki/Quoted-printable">QP on
+Wikipedia</a>.</p>
+
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>There are no known derivations.</p>
    </div>
 </div>
 

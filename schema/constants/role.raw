@@ -12,11 +12,19 @@ is in the <code>ms:</code> namespace, you will find it described below.</p>
 <p>Roles do not need to refer to Units with only one specific Type: the
 application client must be able to handle (ignore) unexpected Types.</p>
 
-<dl>
-<dt><code>ms:Role/Subspace</code></dt>
-<dd>Used as reference from a parent Namespace or Sub(name)space.  This
-    will result in a <code>ms:Type/Namespace</code> Unit.
-</dd>
-</dl>
+<div id="ms:roles" class="accordion constants">
 
-</table>
+<h3 name="Documentation">ms:Role/Documentation</h3>
+<div>
+<p>Refers to a Unit of type <SCHEMA>ms:Type/Documention</SCHEMA></p>
+</div>
+
+<h3 name="Manager">ms:Role/Manager</h3>
+<div>
+<p>When the root Namespace <SCHEMA>ms:has</SCHEMA> a Manager, then
+access to that namespace can only take place via that Manager.
+At the moment, there is only one Manager implementation: the
+<SCHEMA>msc:Type/Collection</SCHEMA>.</p>
+</div>
+
+</div> <!-- end accordion -->

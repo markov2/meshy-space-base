@@ -1,0 +1,18 @@
+=short
+
+<p>Type used for all kinds of references which relate to documentation.</p>
+
+=schema
+
+==xml
+<complexType name="DocURI">
+  <simpleContent>
+    <extension base="anyURI">
+      <attributeGroup ref="ms:doc-selector" />
+    </extension>
+  </simpleContent>
+</complexType>
+==end
+
+=description
+

@@ -1,0 +1,37 @@
+=short
+
+<p>Filter the contained information for usefulness as translations
+within the context.</p>
+
+==xml
+<attributeGroup name="doc-selector">
+  <attribute name="for"      type="ms:UnitRef"  />
+  <attribute name="language" type="ms:Constant" />
+  <attribute name="type"     type="ms:Constant" />
+</attributeGroup>
+==end
+
+=description
+
+<p>Documentation is grouped.  There are many ways to organize the
+grouping.  At the end, for each piece of documentation it must be
+clean when it can be used.  Attributes which are missing are taken
+from the context.</p>
+
+=attribute for
+
+<p>When used, it overrides the unit specified in the context, which
+defaults to the unit where this documentation fragment is found in.</p>
+
+=attribute language
+
+<p>When used, it overrides the language of the context, which defaults
+to the prefered <code>language</code> of the Namespace.
+See <SCHEMA>ms:Language/</SCHEMA>.</p>
+
+=attribute type
+
+<p>When used, it overrides the (mime)type of the content.  The type
+could be from <SCHEMA>ms:Mime/</SCHEMA> or <SCHEMA>ms:Type/</SCHEMA>,
+for instance <code>ms:Mime/text/html</code>.  The default value
+is <SCHEMA>ms:Mime/text/plain</SCHEMA>.</p>

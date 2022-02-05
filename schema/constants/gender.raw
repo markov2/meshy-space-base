@@ -1,25 +1,32 @@
 <h1>Gender</h1>
 
-<dl>
-<dt><code>ms:Gender/Female</code></dt>
-<dd>The person would like to be addressed as female.</dd>
+<div id="gender" class="accordion constants">
 
-<dt><code>ms:Gender/Male</code></dt>
-<dd>The person would like to be addressed as male.</dd>
+<h3 name="Female">ms:Gender/Female</h3>
+<div>
+  <p>The person would like to be addressed as female.</p>
+</div>
 
-<dt><code>ms:Gender/Other</code></dt>
-<dd>The person does not want to be addressed as male or female.
-</dd>
+<h3 name="Male">ms:Gender/Male</h3>
+<div>
+  <p>The person would like to be addressed as male.</p>
+</div>
 
-<dt><code>ms:Gender/Undisclosed</code></dt>
-<dd>You may want to know it, but I do not tell you (and I may
-    not know it either)
-</dd>
+<h3 name="Other">ms:Gender/Other</h3>
+<div>
+  <p>The person does not want to be addressed as male or female.</p>
+</div>
 
-<dt><code>ms:Gender/Unknown</code></dt>
-<dd>You MAY want to know it, but I really don't know the gender
-    of this identity.
-</dd>
-</dl>
+<h3 name="Undisclosed">ms:Gender/Undisclosed</h3>
+<div>
+  <p>You may want to know it, but I do not tell you (and I may
+    not know it either)</p>
+</div>
 
-</table>
+<h3 name="Unknown">ms:Gender/Unknown</h3>
+<div>
+  <p>You MAY want to know it, but I really don't know the gender
+    of this identity.</p>
+</div>
+
+</div> <!-- end of accordion -->

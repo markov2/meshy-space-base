@@ -1,0 +1,172 @@
+=short
+
+<p>Documentation about the content of <SCHEMA>ms:Unit</SCHEMA>s.</p>
+
+=schema
+
+==xml
+<element name="documentation" type="ms:Documentation" />
+
+<complexType name="Documentation">
+  <choice minOccurs="0" maxOccurs="unbounded">
+    <element name="name"          type="ms:DocText" />
+    <element name="hint"          type="ms:DocText" />
+    <element name="description"   type="ms:DocText" />
+    <element name="web-page"      type="ms:DocURI" />
+    <element name="documentation" type="ms:Documentation" />
+  </choice>
+  <attributeGroup ref="ms:doc-selector" />
+</complexType>
+==end
+
+=description
+
+<p>When you have additional documentation information inside another
+Unit, then use <SCHEMA>ms:has</SCHEMA> references of kind
+<SCHEMA>ms:Role/Documentation</SCHEMA>.</p>
+
+=attributeGroup doc-selector
+
+=element name
+
+<p>The <code>name</code> is displayed as translation of the Unit's
+<code>name</code>.  When missing, that value will be used, which
+defaults to the Unit's <code>id</code>.</p>
+
+=element hint
+
+<p>This is a very short (typically a short single line) help to the
+meaning of this Unit.  This may be shown as tooltip when moving over
+the Unit.  Useful applications a for Units which document constants or
+funtions.</p>
+
+=element description
+
+<p>An extensive explanation about the content of the Unit.  For instance,
+what the impact of the content of the Unit is, why it is there, how it
+can be used, and so on.  Typically a piece of what would be a manual-page
+fragement.</p>
+
+=element web-page
+
+<p>When a simple <code>description</code> is not enough: a reference to a
+web-page, maybe on some website which is also owned by the Namespace holder.</p>
+
+=element documentation
+
+<p>Documentation can be used nested, to group texts which are related
+in some way, reducing the need for selectors.</p>
+
+=example documentation inside the Unit itself
+
+<XML>
+<ms:unit ms:id="IMG00001.jpg">
+  <ms:type>ms:Mime/image/jpeg</ms:type>
+  <ms:content />
+  <ms:documentation ms:language="nl-NL">
+    <ms:name>2022-02-04 foto 1</ms:name>
+    <ms:hint>Vakantie in Zeeland</ms:hint>
+  </ms:documentation>
+</ms:unit>
+</XML>
+<JSON>
+"ms:unit" : {
+   "ms:id" : "IMG00001.jpg",
+   "ms:type" : "ms:Mime/image/jpeg",
+   "ms:content" : { },
+   "ms:documentation" : {
+     "ms:language" : "nl-NL",
+     "ms:name" : "2022-02-04 foto 1",
+     "ms:hint" : "Vakantie in Zeeland"
+   }
+}
+</JSON>
+
+
+=example documentation inside the Unit, two languages
+
+<XML>
+<ms:unit ms:id="IMG00001.jpg">
+  <ms:type>ms:Mime/image/jpeg</ms:type>
+  <ms:content />
+  <ms:documentation ms:type="ms:Mime/text/plain">
+    <ms:documentation ms:language="nl-NL">
+      <ms:name>2022-02-04 foto 1</ms:name>
+      <ms:hint>Vakantie in Zeeland</ms:hint>
+    </ms:documentation>
+    <ms:documentation ms:language="en-US">
+      <ms:name>04-02-2022 photo 1</ms:name>
+      <ms:hint>Holidays in Zeeland (NL)</ms:hint>
+    </ms:documentation>
+  </ms:documentation>
+</ms:unit>
+</XML>
+<JSON>
+"ms:unit" : {
+   "ms:id" : "IMG00001.jpg",
+   "ms:type" : "ms:Mime/image/jpeg",
+   "ms:content" : { },
+   "ms:documentation" : { 
+      "ms:type" : "ms:Mime/text/plain",
+      "ms:documentation" : [ {
+         "ms:language" : "nl-NL",
+         "ms:name" : "2022-02-04 foto 1",
+         "ms:hint" : "Vakantie in Zeeland"
+      }, {
+         "ms:language" : "en-US",
+         "ms:name" : "04-02-2022 photo 1",
+         "ms:hint" : "Holidays in Zeeland (NL)"
+      } ]
+   }
+}
+</JSON>
+
+
+=example documentation in some other Unit, explicit
+
+<XML>
+<ms:unit ms:id="IMG00001.jpg">
+  <ms:type>ms:Mime/image/jpeg</ms:type>
+  <ms:content />
+  <ms:has ms:is="ms:Role/Documentation" ms:ref="Story/IMG00001" />
+</ms:unit>
+</XML>
+<JSON>
+"ms:unit" : {
+   "ms:id" : "IMG00001.jpg",
+   "ms:type" : "ms:Mime/image/jpeg",
+   "ms:content" : { },
+   "ms:has" : {
+      "ms:is" : "ms:Role/Documentation",
+      "ms:ref" : "Story/IMG00001.jpg"
+   }
+}
+</JSON>
+
+<p>Of course, the complexity is now in the Unit named
+<code>Story/IMG00001</code>.  As big benefit, the access and caching
+rules in the <code>Story</code> Namespace can be very different from
+the rules for the Unit which it is documenting.</p>
+
+=example documentation in some other Unit, implicit
+
+<XML>
+<ms:unit ms:id="Holiday Pictures">
+  <ms:type>ms:Type/Namespace</ms:type>
+  <ms:namespace />
+  <ms:has ms:is="ms:Role/Documentation" ms:ref="Story" />
+</ms:unit>
+</XML>
+<JSON>
+"ms:unit" : {
+   "ms:type" : "ms:Type/Namespace",
+   "ms:namespace" : { },
+   "ms:has" : {
+      "ms:is" : "ms:Role/Documentation",
+      "ms:ref" : "Story"
+   }
+}
+</JSON>
+
+<p>Documentation search tries <code>Story/unit-id</code> and
+<code>Story</code>.  Also visits parent Namespaces.</p>

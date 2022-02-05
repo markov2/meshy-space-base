@@ -17,7 +17,8 @@
     <!-- element ref="ms:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
     <choice>
       <element ref="ms:data-apply" />
-      <element ref="ms:data-source" />
+      <element ref="ms:data-source" maxOccurs="unbounded" />
+      <element ref="ms:blob" />
     </choice>
   </sequence>
 </complexType>
@@ -54,11 +55,21 @@ probably want to undo before using the data.  This element can be
 
 =element data-source
 
-<p>Describes the location where the processed bytes are.  This element
-can be
-<SCHEMA>ms:blob</SCHEMA>,
-<SCHEMA>ms:resource</SCHEMA>, or
+<p>Describes the location where the processed bytes are, via a
+<SCHEMA>ms:resource</SCHEMA> or
 <SCHEMA>ms:fetch</SCHEMA>.</p>
+
+<p>This element can be used more than once, to suggest alternative
+routes to the same data.  This is especially useful when you offer
+alternative download protocols with <code>fetch</code>, or introduce
+rarely supported compression methods.  The user's Client decides
+which path to follow.</p>
+
+=element blob
+
+<p>Although the <SCHEMA>ms:blob</SCHEMA> can be seen as data source,
+it is a <code>simpleType</code> where all the
+<SCHEMA>ms:data-source</SCHEMA> options are <code>complexType</code>.</p>
 
 =element checksum
 

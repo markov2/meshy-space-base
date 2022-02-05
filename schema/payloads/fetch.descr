@@ -1,6 +1,7 @@
 =short
 
-<p>Fetch the data from an external source.</p>
+<p>Fetch the data from an external source, using a protocol
+which can be represented with a URI.</p>
 
 =schema
 
@@ -13,7 +14,6 @@
     <extension base="ms:DataSource">
       <sequence>
         <element ref="ms:authorization" minOccurs="0" maxOccurs="unbounded" />
-        <element name="user-agent" type="token" minOccurs="0" />
       </sequence>
       <attribute name="href" type="AnyURI" use="required" />
     </extension>
@@ -31,5 +31,3 @@ browser-like user agent.</p>
 =attribute href
 
 =element authorization
-
-=element user-agent

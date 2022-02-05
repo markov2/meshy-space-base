@@ -13,10 +13,11 @@ generalization of many protocols and system features.</p>
   <sequence>
     <group   ref="ms:meta-data" />
     <group   ref="ms:life-cycle" />
-    <element name="owner"     type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:use"     minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:payload" minOccurs="0" />
-    <element ref="ms:has"     minOccurs="0" maxOccurs="unbounded" />
+    <element name="owner" type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
+    <element ref="ms:use"           minOccurs="0" maxOccurs="unbounded" />
+    <element ref="ms:payload"       minOccurs="0" />
+    <element ref="ms:documentation" minOccurs="0" maxOccurs="unbound" />
+    <element ref="ms:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
   <attribute name="id" ref="ms:UnitID" use="required" />
 </complexType>
@@ -88,6 +89,17 @@ group. See <SCHEMA>ms:payload</SCHEMA> for a list of alternatives.</p>
 
 <p>Structural elements may only contain any "direct" payload, but only
 references to other units.</p>
+
+=element documentation
+
+<p>The Unit may have different levels of documentation, besides the
+<code>name</code>, like a short translated name, some tooltip text,
+extended html, and/or references to external web-pages.  This all may
+be provided in different languages.</p>
+
+<p>When the documentation is not included in the Unit, it may be found
+inbetween the Unit's own <SCHEMA>ms:has</SCHEMA> relations or those of
+the enclosed Subspace, or its parent Namespaces.</p>
 
 =element has
 

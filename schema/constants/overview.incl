@@ -19,7 +19,9 @@ convention.</p>
     <code>base64</code> and <code>hex</code>;</li>
 <li><SCHEMA>ms:Gender/</SCHEMA> lists standard representations
     of gender data;</li>
-<li><code>ms:Language/</code> names for languages, in ISO-639-[123] form;</li>
+<li><code>ms:Language/</code> names for languages, in ISO-639-[123] form
+    with region indicator but without the script and modifiers you see in
+    locales;</li>
 <li><SCHEMA>ms:Mime/</SCHEMA> contains all official
     MIME-types as defined by IANA;</li>
 <li><SCHEMA>ms:Pack/</SCHEMA> lists names for packagers, like <code>tar</code>;</li>

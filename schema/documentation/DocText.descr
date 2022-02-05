@@ -1,0 +1,18 @@
+=short
+
+<p>Type used for all kinds of texts which relate to Units.</p>
+
+=schema
+
+==xml
+<complexType name="DocText">
+  <simpleContent>
+    <extension base="string">
+      <attributeGroup ref="ms:doc-selector" />
+    </extension>
+  </simpleContent>
+</complexType>
+==end
+
+=description
+

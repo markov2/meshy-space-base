@@ -1,0 +1,62 @@
+<h1>Constants defining Packaging</h1>
+
+<p>The <SCHEMA>ms:Pack/</SCHEMA> Subspace is used to explicitly refer
+to (versions of) packaging algorithms.</p>
+
+<div id="compress" class="accordion constants">
+
+<h3 name="GzipMultiStream">ms:Pack/GzipMultiStream</h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+<p>You can produce files which contain concatenated gzip-compressed
+blocks ("Streams").  The file-format does not maintain an index over
+these streams, so the <code>entry</code> contains the location
+of the first octet (byte) in the file.</p>
+
+<p>The result type is a <SCHEMA>ms:Compress/Gzip</SCHEMA>, which
+means that the pack will often be wrapped in a <SCHEMA>ms:compressed</SCHEMA>
+element.  But setting <SCHEMA>ms:packagde/uncompress</SCHEMA> is simpler.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+<p>Some applications require the "multi stream" flag to be set, to be
+able to process these files.  Other implementations are not able
+to handle these streams at all.</p>
+   </div>
+</div>
+
+<h3 name="Tar">ms:Pack/Tar</h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+<p>Tar originates as <i>the</i> packager for UNIX systems, and widely
+used for data distributions.</p>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+
+<p>There are millions of tar implementations.  The most common
+implementation is <a href="https://www.gnu.org/software/tar/">GNU
+Tar</a>.</p>
+
+<p>The storage format is simple, but the devil is in the details.
+For instance, old tar implementations do not support filenames longer
+than 100 characters.  The entries may also be in an unknown character-set,
+so not fit UTF-8.  Be carefull!</p>
+
+   </div>
+</div>
+
+<h3 name="Zip">ms:Pack/Zip</h3>
+<div>
+   <div>
+   <h4>Definition</h4>
+   </div>
+   <div>
+   <h4>Compatibility</h4>
+   </div>
+</div>
+
+</div>  <!-- end accordion -->
+

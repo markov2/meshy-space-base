@@ -52,7 +52,7 @@ a common format in the UNIX/Linux environment.</p>
       "ms:by" : "ms:Checksum/SHA1",
       "ms:encoded" : {
         "ms:by" : "ms:Encode/Base64",
-        "ms:blob" : { "_" : "SGVsbG8sIFdvcmxkIQo=" }
+        "ms:blob" : "SGVsbG8sIFdvcmxkIQo="
       }
     }
   }

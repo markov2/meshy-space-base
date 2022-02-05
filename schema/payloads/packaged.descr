@@ -13,8 +13,9 @@ element refers to an internet location which contains those bytes.</p>
   <complexContent>
     <extension base="ms:DataApply">
       <sequence>
-        <element name="entry" type="ms:token" />
+        <element name="entry" type="ms:Bytes" />
       </sequence>
+      <attribute name="uncompress" type="boolean" default="false" />
     </extension>
   </complexContent>
 </complexType>
@@ -23,3 +24,15 @@ element refers to an internet location which contains those bytes.</p>
 =description
 
 =element entry
+
+<p>The location of the data inside the package.  For most packagers,
+this will be a name.  For some a seek position, but it could also be
+a byte range.  Find the details in <SCHEMA>ms:Pack/</SCHEMA>.</p>
+
+=element uncompress
+
+<p>Most packers use internal compression, where the exact algorithm
+is hidden.  Some packers even do not support extracting an entry
+without uncompressing it.  For those cases, it is incovenient to use a
+<SCHEMA>ms:compress</SCHEMA> wrapper.</p>
+

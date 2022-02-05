@@ -9,10 +9,9 @@ top-level Namespace.</p>
 <element name="subspace" type="ms:Subspace" />
 
 <complexType name="Subspace">
-  <sequence>
-  </sequence>
-  <attribute name="seqnr" type="unsignedLong" use="required" />
-  <attribute name="path"  type="ms:UnitRef"   use="required" />
+  <sequence />
+  <attribute name="path"      type="ms:UnitRef"   use="required" />
+  <attribute name="namespace" type="ms:UnitRef" />
 </complexType>
 ==end
 
@@ -22,12 +21,6 @@ top-level Namespace.</p>
 which components of the Namespace have their own specification.  The
 Subspace can overrule any aspect of its parent Namespace, but inherits
 the settings (like permissions) as defaults.</p>
-
-=attribute seqnr
-
-<p>This obligatory attribute refers to <SCHEMA>ms:has</SCHEMA>
-elements with relation <code>ms:Role/Subspace</code> and the same
-<code>seqnr</code> value.</p>
 
 =attribute path
 
@@ -39,6 +32,13 @@ where is ensured that each component is separated by the locally active
 
 <p>The path MUST be in the same root Namespace: it cannot refer to
 external namespaces.</p>
+
+=attribute namespace
+
+<p>Refers to a <SCHEMA>ms:unit</SCHEMA> of type
+<SCHEMA>ms:Type/Namespace</SCHEMA> which describes how the sub-namespace
+behaves.  It depends on the feature in the Namespace whether configuration
+is inherited from the "parent" namespace.</p>
 
 =discuss Absolute location of a Subspace
 
@@ -82,4 +82,9 @@ contain slashes.</p>
 
 <p>You SHALL only use the new absolute path when producing new Units to
 be released.</p>
+
+=short
+
+<p>A unit <i>has</i> references to another unit for a certain
+reason.</p>
 

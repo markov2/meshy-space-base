@@ -12,9 +12,16 @@ and may have a complex life-cycle.</p>
 <complexType name="Namespace">
   <extension base="ms:Native">
     <sequence>
-      <element name="path-separator" type="token" minOccurs="0" />
+      <element name="path-separator" type="token"   minOccurs="0" />
+      <element name="language    type="ms:Constant" minOccurs="0" />
+      <element name="fetch"      minOccurs="0" maxOccurs="unbounded">
+        <complexType>
+          <attribute name="base" type="anyURI"      use="required" />
+        </complexType>
+      </element>
       <element ref="ms:moved"    minOccurs="0" maxOccurs="unbounded" />
       <element ref="ms:subspace" minOccurs="0" maxOccurs="unbounded" />
+      <element name="manager"    type="ms:UnitRef"  minOccurs="0" />
     </sequence>
   </extension>
 </complexType>
@@ -33,14 +40,25 @@ get the <i>root</i> Namespace Unit.</p>
 are inherited from the enclosing Namespace.</p>
 
 <p>The <i>root</i> namespace requires a <SCHEMA>ms:use</SCHEMA>
-element to define its prefix.  It has <code>"/"</code> as default for
-<code>path-separator</code>.</p>
+element to define its prefix.</p>
 
 =element path-separator
 
 <p>Tells Clients (but also the server) which character (or characters) are to
-be used to separate components of the part.  It is RECOMMENDED to stick to the
-default separator, because it does mimic HTTP syntax.</p>
+be used to separate components of the path.</p>
+
+<p>The path-separator for Subspaces are inherited from the enclosing
+Namespace.</p>
+
+<p>It is RECOMMENDED to stick to the default separator <code>"/"</code>, because
+that does mimic HTTP syntax. Also, it is RECOMMENDED to stick to one separator
+for the whole namespace.  However, there are reasons to diverge (see example)</p>
+
+=element language
+
+<p>This provides a hint which language settings the owner of the Namespace
+or Subspace (inherited) uses.  The default for the <code>language</code>
+on the root Namespace is <code>ms:Language/en-US</code>.</p>
 
 =element moved
 
@@ -55,4 +73,49 @@ redirection: the old structure SHOULD be rewritten whenever achievable.</p>
 
 <p>Subspaces (<SCHEMA>ms:subspace</SCHEMA>) are "children" of a Namespace
 or other Subspaces.  They have a location with respect to their "parent".
-They may have their own rules.</p>
+They MAY have their own rules.</p>
+
+=element fetch
+
+<p>To allow Units to refer to locations on internet via relative URIs,
+the Subspaces can define a link base.  Usually, this is an absolute URI.
+A relative URI will be based on the wrapping Subspace.  The root Namespace
+uses its <code>endpoint</code> as absolute base.</p>
+
+<p>When the same data can be loaded via different protocols, for instance
+<code>http:</code>, <code>https:</code>, and <code>s3:</code>, you can
+pass them all.  It is to the user to decide which alternative is used.
+Also: you may give addresses for download "mirrors": the same protocol
+but pointing to different geographically spread servers.</p>
+
+=element manager
+
+<p>When specified, this Namespace is managed by a more intelligent
+level.  The basic functionality of the Unit handling will be controled
+by a management application.</p>
+
+<p>There currently is only one Manager, which is implemented by
+the Meshy Space Concept.  In that case, the <code>manager</code>
+points to a <SCHEMA>ms:Type/Collection</SCHEMA> unit.</p>
+=example Namespace switching path-separator
+
+<p>Let us assume that our collection of company internal network information
+is accessible via endpoint <code>https://facts.example.com/network</code>.
+When assign prefix <code>net:</code> to that namespace for our convenience.</p>
+
+<p class="list">The Namespace tree could be designed like this:</p>
+<CODE>
+net:                path-sep = '/'
+ ├─> ipv4           path-sep = '.'
+ │     ├─> 10           Subnet free to use
+ │     └─> 192.168.1    Subnet managed by someone
+ │           ├─> 11         Unit for host
+ │           └─> 12         Unit for host
+ └─> ipv6           path-sep = ':'
+       └─> 2001:0db8:85a3:0000:0000
+             └─> 8a2e   Subnet managed by someone
+                  └─> 0370:7334   Unit for service
+</CODE>
+<p>The absolute address of host <code>11</code> is <code>net:ipv4/192.168.1.11</code>.
+Via Meshy Space Concept, the owner of <code>net:</code> can give other people
+(identities) the right to maintain Subspaces.</p>

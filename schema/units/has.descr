@@ -9,13 +9,15 @@ reason.</p>
 <element name="has" type="ms:Has" />
 
 <complexType name="Has">
-  <sequence>
-     <element name="type"  type="ms:Constant" minOccurs="0" />
-  <sequence />
-  <attribute name="seqnr"  type="unsignedLong" default="1" />
-  <attribute name="is" type="ms:Constant" default="ms:Role/Unknown" />
-  <attribute name="when"   type="ms:Condition" />
-  <attribute name="unless" type="ms:Condition" />
+  <complexContent>
+    <extension base="ms:UnitMayRef">
+      <sequence>
+         <element name="type"  type="ms:Constant" minOccurs="0" />
+      </sequence>
+      <attribute name="seqnr"  type="unsignedLong" default="1" />
+      <attribute name="is"     type="ms:Constant" default="ms:Role/Unknown" />
+    </extension>
+  </complexContent>
 </complexType>
 ==end
 
@@ -25,6 +27,10 @@ reason.</p>
 is expressed via the <code>ms:is</code> attribute, which contains a
 name-spaced constant.  The attributes are typical selectors to find
 the right relation to follow, the elements are informational.</p>
+
+<p>The <SCHEMA>ms:UnitMayRef</SCHEMA> base type provides the
+<code>ref</code> (obligatory), <code>when</code>, and <code>unless</code>
+attributes.</p>
 
 =attribute is
 
@@ -62,15 +68,6 @@ of the processor.</p>
 
 <p>When there are multiple relations which are of the same kind (same
 <code>ms:is</code>), they may need to be ordered like an array.</p>
-
-=attribute when
-
-<p>Only use the relation <i>when</i> a certain condition is met.</p>
-
-=attribute unless
-
-<p>Use the relation when the condition does not match.  The hidden
-feeling is: usually it does match.</p>
 
 =example in the Meshy Space Concept frame
 
