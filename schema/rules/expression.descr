@@ -12,7 +12,7 @@ programming languages.
 <complexType name="Expression">
   <simpleContent>
     <extension base="string">
-      <attribute name="name" type="string" use="required"/>
+      <attribute name="name" type="token" use="required"/>
     </extension>
   </simpleContent>
 </complexType>

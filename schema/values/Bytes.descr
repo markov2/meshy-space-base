@@ -1,0 +1,37 @@
+=short
+
+<p>All fields and data in Meshy Space are expected to be UTF-8,
+preferably limited to printable ASCII.  But this is not always
+possible without help.</p>
+
+=schema
+
+==xml
+<simpleType name="Bytes">
+  <complexContent>
+    <extension base="string" />
+    <attribute name="encoded"    type="ms:Constant" />
+    <attribute name="compressed" type="ms:Constant" />
+  </complexContent>
+</simpleType>
+==end
+
+=description
+
+<p>In general, texts SHOULD be included in UTF-8.  However, in rare
+cases this is not possible.  For instance, filenames or entry names in
+an archive cannot be converted to UTF-8 because it may render them
+unusable.  Those "octet sequences" should be encoded.</p>
+
+=attribute encoded
+
+<p>When a byte (octet) string contains characters outside the
+ascii printable range, it SHALL be encoded with any format defined
+in <SCHEMA>ms:Encode/</SCHEMA>.</p>
+
+=attribute compressed
+
+<p>Contains a <SCHEMA>ms:Compress/</SCHEMA> compression constant
+which explains which compression has taken place (before the
+optional encoding)</p>
+

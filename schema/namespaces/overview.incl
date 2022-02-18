@@ -2,7 +2,7 @@
 files on a harddisk.  Namespace are really important to keep the Units
 from different sources organized.</p>
 
-<p>For the real smart behavior, see <SCHEMA>msc:Collection</SCHEMA>
+<p>For the real smart behavior, see <SCHEMA>msc:collection</SCHEMA>
 which implements replication, mirroring, and such features on an
 conceptual level.</p>
 

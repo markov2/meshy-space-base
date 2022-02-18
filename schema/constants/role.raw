@@ -23,8 +23,16 @@ application client must be able to handle (ignore) unexpected Types.</p>
 <div>
 <p>When the root Namespace <SCHEMA>ms:has</SCHEMA> a Manager, then
 access to that namespace can only take place via that Manager.
-At the moment, there is only one Manager implementation: the
-<SCHEMA>msc:Type/Collection</SCHEMA>.</p>
+At the moment, the <SCHEMA>msc:Type/Shop</SCHEMA> is the only manager
+for a top-namespace, and <SCHEMA>msc:Type/Collection</SCHEMA> for
+sub-spaces.</p>
+</div>
+
+<h3 name="Rule">ms:Role/Rule</h3>
+<div>
+<p>Units referred to as this role, are of type <SCHEMA>ms:Type/Rule</SCHEMA>
+or <SCHEMA>msc:Type/Rule</SCHEMA> and define expressions
+(<SCHEMA>ms:expression</SCHEMA>)</p>
 </div>
 
 </div> <!-- end accordion -->

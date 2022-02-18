@@ -27,6 +27,8 @@ convention.</p>
 <li><SCHEMA>ms:Pack/</SCHEMA> lists names for packagers, like <code>tar</code>;</li>
 <li><SCHEMA>ms:Role/</SCHEMA> is used to express the relation in
     <SCHEMA>ms:has</SCHEMA> attribute <code>is</code>;</li>
+<li><SCHEMA>ms:Rule/</SCHEMA> defines standard expression components, which
+    are units of type <SCHEMA>ms:Role/Rule</SCHEMA>;</li>
 <li><SCHEMA>ms:Type/</SCHEMA> lists <code>unit.type</code> values which indicate 
     <SCHEMA>ms:native</SCHEMA> payload structures;</li>
 <li><code>ms:{Error,Warning,Notice,Info}/</code>, status codes;</li>

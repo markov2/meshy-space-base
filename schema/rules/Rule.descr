@@ -1,0 +1,39 @@
+
+=short
+
+<p>Defines an expression, which can be used in other expressions.</p>
+
+=schema
+
+==xml
+<element name="rule" type="ms:Rule"
+   substitutionGroup="ms:native" />
+
+<complexType name="Rule">
+  <complexContent>
+    <extension base="ms:Native">
+      <choice maxOccurs="unbounded">
+        <element ref="ms:condition" />
+        <!-- integer and float versions TBD -->
+      </choice>
+    </extension>
+  <complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Rules can be used on many places, for instance with <SCHEMA>ms:UnitRef/when</SCHEMA>.
+In those places, you can put an expression in-line or refer to an expression which is
+in a separate Unit of type <code>ms:Type/Rule</code> and this element as
+<SCHEMA>ms:payload</SCHEMA>.</p>
+
+<p>Only the rule with the <code>name</code> equal to the Unit's <code>id</code> is
+accessible from other Units.  But you may use a few additional expressions to
+construct the only visible expression.</p>
+
+=discuss Expressions in Units
+
+<p>The advantage of putting your expressions in separate Rule units, is re-use.  With it,
+come the standand Unit life-cycle and documentation features at little cost.</p>
+

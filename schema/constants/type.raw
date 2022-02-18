@@ -35,7 +35,12 @@ the <SCHEMA>ms:Native</SCHEMA> payload to be expected.</p>
     (Computer people call Resources "files", "archives", "urls", or "zips")</p>
 </div>
 
-<h3 name="Rules">ms:Type/Rules</h3>
+<h3 name="Rule">ms:Type/Rule</h3>
+<div>
+  <p>Defines an expression, which can be used in other expressions.</p>
+</div>
+
+<h3 name="Rules">ms:Type/Access</h3>
 <div>
   <p>Most units have access restrictions: read, create, update, deprecate,
     expire, and so on, which are specified in a rule-set.

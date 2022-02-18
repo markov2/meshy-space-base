@@ -30,7 +30,7 @@ and may have a complex life-cycle.</p>
 =description
 
 <p>The namespace groups units into sets.  In the Meshy Space Concept
-abstraction, they become Collections (<SCHEMA>msc:Collection</SCHEMA>).
+abstraction, they become Collections (<SCHEMA>msc:collection</SCHEMA>).
 
 <p>The <code>id</code> of this Unit is blank, to indicate that it is ruling
 the namespace or subspace; when you query a namespace for its blank Unit, you
