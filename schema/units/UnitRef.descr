@@ -6,7 +6,9 @@ That unit does not need to be in the current message.</p>
 =schema
 
 ==xml
-<simpleType name="UnitRef" type="token" />
+<simpleType name="UnitRef">
+  <restriction base="token" />
+</simpleType>
 ==end
 
 =description

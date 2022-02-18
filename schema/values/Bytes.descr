@@ -7,13 +7,14 @@ possible without help.</p>
 =schema
 
 ==xml
-<simpleType name="Bytes">
-  <complexContent>
-    <extension base="string" />
-    <attribute name="encoded"    type="ms:Constant" />
-    <attribute name="compressed" type="ms:Constant" />
-  </complexContent>
-</simpleType>
+<complexType name="Bytes">
+  <simpleContent>
+    <extension base="string">
+      <attribute name="encoded"    type="ms:Constant" />
+      <attribute name="compressed" type="ms:Constant" />
+    </extension>
+  </simpleContent>
+</complexType>
 ==end
 
 =description

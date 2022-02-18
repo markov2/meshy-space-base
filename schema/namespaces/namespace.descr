@@ -10,20 +10,22 @@ and may have a complex life-cycle.</p>
    substitutionGroup="ms:native" />
 
 <complexType name="Namespace">
-  <extension base="ms:Native">
-    <sequence>
-      <element name="path-separator" type="token"   minOccurs="0" />
-      <element name="language    type="ms:Constant" minOccurs="0" />
-      <element name="fetch"      minOccurs="0" maxOccurs="unbounded">
-        <complexType>
-          <attribute name="base" type="anyURI"      use="required" />
-        </complexType>
-      </element>
-      <element ref="ms:moved"    minOccurs="0" maxOccurs="unbounded" />
-      <element ref="ms:subspace" minOccurs="0" maxOccurs="unbounded" />
-      <element name="manager"    type="ms:UnitRef"  minOccurs="0" />
-    </sequence>
-  </extension>
+  <complexContent>
+    <extension base="ms:Native">
+      <sequence>
+        <element name="path-separator" type="token"   minOccurs="0" />
+        <element name="language"   type="ms:Constant" minOccurs="0" />
+        <element name="fetch"      minOccurs="0" maxOccurs="unbounded">
+          <complexType>
+            <attribute name="base" type="anyURI"      use="required" />
+          </complexType>
+        </element>
+        <element ref="ms:moved"    minOccurs="0" maxOccurs="unbounded" />
+        <element ref="ms:subspace" minOccurs="0" maxOccurs="unbounded" />
+        <element name="manager"    type="ms:UnitRef"  minOccurs="0" />
+      </sequence>
+    </extension>
+  </complexContent>
 </complexType>
 ==end
 

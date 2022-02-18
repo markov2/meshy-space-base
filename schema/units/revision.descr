@@ -12,7 +12,7 @@ order.</p>
 <element name="revision">
   <simpleType>
     <restriction base="string">
-      <pattern value="[A-Za-z0-9_;,.=#{}<> -]+" />
+      <pattern value="[A-Za-z0-9_;,.=#{}&lt;&gt; -]+" />
     </restriction>
   </simpleType>
 </element>

@@ -9,7 +9,7 @@ which can be represented with a URI.</p>
 <element name="fetch" type="ms:Fetch"
   substitutionGroup="ms:data-source" />
 
-<complexType name="ms:Fetch">
+<complexType name="Fetch">
   <complexContent>
     <extension base="ms:DataSource">
       <sequence>

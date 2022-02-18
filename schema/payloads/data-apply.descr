@@ -8,9 +8,9 @@
 <element name="data-apply" type="ms:DataApply"
   abstract="true" />
 
-<complexType name="ms:DataApply">
+<complexType name="DataApply">
   <sequence>
-    <group   name="ms:meta-data" />
+    <group   ref="ms:meta-data" />
     <element name="size" type="unsignedLong" minOccurs="0" />
     <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
     <!-- element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" TBD -->

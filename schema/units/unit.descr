@@ -16,7 +16,7 @@ generalization of many protocols and system features.</p>
     <element name="owner" type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:use"           minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:payload"       minOccurs="0" />
-    <element ref="ms:documentation" minOccurs="0" maxOccurs="unbound" />
+    <element ref="ms:documentation" minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
   <attribute name="id" ref="ms:UnitID" use="required" />

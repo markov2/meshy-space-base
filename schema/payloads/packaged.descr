@@ -9,7 +9,7 @@ element refers to an internet location which contains those bytes.</p>
 <element name="packaged" type="ms:Packaged"
   substitutionGroup="ms:data-apply" />
 
-<complexType name="ms:Packaged">
+<complexType name="Packaged">
   <complexContent>
     <extension base="ms:DataApply">
       <sequence>

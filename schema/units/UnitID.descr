@@ -6,7 +6,7 @@
 
 ==xml
 <simpleType name="UnitID">
-  <restriction base="xs:string">
+  <restriction base="token">
     <pattern value="\S+" />
   </restriction>
 </simpleType>

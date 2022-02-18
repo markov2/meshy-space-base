@@ -9,7 +9,7 @@ requested data.</p>
 <element name="resource" type="ms:Resource"
    substitutionGroup="ms:data-source" />
 
-<complexType name="ms:Resource">
+<complexType name="Resource">
   <complexContent>
     <extension base="ms:DataSource">
       <sequence />
