@@ -7,4 +7,3 @@ at the Meshy Space Concept.
 Feel invited to participate.
 
    [Mark Overmeer](mailto:mark@overmeer.net)
-   
