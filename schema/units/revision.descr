@@ -12,7 +12,7 @@ order.</p>
 <element name="revision">
   <simpleType>
     <restriction base="string">
-      <pattern value="[A-Za-z0-9_;,.=#{}&lt;&gt; -]+" />
+      <pattern value="[A-Za-z0-9_;,.=#{}&lt;&gt;&quot;'-]+" />
     </restriction>
   </simpleType>
 </element>
@@ -20,31 +20,33 @@ order.</p>
 
 =description
 
-<p><i>Revisions</i> are subtlety different from <i>versions</i>:
+<p><i>Revisions</i> are subtlety different from <i>versions</i>.
 where in your mind you may have a (software) version-for-test and a
 version-for-production, this really is not the purpose of this field.
-The name "revision" should make it clear that it is about the unit
+Read the <a href="/explain/base/revisions.html">detailed explanation</a>.</p>
+
+<p>The name "revision" should make it clear that it is about the unit
 itself.  The only valid unit, is the one with the highest revision.</p>
 
 <p>It is very well possible that multiple revisions of the same unit
-exist on different servers.  However, within hours the mirroring
-features of the Unit collections will have replaced or deleted the
-old revisions.</p>
+exist on different servers.  However, within hours the replication
+features of the Unit collections will have replaced the old revisions.</p>
 
 <p>Comparing UTF-8 is really hard, unless you restrict the characters
-to the ASCII namespace.</p>
+to the ASCII namespace.  Therefore the character restriction.</p>
 
 =discuss Convenient revision schemes
 
 <p>You have many options.  Remember: the only limitation is that the
-ASCII sort order MUST be the age order.  Examples:</p>
+ASCII sort order MUST be the sequential age order.  Examples:</p>
 <ul>
-<li>A simple counter with leading zeros:  000001, 000002, 000003, ...</li>
-<li>Seconds since epoch in 10 digits: 023429080, 1621254002, ...</li>
-<li>Formatted time: 2020-01-01T12:34:00.123, 2021-05-17T01:01:01, ...</li>
-<li>DNS SOA Serial style: 2021051701, 2021051702, 2021051801, ...</li>
-<li>Some database serial sequential id?</li>
+<li>A simple counter with suffient leading zeros:  000001, 000002, 000003, ...;</li>
+<li>Seconds since epoch in 10 digits: 023429080, 1621254002, ...;</li>
+<li>Formatted time: 2020-01-01T12:34:00.123, 2021-05-17T01:01:01, ...;</li>
+<li>DNS SOA Serial style: 2021051701, 2021051702, 2021051801, ...; or</li>
+<li>Some database generated serial sequential id</li>
 </ul>
-<p>Formatted time looks nice, but converting date to string is relatively
+
+<p>Formatted date-time looks nice, but converting date to string is relatively
 expensive.  It may also lead to collisions when produced on compute nodes in
-parallel.  Keep it simple.</p>
+parallel and time-zones.  Keep it simple.</p>

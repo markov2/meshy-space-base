@@ -2,19 +2,21 @@
 =short
 
 <p>A group of fields which maintain the status of the unit; units
-may require maintenance, even when you do not like it.</p>
+may require maintenance, even when you do not like it.  First read
+the <a href="/explain/life-cycle/">explanation of the
+life-cycle</a>.</p>
 
 =schema
 
 ==xml
 <group name="life-cycle">
   <sequence>
-    <element ref="ms:revision" minOccurs="0" />
-    <element name="created"    type="dateTime" minOccurs="0" />
-    <element name="updated"    type="dateTime" minOccurs="0" />
-    <element name="deprecated" type="dateTime" minOccurs="0" />
-    <element name="expires"    type="dateTime" minOccurs="0" />
-    <element name="revisit"    type="duration" default="1H"  />
+    <element ref="ms:revision"                     minOccurs="0" />
+    <element name="created"   type="dateTime"      minOccurs="0" />
+    <element name="updated"   type="dateTime"      minOccurs="0" />
+    <element name="deprecate" type="ms:Expression" minOccurs="0" />
+    <element name="expire"    type="ms:Expression" minOccurs="0" />
+    <element name="revisit"   type="duration"      minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -23,7 +25,7 @@ may require maintenance, even when you do not like it.</p>
 
 <p>The <code>revision</code> MUST be upgraded each time the unit
 sees any change: it is used to invalidate cached values.
-Revisions are sortable strings.  Only the newest revision of a
+Revisions are ASCII sortable strings.  Only the newest revision of a
 unit should be used by your program: older revisions have value.</p>
 
 <p>The <code>revision</code> defaults to <code>updated</code>, which
@@ -32,7 +34,7 @@ to <code>created</code>.</p>
 
 <p>For each of the time-stamps, you will not see who has set or
 changed them inside the unit itself: that could become quite expensive.
-The collection of units may have a separate archive which contains or
+The collection of units MAY have a separate archive which contains or
 produces change-logs.  See <SCHEMA>msc:Type/ChangeLog</SCHEMA>.</p>
 
 =element revision
@@ -57,14 +59,22 @@ may look like a date, but does not need to be.</p>
 
 <p><code>Updated</code> defaults to <code>created</code>.</p>
 
-=element deprecated
+=element deprecate
+
+<p>This tells the Collection when the author of the Unit wants it to
+get deprecated.  The expression must produce a timestamp: be an absolute
+dateTime or a duration after the moment of publication.</p>
 
 <p>When a unit has a deprecated time which is in the past, then attempts
 should be made to warn the user of data in the unit.  Details can be
 found in the unit's change-log.  Warnings MUST be throttled to an
 acceptable level, say a maximum of once per hour.
 
-=element expires
+=element expire
+
+<p>This tells the Collection when the Unit wants to get expired.
+The expression must produce a timestamp: be an absolute dateTime or
+a duration after the moment of publication.</p>
 
 <p>When a unit has expired, it SHALL NOT be used anymore.  It MUST
 be thrown away within a reasonable period, but at least within

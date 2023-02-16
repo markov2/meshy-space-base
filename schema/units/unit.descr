@@ -7,15 +7,14 @@ generalization of many protocols and system features.</p>
 =schema
 
 ==xml
-<element name="unit" type="ms:Unit" abstract="true" />
+<element name="unit" type="ms:Unit" />
 
 <complexType name="Unit">
   <sequence>
-    <group   ref="ms:meta-data" />
+    <group   ref="ms:meta-data"  />
     <group   ref="ms:life-cycle" />
-    <element name="owner" type="ms:UnitID" minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:use"           minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:payload"       minOccurs="0" />
+    <element ref="ms:definitions"   minOccurs="0" maxOccurs="unbounded" />
+    <element ref="ms:payload"       minOccurs="0" nillable="true" />
     <element ref="ms:documentation" minOccurs="0" maxOccurs="unbounded" />
     <element ref="ms:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
@@ -66,21 +65,6 @@ contains a payload, it gives facts about the payload.  All these facts
 are independent from the way the payload is being transported and
 stored.</p>
 
-=element owner
-
-<p>Refers to the current owner or group of owners of this unit, and its
-descendants.  Owners MAY have different rules than client representing
-other identities.</p>
-
-<p>Information about the creator, publisher, and modifiers of the unit
-are in the history of the unit.</p>
-
-=element use
-
-<p>Declare prefix to namespaces mappings, which are used in any of the
-<SCHEMA>ms:UnitRef</SCHEMA> typed elements and attributes.
-Implemented in <SCHEMA>ms:use</SCHEMA>.</p>
-
 =element payload
 
 <p>The <code>payload</code> is a <i>substitutionGroup</i>, which
@@ -112,7 +96,9 @@ server.  See <SCHEMA>ms:has</SCHEMA>.</p>
 ==xml
 <ms:unit ms:id="">  <!-- all in the same namespace 'cc' -->
   <ms:type="ms:Role/Namespace" />
-  <ms:use ms:prefix="cc" ms:endpoint="https://..." />
+  <ms:definitions>
+    <ms:prefix ms:name="cc" ms:endpoint="https://..." />
+  </ms:definitions>
 </ms:unit>
 <ms:unit ms:id="ASDJKDJO12314A">
   <ms:type>cc:Type/Warc/Result</ms:type>

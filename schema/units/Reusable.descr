@@ -1,0 +1,20 @@
+=short
+
+<p>The base type for many complex definitions.  They are defined
+as rather stand-alone things, but tied together via their name.</p>
+
+=schema
+
+==xml
+<complexType name="Reusable">
+  <sequence>
+    <element ref="ms:use" minOccurs="0" maxOccurs="unbounded">
+  </sequence>
+  <attribute name="name" type="token" required="true" />
+  <attributeGroup ref="ms:selector" />
+</complexType>
+==end
+
+=description
+
+=attribute name

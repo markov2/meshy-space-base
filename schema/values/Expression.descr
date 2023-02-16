@@ -1,14 +1,11 @@
 =short
 
-<p>The <i>expression</i> is referred to by name, typically in attributes
-named like <i>value</i>.  They are formatted as common in many C-like
-programming languages.
+<p>Read the <a href="/explain/base/expressions.html">the explanation
+for a full overview.</p>
 
 =schema
 
 ==xml
-<element name="expression" type="ms:Expression" abstract="true" />
-
 <complexType name="Expression">
   <simpleContent>
     <extension base="string">

@@ -10,12 +10,11 @@ reason.</p>
 
 <complexType name="Has">
   <complexContent>
-    <extension base="ms:UnitMayRef">
-      <sequence>
-         <element name="type"  type="ms:Constant" minOccurs="0" />
-      </sequence>
-      <attribute name="seqnr"  type="unsignedLong" default="1" />
-      <attribute name="is"     type="ms:Constant" default="ms:Role/Unknown" />
+    <extension base="ms:Reusable">
+      <sequence />
+      <attribute name="type"  type="ms:Constant"  />
+      <attribute name="seqnr" type="unsignedLong" default="1" />
+      <attribute name="is"    type="ms:Constant"  default="ms:Role/Unknown" />
     </extension>
   </complexContent>
 </complexType>
@@ -27,10 +26,6 @@ reason.</p>
 is expressed via the <code>ms:is</code> attribute, which contains a
 name-spaced constant.  The attributes are typical selectors to find
 the right relation to follow, the elements are informational.</p>
-
-<p>The <SCHEMA>ms:UnitMayRef</SCHEMA> base type provides the
-<code>ref</code> (obligatory), <code>when</code>, and <code>unless</code>
-attributes.</p>
 
 =attribute is
 
@@ -50,7 +45,7 @@ for a certain <code>msc:Role/Collection</code> will ask to include the
 related units with relation <code>msc:Role/Rules</code>.  Or more general,
 probably request for all <code>msc:Role/</code> Units.</p>
 
-=element type
+=attribute type
 
 <p>The type of the content of Unit where this relation refers to, which
 MAY optimize some processes.  This is indicative only: the processors
@@ -58,11 +53,12 @@ SHALL check whether is field is correct, and MAY cast a warning on
 mistakes.</p>
 
 <p>Usually, this element is not really useful: the processor can better
-retreive the Unit and then check whether it is able to handle it.
-Many relations have different objects.  For instance, the Identity
-of the owner of the Unit can be a single person, a group, and so on.
-Which kind of Identity it is, does not really matter in the main code
-of the processor.</p>
+retreive the Unit and then check whether it is able to handle it.</p>
+
+<p>Many relations support different object typess.  For instance,
+the Identity of the owner of the Unit can be a single person, a group,
+and so on.  Which kind of Identity it is, does not really matter in the
+main code of the processor.</p>
 
 =attribute seqnr
 
@@ -82,7 +78,7 @@ a unit into a separate unit: for instance the history of the unit.</p>
   <msc:indentity />
 </ms:unit>
 <ms:unit ms:id="Sources">              <!-- in dist: -->
-  <ms:type>msc:Collection</ms:type>  <!-- is a Subspace -->
+  <ms:type>msc:Collection</ms:type>    <!-- is a Subspace -->
   <ms:has ms:is="dist:Role/Source" ms:ref="puppy-src-3.14.rpm" />
   <ms:has ms:is="dist:Role/Source" ms:ref="wolf-src-12.2.rpm" />
 </ms:unit>
@@ -106,7 +102,7 @@ a unit into a separate unit: for instance the history of the unit.</p>
 },
 "ms:unit" : {
   "ms:id": "Sources",               // in dist:
-  "ms:type" : "msc:Collection",   // is a Subspace
+  "ms:type" : "msc:Collection",     // is a Subspace
   "ms:has" : [ {
     "ms:is" : "dist:Role/Source",
     "ms:ref" : "puppy-src-3.14.rpm"

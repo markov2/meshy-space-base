@@ -1,0 +1,31 @@
+=short
+
+<p>Definitions are used to regulate Units and its dependencies.
+Those are grouped and reusable by other Units via <SCHEMA>ms:user</SCHEMA>.</p>
+
+=schema
+
+==xml
+<element name="definitions" type="ms:Definitions" />
+
+<complexType name="Definitions">
+  <complexContent>
+    <extension base="ms:Reusable">
+      <element ref="ms:prefix" minOccurs="0" maxOccurs="unbounded" />
+      <element ref="ms:let"    minOccurs="0" maxOccurs="unbounded" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+=element prefix
+
+<p>Declarations of prefixes used in, for instance, constants and
+unit references.  These are not ment to be used for XML schema
+prefixes.</p>
+
+=element let
+
+<p>Declarations of <a href="/explain/base/expressions.html">expressions</a></p>

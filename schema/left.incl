@@ -5,9 +5,9 @@ namespace: <code>ms:</code></p>
 <ul>
 <li><a href="/schemas/base/constants/">constants</a></li>
 <li><a href="/schemas/base/documentation/">documentation</a></li>
+<li><a href="/schemas/base/definitions/">definitions</a></li>
 <li><a href="/schemas/base/namespaces/">namespaces</a></li>
 <li><a href="/schemas/base/payloads/">payloads</a></li>
-<li><a href="/schemas/base/rules/">rules</a></li>
 <li><a href="/schemas/base/units/">units</a></li>
 <li><a href="/schemas/base/values/">values</a></li>
 </ul>

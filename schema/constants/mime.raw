@@ -4,7 +4,7 @@
 They are standardized by IETF via [% rfc(6838) %].  The
 <a href="https://www.iana.org/assignments/media-types/media-types.xhtml"
 >official list</a> is maintained by IANA.  For those types, use the
-<code>ms:Mime/</code> prefix.</p>
+<code>iana:Mime/</code> prefix.</p>
 
 <p class="list">Example use of formats which have a IANA registration:</p>
 <CODE>
@@ -14,6 +14,10 @@ ms:Mime/application/pdf
 
 <p>Applications which handle IANA mime-types must handle them case-insensitive,
 and expect that the "<code>x-</code>" may disappear in the future.</p>
+
+<p>Hopefully, in the future IANA will maintain their own namespace of MIME
+type definitions within Meshy Space.  In that case, a simple namespace
+redirection can be set-up to facilitate the transition.</p>
 
 <h4>Missing MIME-types</h4>
 

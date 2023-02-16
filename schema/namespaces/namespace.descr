@@ -38,11 +38,8 @@ abstraction, they become Collections (<SCHEMA>msc:collection</SCHEMA>).
 the namespace or subspace; when you query a namespace for its blank Unit, you
 get the <i>root</i> Namespace Unit.</p>
 
-<p>The prefix information and <code>path-separator</code> for Subspaces
-are inherited from the enclosing Namespace.</p>
-
 <p>The <i>root</i> namespace requires a <SCHEMA>ms:use</SCHEMA>
-element to define its prefix.</p>
+element to define its default prefix.</p>
 
 =element path-separator
 

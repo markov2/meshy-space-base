@@ -1,0 +1,28 @@
+=short
+
+<p>Name an expression.</p>
+
+=schema
+
+==xml
+<element name="let" type="ms:Let" />
+
+<complexType name="Let">
+  <complexContent>
+    <extension base="ms:Reusable">
+      <element name="be" type="ms:Expression" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Expressions which are defined with <tt>let</tt> can be used in
+other expressions.</p>
+
+<p>Many objects produce expressions.  For instance, the server
+will offer some <tt>system</tt> values via this mechanism, like
+<tt>system.now</tt>.  The Collection will provide expressions
+about, for instance, it's contained number of Units.  In a Unit
+context, the <tt>unit.state</tt> will be set.</p>

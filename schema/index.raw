@@ -35,8 +35,12 @@ one namespace and one XML schema.</p>
 <dd>many sets of namespaced constants are used, mainly to explictly refer to
     values defined in RFCs, IANA, and other standardization bodies.</dd>
 
+<dt><a href="definitions/">definitions</a> contain logic.</dt>
+<dd>&nbsp;</dd>
+
 <dt><a href="namespaces/">namespaces</a> are used to group units into
-    manageable sets.  It defines access.</dt>
+    manageable sets.  It defines transport and access.</dt>
+<dd>&nbsp;</dd>
 
 <dt><a href="payloads/">payloads</a></dt>
 <dd>contain the data of each unit (in-lined) or as reference.  Some payloads
