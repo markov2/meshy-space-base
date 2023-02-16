@@ -1,11 +1,11 @@
 =short
 
-<p>The data is included in this <SCHEMA>ms:unit</SCHEMA> object itself.</p>
+<p>The data is included in this <SCHEMA>b:unit</SCHEMA> object itself.</p>
 
 =schema
 
 ==xml
-<element name="blob" type="ms:Bytes" />
+<element name="blob" type="b:Bytes" />
 ==end
 
 =description
@@ -15,18 +15,18 @@ able to fit in the message. The packaged data MAY be a structure, not
 UTF8, contain characters which XML does not like, or pure binary.</p>
 
 <p>Although the blob is a datas-source, it is not a complexType hence
-cannot extend from <SCHEMA>ms:data-source</SCHEMA>.</p>
+cannot extend from <SCHEMA>b:data-source</SCHEMA>.</p>
 
 =example Blob with Encoding
 
 <p class="list">The <code>encoded</code> attribute is an abbreviation.
 The following two are the same:</p>
 <XML>
-<ms:blob ms:encoded="ms:Encode/Base64">DATA</ms:blob>
+<b:blob b:encoded="ms:Encode/Base64">DATA</b:blob>
 
-<ms:encoded ms:by="ms:Encode/Base64">
-  <ms:blob>DATA</ms:blob>
-</ms:encoded>
+<b:encoded b:by="ms:Encode/Base64">
+  <b:blob>DATA</b:blob>
+</b:encoded>
 </XML>
 
 =example Blob using Compression
@@ -37,17 +37,17 @@ because compression algorithms usually produce binary output.</p>
 
 <p class="list">The following two are the same:</p>
 <XML>
-<ms:blob
-   ms:compressed="ms:Compress/Gzip"
-   ms:encoded="ms:Encode/Base64">
+<b:blob
+   b:compressed="ms:Compress/Gzip"
+   b:encoded="ms:Encode/Base64">
     DATA
-</ms:blob>
+</b:blob>
 
-<ms:encoded ms:by="ms:Encode/Base64">
-  <ms:compressed ms:by="ms:Compress/Gzip">
-    <ms:blob>
+<b:encoded b:by="ms:Encode/Base64">
+  <b:compressed b:by="ms:Compress/Gzip">
+    <b:blob>
       DATA
-    </ms:blob>
-  </ms:compressed>
-</ms:encoded>
+    </b:blob>
+  </b:compressed>
+</b:encoded>
 </XML>

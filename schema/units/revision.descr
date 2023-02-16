@@ -1,7 +1,7 @@
 
 =short
 
-<p>The <i>revision</i> of a <SCHEMA>ms:unit</SCHEMA> is used to determine
+<p>The <i>revision</i> of a <SCHEMA>b:unit</SCHEMA> is used to determine
 whether the unit has changed.  Only the newest revision should be kept:
 the older MUST be removed immediately.  String order determines age
 order.</p>

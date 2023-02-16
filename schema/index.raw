@@ -17,7 +17,7 @@ defines a uniform use of them.</p>
 
 <h2>The <code>unit</code></h2>
 
-<p>This <b>base</b> schema defines the <SCHEMA>ms:unit</SCHEMA>
+<p>This <b>base</b> schema defines the <SCHEMA>b:unit</SCHEMA>
 of operation.  It could have been named <i>object</i>, <i>atom</i>,
 <i>item</i>, <i>entry</i>, <i>file</i>, <i>quantum</i>, or <i>blob</i>:
 the unit is an sequence of octets (bytes) with some meaning.  When you
@@ -31,7 +31,7 @@ into a few accessible categories.  This is for documentation only: they form
 one namespace and one XML schema.</p>
 
 <dl>
-<dt><a href="constants/">constants</a> in the <code>ms:</code> namespace.</dt>
+<dt><a href="constants/">constants</a>, Units in the <code>ms:</code> namespace.</dt>
 <dd>many sets of namespaced constants are used, mainly to explictly refer to
     values defined in RFCs, IANA, and other standardization bodies.</dd>
 
@@ -60,6 +60,6 @@ one namespace and one XML schema.</p>
 <schema xmlns="http://www.w3.org/2001/XMLSchema" version="0.1.0"
    elementFormDefault="qualified" attributeFormDefault="qualified"
    targetNamespace="https://schemas.meshy.space/base.xsd"
-   xmlns:ms="https://schemas.meshy.space/base.xsd"
+   xmlns:b="https://schemas.meshy.space/base.xsd"
 >
 </XML>

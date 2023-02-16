@@ -3,7 +3,7 @@
 
 <p>A group of fields which maintain the status of the unit; units
 may require maintenance, even when you do not like it.  First read
-the <a href="/explain/life-cycle/">explanation of the
+the <a href="/explain/base/life-cycle.html">explanation of the
 life-cycle</a>.</p>
 
 =schema
@@ -11,12 +11,12 @@ life-cycle</a>.</p>
 ==xml
 <group name="life-cycle">
   <sequence>
-    <element ref="ms:revision"                     minOccurs="0" />
-    <element name="created"   type="dateTime"      minOccurs="0" />
-    <element name="updated"   type="dateTime"      minOccurs="0" />
-    <element name="deprecate" type="ms:Expression" minOccurs="0" />
-    <element name="expire"    type="ms:Expression" minOccurs="0" />
-    <element name="revisit"   type="duration"      minOccurs="0" />
+    <element ref="b:revision"                     minOccurs="0" />
+    <element name="created"   type="dateTime"     minOccurs="0" />
+    <element name="updated"   type="dateTime"     minOccurs="0" />
+    <element name="deprecate" type="b:Expression" minOccurs="0" />
+    <element name="expire"    type="b:Expression" minOccurs="0" />
+    <element name="revisit"   type="duration"     minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -35,11 +35,11 @@ to <code>created</code>.</p>
 <p>For each of the time-stamps, you will not see who has set or
 changed them inside the unit itself: that could become quite expensive.
 The collection of units MAY have a separate archive which contains or
-produces change-logs.  See <SCHEMA>msc:Type/ChangeLog</SCHEMA>.</p>
+produces change-logs.  See <UNIT>msc:Type/ChangeLog</UNIT>.</p>
 
 =element revision
 
-<p>See <SCHEMA>ms:revision</SCHEMA>.  Defaults to the value of
+<p>See <SCHEMA>b:revision</SCHEMA>.  Defaults to the value of
 <code>updated</code>, which contains a date which is string-sortable.</p>
 
 =element created
@@ -90,7 +90,7 @@ Probably the latter.  This may be expensive.</p>
 <p>The maximum in which you have to check whether you still have the
 latest revision of a unit.  When you use a cached unit (of any type)
 you must check whether the collection which contains that unit has
-to be upgraded, using the <SCHEMA>ms:Op.upgrade</SCHEMA> operation.
+to be upgraded, using the <UNIT>ms:Op.upgrade</UNIT> operation.
 All reported changes need to be processed before you can continue.</p>
 
 <p>It is RECOMMENDED to have a background process performing this task,

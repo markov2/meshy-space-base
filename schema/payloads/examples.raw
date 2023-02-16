@@ -5,54 +5,54 @@ may be quite hard to grasp without extensive example.</p>
 
 <h4>Unit contains all information to find an image</h4>
 
-<p>In the example below, the <SCHEMA>ms:unit</SCHEMA> describes an image
+<p>In the example below, the <SCHEMA>b:unit</SCHEMA> describes an image
 which is part of a <i>tar</i>-archive which is gzip-compressed.  This is
 a common format in the UNIX/Linux environment.</p>
 <XML>
-<ms:unit>
-  <ms:type>ms:Mime/image/jpeg</ms:type>
-  <ms:name>logo.jpg</ms:name>
-  <ms:content>
-    <ms:size>12121</ms:size>
-    <ms:packaged ms:by="ms:Pack/Tar">
-      <ms:size>314156</ms:size>
-      <ms:compressed ms:by="ms:Compress/Gzip">
-        <ms:size>51234</ms:size>
-        <ms:fetch ms:href="https://e.com/style.tar.gz" />
-      </ms:compressed>
-      <ms:entry>logo-50x124.jpg</ms:entry>
-    </ms:packaged>
-    <ms:checksum ms:by="ms:Checksum/SHA1">
-      <ms:encoded ms:by="ms:Encode/Base64">
-        <ms:blob>SGVsbG8sIFdvcmxkIQo=</ms:blob>
-      </ms:encoded>
-    </ms:checksum>
-  </ms:content>
-</ms:unit>
+<b:unit>
+  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:name>logo.jpg</b:name>
+  <b:content>
+    <b:size>12121</b:size>
+    <b:packaged b:by="ms:Pack/Tar">
+      <b:size>314156</b:size>
+      <b:compressed b:by="ms:Compress/Gzip">
+        <b:size>51234</b:size>
+        <b:fetch b:href="https://e.com/style.tar.gz" />
+      </b:compressed>
+      <b:entry>logo-50x124.jpg</b:entry>
+    </b:packaged>
+    <b:checksum b:by="ms:Checksum/SHA1">
+      <b:encoded b:by="ms:Encode/Base64">
+        <b:blob>SGVsbG8sIFdvcmxkIQo=</b:blob>
+      </b:encoded>
+    </b:checksum>
+  </b:content>
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-  "ms:type" : "ms:Mime/image/jpeg",
-  "ms:name" : "logo.jpg",
-  "ms:content" : {
-    "ms:size" : "12121",
-    "ms:packaged" : {
-      "ms:by" : "ms:Pack/Tar",
-      "ms:size" : "314156",
-      "ms:compressed" : {
-        "ms:by" : "ms:Compress/Gzip",
-        "ms:size" : "51234",
-        "ms:fetch" : {
-          "ms:href" : "https://e.com/style.tar.gz"
+"b:unit" : {
+  "b:type" : "ms:Mime/image/jpeg",
+  "b:name" : "logo.jpg",
+  "b:content" : {
+    "b:size" : "12121",
+    "b:packaged" : {
+      "b:by" : "ms:Pack/Tar",
+      "b:size" : "314156",
+      "b:compressed" : {
+        "b:by" : "ms:Compress/Gzip",
+        "b:size" : "51234",
+        "b:fetch" : {
+          "b:href" : "https://e.com/style.tar.gz"
         }
       },
-      "ms:entry" : "logo-50x124.jpg"
+      "b:entry" : "logo-50x124.jpg"
     },
-    "ms:checksum" : {
-      "ms:by" : "ms:Checksum/SHA1",
-      "ms:encoded" : {
-        "ms:by" : "ms:Encode/Base64",
-        "ms:blob" : "SGVsbG8sIFdvcmxkIQo="
+    "b:checksum" : {
+      "b:by" : "ms:Checksum/SHA1",
+      "b:encoded" : {
+        "b:by" : "ms:Encode/Base64",
+        "b:blob" : "SGVsbG8sIFdvcmxkIQo="
       }
     }
   }
@@ -71,64 +71,64 @@ recursive.  In the example below, the details about where to get the
 data elements in that tar.</p>
 
 <XML>
-<ms:unit ms:id="default-logo.jpg">
-  <ms:type>ms:Mime/image/jpeg</ms:type>
-  <ms:name>logo.jpg</ms:name>
-  <ms:content>
-    <ms:size>12121</ms:size>
-    <ms:packaged ms:by="ms:Pack/Tar">
-      <ms:resource ms:ref="dist:style.tar" />
-      <ms:entry>logo-50x124.jpg</ms:entry>
-    </ms:packaged>
-    <ms:checksum ms:by="ms:Checksum/SHA1">
-      <ms:blob ms:encoded="ms:Encode/Base64">SGV...kIQo=</ms:blob>
-    </ms:checksum>
-  </ms:content>
-</ms:unit>
+<b:unit b:id="default-logo.jpg">
+  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:name>logo.jpg</b:name>
+  <b:content>
+    <b:size>12121</b:size>
+    <b:packaged b:by="ms:Pack/Tar">
+      <b:resource b:ref="dist:style.tar" />
+      <b:entry>logo-50x124.jpg</b:entry>
+    </b:packaged>
+    <b:checksum b:by="ms:Checksum/SHA1">
+      <b:blob b:encoded="ms:Encode/Base64">SGV...kIQo=</b:blob>
+    </b:checksum>
+  </b:content>
+</b:unit>
 
 <!-- in the Namespace with prefix "dist" -->
-<ms:unit ms:id="style.tar">
-  <ms:type>ms:Mime/application/tar</ms:type>
-  <ms:content>
-    <ms:size>314156</ms:size>
-    <ms:compressed ms:by="ms:Compress/Gzip">
-      <ms:size>51234</ms:size>
-      <ms:fetch ms:href="https://e.com/style.tar.gz" />
-    </ms:compressed>
-  </ms:content>
-</ms:unit>
+<b:unit b:id="style.tar">
+  <b:type>ms:Mime/application/tar</b:type>
+  <b:content>
+    <b:size>314156</b:size>
+    <b:compressed b:by="ms:Compress/Gzip">
+      <b:size>51234</b:size>
+      <b:fetch b:href="https://e.com/style.tar.gz" />
+    </b:compressed>
+  </b:content>
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-  "ms:id" : "default-logo.jpg",
-  "ms:type" : "ms:Mime/image/jpeg",
-  "ms:name" : "logo.jpg",
-  "ms:content" : {
-    "ms:size" : "12121",
-    "ms:packaged" : {
-      "ms:by" : "ms:Pack/Tar",
-      "ms:resource" : { "ms:ref" : "dist:style.tar" },
-      "ms:entry" : "logo-50x124.jpg"
+"b:unit" : {
+  "b:id" : "default-logo.jpg",
+  "b:type" : "ms:Mime/image/jpeg",
+  "b:name" : "logo.jpg",
+  "b:content" : {
+    "b:size" : "12121",
+    "b:packaged" : {
+      "b:by" : "ms:Pack/Tar",
+      "b:resource" : { "b:ref" : "dist:style.tar" },
+      "b:entry" : "logo-50x124.jpg"
     },
-    "ms:checksum" : {
-      "ms:by" : "ms:Checksum/SHA1",
-      "ms:blob" : {
-         "ms:encoded" : "ms:Encode/Base64",
+    "b:checksum" : {
+      "b:by" : "ms:Checksum/SHA1",
+      "b:blob" : {
+         "b:encoded" : "ms:Encode/Base64",
          "_" : "SGV...kIQo="
       }
     }
   }
 },
 
-"ms:unit" : {
-  "ms:id" : "style.tar",
-  "ms:type" : "ms:Mime/application/tar",
-  "ms:content" : {
-    "ms:size" : "314156",
-    "ms:compressed" : {
-      "ms:by" : "ms:Compress/Gzip",
-      "ms:size" : "51234",
-      "ms:fetch" : { "ms:href" : "https://e.com/style.tar.gz" }
+"b:unit" : {
+  "b:id" : "style.tar",
+  "b:type" : "ms:Mime/application/tar",
+  "b:content" : {
+    "b:size" : "314156",
+    "b:compressed" : {
+      "b:by" : "ms:Compress/Gzip",
+      "b:size" : "51234",
+      "b:fetch" : { "b:href" : "https://e.com/style.tar.gz" }
     }
   }
 }
@@ -144,17 +144,17 @@ signature of them, or when they grow that large that compression
 is useful.  This is possible as well, as the example below shows:</p>
 
 <XML>
-<ms:unit ms:id="config">
-  <ms:type>msc:Type/Collection</ms:type>
-  <ms:content>
-    <ms:type>ms:Type/Native</ms:type>
-    <ms:blob ms:compressed="ms:Compress/Gzip"
-       ms:encoded="ms:Encode/Base64">
+<b:unit b:id="config">
+  <b:type>msc:Type/Collection</b:type>
+  <b:content>
+    <b:type>ms:Type/Native</b:type>
+    <b:blob b:compressed="ms:Compress/Gzip"
+       b:encoded="ms:Encode/Base64">
         ...
-    </ms:blob>
-    <ms:checksum>
+    </b:blob>
+    <b:checksum>
        ...
-    </ms:checksum>
-  </ms:content>
-</ms:unit>
+    </b:checksum>
+  </b:content>
+</b:unit>
 </XML>

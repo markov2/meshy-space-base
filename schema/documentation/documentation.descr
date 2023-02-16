@@ -1,29 +1,29 @@
 =short
 
-<p>Documentation about the content of <SCHEMA>ms:Unit</SCHEMA>s.</p>
+<p>Documentation about the content of <SCHEMA>b:unit</SCHEMA>s.</p>
 
 =schema
 
 ==xml
-<element name="documentation" type="ms:Documentation" />
+<element name="documentation" type="b:Documentation" />
 
 <complexType name="Documentation">
   <choice minOccurs="0" maxOccurs="unbounded">
-    <element name="name"          type="ms:DocText" />
-    <element name="hint"          type="ms:DocText" />
-    <element name="description"   type="ms:DocText" />
-    <element name="web-page"      type="ms:DocURI" />
-    <element name="documentation" type="ms:Documentation" />
+    <element name="name"          type="b:DocText" />
+    <element name="hint"          type="b:DocText" />
+    <element name="description"   type="b:DocText" />
+    <element name="web-page"      type="b:DocURI" />
+    <element name="documentation" type="b:Documentation" />
   </choice>
-  <attributeGroup ref="ms:doc-selector" />
+  <attributeGroup ref="b:doc-selector" />
 </complexType>
 ==end
 
 =description
 
 <p>When you have additional documentation information inside another
-Unit, then use <SCHEMA>ms:has</SCHEMA> references of kind
-<SCHEMA>ms:Role/Documentation</SCHEMA>.</p>
+Unit, then use <SCHEMA>b:has</SCHEMA> references of kind
+<UNIT>ms:Role/Documentation</UNIT>.</p>
 
 =attributeGroup doc-selector
 
@@ -60,24 +60,24 @@ in some way, reducing the need for selectors.</p>
 =example documentation inside the Unit itself
 
 <XML>
-<ms:unit ms:id="IMG00001.jpg">
-  <ms:type>ms:Mime/image/jpeg</ms:type>
-  <ms:content />
-  <ms:documentation ms:language="nl-NL">
-    <ms:name>2022-02-04 foto 1</ms:name>
-    <ms:hint>Vakantie in Zeeland</ms:hint>
-  </ms:documentation>
-</ms:unit>
+<b:unit b:id="IMG00001.jpg">
+  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:content />
+  <b:documentation b:language="nl-NL">
+    <b:name>2022-02-04 foto 1</b:name>
+    <b:hint>Vakantie in Zeeland</b:hint>
+  </b:documentation>
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-   "ms:id" : "IMG00001.jpg",
-   "ms:type" : "ms:Mime/image/jpeg",
-   "ms:content" : { },
-   "ms:documentation" : {
-     "ms:language" : "nl-NL",
-     "ms:name" : "2022-02-04 foto 1",
-     "ms:hint" : "Vakantie in Zeeland"
+"b:unit" : {
+   "b:id" : "IMG00001.jpg",
+   "b:type" : "ms:Mime/image/jpeg",
+   "b:content" : { },
+   "b:documentation" : {
+     "b:language" : "nl-NL",
+     "b:name" : "2022-02-04 foto 1",
+     "b:hint" : "Vakantie in Zeeland"
    }
 }
 </JSON>
@@ -86,36 +86,36 @@ in some way, reducing the need for selectors.</p>
 =example documentation inside the Unit, two languages
 
 <XML>
-<ms:unit ms:id="IMG00001.jpg">
-  <ms:type>ms:Mime/image/jpeg</ms:type>
-  <ms:content />
-  <ms:documentation ms:type="ms:Mime/text/plain">
-    <ms:documentation ms:language="nl-NL">
-      <ms:name>2022-02-04 foto 1</ms:name>
-      <ms:hint>Vakantie in Zeeland</ms:hint>
-    </ms:documentation>
-    <ms:documentation ms:language="en-US">
-      <ms:name>04-02-2022 photo 1</ms:name>
-      <ms:hint>Holidays in Zeeland (NL)</ms:hint>
-    </ms:documentation>
-  </ms:documentation>
-</ms:unit>
+<b:unit b:id="IMG00001.jpg">
+  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:content />
+  <b:documentation b:type="ms:Mime/text/plain">
+    <b:documentation b:language="nl-NL">
+      <b:name>2022-02-04 foto 1</b:name>
+      <b:hint>Vakantie in Zeeland</b:hint>
+    </b:documentation>
+    <b:documentation b:language="en-US">
+      <b:name>04-02-2022 photo 1</b:name>
+      <b:hint>Holidays in Zeeland (NL)</b:hint>
+    </b:documentation>
+  </b:documentation>
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-   "ms:id" : "IMG00001.jpg",
-   "ms:type" : "ms:Mime/image/jpeg",
-   "ms:content" : { },
-   "ms:documentation" : { 
-      "ms:type" : "ms:Mime/text/plain",
-      "ms:documentation" : [ {
-         "ms:language" : "nl-NL",
-         "ms:name" : "2022-02-04 foto 1",
-         "ms:hint" : "Vakantie in Zeeland"
+"b:unit" : {
+   "b:id" : "IMG00001.jpg",
+   "b:type" : "ms:Mime/image/jpeg",
+   "b:content" : { },
+   "b:documentation" : { 
+      "b:type" : "ms:Mime/text/plain",
+      "b:documentation" : [ {
+         "b:language" : "nl-NL",
+         "b:name" : "2022-02-04 foto 1",
+         "b:hint" : "Vakantie in Zeeland"
       }, {
-         "ms:language" : "en-US",
-         "ms:name" : "04-02-2022 photo 1",
-         "ms:hint" : "Holidays in Zeeland (NL)"
+         "b:language" : "en-US",
+         "b:name" : "04-02-2022 photo 1",
+         "b:hint" : "Holidays in Zeeland (NL)"
       } ]
    }
 }
@@ -125,20 +125,20 @@ in some way, reducing the need for selectors.</p>
 =example documentation in some other Unit, explicit
 
 <XML>
-<ms:unit ms:id="IMG00001.jpg">
-  <ms:type>ms:Mime/image/jpeg</ms:type>
-  <ms:content />
-  <ms:has ms:is="ms:Role/Documentation" ms:ref="Story/IMG00001" />
-</ms:unit>
+<b:unit b:id="IMG00001.jpg">
+  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:content />
+  <b:has b:is="ms:Role/Documentation" b:ref="Story/IMG00001" />
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-   "ms:id" : "IMG00001.jpg",
-   "ms:type" : "ms:Mime/image/jpeg",
-   "ms:content" : { },
-   "ms:has" : {
-      "ms:is" : "ms:Role/Documentation",
-      "ms:ref" : "Story/IMG00001.jpg"
+"b:unit" : {
+   "b:id" : "IMG00001.jpg",
+   "b:type" : "ms:Mime/image/jpeg",
+   "b:content" : { },
+   "b:has" : {
+      "b:is" : "ms:Role/Documentation",
+      "b:ref" : "Story/IMG00001.jpg"
    }
 }
 </JSON>
@@ -151,19 +151,19 @@ the rules for the Unit which it is documenting.</p>
 =example documentation in some other Unit, implicit
 
 <XML>
-<ms:unit ms:id="Holiday Pictures">
-  <ms:type>ms:Type/Namespace</ms:type>
-  <ms:namespace />
-  <ms:has ms:is="ms:Role/Documentation" ms:ref="Story" />
-</ms:unit>
+<b:unit b:id="Holiday Pictures">
+  <b:type>ms:Type/Namespace</b:type>
+  <b:namespace />
+  <b:has b:is="ms:Role/Documentation" b:ref="Story" />
+</b:unit>
 </XML>
 <JSON>
-"ms:unit" : {
-   "ms:type" : "ms:Type/Namespace",
-   "ms:namespace" : { },
-   "ms:has" : {
-      "ms:is" : "ms:Role/Documentation",
-      "ms:ref" : "Story"
+"b:unit" : {
+   "b:type" : "ms:Type/Namespace",
+   "b:namespace" : { },
+   "b:has" : {
+      "b:is" : "ms:Role/Documentation",
+      "b:ref" : "Story"
    }
 }
 </JSON>

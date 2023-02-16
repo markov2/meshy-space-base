@@ -8,7 +8,7 @@
 <complexType name="DocURI">
   <simpleContent>
     <extension base="anyURI">
-      <attributeGroup ref="ms:doc-selector" />
+      <attributeGroup ref="b:doc-selector" />
     </extension>
   </simpleContent>
 </complexType>

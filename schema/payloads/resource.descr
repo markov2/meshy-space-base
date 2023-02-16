@@ -1,19 +1,19 @@
 =short
 
-<p>Refers of the content of another <SCHEMA>ms:unit</SCHEMA> to provide the
+<p>Refers of the content of another <SCHEMA>b:unit</SCHEMA> to provide the
 requested data.</p>
 
 =schema
 
 ==xml
-<element name="resource" type="ms:Resource"
-   substitutionGroup="ms:data-source" />
+<element name="resource" type="b:Resource"
+   substitutionGroup="b:data-source" />
 
 <complexType name="Resource">
   <complexContent>
-    <extension base="ms:DataSource">
+    <extension base="b:DataSource">
       <sequence />
-      <attribute name="ref" type="ms:UnitRef" />
+      <attribute name="ref" type="b:UnitRef" />
     </extension>
   </complexContent>
 </complexType>

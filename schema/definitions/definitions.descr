@@ -1,18 +1,18 @@
 =short
 
 <p>Definitions are used to regulate Units and its dependencies.
-Those are grouped and reusable by other Units via <SCHEMA>ms:user</SCHEMA>.</p>
+Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
 
 =schema
 
 ==xml
-<element name="definitions" type="ms:Definitions" />
+<element name="definitions" type="b:Definitions" />
 
 <complexType name="Definitions">
   <complexContent>
-    <extension base="ms:Reusable">
-      <element ref="ms:prefix" minOccurs="0" maxOccurs="unbounded" />
-      <element ref="ms:let"    minOccurs="0" maxOccurs="unbounded" />
+    <extension base="b:Reusable">
+      <element ref="b:prefix" minOccurs="0" maxOccurs="unbounded" />
+      <element ref="b:let"    minOccurs="0" maxOccurs="unbounded" />
     </extension>
   </complexContent>
 </complexType>

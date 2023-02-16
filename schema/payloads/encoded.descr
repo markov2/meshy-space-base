@@ -5,13 +5,13 @@
 =schema
 
 ==xml
-<element name="encoded" type="ms:Encoded"
-   substitutionGroup="ms:data-apply" />
+<element name="encoded" type="b:Encoded"
+   substitutionGroup="b:data-apply" />
 
 <complexType name="Encoded">
   <complexContent>
-    <extension base="ms:DataApply">
-      <attribute name="by" type="ms:Constant" use="required" />
+    <extension base="b:DataApply">
+      <attribute name="by" type="b:Constant" use="required" />
     </extension>
   </complexContent>
 </complexType>

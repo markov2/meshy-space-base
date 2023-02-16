@@ -1,6 +1,6 @@
 =short
 
-<p>Type <i>ms:UnitRef</i> is a reference to some <SCHEMA>ms:unit</SCHEMA>.
+<p>Type <i>b:UnitRef</i> is a reference to some <SCHEMA>b:unit</SCHEMA>.
 That unit does not need to be in the current message.</p>
 
 =schema
@@ -13,8 +13,8 @@ That unit does not need to be in the current message.</p>
 
 =description
 
-<p>Elements and attributes of type <code>ms:UnitRef</code>
-refer to a <SCHEMA>ms:unit</SCHEMA> instance.  This can be in a
+<p>Elements and attributes of type <code>b:UnitRef</code>
+refer to a <SCHEMA>b:unit</SCHEMA> instance.  This can be in a
 namespace qualified form or in a relative form.  The accepted
 syntax mimics HTTP URI syntax as defined by [% rfc(3986) %].</p>
 
@@ -35,7 +35,7 @@ rewritten.</p>
 
 <p><b>Be aware</b> that the path components need to be compared in NFJK
 normalized form.  One Unit may use multiple path components in its
-<code>unit-id</code> (of type <SCHEMA>ms:UnitID</SCHEMA>).</p>
+<code>unit-id</code> (of type <SCHEMA>b:UnitID</SCHEMA>).</p>
 
 =attribute ref
 
@@ -69,7 +69,7 @@ Unit where the reference was found.</p>
 the reference is <i>absolute</i>.  Examples:</p>
 
 <CODE>
-pref:                # refers to the root ms:namespace unit
+pref:                # refers to the root b:namespace unit
 pref:a
 pref:image/logo.png
 </CODE>
@@ -126,5 +126,5 @@ my $unit = $ms->getUnit("net:ipv4/192.168.12.1");
 print $unit->name;  # --> "Gateway for 192.168.12"
 </PERL>
 
-<p>Be aware that <code>ms:unit</code> objects have all and more
+<p>Be aware that <SCHEMA>b:unit</SCHEMA> objects have all and more
 features as DNS zone files, like cache expiration and distribution.</p>

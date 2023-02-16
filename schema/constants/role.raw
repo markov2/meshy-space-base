@@ -1,38 +1,38 @@
 <h1>Constants for Roles</h1>
 
-<p>Meshy Space base object <SCHEMA>ms:unit</SCHEMA> has many relations.
+<p>Meshy Space base object <SCHEMA>b:unit</SCHEMA> has many relations.
 The client MAY understand these relations.  The relations have a Role,
 and end in a Unit of a certain <a href="types.html">Type</a>.
 See also the <a href="/schemas/concept/constants/roles.html">concept Roles</a>.</p>
 
-<p>The <code>is</code> attribute of the <SCHEMA>ms:has</SCHEMA> elements
-in a <SCHEMA>ms:unit</SCHEMA> describes the relation.  When that value
-is in the <code>ms:</code> namespace, you will find it described below.</p>
+<p>The <code>is</code> attribute of the <SCHEMA>b:has</SCHEMA> elements
+in a <SCHEMA>b:unit</SCHEMA> describes the relation.  When that value
+is in the <code>b:</code> namespace, you will find it described below.</p>
 
 <p>Roles do not need to refer to Units with only one specific Type: the
 application client must be able to handle (ignore) unexpected Types.</p>
 
-<div id="ms:roles" class="accordion constants">
+<div id="b:roles" class="accordion constants">
 
 <h3 name="Documentation">ms:Role/Documentation</h3>
 <div>
-<p>Refers to a Unit of type <SCHEMA>ms:Type/Documention</SCHEMA></p>
+<p>Refers to a Unit of type <UNIT>ms:Type/Documention</UNIT></p>
 </div>
 
 <h3 name="Manager">ms:Role/Manager</h3>
 <div>
-<p>When the root Namespace <SCHEMA>ms:has</SCHEMA> a Manager, then
+<p>When the root Namespace <SCHEMA>b:has</SCHEMA> a Manager, then
 access to that namespace can only take place via that Manager.
-At the moment, the <SCHEMA>msc:Type/Shop</SCHEMA> is the only manager
-for a top-namespace, and <SCHEMA>msc:Type/Collection</SCHEMA> for
+At the moment, the <UNIT>msc:Type/Shop</UNIT> is the only manager
+for a top-namespace, and <UNIT>msc:Type/Collection</UNIT> for
 sub-spaces.</p>
 </div>
 
 <h3 name="Rule">ms:Role/Rule</h3>
 <div>
-<p>Units referred to as this role, are of type <SCHEMA>ms:Type/Rule</SCHEMA>
-or <SCHEMA>msc:Type/Rule</SCHEMA> and define expressions
-(<SCHEMA>ms:expression</SCHEMA>)</p>
+<p>Units referred to as this role, are of type <UNIT>ms:Type/Rule</UNIT>
+or <UNIT>msc:Type/Rule</UNIT> and define expressions
+(<SCHEMA>b:let</SCHEMA>)</p>
 </div>
 
 </div> <!-- end accordion -->

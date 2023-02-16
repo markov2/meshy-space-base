@@ -10,8 +10,8 @@ possible without help.</p>
 <complexType name="Bytes">
   <simpleContent>
     <extension base="string">
-      <attribute name="encoded"    type="ms:Constant" />
-      <attribute name="compressed" type="ms:Constant" />
+      <attribute name="encoded"    type="b:Constant" />
+      <attribute name="compressed" type="b:Constant" />
     </extension>
   </simpleContent>
 </complexType>
@@ -28,11 +28,11 @@ unusable.  Those "octet sequences" should be encoded.</p>
 
 <p>When a byte (octet) string contains characters outside the
 ascii printable range, it SHALL be encoded with any format defined
-in <SCHEMA>ms:Encode/</SCHEMA>.</p>
+in <UNIT>ms:Encode/</UNIT>.</p>
 
 =attribute compressed
 
-<p>Contains a <SCHEMA>ms:Compress/</SCHEMA> compression constant
+<p>Contains a <UNIT>ms:Compress/</UNIT> compression constant
 which explains which compression has taken place (before the
 optional encoding)</p>
 

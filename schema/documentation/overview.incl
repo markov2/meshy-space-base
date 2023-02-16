@@ -36,7 +36,7 @@ languages, then it is easiest to create a Collection with documentation
 Units, where each unit contains one translation.  This can be made
 efficient: the Subspace contains a generic:</p>
 <CODE>
-<ms:has ms:href="ms:Role/Documentation" ms:when="user.language eq 'en-US'" />
+<b:has b:href="ms:Role/Documentation" b:when="user.language eq 'en-US'" />
 </CODE>
 
 <p>It is RECOMMENDED to design a consistent structure for the documentation

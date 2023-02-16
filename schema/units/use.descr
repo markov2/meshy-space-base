@@ -5,16 +5,16 @@
 =schema
 
 ==xml
-<element name="use" type="ms:Use" />
+<element name="use" type="b:Use" />
 
 <complexType name="Use">
   <sequence>
     <element name="include" type="string" minOccurs="0" maxOccurs="unbounded">
     <element name="exclude" type="string" minOccurs="0" maxOccurs="unbounded">
   </sequence>
-  <attribute name="from" type="ms:UnitFragment" use="required"  />
+  <attribute name="from" type="b:UnitFragment" use="required"  />
   <attribute name="all"  type="boolean" default="true"  />
-  <attributeGroup ref="ms:selector" />
+  <attributeGroup ref="b:selector" />
 </complexType>
 ==end
 
@@ -32,18 +32,18 @@ Unit cannot be read, it will not result in an error.</p>
 
 =attribute all
 
-<p>Determines whether to take <i>all</i> definitions from the fragment
+<p>Determines whether to take <code>b:all</code> definitions from the fragment
 which is referred to by default.</p>
 
 =element include
 
-<p>When not <i>all</i>, then specify explicitly which reusables MAY
+<p>When not <code>b:all</code>, then specify explicitly which reusables MAY
 be used here.  Only those will be passed to Units which use this
 reusable.</p>
 
 =element exclude
 
-<p>When <i>all</i> definitions are imported by default, some MAY be
+<p>When <code>b:all</code> definitions are imported by default, some MAY be
 excluded explicitly.  For instance, because of name conflicts are
 need for a clean style.</p>
 

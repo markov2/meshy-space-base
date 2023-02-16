@@ -7,12 +7,12 @@ based on very flexible expressions.</p>
 
 ==xml
 <attributeGroup name="selector">
-  <attribute name="when"   type="ms:Expression" />
-  <attribute name="unless" type="ms:Expression" />
+  <attribute name="when"   type="b:Expression" />
+  <attribute name="unless" type="b:Expression" />
 </attributeGroup>
 ==end
 
 =description
 
 <p><a href="/explain/base/expressions.html">Learn about expressions</a>.
-Use either <code>ms:when</codett> or <code>ms:unless</code>, or neither.</p>
+Use either <code>b:when</code> or <code>b:unless</code>, or neither.</p>

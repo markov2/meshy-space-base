@@ -1,12 +1,12 @@
-<p class="list">Usually, a <SCHEMA>ms:unit</SCHEMA> has a content: the <i>payload</i>.
+<p class="list">Usually, a <SCHEMA>b:unit</SCHEMA> has a content: the <i>payload</i>.
 This has two main variations:</p>
 
 <ul>
-<li><SCHEMA>ms:native</SCHEMA> payloads are (XML) message components which
+<li><SCHEMA>b:native</SCHEMA> payloads are (XML) message components which
     nicely integrate in the unit structure.  In these units, not only the
     wrapper, but also the payload data is defined in one of the Meshy Space
     schemas.</li>
-<li><SCHEMA>ms:content</SCHEMA> payloads produce bytes.</li>
+<li><SCHEMA>b:content</SCHEMA> payloads produce bytes.</li>
 </ul>
 
 <p>Please see <a href="examples.html">the examples</a> to learn about

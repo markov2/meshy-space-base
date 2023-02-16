@@ -6,23 +6,23 @@ and may have a complex life-cycle.</p>
 =schema
 
 ==xml
-<element name="namespace" type="ms:Namespace"
-   substitutionGroup="ms:native" />
+<element name="namespace" type="b:Namespace"
+   substitutionGroup="b:native" />
 
 <complexType name="Namespace">
   <complexContent>
-    <extension base="ms:Native">
+    <extension base="b:Native">
       <sequence>
-        <element name="path-separator" type="token"   minOccurs="0" />
-        <element name="language"   type="ms:Constant" minOccurs="0" />
+        <element name="path-separator" type="token"  minOccurs="0" />
+        <element name="language"   type="b:Constant" minOccurs="0" />
         <element name="fetch"      minOccurs="0" maxOccurs="unbounded">
           <complexType>
-            <attribute name="base" type="anyURI"      use="required" />
+            <attribute name="base" type="anyURI"     use="required" />
           </complexType>
         </element>
-        <element ref="ms:moved"    minOccurs="0" maxOccurs="unbounded" />
-        <element ref="ms:subspace" minOccurs="0" maxOccurs="unbounded" />
-        <element name="manager"    type="ms:UnitRef"  minOccurs="0" />
+        <element ref="b:moved"     minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:subspace"  minOccurs="0" maxOccurs="unbounded" />
+        <element name="manager"    type="b:UnitRef"  minOccurs="0" />
       </sequence>
     </extension>
   </complexContent>
@@ -32,13 +32,13 @@ and may have a complex life-cycle.</p>
 =description
 
 <p>The namespace groups units into sets.  In the Meshy Space Concept
-abstraction, they become Collections (<SCHEMA>msc:collection</SCHEMA>).
+abstraction, they become Collections (<SCHEMA>c:collection</SCHEMA>).
 
 <p>The <code>id</code> of this Unit is blank, to indicate that it is ruling
 the namespace or subspace; when you query a namespace for its blank Unit, you
 get the <i>root</i> Namespace Unit.</p>
 
-<p>The <i>root</i> namespace requires a <SCHEMA>ms:use</SCHEMA>
+<p>The <i>root</i> namespace requires a <SCHEMA>b:prefix</SCHEMA>
 element to define its default prefix.</p>
 
 =element path-separator
@@ -57,12 +57,12 @@ for the whole namespace.  However, there are reasons to diverge (see example)</p
 
 <p>This provides a hint which language settings the owner of the Namespace
 or Subspace (inherited) uses.  The default for the <code>language</code>
-on the root Namespace is <code>ms:Language/en-US</code>.</p>
+on the root Namespace is <UNIT>ms:Language/en-US</UNIT>.</p>
 
 =element moved
 
-<p>Rewrite rules (<SCHEMA>ms:moved</SCHEMA>) are used to migrate from one
-namespace structure into a new one.  <SCHEMA>ms:UnitID</SCHEMA>s can survive
+<p>Rewrite rules (<SCHEMA>b:moved</SCHEMA>) are used to migrate from one
+namespace structure into a new one.  <SCHEMA>b:UnitID</SCHEMA>s can survive
 very long, so you SHOULD support old structures when your set-up changes.</p>
 
 <p>This is <b>NOT</b> a symbolic link, hard link, temporary or permanent
@@ -70,7 +70,7 @@ redirection: the old structure SHOULD be rewritten whenever achievable.</p>
 
 =element subspace
 
-<p>Subspaces (<SCHEMA>ms:subspace</SCHEMA>) are "children" of a Namespace
+<p>Subspaces (<SCHEMA>b:subspace</SCHEMA>) are "children" of a Namespace
 or other Subspaces.  They have a location with respect to their "parent".
 They MAY have their own rules.</p>
 
@@ -95,7 +95,7 @@ by a management application.</p>
 
 <p>There currently is only one Manager, which is implemented by
 the Meshy Space Concept.  In that case, the <code>manager</code>
-points to a <SCHEMA>ms:Type/Collection</SCHEMA> unit.</p>
+points to a <UNIT>ms:Type/Collection</UNIT> unit.</p>
 =example Namespace switching path-separator
 
 <p>Let us assume that our collection of company internal network information

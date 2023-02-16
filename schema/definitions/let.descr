@@ -5,12 +5,12 @@
 =schema
 
 ==xml
-<element name="let" type="ms:Let" />
+<element name="let" type="b:Let" />
 
 <complexType name="Let">
   <complexContent>
-    <extension base="ms:Reusable">
-      <element name="be" type="ms:Expression" />
+    <extension base="b:Reusable">
+      <element name="be" type="b:Expression" />
     </extension>
   </complexContent>
 </complexType>

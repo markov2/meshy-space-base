@@ -6,18 +6,18 @@ top-level Namespace.</p>
 =schema
 
 ==xml
-<element name="subspace" type="ms:Subspace" />
+<element name="subspace" type="b:Subspace" />
 
 <complexType name="Subspace">
   <sequence />
-  <attribute name="path"      type="ms:UnitRef"   use="required" />
-  <attribute name="namespace" type="ms:UnitRef" />
+  <attribute name="path"      type="b:UnitRef"   use="required" />
+  <attribute name="namespace" type="b:UnitRef" />
 </complexType>
 ==end
 
 =description
 
-<p>The element of the <SCHEMA>ms:namespace</SCHEMA> structure explains
+<p>The element of the <SCHEMA>b:namespace</SCHEMA> structure explains
 which components of the Namespace have their own specification.  The
 Subspace can overrule any aspect of its parent Namespace, but inherits
 the settings (like permissions) as defaults.</p>
@@ -35,8 +35,8 @@ external namespaces.</p>
 
 =attribute namespace
 
-<p>Refers to a <SCHEMA>ms:unit</SCHEMA> of type
-<SCHEMA>ms:Type/Namespace</SCHEMA> which describes how the sub-namespace
+<p>Refers to a <SCHEMA>b:unit</SCHEMA> of type
+<UNIT>ms:Type/Namespace</UNIT> which describes how the sub-namespace
 behaves.  It depends on the feature in the Namespace whether configuration
 is inherited from the "parent" namespace.</p>
 
@@ -74,7 +74,7 @@ reality.</p>
 
 <p>When a reference of a Unit is followed, you start at the
 top Namespace description.  First apply namespace rewrite rules
-(<SCHEMA>ms:moved</SCHEMA>) on the remaining of the path.  Look
+(<SCHEMA>b:moved</SCHEMA>) on the remaining of the path.  Look
 for matching Subspaces for the rewritten path (MAY be in a different
 namespace).  Recursively go through the Subspaces.  Meanwhile: construct
 a new absolute path from the rewrites.  The Unit's name CAN also

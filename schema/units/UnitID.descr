@@ -1,6 +1,6 @@
 =short
 
-<p>A unique label for a <SCHEMA>ms:unit</SCHEMA>, within a Namespace.</p>
+<p>A unique label for a <SCHEMA>b:unit</SCHEMA>, within a Namespace.</p>
 
 =schema
 
@@ -14,15 +14,15 @@
 
 =description
 
-<p>The <code>UnitID</code> uniquely identifies a <SCHEMA>ms:unit</SCHEMA>
-with in <SCHEMA>ms:Namespace</SCHEMA> or Subspace.  You may best compare
+<p>The <code>UnitID</code> uniquely identifies a <SCHEMA>b:unit</SCHEMA>
+with in <SCHEMA>b:Namespace</SCHEMA> or Subspace.  You may best compare
 this with a filename with in directory.</p>
 
 <p class="list">This identifier has a few rules, which distinguishes it
 from the standard <code>xsd:ID</code>:</p>
 <ul>
 <li>The UnitID is to interpreted in the context of references to
-    Units (<SCHEMA>ms:UnitRef</SCHEMA>) with a Subspace;</li>
+    Units (<SCHEMA>b:UnitRef</SCHEMA>) with a Subspace;</li>
 <li>The Subspace defines a <code>path-separator</code> (<i>sep</i>);
     by default a <code>'/'</code>.  When a <i>sep</i> is used in a
     <code>UnitID</code>, it splits the value in <i>path</i> components.
@@ -30,7 +30,7 @@ from the standard <code>xsd:ID</code>:</p>
 <li>The <code>UnitID</code> may use the <i>sep</i> character, but <b>not</b>
     as first character, as last character, or twice in a row;
 <li>Path-components will not be <code>'.'</code> nor <code>'..'</code>, which
-    are used in relative paths (see <SCHEMA>ms:UnitRef</SCHEMA>);</li>
+    are used in relative paths (see <SCHEMA>b:UnitRef</SCHEMA>);</li>
 <li>The UnitID is normalized URL-Encoded, which means that &mdash;in each
     path component&mdash; all <i>reserved characters</i> and the <i>sep</i>
     SHALL be percent-encoded, and all <i>unreserved characters</i> SHALL not
@@ -54,12 +54,12 @@ from the standard <code>xsd:ID</code>:</p>
 =discuss Restrictions on <code>'/'</code>, <code>'.'</code>, <code>'..'</code>
 
 <p>Some restrictions are set because the UnitID is used as part in relative
-and absolute addressing via <SCHEMA>ms:UnitRef</SCHEMA>.  Especially
+and absolute addressing via <SCHEMA>b:UnitRef</SCHEMA>.  Especially
 the relative addressing support syntax as used for HTTP URLs
 ([% rfc(3986) %]).</p>
 
 <p>It depends on the <code>path-separator</code> setting in the enclosing
-<SCHEMA>ms:namespace</SCHEMA>
+<SCHEMA>b:namespace</SCHEMA>
 
 =discuss NFKC normalization
 

@@ -1,6 +1,6 @@
 =short
 
-<p>Elements of type <i>ms:Constant</i> contain a flag which tells
+<p>Elements of type <i>b:Constant</i> contain a flag which tells
 something by its pure existence.  Maybe the processor understands
 what the flag means, maybe not.</p>
 
@@ -8,7 +8,7 @@ what the flag means, maybe not.</p>
 
 ==xml
 <simpleType name="Constant">
-  <restriction base="ms:UnitRef" />
+  <restriction base="b:UnitRef" />
 </simpleType>
 ==end
 
@@ -27,8 +27,8 @@ a value, but implicitly it means "true": it's use indicates
 something.</p>
 
 <p>Constants are represented by (absolute or relative) unit
-reference (<SCHEMA>ms:UnitRef</SCHEMA>).  Traditionally, the
-<SCHEMA>ms:UnitID</SCHEMA> component of the address is in capitals.</p>
+reference (<SCHEMA>b:UnitRef</SCHEMA>).  Traditionally, the
+<SCHEMA>b:UnitID</SCHEMA> component of the address is in capitals.</p>
 
 <p>Often, the Unit with the Address will not exist, but of it does exist
 then it may keep track of the history of the constant, define ownership,

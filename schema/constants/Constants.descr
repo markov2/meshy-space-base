@@ -1,12 +1,12 @@
 =short
 
-<p>A list of <SCHEMA>ms:Constant</SCHEMA> values.</p>
+<p>A list of <SCHEMA>b:Constant</SCHEMA> values.</p>
 
 =schema
 
 ==xml
 <simpleType name="Constants">
-  <list itemType="ms:Constant" />
+  <list itemType="b:Constant" />
 </simpleType>
 ==end
 

@@ -5,7 +5,7 @@
 =schema
 
 ==xml
-<element name="data-source" type="ms:DataSource" abstract="true" />
+<element name="data-source" type="b:DataSource" abstract="true" />
 
 <complexType name="DataSource">
   <sequence />
@@ -18,7 +18,7 @@
 methods are provided by default:</p>
 
 <ul>
-<li><SCHEMA>ms:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
-<li><SCHEMA>ms:resource</SCHEMA>, contained in another Unit; and</li>
-<li><SCHEMA>ms:blob</SCHEMA>, inlined in this Unit.</li>
+<li><SCHEMA>b:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
+<li><SCHEMA>b:resource</SCHEMA>, contained in another Unit; and</li>
+<li><SCHEMA>b:blob</SCHEMA>, inlined in this Unit.</li>
 </ul>

@@ -1,6 +1,6 @@
 <h1>Constants defining Packaging</h1>
 
-<p>The <SCHEMA>ms:Pack/</SCHEMA> Subspace is used to explicitly refer
+<p>The <UNIT>ms:Pack/</UNIT> Subspace is used to explicitly refer
 to (versions of) packaging algorithms.</p>
 
 <div id="compress" class="accordion constants">
@@ -14,9 +14,9 @@ blocks ("Streams").  The file-format does not maintain an index over
 these streams, so the <code>entry</code> contains the location
 of the first octet (byte) in the file.</p>
 
-<p>The result type is a <SCHEMA>ms:Compress/Gzip</SCHEMA>, which
-means that the pack will often be wrapped in a <SCHEMA>ms:compressed</SCHEMA>
-element.  But setting <SCHEMA>ms:packagde/uncompress</SCHEMA> is simpler.</p>
+<p>The result type is a <UNIT>ms:Compress/Gzip</UNIT>, which
+means that the pack will often be wrapped in a <SCHEMA>b:compressed</SCHEMA>
+element.  But setting <UNIT>ms:packagde/uncompress</UNIT> is simpler.</p>
    </div>
    <div>
    <h4>Compatibility</h4>

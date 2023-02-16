@@ -6,15 +6,15 @@ reason.</p>
 =schema
 
 ==xml
-<element name="has" type="ms:Has" />
+<element name="has" type="b:Has" />
 
 <complexType name="Has">
   <complexContent>
-    <extension base="ms:Reusable">
+    <extension base="b:Reusable">
       <sequence />
-      <attribute name="type"  type="ms:Constant"  />
+      <attribute name="type"  type="b:Constant"  />
       <attribute name="seqnr" type="unsignedLong" default="1" />
-      <attribute name="is"    type="ms:Constant"  default="ms:Role/Unknown" />
+      <attribute name="is"    type="b:Constant"  default="b:Role/Unknown" />
     </extension>
   </complexContent>
 </complexType>
@@ -23,13 +23,13 @@ reason.</p>
 =description
 
 <p class="list">We can think of many reasons for relations.  The reason
-is expressed via the <code>ms:is</code> attribute, which contains a
+is expressed via the <code>b:is</code> attribute, which contains a
 name-spaced constant.  The attributes are typical selectors to find
 the right relation to follow, the elements are informational.</p>
 
 =attribute is
 
-<p>The <code>ms:is</code> attribute explains the <code>ms:has</code>
+<p>The <code>b:is</code> attribute explains the <SCHEMA>b:has</SCHEMA>
 relation.  When the relation unknown, the client may need to collect
 the related unit to inspect its content, but that is expensive so
 should be avoided.</p>
@@ -39,11 +39,11 @@ case, the client is RECOMMENDED to ignore the relation.  The client MAY
 warn its user that there is information which is not understood.</p>
 
 <p>When you download a unit, you can specify the namespaces and relations
-of the related (<SCHEMA>ms:has</SCHEMA>) units to be downloaded in the
+of the related (<SCHEMA>b:has</SCHEMA>) units to be downloaded in the
 same go as well.  For instance, within the Meshy Space Concept, a request
-for a certain <code>msc:Role/Collection</code> will ask to include the
-related units with relation <code>msc:Role/Rules</code>.  Or more general,
-probably request for all <code>msc:Role/</code> Units.</p>
+for a certain <UNIT>msc:Role/Collection</UNIT> will ask to include the
+related units with relation <UNIT>msc:Role/Rules</UNIT>.  Or more general,
+probably request for all <UNIT>msc:Role/</UNIT> Units.</p>
 
 =attribute type
 
@@ -63,7 +63,7 @@ main code of the processor.</p>
 =attribute seqnr
 
 <p>When there are multiple relations which are of the same kind (same
-<code>ms:is</code>), they may need to be ordered like an array.</p>
+<code>b:is</code>), they may need to be ordered like an array.</p>
 
 =example in the Meshy Space Concept frame
 
@@ -73,59 +73,59 @@ relation.  It may also be smart to put lesser-used information about
 a unit into a separate unit: for instance the history of the unit.</p>
 
 ==xml
-<ms:unit ms:id="MarkOv">               <!-- in dist:User/ -->
-  <ms:type>msc:Role/Identity</ms:type>
-  <msc:indentity />
-</ms:unit>
-<ms:unit ms:id="Sources">              <!-- in dist: -->
-  <ms:type>msc:Collection</ms:type>    <!-- is a Subspace -->
-  <ms:has ms:is="dist:Role/Source" ms:ref="puppy-src-3.14.rpm" />
-  <ms:has ms:is="dist:Role/Source" ms:ref="wolf-src-12.2.rpm" />
-</ms:unit>
-<ms:unit ms:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
-  <ms:name>puppy 3.14 sources</ms:name>
-  <ms:type>ms:Mime/application/rpm</ms:type>
-  <ms:extern />
-</ms:unit>
-<ms:unit ms:id="puppy-3.14.rpm">      <!-- in dist:Package/ -->
-  <ms:name>puppy 3.14</ms:name>
-  <ms:type>ms:Mime/application/rpm</ms:type>
-  <ms:owner>dist:User/MarkOv</ms:owner>
-  <ms:extern />
-  <ms:has ms:ref="dist:Sources/puppy" ms:is="dist:Role/Source" />
-</ms:unit>
+<b:unit b:id="MarkOv">               <!-- in dist:User/ -->
+  <b:type>msc:Role/Identity</b:type>
+  <c:indentity />
+</b:unit>
+<b:unit b:id="Sources">              <!-- in dist: -->
+  <b:type>msc:Role/Collection</b:type>    <!-- is a Subspace -->
+  <b:has b:is="dist:Role/Source" b:ref="puppy-src-3.14.rpm" />
+  <b:has b:is="dist:Role/Source" b:ref="wolf-src-12.2.rpm" />
+</b:unit>
+<b:unit b:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
+  <b:name>puppy 3.14 sources</b:name>
+  <b:type>ms:Mime/application/rpm</b:type>
+  <b:extern />
+</b:unit>
+<b:unit b:id="puppy-3.14.rpm">      <!-- in dist:Package/ -->
+  <b:name>puppy 3.14</b:name>
+  <b:type>ms:Mime/application/rpm</b:type>
+  <b:owner>dist:User/MarkOv</b:owner>
+  <b:extern />
+  <b:has b:ref="dist:Sources/puppy" b:is="dist:Role/Source" />
+</b:unit>
 ==json
-"ms:unit" : {
-  "ms:id" : "MarkOv",               // in dist:User/
-  "ms:type" : "msc:Role/Identity"
-  "msc:identity" : {}
+"b:unit" : {
+  "b:id" : "MarkOv",               // in dist:User/
+  "b:type" : "msc:Role/Identity"
+  "c:identity" : {}
 },
-"ms:unit" : {
-  "ms:id": "Sources",               // in dist:
-  "ms:type" : "msc:Collection",     // is a Subspace
-  "ms:has" : [ {
-    "ms:is" : "dist:Role/Source",
-    "ms:ref" : "puppy-src-3.14.rpm"
+"b:unit" : {
+  "b:id": "Sources",               // in dist:
+  "b:type" : "msc:Role/Collection",     // is a Subspace
+  "b:has" : [ {
+    "b:is" : "dist:Role/Source",
+    "b:ref" : "puppy-src-3.14.rpm"
   }, {
-    "ms:is" : "dist:Role/Source",
-    "ms:ref" : "wolf-src-12.2.rpm"
+    "b:is" : "dist:Role/Source",
+    "b:ref" : "wolf-src-12.2.rpm"
   } ]
 },
-"ms:unit" : {
-  "ms:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
-  "ms:name": "puppy 3.14 sources",
-  "ms:type": "ms:Mime/application/rpm"
-  "ms:extern" : {}
+"b:unit" : {
+  "b:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
+  "b:name": "puppy 3.14 sources",
+  "b:type": "ms:Mime/application/rpm"
+  "b:extern" : {}
 },
-"ms:unit" : {
-  "ms:id" : "puppy-3.14.rpm",       // in dist:Package/
-  "ms:name" : "puppy 3.14",
-  "ms:type" : "ms:Mime/application/rpm",
-  "ms:owner" : "dist:User/MarkOv"
-  "ms:extern" : {},
-  "ms:has" : [ {
-     "ms:ref" : "dist:Sources/puppy",
-     "ms:is" : "dist:Role/Source"
+"b:unit" : {
+  "b:id" : "puppy-3.14.rpm",       // in dist:Package/
+  "b:name" : "puppy 3.14",
+  "b:type" : "ms:Mime/application/rpm",
+  "b:owner" : "dist:User/MarkOv"
+  "b:extern" : {},
+  "b:has" : [ {
+     "b:ref" : "dist:Sources/puppy",
+     "b:is" : "dist:Role/Source"
   } ]
 }
 ==end

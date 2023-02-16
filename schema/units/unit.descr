@@ -7,18 +7,18 @@ generalization of many protocols and system features.</p>
 =schema
 
 ==xml
-<element name="unit" type="ms:Unit" />
+<element name="unit" type="b:Unit" />
 
 <complexType name="Unit">
   <sequence>
-    <group   ref="ms:meta-data"  />
-    <group   ref="ms:life-cycle" />
-    <element ref="ms:definitions"   minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:payload"       minOccurs="0" nillable="true" />
-    <element ref="ms:documentation" minOccurs="0" maxOccurs="unbounded" />
-    <element ref="ms:has"           minOccurs="0" maxOccurs="unbounded" />
+    <group   ref="b:meta-data"  />
+    <group   ref="b:life-cycle" />
+    <element ref="b:definitions"   minOccurs="0" maxOccurs="unbounded" />
+    <element ref="b:payload"       minOccurs="0" nillable="true" />
+    <element ref="b:documentation" minOccurs="0" maxOccurs="unbounded" />
+    <element ref="b:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute name="id" ref="ms:UnitID" use="required" />
+  <attribute name="id" ref="b:UnitID" use="required" />
 </complexType>
 ==end
 
@@ -31,25 +31,25 @@ Units have many elements and attributes, which are often not used: it
 is very beneficial to implementations to have a strong uniform object
 base.</p>
 
-<p>Units usually have many relations (<SCHEMA>ms:has</SCHEMA>) which
+<p>Units usually have many relations (<SCHEMA>b:has</SCHEMA>) which
 tell you about owner, data which were used to create it, and much
 more.  This very much depends on the role you have designed for your
 unit.</p>
 
 <p>One of the applications of units, is the Meshy Space Concept.
 The concept assigns logic roles to units via the <code>type</code>
-element (in <SCHEMA>ms:meta-data</SCHEMA>).</p>
+element (in <SCHEMA>b:meta-data</SCHEMA>).</p>
 
 <p><b>WARNING:</b> unit <code>ids</code> are quite different
 from <code>xsd:id</code> identifiers: study the differences in
-<SCHEMA>ms:UnitID</SCHEMA>!</p>
+<SCHEMA>b:UnitID</SCHEMA>!</p>
 
 =attribute id
 
 <p>The unique identifier for this information Unit is used to be
 referred to, either within this same information structure, or from
 other information structures.  Applications will decide to cache
-the units based on this <code>ms:id</code> for performance.</p>
+the units based on this <code>b:id</code> for performance.</p>
 
 =group life-cycle
 
@@ -69,7 +69,7 @@ stored.</p>
 
 <p>The <code>payload</code> is a <i>substitutionGroup</i>, which
 means that the element can be filled in by other element in that
-group. See <SCHEMA>ms:payload</SCHEMA> for a list of alternatives.</p>
+group. See <SCHEMA>b:payload</SCHEMA> for a list of alternatives.</p>
 
 <p>Structural elements may only contain any "direct" payload, but only
 references to other units.</p>
@@ -82,58 +82,58 @@ extended html, and/or references to external web-pages.  This all may
 be provided in different languages.</p>
 
 <p>When the documentation is not included in the Unit, it may be found
-inbetween the Unit's own <SCHEMA>ms:has</SCHEMA> relations or those of
+inbetween the Unit's own <SCHEMA>b:has</SCHEMA> relations or those of
 the enclosed Subspace, or its parent Namespaces.</p>
 
 =element has
 
 <p>The unit <i>has</i> logical relations to other units, which are
 often packaged in a different data collection, maybe on a different
-server.  See <SCHEMA>ms:has</SCHEMA>.</p>
+server.  See <SCHEMA>b:has</SCHEMA>.</p>
 
 =example demonstrating a simple unit
 
 ==xml
-<ms:unit ms:id="">  <!-- all in the same namespace 'cc' -->
-  <ms:type="ms:Role/Namespace" />
-  <ms:definitions>
-    <ms:prefix ms:name="cc" ms:endpoint="https://..." />
-  </ms:definitions>
-</ms:unit>
-<ms:unit ms:id="ASDJKDJO12314A">
-  <ms:type>cc:Type/Warc/Result</ms:type>
-  <ms:name>https://markov.solutions/index.html</ms:name>
-  <ms:has ms:is="cc:Type/Warc/Request"  ms:ref="ASDJKDJO12314A-req">
-  <ms:has ms:is="cc:Type/Warc/Response" ms:ref="ASDJKDJO12314A-resp">
-  <ms:has ms:is="cc:Type/Warc/Links"    ms:ref="ASDJKDJO12314A-links">
-</ms:unit>
-<ms:unit ms:id="ASDJKDJO12314A-req">
-  <ms:type>cc:Type/Warc/Request</ms:type>
-  <ms:language>ms:Language/Nld</ms:language>
-  <ms:content>
-    <ms:type>cc:Type/Warc/record</ms:type>
-    <ms:charset>iso-8859-1</ms:charset>
-    <ms:size>34516</ms:size>
-    <ms:compressed ms:by="ms:Compress/Gzip">
-       <ms:packaged ms:by="ms:Pack/Warc/Archive">
-         <ms:fetch ms:href="cc:/Repo/202102warc-00000" />
-         <ms:entry>#12314151+11515</ms:entry>
-       </ms:packaged>
-    </ms:compressed>
-  </ms:content>
-</ms:unit>
-<ms:unit ms:id="ASDJKDJO12314A-resp" />
-<ms:unit ms:id="ASDJKDJO12314A-links" />
-<ms:unit ms:id="Type/Warc/Result" />  <!-- etc -->
+<b:unit b:id="Rules">
+  <b:type="ms:Role/Rules" />
+  <b:definitions>
+    <b:prefix b:name="cc" b:namespace="https://..." />
+  </b:definitions>
+</b:unit>
+<b:unit b:id="ASDJKDJO12314A">
+  <b:type>cc:Type/Warc/Result</b:type>
+  <b:name>https://markov.solutions/index.html</b:name>
+  <b:has b:is="cc:Type/Warc/Request"  b:ref="ASDJKDJO12314A-req">
+  <b:has b:is="cc:Type/Warc/Response" b:ref="ASDJKDJO12314A-resp">
+  <b:has b:is="cc:Type/Warc/Links"    b:ref="ASDJKDJO12314A-links">
+</b:unit>
+<b:unit b:id="ASDJKDJO12314A-req">
+  <b:type>cc:Type/Warc/Request</b:type>
+  <b:language>ms:Language/Nld</b:language>
+  <b:content>
+    <b:type>cc:Type/Warc/record</b:type>
+    <b:charset>iso-8859-1</b:charset>
+    <b:size>34516</b:size>
+    <b:compressed b:by="ms:Compress/Gzip">
+       <b:packaged b:by="cc:Pack/Warc/Archive">
+         <b:fetch b:href="cc:/Repo/202102warc-00000" />
+         <b:entry>#12314151+11515</b:entry>
+       </b:packaged>
+    </b:compressed>
+  </b:content>
+</b:unit>
+<b:unit b:id="ASDJKDJO12314A-resp" />
+<b:unit b:id="ASDJKDJO12314A-links" />
+<b:unit b:id="Type/Warc/Result" />  <!-- etc -->
 ==end
 
 <p>The units are separately storable and retrievable.  The can have
-many kinds of relations, which is expressed by the <code>ms:is</code>
-attribute.  The <code>ms:is</code> does not need to be the type of
+many kinds of relations, which is expressed by the <code>b:is</code>
+attribute.  The <code>b:is</code> does not need to be the type of
 the unit where it refers to, but it often is: the application which
 follows the relation should understand it.</p>
 
-=discuss Caching units based on <code>ms:id</code>
+=discuss Caching units based on <code>b:id</code>
 
 <p class="list">The IDs are unique, because they are QName types:
 namespaced strings.  Their uniqueness extends the full data-structure

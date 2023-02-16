@@ -8,9 +8,9 @@ unit, independent of how the payload is included.</p>
 ==xml
 <group name="meta-data">
   <sequence>
-    <element name="type"     type="ms:Constant" />
+    <element name="type"     type="b:Constant" />
     <element name="name"     type="token"         minOccurs="0" />
-    <element name="language" type="ms:Constants"  minOccurs="0" />
+    <element name="language" type="b:Constants"  minOccurs="0" />
     <element name="charset"  type="token"         minOccurs="0" />
   </sequence>
 </group>
@@ -39,7 +39,7 @@ using filenames here.</p>
 
 <p>The languages used in the payload, when it contains text.
 This fact MAY be used by search filters. Values are constants in
-one of the <SCHEMA>ms:Language/</SCHEMA> sets.</p>
+one of the <UNIT>ms:Language/</UNIT> sets.</p>
 
 <p>The concept of language in text is complex: more details about
 contained languages may be included in other ways.</p>

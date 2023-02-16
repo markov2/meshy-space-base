@@ -8,7 +8,7 @@
 <complexType name="DocText">
   <simpleContent>
     <extension base="string">
-      <attributeGroup ref="ms:doc-selector" />
+      <attributeGroup ref="b:doc-selector" />
     </extension>
   </simpleContent>
 </complexType>

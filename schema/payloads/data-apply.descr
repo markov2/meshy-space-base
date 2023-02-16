@@ -5,20 +5,20 @@
 =schema
 
 ==xml
-<element name="data-apply" type="ms:DataApply"
+<element name="data-apply" type="b:DataApply"
   abstract="true" />
 
 <complexType name="DataApply">
   <sequence>
-    <group   ref="ms:meta-data" />
+    <group   ref="b:meta-data" />
     <element name="size" type="unsignedLong" minOccurs="0" />
-    <element ref="ms:checksum"  minOccurs="0" maxOccurs="unbounded" />
-    <!-- element ref="ms:signature" minOccurs="0" maxOccurs="unbounded" TBD -->
-    <!-- element ref="ms:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <element ref="b:checksum"  minOccurs="0" maxOccurs="unbounded" />
+    <!-- element ref="b:signature" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <!-- element ref="b:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
     <choice>
-      <element ref="ms:data-apply" />
-      <element ref="ms:data-source" maxOccurs="unbounded" />
-      <element ref="ms:blob" />
+      <element ref="b:data-apply" />
+      <element ref="b:data-source" maxOccurs="unbounded" />
+      <element ref="b:blob" />
     </choice>
   </sequence>
 </complexType>
@@ -36,7 +36,7 @@ the result of the <code>data-apply</code> or <code>data-source</code>
 activities.</p>
 
 <p>Some <code>data-source</code> components may be able to fill-in 
-values for the meta-data.  For instance, the <SCHEMA>ms:fetch</SCHEMA>
+values for the meta-data.  For instance, the <SCHEMA>b:fetch</SCHEMA>
 can derive a default <code>name</code> and <type>type</type> based on
 its <code>href</code> attribute.</p>
 
@@ -49,15 +49,14 @@ its <code>href</code> attribute.</p>
 
 <p>Describes processing has has been done on the bytes, which you
 probably want to undo before using the data.  This element can be
-<SCHEMA>ms:encoded</SCHEMA>,
-<SCHEMA>ms:compressed</SCHEMA>, or
-<SCHEMA>ms:packaged</SCHEMA>.</p>
+<SCHEMA>b:encoded</SCHEMA>,
+<SCHEMA>b:compressed</SCHEMA>, or
+<SCHEMA>b:packaged</SCHEMA>.</p>
 
 =element data-source
 
 <p>Describes the location where the processed bytes are, via a
-<SCHEMA>ms:resource</SCHEMA> or
-<SCHEMA>ms:fetch</SCHEMA>.</p>
+<SCHEMA>b:resource</SCHEMA> or <SCHEMA>b:fetch</SCHEMA>.</p>
 
 <p>This element can be used more than once, to suggest alternative
 routes to the same data.  This is especially useful when you offer
@@ -67,17 +66,17 @@ which path to follow.</p>
 
 =element blob
 
-<p>Although the <SCHEMA>ms:blob</SCHEMA> can be seen as data source,
+<p>Although the <SCHEMA>b:blob</SCHEMA> can be seen as data source,
 it is a <code>simpleType</code> where all the
-<SCHEMA>ms:data-source</SCHEMA> options are <code>complexType</code>.</p>
+<SCHEMA>b:data-source</SCHEMA> options are <code>complexType</code>.</p>
 
 =element checksum
 
 <p>Checksums may add some protection when the data is
-<SCHEMA>ms:fetch</SCHEMA>ed from a different source than the sum.
+<SCHEMA>b:fetch</SCHEMA>ed from a different source than the sum.
 Specifically: when the data is on an external server and the checksum
-is included in a <SCHEMA>ms:blob</SCHEMA> in this Unit.
-See <SCHEMA>ms:checksum</SCHEMA>.</p>
+is included in a <SCHEMA>b:blob</SCHEMA> in this Unit.
+See <SCHEMA>b:checksum</SCHEMA>.</p>
 
 =element signature
 

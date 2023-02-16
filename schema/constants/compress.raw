@@ -1,6 +1,6 @@
 <h1>Constants defining Compression</h1>
 
-<p>The <SCHEMA>ms:Compress/</SCHEMA> Subspace is used to explicitly refer
+<p>The <UNIT>ms:Compress/</UNIT> Subspace is used to explicitly refer
 to (versions of) compressions algorithms.</p>
 
 <div id="compress" class="accordion constants">
@@ -27,7 +27,7 @@ See also <a href="https://en.wikipedia.org/wiki/Gzip">Wikipedia</a>.</p>
 
 <p>Some formats use Gzip MultiStreams: concatenated Gzips within on
 file.  Those files have no internal index, so for such data we need
-a <SCHEMA>ms:Pack/GzipMultiStream</SCHEMA>.</p>
+a <UNIT>ms:Pack/GzipMultiStream</UNIT>.</p>
    </div>
    <div>
    <h4>Compatibility</h4>

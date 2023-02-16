@@ -6,14 +6,14 @@ element refers to an internet location which contains those bytes.</p>
 =schema
 
 ==xml
-<element name="packaged" type="ms:Packaged"
-  substitutionGroup="ms:data-apply" />
+<element name="packaged" type="b:Packaged"
+  substitutionGroup="b:data-apply" />
 
 <complexType name="Packaged">
   <complexContent>
-    <extension base="ms:DataApply">
+    <extension base="b:DataApply">
       <sequence>
-        <element name="entry" type="ms:Bytes" />
+        <element name="entry" type="b:Bytes" />
       </sequence>
       <attribute name="uncompress" type="boolean" default="false" />
     </extension>
@@ -27,12 +27,12 @@ element refers to an internet location which contains those bytes.</p>
 
 <p>The location of the data inside the package.  For most packagers,
 this will be a name.  For some a seek position, but it could also be
-a byte range.  Find the details in <SCHEMA>ms:Pack/</SCHEMA>.</p>
+a byte range.  Find the details in <UNIT>ms:Pack/</UNIT>.</p>
 
 =element uncompress
 
 <p>Most packers use internal compression, where the exact algorithm
 is hidden.  Some packers even do not support extracting an entry
 without uncompressing it.  For those cases, it is incovenient to use a
-<SCHEMA>ms:compress</SCHEMA> wrapper.</p>
+<SCHEMA>b:compress</SCHEMA> wrapper.</p>
 

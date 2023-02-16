@@ -1,9 +1,9 @@
 <h1>Constants defining ms:Types</h1>
 
-<p>The Meshy Space base object <SCHEMA>ms:unit</SCHEMA> is extremely
+<p>The Meshy Space base object <SCHEMA>b:unit</SCHEMA> is extremely
 flexible, but not expressive.  The types listen below are used in
 the <code>unit.type</code> field to describe the extension of
-the <SCHEMA>ms:Native</SCHEMA> payload to be expected.</p>
+the <SCHEMA>b:Native</SCHEMA> payload to be expected.</p>
 
 <p>See also the intelligent
 <a href="/schemas/concept/constants/types.html">concept types</a>.</p>
@@ -12,20 +12,20 @@ the <SCHEMA>ms:Native</SCHEMA> payload to be expected.</p>
 
 <h3 name="ChangeLog">ms:Type/ChangeLog</h3>
 <div>
-  <p>Describes how the <SCHEMA>ms:unit</SCHEMA> has changed over time.</p>
+  <p>Describes how the <SCHEMA>b:unit</SCHEMA> has changed over time.</p>
 </div>
 
 <h3 name="Constant">ms:Type/Constant</h3>
 <div>
   <p>The unit contains information which relates to an address which is
-    used as constant (<SCHEMA>ms:Constant</SCHEMA>).  It may keep track of
+    used as constant (<SCHEMA>b:Constant</SCHEMA>).  It may keep track of
     the history of the constant, define ownership, and contain documentation.</p>
 </div>
 
 <h3 name="Namespace">ms:Type/Namespace</h3>
 <div>
   <p>Defines a single namespace, and maintains its developments.  See
-    <SCHEMA>ms:namespace</SCHEMA>.</p>
+    <SCHEMA>b:namespace</SCHEMA>.</p>
 </div>
 
 <h3 name="Resource">ms:Type/Resource</h3>

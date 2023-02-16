@@ -6,7 +6,7 @@
 =schema
 
 ==xml
-<element name="payload" type="ms:Payload"
+<element name="payload" type="b:Payload"
    abstract="true" />
 
 <complexType name="Payload">
@@ -16,18 +16,18 @@
 
 =description
 
-<p>One <SCHEMA>ms:unit</SCHEMA> can only contain one payload element.
+<p>One <SCHEMA>b:unit</SCHEMA> can only contain one payload element.
 This may cleanly integrate with MSI, using the same schema's and
 standards (native), but may also be foreign to it: not interpretable
 by a Meshy Space compatible server.</p>
 
-<p class="list"><code>ms:payload</code> is extended via the XSD construct
+<p class="list"><code>b:payload</code> is extended via the XSD construct
 <i>substitutionGroups</i>:</p>
 <ul>
-<li><SCHEMA>ms:native</SCHEMA> is the substitutionGroup base for
+<li><SCHEMA>b:native</SCHEMA> is the substitutionGroup base for
     elements which are native to Meshy Space (Concept), and MAY also be
     extended by other schemas which every server is expected to know of.</li>
-<li><SCHEMA>ms:content</SCHEMA> is the substitutionGroup base for
+<li><SCHEMA>b:content</SCHEMA> is the substitutionGroup base for
     elements which contain bytes of data.</li>
 </ul>
 

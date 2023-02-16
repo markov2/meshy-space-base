@@ -3,11 +3,13 @@
 <p>Filter the contained information for usefulness as translations
 within the context.</p>
 
+=schema
+
 ==xml
 <attributeGroup name="doc-selector">
-  <attribute name="for"      type="ms:UnitRef"  />
-  <attribute name="language" type="ms:Constant" />
-  <attribute name="type"     type="ms:Constant" />
+  <attribute name="for"      type="b:UnitRef"  />
+  <attribute name="language" type="b:Constant" />
+  <attribute name="type"     type="b:Constant" />
 </attributeGroup>
 ==end
 
@@ -27,11 +29,11 @@ defaults to the unit where this documentation fragment is found in.</p>
 
 <p>When used, it overrides the language of the context, which defaults
 to the prefered <code>language</code> of the Namespace.
-See <SCHEMA>ms:Language/</SCHEMA>.</p>
+See <UNIT>ms:Language/</UNIT>.</p>
 
 =attribute type
 
 <p>When used, it overrides the (mime)type of the content.  The type
-could be from <SCHEMA>ms:Mime/</SCHEMA> or <SCHEMA>ms:Type/</SCHEMA>,
-for instance <code>ms:Mime/text/html</code>.  The default value
-is <SCHEMA>ms:Mime/text/plain</SCHEMA>.</p>
+could be from <UNIT>ms:Mime/</UNIT> or <UNIT>ms:Type/</UNIT>,
+for instance <UNIT>ms:Mime/text/html</UNIT>.  The default value
+is <UNIT>ms:Mime/text/plain</UNIT>.</p>

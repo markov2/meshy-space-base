@@ -5,12 +5,12 @@
 =schema
 
 ==xml
-<element name="native" type="ms:Native"
-    substitutionGroup="ms:payload" abstract="true" />
+<element name="native" type="b:Native"
+    substitutionGroup="b:payload" abstract="true" />
 
 <complexType name="Native">
   <complexContent>
-    <extension base="ms:Payload" />
+    <extension base="b:Payload" />
   </complexContent>
 </complexType>
 ==end

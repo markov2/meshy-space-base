@@ -5,14 +5,14 @@
 =schema
 
 ==xml
-<element name="content" type="ms:Content"
-    substitutionGroup="ms:payload" />
+<element name="content" type="b:Content"
+    substitutionGroup="b:payload" />
 
 <complexType name="Content">
   <complexContent>
-    <extension base="ms:Payload">
+    <extension base="b:Payload">
       <sequence>
-        <element ref="ms:data" />
+        <element ref="b:data" />
       </sequence>
     </extension>
   </complexContent>
@@ -21,7 +21,7 @@
 
 =description
 
-<p>The <code>content</code> of a <SCHEMA>ms:unit</SCHEMA> is a non-native
+<p>The <code>content</code> of a <SCHEMA>b:unit</SCHEMA> is a non-native
 payload: data which is interpreted by applications, not by the Meshy
 Space (Concept) infrastructure itself.</p>
 
