@@ -9,7 +9,7 @@
 
 <complexType name="Prefix">
   <complexContent>
-    <extension base="b:Reusable>
+    <extension base="b:Reusable">
       <sequence>
         <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
       </sequence>

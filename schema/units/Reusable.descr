@@ -8,9 +8,9 @@ as rather stand-alone things, but tied together via their name.</p>
 ==xml
 <complexType name="Reusable">
   <sequence>
-    <element ref="b:use" minOccurs="0" maxOccurs="unbounded">
+    <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute name="name" type="token" required="true" />
+  <attribute name="name" type="token" use="required" />
   <attributeGroup ref="b:selector" />
 </complexType>
 ==end

@@ -10,7 +10,9 @@
 <complexType name="Let">
   <complexContent>
     <extension base="b:Reusable">
-      <element name="be" type="b:Expression" />
+      <sequence>
+        <element name="be" type="b:Expression" />
+      </sequence>
     </extension>
   </complexContent>
 </complexType>

@@ -11,8 +11,10 @@ Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
 <complexType name="Definitions">
   <complexContent>
     <extension base="b:Reusable">
-      <element ref="b:prefix" minOccurs="0" maxOccurs="unbounded" />
-      <element ref="b:let"    minOccurs="0" maxOccurs="unbounded" />
+      <sequence>
+        <element ref="b:prefix" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:let"    minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
     </extension>
   </complexContent>
 </complexType>
