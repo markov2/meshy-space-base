@@ -1,0 +1,14 @@
+=short
+
+<p>Many parts of a unit have names.</p>
+
+=schema
+
+==xml
+<element name="name" type="NMTOKEN" />
+==end
+
+=description
+
+<p>Names cannot contain the fragment indicator <code>#</code>.</p>
+

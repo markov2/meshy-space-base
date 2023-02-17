@@ -1,0 +1,24 @@
+=short
+
+<p>Points to a name with a Unit</p>
+
+=schema
+
+==xml
+<simpleType name="Fragment">
+  <restriction base="NMTOKEN">
+    <pattern value="\S+" />
+  </restriction>
+</simpleType>
+==end
+
+=description
+
+<p class="list">The fragment reference is either:</p>
+<ul>
+<li>a name of a reference to another unit (a name of a <SCHEMA>b:has</SCHEMA>
+    object) followed by a hash (<code>#</code>) followed by a name (<SCHEMA>b:Name</SCHEMA>)
+    inside that unit; or</li>
+<li>a hash (<code>#</code>) followed by a name (<SCHEMA>b:Name</SCHEMA>) in this
+    Unit.</li>
+</ul>

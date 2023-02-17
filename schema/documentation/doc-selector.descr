@@ -7,9 +7,9 @@ within the context.</p>
 
 ==xml
 <attributeGroup name="doc-selector">
-  <attribute name="for"      type="b:UnitRef"  />
+  <attribute name="for"      type="b:Fragment"  />
   <attribute name="language" type="b:Constant" />
-  <attribute name="type"     type="b:Constant" />
+  <attribute name="format"   type="b:Constant" default="ms:Mime/text/plain" />
 </attributeGroup>
 ==end
 
@@ -22,8 +22,10 @@ from the context.</p>
 
 =attribute for
 
-<p>When used, it overrides the unit specified in the context, which
-defaults to the unit where this documentation fragment is found in.</p>
+<p>Refers to the thing which is being documented.  This could be a unit
+which has a named relation (<SCHEMA>b:has</SCHEMA>), or something else
+which has a <SCHEMA>b:Name</SCHEMA> in this unit.  By default, it
+documents this unit itself.</p>
 
 =attribute language
 
@@ -31,9 +33,8 @@ defaults to the unit where this documentation fragment is found in.</p>
 to the prefered <code>language</code> of the Namespace.
 See <UNIT>ms:Language/</UNIT>.</p>
 
-=attribute type
+=attribute format
 
 <p>When used, it overrides the (mime)type of the content.  The type
-could be from <UNIT>ms:Mime/</UNIT> or <UNIT>ms:Type/</UNIT>,
-for instance <UNIT>ms:Mime/text/html</UNIT>.  The default value
-is <UNIT>ms:Mime/text/plain</UNIT>.</p>
+MAY be from <UNIT>ms:Mime/</UNIT> or <UNIT>ms:Type/</UNIT>.
+For instance, <UNIT>ms:Mime/text/html</UNIT>.

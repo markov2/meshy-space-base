@@ -18,27 +18,29 @@ one degree of freedom.  There are still a few dimensions left:</p>
 </ul>
 <p>You may decide to put the documentation of a Unit inside that
 Unit structure.  That means that everyone who downloads the Unit
-will have to download the documentation, which is often rarely
-used.  Also, it hinders translation when there are a few translators
-involved.</p>
+will download the documentation as well, although it is probably rarely
+used.  Also, access rights and authentication may hinder translations.</p>
 
 <p>You may also decide to create a Unit which contains documentation
-for one Unit in all languages.  Typically, create a new Collection
-which contains Units with the same unit-ids as the Unit they are
-documenting.  A bit easier to manage.</p>
+as payload.  Typically, create a new Collection which contains Units
+with the same unit-ids as the Unit they are documenting.  A bit easier
+to manage, much easier when translating.</p>
 
-<p>You may also create a Unit which contains the documentation of
-many Units in one.  This may be helpfull when the amount of documentation
+<p>You may also create a Unit which contains the documentation of many
+Units in one.  This might be helpfull when the amount of documentation
 is limited.</p>
+
+<h2>Implementation</h2>
 
 <p class="list">When there are many Units to be documented, in many
 languages, then it is easiest to create a Collection with documentation
 Units, where each unit contains one translation.  This can be made
-efficient: the Subspace contains a generic:</p>
+efficient: the Collection contains a generic:</p>
 <CODE>
-<b:has b:href="ms:Role/Documentation" b:when="user.language eq 'en-US'" />
+<b:has b:ref="some-unit" b:is="msc:Role/Documentation"
+   b:when="user.language eq 'en-US'" />
 </CODE>
 
-<p>It is RECOMMENDED to design a consistent structure for the documentation
-with on Namespace, but that is not required: the clients will search between
-available documentation for the best fit. (TBD)</p>
+<p>It is RECOMMENDED to design a consistent structure for the
+documentation within one Namespace, but that is not required: the clients
+will search between available documentation for the best fitting selection.</p>

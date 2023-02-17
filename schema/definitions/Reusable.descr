@@ -1,0 +1,27 @@
+=short
+
+<p>The base type for many complex definitions.  They are defined
+as rather stand-alone things, but tied together via their name.</p>
+
+=schema
+
+==xml
+<complexType name="Reusable">
+  <sequence>
+    <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+  <attribute      ref="b:Name" />
+  <attributeGroup ref="b:selector" />
+</complexType>
+==end
+
+=description
+
+<p>The Unit's data consists of different blocks of information, which
+can be referred to from other places within the Unit or even from
+outside the Unit.  The reference is made via a <SCHEMA>b:Fragment</SCHEMA>,
+but only works when the Unit has a <SCHEMA>b:name</SCHEMA> attribute.</p>
+
+<p>Even when there is at a certain moment no need to give a reusable
+component a name, it might simplify the use of the Unit later or optimize
+lookups a bit.</p>

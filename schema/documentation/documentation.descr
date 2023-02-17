@@ -9,11 +9,10 @@
 
 <complexType name="Documentation">
   <choice minOccurs="0" maxOccurs="unbounded">
-    <element name="name"          type="b:DocText" />
-    <element name="hint"          type="b:DocText" />
-    <element name="description"   type="b:DocText" />
-    <element name="web-page"      type="b:DocURI" />
-    <element name="documentation" type="b:Documentation" />
+    <element name="name"          type="string" />
+    <element name="hint"          type="string" />
+    <element name="description"   type="string" />
+    <element name="web-page"      type="anyURI" />
   </choice>
   <attributeGroup ref="b:doc-selector" />
 </complexType>
@@ -52,18 +51,13 @@ fragement.</p>
 <p>When a simple <code>description</code> is not enough: a reference to a
 web-page, maybe on some website which is also owned by the Namespace holder.</p>
 
-=element documentation
-
-<p>Documentation can be used nested, to group texts which are related
-in some way, reducing the need for selectors.</p>
-
 =example documentation inside the Unit itself
 
 <XML>
 <b:unit b:id="IMG00001.jpg">
   <b:type>ms:Mime/image/jpeg</b:type>
-  <b:content />
-  <b:documentation b:language="nl-NL">
+  <b:payload />
+  <b:documentation b:language="ms:Language/nl-NL">
     <b:name>2022-02-04 foto 1</b:name>
     <b:hint>Vakantie in Zeeland</b:hint>
   </b:documentation>
@@ -73,9 +67,9 @@ in some way, reducing the need for selectors.</p>
 "b:unit" : {
    "b:id" : "IMG00001.jpg",
    "b:type" : "ms:Mime/image/jpeg",
-   "b:content" : { },
+   "b:payload" : { },
    "b:documentation" : {
-     "b:language" : "nl-NL",
+     "b:language" : "ms:Language/nl-NL",
      "b:name" : "2022-02-04 foto 1",
      "b:hint" : "Vakantie in Zeeland"
    }

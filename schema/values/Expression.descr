@@ -7,11 +7,12 @@ for a full overview.</p>
 
 ==xml
 <complexType name="Expression">
-  <simpleContent>
-    <extension base="string">
-      <attribute name="name" type="token" use="required"/>
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence />
+      <attribute name="be" type="string" use="required" />
     </extension>
-  </simpleContent>
+  </complexContent>
 </complexType>
 ==end
 
@@ -32,6 +33,11 @@ predefined itself.  Those are run-time errors.  Also, they MAY refuse
 expressions which it cannot be handled fast enough.  Changing the
 accepted syntax must be reflected in &mdash;at least a minor&mdash;
 version increment and be documented.</p>
+
+=attribute be
+
+<p>This element is (a) Reusable, hence has a name.  That name is made
+an alias for the expression in attribute <code>be</code>.</p>
 
 =discuss no pre-parsed expressions
 

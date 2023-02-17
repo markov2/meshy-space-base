@@ -12,9 +12,10 @@ reason.</p>
   <complexContent>
     <extension base="b:Reusable">
       <sequence />
+      <attribute name="ref"   type="b:UnitRef"    use="required" />
       <attribute name="type"  type="b:Constant"  />
+      <attribute name="is"    type="b:Constant"   default="b:Role/Unknown" />
       <attribute name="seqnr" type="unsignedLong" default="1" />
-      <attribute name="is"    type="b:Constant"  default="b:Role/Unknown" />
     </extension>
   </complexContent>
 </complexType>
@@ -26,6 +27,12 @@ reason.</p>
 is expressed via the <code>b:is</code> attribute, which contains a
 name-spaced constant.  The attributes are typical selectors to find
 the right relation to follow, the elements are informational.</p>
+
+=attribute ref
+
+<p>This required attribute tells the Unit where we describe the relation
+with.  This Unit could be a Namespace, but usually it is a simple data
+unit in a collection.</p>
 
 =attribute is
 
@@ -55,7 +62,7 @@ mistakes.</p>
 <p>Usually, this element is not really useful: the processor can better
 retreive the Unit and then check whether it is able to handle it.</p>
 
-<p>Many relations support different object typess.  For instance,
+<p>Many relations support different object types.  For instance,
 the Identity of the owner of the Unit can be a single person, a group,
 and so on.  Which kind of Identity it is, does not really matter in the
 main code of the processor.</p>

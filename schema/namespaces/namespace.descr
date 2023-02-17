@@ -13,7 +13,7 @@ and may have a complex life-cycle.</p>
   <complexContent>
     <extension base="b:Native">
       <sequence>
-        <element name="path-separator" type="token"  minOccurs="0" />
+        <element name="path-sep"   type="b:PathSep" default="/" />
         <element name="language"   type="b:Constant" minOccurs="0" />
         <element name="fetch"      minOccurs="0" maxOccurs="unbounded">
           <complexType>
@@ -43,15 +43,8 @@ element to define its default prefix.</p>
 
 =element path-separator
 
-<p>Tells Clients (but also the server) which character (or characters) are to
-be used to separate components of the path.</p>
-
 <p>The path-separator for Subspaces are inherited from the enclosing
 Namespace.</p>
-
-<p>It is RECOMMENDED to stick to the default separator <code>"/"</code>, because
-that does mimic HTTP syntax. Also, it is RECOMMENDED to stick to one separator
-for the whole namespace.  However, there are reasons to diverge (see example)</p>
 
 =element language
 

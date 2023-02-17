@@ -9,7 +9,7 @@ unit, independent of how the payload is included.</p>
 <group name="meta-data">
   <sequence>
     <element name="type"     type="b:Constant" />
-    <element name="name"     type="token"         minOccurs="0" />
+    <element name="name"     type="string"        minOccurs="0" />
     <element name="language" type="b:Constants"  minOccurs="0" />
     <element name="charset"  type="token"         minOccurs="0" />
   </sequence>
