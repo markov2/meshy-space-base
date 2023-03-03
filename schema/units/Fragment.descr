@@ -16,9 +16,41 @@
 
 <p class="list">The fragment reference is either:</p>
 <ul>
-<li>a name of a reference to another unit (a name of a <SCHEMA>b:has</SCHEMA>
-    object) followed by a hash (<code>#</code>) followed by a name (<SCHEMA>b:Name</SCHEMA>)
-    inside that unit; or</li>
-<li>a hash (<code>#</code>) followed by a name (<SCHEMA>b:Name</SCHEMA>) in this
-    Unit.</li>
+<li>the name of a contextual Unit followed by a hash (<code>#</code>),
+    followed by a name (<SCHEMA>b:Name</SCHEMA>) inside that unit; or</li>
+<li>a hash (<code>#</code>) followed by a name (<SCHEMA>b:Name</SCHEMA>)
+    as defined in this very Unit;</li>
+<li>an attribute which produces a Unit, followed by a <code>#</code> and
+    a Name;</li>
+<li>it is possible to stack multiple levels to express further
+    dereferencing.</li>
 </ul>
+
+<p class="list">Meshy Spaces offers a few contextual Units to the
+Unit which is being evaluated:</p>
+<ul>
+<li><code>unit</code>, the default: the Unit at hand;</li>
+<li><code>system</code>, behaves like a Unit but isn't really;</li>
+<li><code>collection</code>;</li>
+<li><code>namespace</code>;</li>
+</ul>
+
+=example Local fragment
+
+<p>As example, the <code>owner</code> attribute of the Unit
+contains fragment reference <code>#markov</code>.  Elsewhere in
+the Unit, you find a <SCHEMA>ms:has</SCHEMA> with <code>name</code>
+"markov" which refers to an Identity object.</p>
+
+<p>The fragment <code>#markov</code> is exactly the same as the
+contextual <code>unit#markov</code> syntax.</p>
+
+=example contextual fragment
+
+<p class="list">Some examples of contextual fragments:</p>
+<CODE>
+system#owner
+collection#defs
+collection#collection#defs
+namespace.root#name
+</CODE>

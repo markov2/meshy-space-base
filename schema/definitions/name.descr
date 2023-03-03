@@ -5,7 +5,7 @@
 =schema
 
 ==xml
-<element name="name" type="NMTOKEN" />
+<attribute name="name" type="NMTOKEN" />
 ==end
 
 =description

@@ -10,7 +10,7 @@ as rather stand-alone things, but tied together via their name.</p>
   <sequence>
     <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute      ref="b:Name" />
+  <attribute      ref="b:name" />
   <attributeGroup ref="b:selector" />
 </complexType>
 ==end

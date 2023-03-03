@@ -11,9 +11,7 @@
 <complexType name="Content">
   <complexContent>
     <extension base="b:Payload">
-      <sequence>
-        <element ref="b:data" />
-      </sequence>
+      <sequence />
     </extension>
   </complexContent>
 </complexType>

@@ -8,13 +8,9 @@
 <element name="let" type="b:Let" />
 
 <complexType name="Let">
-  <complexContent>
-    <extension base="b:Reusable">
-      <sequence>
-        <element name="be" type="b:Expression" />
-      </sequence>
-    </extension>
-  </complexContent>
+  <sequence />
+  <attribute ref="b:name" />
+  <attribute name="be" type="b:Expression" />
 </complexType>
 ==end
 

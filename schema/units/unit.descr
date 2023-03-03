@@ -18,7 +18,7 @@ generalization of many protocols and system features.</p>
     <element ref="b:documentation" minOccurs="0" maxOccurs="unbounded" />
     <element ref="b:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute name="id" ref="b:UnitID" use="required" />
+  <attribute name="id" type="b:UnitID" use="required" />
 </complexType>
 ==end
 

@@ -8,14 +8,11 @@
 <element name="prefix" type="b:Prefix" />
 
 <complexType name="Prefix">
-  <complexContent>
-    <extension base="b:Reusable">
-      <sequence>
-        <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
-      </sequence>
-      <attribute name="namespace" type="anyURI" />
-    </extension>
-  </complexContent>
+  <sequence>
+    <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+  <attribute ref="b:name" use="required" />
+  <attribute name="namespace" type="anyURI" />
 </complexType>
 ==end
 
@@ -35,10 +32,6 @@ data itself may not contain the prefix declarations.  Prefix declarations
 are extended with the ones defined by the context of Subspace and
 top Namespace Units.</p>
 
-<p>The prefix has a <code>name</code> attribute (inherited from
-<SCHEMA>b:Reusable</SCHEMA>). 
-Prefix names are restricted to <code>\w[\w-]*</code> in ASCII space.</p>
-
 <p>It is permitted to use more than one prefix for the same namespace,
 but using the same prefix twice in one Subspace for different namespaces
 is an error.</p>
@@ -47,6 +40,10 @@ is an error.</p>
 <code>http</code>, <code>https</code>, <code>ftp</code>, and
 <code>s3</code>, where this will probably create confusion to less
 experienced readers.</p>
+
+=attribute name
+
+Prefix names are restricted to <code>\w[\w-]*</code> in ASCII space.</p>
 
 =attribute namespace
 

@@ -8,12 +8,12 @@
 <element name="documentation" type="b:Documentation" />
 
 <complexType name="Documentation">
-  <choice minOccurs="0" maxOccurs="unbounded">
-    <element name="name"          type="string" />
-    <element name="hint"          type="string" />
-    <element name="description"   type="string" />
-    <element name="web-page"      type="anyURI" />
-  </choice>
+  <sequence>
+    <element name="name"          type="string" minOccurs="0" />
+    <element name="hint"          type="string" minOccurs="0" />
+    <element name="description"   type="string" minOccurs="0" />
+    <element name="web-page"      type="anyURI" minOccurs="0" />
+  </sequence>
   <attributeGroup ref="b:doc-selector" />
 </complexType>
 ==end
