@@ -1,0 +1,15 @@
+=short
+
+<p>A list of names.</p>
+
+=schema
+
+==xml
+<simpleTpe name="Names" type="NMTOKENS" />
+==end
+
+=description
+
+<p>A list of names for reference.  In XML, these are NMTOKEN values separated
+by blanks.</p>
+

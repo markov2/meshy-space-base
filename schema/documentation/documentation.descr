@@ -10,6 +10,7 @@
 <complexType name="Documentation">
   <sequence>
     <element name="name"          type="string" minOccurs="0" />
+    <element name="title"         type="string" minOccurs="0" />
     <element name="hint"          type="string" minOccurs="0" />
     <element name="description"   type="string" minOccurs="0" />
     <element name="web-page"      type="anyURI" minOccurs="0" />
@@ -55,6 +56,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 
 <XML>
 <b:unit b:id="IMG00001.jpg">
+  <b:name>2022-02-04 picture 1</b:name>
   <b:type>ms:Mime/image/jpeg</b:type>
   <b:payload />
   <b:documentation b:language="ms:Language/nl-NL">
