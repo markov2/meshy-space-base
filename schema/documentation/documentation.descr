@@ -9,11 +9,11 @@
 
 <complexType name="Documentation">
   <sequence>
-    <element name="name"          type="string" minOccurs="0" />
-    <element name="title"         type="string" minOccurs="0" />
-    <element name="hint"          type="string" minOccurs="0" />
-    <element name="description"   type="string" minOccurs="0" />
-    <element name="web-page"      type="anyURI" minOccurs="0" />
+    <element name="name"        type="string" minOccurs="0" />
+    <element name="title"       type="string" minOccurs="0" />
+    <element name="hint"        type="string" minOccurs="0" />
+    <element name="description" type="string" minOccurs="0" />
+    <element name="webpage"     type="anyURI" minOccurs="0" />
   </sequence>
   <attributeGroup ref="b:doc-selector" />
 </complexType>
@@ -33,12 +33,16 @@ Unit, then use <SCHEMA>b:has</SCHEMA> references of kind
 <code>name</code>.  When missing, that value will be used, which
 defaults to the Unit's <code>id</code>.</p>
 
+=element title
+
+<p>A one-liner which describes the <code>name</code>.  This may be shown as a
+chapter title or header on top of a <code>hint</code>.</p>
+
 =element hint
 
-<p>This is a very short (typically a short single line) help to the
+<p>This is a very short (typically a few lines) help to the
 meaning of this Unit.  This may be shown as tooltip when moving over
-the Unit.  Useful applications a for Units which document constants or
-funtions.</p>
+the Unit.</p>
 
 =element description
 
@@ -47,7 +51,7 @@ what the impact of the content of the Unit is, why it is there, how it
 can be used, and so on.  Typically a piece of what would be a manual-page
 fragement.</p>
 
-=element web-page
+=element webpage
 
 <p>When a simple <code>description</code> is not enough: a reference to a
 web-page, maybe on some website which is also owned by the Namespace holder.</p>
@@ -61,7 +65,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
   <b:payload />
   <b:documentation b:language="ms:Language/nl-NL">
     <b:name>2022-02-04 foto 1</b:name>
-    <b:hint>Vakantie in Zeeland</b:hint>
+    <b:title>Vakantie in Zeeland</b:title>
   </b:documentation>
 </b:unit>
 </XML>
