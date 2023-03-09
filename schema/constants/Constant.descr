@@ -41,7 +41,7 @@ use numeric values to represent anything else than a numeric value.</p>
 <h4>Constant grouping</h4>
 
 <p>For instance: the following example has three layers of grouping:
-<code>Mime</code>, <code>text</code>, and <code>html</code>.
+<code>ms:Mime</code>, <code>text</code>, and <code>html</code>.
 
 <CODE>
 ms:Mime/text/html

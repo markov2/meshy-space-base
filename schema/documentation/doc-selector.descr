@@ -7,7 +7,8 @@ within the context.</p>
 
 ==xml
 <attributeGroup name="doc-selector">
-  <attribute name="for"      type="b:Fragment"  />
+  <attribute name="unit"     type="b:UnitRef" />
+  <attribute name="fragment" type="b:Fragment" />
   <attribute name="language" type="b:Constant" />
   <attribute name="format"   type="b:Constant" default="ms:Mime/text/plain" />
 </attributeGroup>
@@ -20,18 +21,27 @@ grouping.  At the end, for each piece of documentation it must be
 clean when it can be used.  Attributes which are missing are taken
 from the context.</p>
 
-=attribute for
+=attribute unit
 
-<p>Refers to the thing which is being documented.  This could be a unit
-which has a named relation (<SCHEMA>b:has</SCHEMA>), or something else
-which has a <SCHEMA>b:Name</SCHEMA> in this unit.  By default, it
-documents this unit itself.</p>
+<p>Refers to the Unit where this documentation belongs to.  By default,
+the current Unit.  This attribute is required for <SCHEMA>c:documentation</SCHEMA>.</p>
+
+<p>When this attribute appears in a <SCHEMA>c:manual</SCHEMA>, then the
+UnitRef is relative to the <code>documents</code> attribute of the
+manual element (defaults to the current collection).</p>
+
+=attribute fragment
+
+<p>Refers to the thing within the Unit which is being documented.
+This could be a unit which has a named relation (<SCHEMA>b:has</SCHEMA>),
+or something else which has a <SCHEMA>b:Name</SCHEMA> in this unit:
+any <SCHEMA>b:Reusable</SCHEMA> type will do.</p>
 
 =attribute language
 
 <p>When used, it overrides the language of the context, which defaults
-to the prefered <code>language</code> of the Namespace.
-See <UNIT>ms:Language/</UNIT>.</p>
+to the prefered <code>language</code> of the Namespace.  Relative
+Constants are with respect to collection <UNIT>ms:Language</UNIT>.</p>
 
 =attribute format
 

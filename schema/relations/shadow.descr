@@ -1,0 +1,83 @@
+=short
+
+<p>Map the name of one Unit to something else, or all units in a
+collection to units in a different collection.</p>
+
+=schema
+
+==xml
+<element name="shadow" type="b:Shadow" />
+
+<complexType name="Shadow">
+  <sequence />
+  <attribute name="map" type="b:Expression" default="unit.id" />
+  <attributeGroup ref="b:selector" />
+</complexType>
+==end
+
+=description
+
+<p class="list">There are a few situations where a Unit needs refers to</p>
+<ul>
+<li>some other Unit (in different Collection), or</li>
+<li>a Fragments in another Unit (in a different Collection)</li>
+</ul>
+
+<p>Instead of specifying this relation for each Unit separately, it can also
+be written genericly in the rules of Collection.  In that case, the <code>shadow</code>
+parameter maps Unit details (usually simple the <code>unit.id</code>) to a relative
+Unit address to indicate and end-point.  Each of the Units casts a <i>shadow</i>
+over data on the other spot.</p>
+
+<p class="list">Some examples for <code>map</code> expressions:</p>
+<ul>
+<li><code>unit.id</code> (default), maps unit names from one collection one-on-one to 
+    some names in the other collection</li>
+<li><code>unit.id ~ ".doc"</code> will map <code>product</code> to <code>product.doc</code>,
+    which can reside in this or a different collection</li>
+<li><code>unit.id =~ "^(\w+)\.(.*)" -&gt; $1 ~ '-src.zip'</code> will map
+    <code>windows11.pl123</code> into unit-id <code>windows11-src.zip</code></li>
+</ul>
+
+=example refer to documentation organized by language
+
+<p>In the following example, the Collection explains that all Units have documentation
+organized per language in a separate Collection which is dedicated to that task.</p>
+
+<p>The Application which wants to present the documentation, will need to search through
+the content of the destination Unit by itself. See <SCHEMA>msc:manual</SCHEMA>.
+The <code>unit.id</code> can appear more than once inside one manual, hence cannot be
+used as fragment indicator.</p>
+
+<XML>
+<b:has
+  b:ref="Docs"
+  b:type="ms:Type/Collection"
+  b:is="ms:Role/Documentation"
+>
+  <b:shadow b:map="client.lang" />
+</b:has>
+</XML>
+<JSON>
+"b_has" : {
+  "b_ref" : "Docs",
+  "b_type" : "ms:Type/Collection",
+  "b_is" : "ms:Role/Documentation",
+  "b_shadow" : {
+    "b_map" : "client.lang"
+  }
+}
+</JSON>
+
+<p>The expression <code>client.lang</code> produces the abbreviated name for the language
+constant, for instance <code>nl-NL</code>.  In search of the optimal translation, the client
+application MAY need to attempt different values for the language.</p>
+
+<p>This relation is declared in the Collection Rules, hence apply to all Units which are in
+that Collection (this can be restricted using the <SCHEMA>selector</SCHEMA> attributes <code>when</code>
+or <code>unless</code>).  For any Unit (which do not provide documentation itself), the Rules
+explain to the client application to look into collection "Docs" (relative to this Collection)
+in the Unit with a name equivalent to the clients language.</p>
+
+<p>When my <code>client.lang</code> is <code>nl-NL</code> and my Collection is <code>app:picts</code>,
+then Unit <code>abc.jpg</code> is redirecting to Unit <code>app:picts/nl-NL</code>

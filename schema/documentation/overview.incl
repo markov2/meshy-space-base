@@ -5,42 +5,10 @@ Space, it is possible to include documentation without a too high burden.</p>
 <p>Documentation can be large and contributed by various parties.
 For instance, you MAY have different translators which do not apply
 their changes on uncoordinated moments.  You MAY need the same texts
-in different formats (plain text, HTML, and PDF).
+in different formats (plain text, HTML, and PDF).</p>
 
-<h2>Cluster per Unit or per language?</h2>
-
-<p class="list">All texts in Meshy Space are UTF-8 only, so that reduces
-one degree of freedom.  There are still a few dimensions left:</p>
-<ul>
-<li>Purpose: label, hint, description, etc.;</li>
-<li>Language: en-US, nl-BE, bg;</li>
-<li>Clustering: per Unit, per Collection, per Namespace;</li>
-</ul>
-<p>You may decide to put the documentation of a Unit inside that
-Unit structure.  That means that everyone who downloads the Unit
-will download the documentation as well, although it is probably rarely
-used.  Also, access rights and authentication may hinder translations.</p>
-
-<p>You may also decide to create a Unit which contains documentation
-as payload.  Typically, create a new Collection which contains Units
-with the same unit-ids as the Unit they are documenting.  A bit easier
-to manage, much easier when translating.</p>
-
-<p>You may also create a Unit which contains the documentation of many
-Units in one.  This might be helpfull when the amount of documentation
-is limited.</p>
-
-<h2>Implementation</h2>
-
-<p class="list">When there are many Units to be documented, in many
-languages, then it is easiest to create a Collection with documentation
-Units, where each unit contains one translation.  This can be made
-efficient: the Collection contains a generic:</p>
-<CODE>
-<b:has b:ref="some-unit" b:is="msc:Role/Documentation"
-   b:when="user.language eq 'en-US'" />
-</CODE>
-
-<p>It is RECOMMENDED to design a consistent structure for the
-documentation within one Namespace, but that is not required: the clients
-will search between available documentation for the best fitting selection.</p>
+<p>Meshy Space Base offers in-unit documentation.  Meshy Space Concept
+defines the <SCHEMA>c:manual</SCHEMA> unit payload, which can be used
+for large documentation or to group documentation of many Units.
+Read about <a href="/schemas/concept/documentation/">the documentation
+features in Concept</a>.</p>

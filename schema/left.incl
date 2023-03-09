@@ -11,6 +11,7 @@
 <li><a href="/schemas/base/definitions/">definitions</a></li>
 <li><a href="/schemas/base/namespaces/">namespaces</a></li>
 <li><a href="/schemas/base/payloads/">payloads</a></li>
+<li><a href="/schemas/base/relations/">relations</a></li>
 <li><a href="/schemas/base/units/">units</a></li>
 <li><a href="/schemas/base/values/">values</a></li>
 </ul>

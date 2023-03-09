@@ -11,9 +11,9 @@ generalization of many protocols and system features.</p>
 
 <complexType name="Unit">
   <sequence>
-    <group   ref="b:meta-data"  />
-    <group   ref="b:life-cycle" />
+    <group   ref="b:meta_data"  />
     <element ref="b:definitions"   minOccurs="0" maxOccurs="unbounded" />
+    <element ref="b:life_cycle"    nillable="true" />
     <element ref="b:payload"       minOccurs="0" nillable="true" />
     <element ref="b:documentation" minOccurs="0" maxOccurs="unbounded" />
     <element ref="b:has"           minOccurs="0" maxOccurs="unbounded" />
@@ -51,14 +51,20 @@ referred to, either within this same information structure, or from
 other information structures.  Applications will decide to cache
 the units based on this <code>b:id</code> for performance.</p>
 
-=group life-cycle
+=element definitions
+
+<p>Rules which help to interpret fields with expressions.  These
+can be grouped and reused, hence it is possible to encounter
+more than one block of definitions.</p>
+
+=element life_cycle
 
 <p>A number of fields are used to control the progress of the unit:
 when it was created, was deprecated, and is to be removed.  The base
 is the revision of the unit.  There is only one revision of a unit in
 your cache: the newest.</p>
 
-=group meta-data
+=group meta_data
 
 <p>A number of fields describe what the unit represents.  If the unit
 contains a payload, it gives facts about the payload.  All these facts

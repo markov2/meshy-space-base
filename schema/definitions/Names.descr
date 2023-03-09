@@ -5,7 +5,9 @@
 =schema
 
 ==xml
-<simpleTpe name="Names" type="NMTOKENS" />
+<simpleType name="Names"> 
+  <restriction base="NMTOKENS" />
+</simpleType>
 ==end
 
 =description

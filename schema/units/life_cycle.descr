@@ -9,16 +9,18 @@ life-cycle</a>.</p>
 =schema
 
 ==xml
-<group name="life-cycle">
+<element name="life_cycle" type="b:LifeCycle" />
+
+<complexType name="LifeCycle">
   <sequence>
     <element ref="b:revision"                     minOccurs="0" />
     <element name="created"   type="dateTime"     minOccurs="0" />
     <element name="updated"   type="dateTime"     minOccurs="0" />
     <element name="deprecate" type="b:Expression" minOccurs="0" />
     <element name="expire"    type="b:Expression" minOccurs="0" />
-    <element name="revisit"   type="duration"     minOccurs="0" />
+    <element name="revisit"   type="b:Expression" minOccurs="0" />
   </sequence>
-</group>
+</complexType>
 ==end
 
 =description
@@ -68,12 +70,12 @@ dateTime or a duration after the moment of publication.</p>
 <p>When a unit has a deprecated time which is in the past, then attempts
 should be made to warn the user of data in the unit.  Details can be
 found in the unit's change-log.  Warnings MUST be throttled to an
-acceptable level, say a maximum of once per hour.
+acceptable level, say a maximum of once per hour.</p>
 
 =element expire
 
 <p>This tells the Collection when the Unit wants to get expired.
-The expression must produce a timestamp: be an absolute dateTime or
+The expression must produce a timestamp: be an absolute datetime or
 a duration after the moment of publication.</p>
 
 <p>When a unit has expired, it SHALL NOT be used anymore.  It MUST
@@ -88,7 +90,9 @@ Probably the latter.  This may be expensive.</p>
 =element revisit
 
 <p>The maximum in which you have to check whether you still have the
-latest revision of a unit.  When you use a cached unit (of any type)
+latest revision of a unit.  The expression must return a duration.</p>
+
+<p>When you use a cached unit (of any type)
 you must check whether the collection which contains that unit has
 to be upgraded, using the <UNIT>ms:Op.upgrade</UNIT> operation.
 All reported changes need to be processed before you can continue.</p>
@@ -103,14 +107,3 @@ has ended, or throw the cached revision of the unit away.</p>
 
 <p>You SHALL not keep the revision unit in any form after the revisit
 timespan has passed without revision attempt, to comply to law.</p>
-
-=discuss Repackaging after expiration
-
-<p>We cannot tolerate the distribution of expired data, because
-their termination means that the license has expired or the content
-is withdrawn.  For instance, the unit may contain illegal content.
-Or has broken content.  You do not have a choice: repackaging and
-redistribution is obligatory.</p>
-
-<p>You do not have to repackage the unit's data on updates or
-deprecations: simply patch the meta-data of the unit.</p>

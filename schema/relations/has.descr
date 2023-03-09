@@ -11,8 +11,10 @@ reason.</p>
 <complexType name="Has">
   <complexContent>
     <extension base="b:Reusable">
-      <sequence />
-      <attribute name="ref"   type="b:UnitRef"    use="required" />
+      <sequence>
+        <element ref="b:shadow" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+      <attribute name="ref"   type="b:UnitRef"    default='.' />
       <attribute name="type"  type="b:Constant"  />
       <attribute name="is"    type="b:Constant"   default="b:Role/Unknown" />
       <attribute name="seqnr" type="unsignedLong" default="1" />
@@ -26,13 +28,20 @@ reason.</p>
 <p class="list">We can think of many reasons for relations.  The reason
 is expressed via the <code>b:is</code> attribute, which contains a
 name-spaced constant.  The attributes are typical selectors to find
-the right relation to follow, the elements are informational.</p>
+the right relation to follow.</p>
+
+=element schadow
+
+<p>When the relation is between a Unit and a Collection, or when the
+relation is between a Unit and a fragment of a different Unit, then
+a rewrite is needed which translates the Unit name into a Fragment
+indicator.</p>
 
 =attribute ref
 
 <p>This required attribute tells the Unit where we describe the relation
 with.  This Unit could be a Namespace, but usually it is a simple data
-unit in a collection.</p>
+Unit in a collection or a whole Collection.</p>
 
 =attribute is
 
@@ -85,7 +94,7 @@ a unit into a separate unit: for instance the history of the unit.</p>
   <c:indentity />
 </b:unit>
 <b:unit b:id="Sources">              <!-- in dist: -->
-  <b:type>msc:Role/Collection</b:type>    <!-- is a Subspace -->
+  <b:type>ms:Role/Collection</b:type>  <!-- is a Subspace -->
   <b:has b:is="dist:Role/Source" b:ref="puppy-src-3.14.rpm" />
   <b:has b:is="dist:Role/Source" b:ref="wolf-src-12.2.rpm" />
 </b:unit>
@@ -108,8 +117,8 @@ a unit into a separate unit: for instance the history of the unit.</p>
   "c:identity" : {}
 },
 "b:unit" : {
-  "b:id": "Sources",               // in dist:
-  "b:type" : "msc:Role/Collection",     // is a Subspace
+  "b:id": "Sources",                // in dist:
+  "b:type" : "ms:Role/Collection",  // is a Subspace
   "b:has" : [ {
     "b:is" : "dist:Role/Source",
     "b:ref" : "puppy-src-3.14.rpm"

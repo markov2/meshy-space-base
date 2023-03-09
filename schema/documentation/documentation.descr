@@ -25,6 +25,10 @@
 Unit, then use <SCHEMA>b:has</SCHEMA> references of kind
 <UNIT>ms:Role/Documentation</UNIT>.</p>
 
+<p>See the <a href="/schemas/concept/documentation/">Manual Units</a>
+as defined by Concept for bulk documentation: Units of type
+<UNIT>msc:Type/Manual</UNIT>.</p>
+
 =attributeGroup doc-selector
 
 =element name
