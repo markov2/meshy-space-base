@@ -52,6 +52,9 @@ one namespace and one XML schema.</p>
 <dt><a href="relations/">relations</a></dt>
 <dd>units refering to other units, unit fragments, or collections.</dd>
 
+<dt><a href="storage/">storage</a></dt>
+<dd>saving, loading, and searching units.</dd>
+
 <dt><a href="units/">units</a></dt>
 <dd>addressable data units: the core feature of MSI.</dd>
 

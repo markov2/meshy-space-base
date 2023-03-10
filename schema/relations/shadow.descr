@@ -17,16 +17,16 @@ collection to units in a different collection.</p>
 
 =description
 
-<p class="list">There are a few situations where a Unit needs refers to</p>
+<p class="list">There are a few situations where a Unit needs to refer to</p>
 <ul>
 <li>some other Unit (in different Collection), or</li>
-<li>a Fragments in another Unit (in a different Collection)</li>
+<li>a Fragment in another Unit (in a different Collection)</li>
 </ul>
 
 <p>Instead of specifying this relation for each Unit separately, it can also
 be written genericly in the rules of Collection.  In that case, the <code>shadow</code>
-parameter maps Unit details (usually simple the <code>unit.id</code>) to a relative
-Unit address to indicate and end-point.  Each of the Units casts a <i>shadow</i>
+parameter maps Unit facts (usually simple the <code>unit.id</code>) to a (relative)
+Unit address to indicate an end-point.  Each of the Units casts a <i>shadow</i>
 over data on the other spot.</p>
 
 <p class="list">Some examples for <code>map</code> expressions:</p>
@@ -37,6 +37,9 @@ over data on the other spot.</p>
     which can reside in this or a different collection</li>
 <li><code>unit.id =~ "^(\w+)\.(.*)" -&gt; $1 ~ '-src.zip'</code> will map
     <code>windows11.pl123</code> into unit-id <code>windows11-src.zip</code></li>
+<li><code>unit.type like "*.jpg" -> 'jpegs.doc'</code> only defines the relation for
+    jpeg images. Other types return "undefined" here. Often, using <code>when</code>
+    is easier to read.
 </ul>
 
 =example refer to documentation organized by language

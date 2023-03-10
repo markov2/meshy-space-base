@@ -1,0 +1,8 @@
+<p>A units may define relations to other Units: it <SCHEMA>b:has</SCHEMA>
+additional references.  These relations are references (<SCHEMA>b:UnitRef</SCHEMA>).</p>
+
+<p>When many Units in a Collection have a structurally consistent relation to
+a different Collection, than that other Collection is a "shadow" of the first.
+When needed, the Rules of the first Collection can include a generic reference
+with optionally a rewrite rule (<SCHEMA>b:shadow</SCHEMA> element in
+the <SCHEMA>b:has</SCHEMA>).</p>

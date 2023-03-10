@@ -1,0 +1,55 @@
+=short
+
+<p>Defines a <SCHEMA>b:storage</SCHEMA> back-end for a sub-set
+of the Units.</p>
+
+=schema
+
+==xml
+<element name="shard" type="b:Shard" />
+
+<complexType name="Shard">
+  <sequence>
+    <element name="storage" type="b:UnitRef" minOccurs="0" />
+  </sequence>
+  <attributeGroup name="selector" />
+</complexType>
+==end
+
+=description
+
+<p>The <SCHEMA>b:store</SCHEMA>, as listed in a <SCHEMA>b:namespace</SCHEMA>,
+describes a data maintenance approach.  This may use <i>shards</i>: distributing
+the Units over storages based on some of the unit's features.</p>
+
+<p>When a Unit gets updated, it SHOULD be re-evaluted whether is also has to
+change shard.  When the store description changes, it may imply that units must
+be moved between shards.</p>
+
+<p>The Meshy Space running daemon manages searches across shards.</p>
+
+=element shard
+
+<p>One Namespace can carry many storage references, which may be selected with
+the <code>when</code> or <code>unless</code> attributes.  This way, you MAY,
+for instance, cause large Units to be stored on other physical places than smaller
+Units.  Or, you can differentiate between types of Units, the first letter of the
+UnitID, the upload date.
+
+=discuss typical expressions for shards
+
+<p>Not all storage back-ends support the same features.  For instance, some may not
+support writing, other may not support search.  Which storage is used for each task
+can be configured with <code>when</code>.<p>
+
+<p class="list">Typical selectors for shards:</p>
+<CODE>
+# First half of the names in this shard
+unit.id =~ "^[a-mA-M]"
+
+# Large Units somewhere else
+unit.size > 10M
+
+# Introduce a staging server
+unit.state unlike 'ms:UnitState/{Published,Deprecated}'
+</CODE>

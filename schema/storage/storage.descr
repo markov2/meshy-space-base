@@ -1,0 +1,26 @@
+=short
+
+<p>Base class for all storage configurations.</p>
+
+=schema
+
+==xml
+<element name="storage" type="b:Storage" abstract="true" />
+
+<complexType name="Storage">
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence>
+        </element>
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Elements which extend <code>storage</code> are used to describe a
+method to maintain unit data.  The elements correspond to implementations
+which transport data, and offer some services on it.</p>
+

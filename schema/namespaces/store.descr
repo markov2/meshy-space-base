@@ -1,0 +1,64 @@
+=short
+
+<p>The <code>store</code> describes how the <SCHEMA>b:storage</SCHEMA> will
+be used.</p>
+
+=schema
+
+==xml
+<element name="store" type="b:Store" />
+
+<complexType name="Store">
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence>
+        <element name="storage" type="b:UnitRef" minOccurs="0" />
+        <element ref="b:shard" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>One <SCHEMA>b:namespace</SCHEMA> can list multiple storage schemes: different
+approaches to maintain the Unit data.  Each <code>store</code> element describes
+one approach.  The store explains when to use which storage back-end will be
+applied. Those back-ends are Units with role <UNIT>ms:Role/Storage</UNIT>.</p>
+
+<p>The back-end descriptions are owned by the server, and are often not publicly
+readible.  The Namespace (which is readible by the client) only contains the
+information to knock on the right server door.</p>
+
+=element storage
+
+<p class="list">When there is only one storage back-end, then you can use the
+simple <code>storage</code> element.  But when the configuration gets more
+complex, you need multiple <code>shards</code>.  In that case, the reference
+of <code>storage</code> will be used when no shard fits.</p>
+
+<p class="list">The following two are the same:</p>
+<XML>
+<b:namespace>
+  <b:store b:name="default-store" b:when="unit.name like '*.jpg'">
+    <b:storage>daemon:Storage/Disk1</b:storage>
+  </b:store>
+</b:namespace>
+
+<b:namespace>
+  <b:store b:name="default-store">
+    <b:shard b:when="unit.name like '*.jpg'">
+      <storage>daemon:Storage/Disk1</b:storage>
+    </b:shard>
+  </b:store>
+</b:namespace>
+</XML>
+
+=element shard
+
+<p>One Namespace can carry many storage references, which may be selected with
+the <code>when</code> or <code>unless</code> attributes.  This way, you MAY,
+for instance, cause large Units to be stored on other physical places than smaller
+Units.  Or, you can differentiate between types of Units, the first letter of the
+UnitID, the upload date.</p>

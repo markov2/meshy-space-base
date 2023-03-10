@@ -1,7 +1,6 @@
 =short
 
-<p>Type <i>b:UnitRef</i> is a reference to some <SCHEMA>b:unit</SCHEMA>.
-That unit does not need to be in the current message.</p>
+<p>Type <i>b:UnitRef</i> is a reference to some <SCHEMA>b:unit</SCHEMA>.</p>
 
 =schema
 

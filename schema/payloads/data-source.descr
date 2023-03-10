@@ -14,9 +14,10 @@
 
 =description
 
-<p>Extensions describe how to get bytes (octets).  The following
-methods are provided by default:</p>
+<p>This element is abstract, so is not seen in any structure; its assigns a
+place for its extensions which describe how to get bytes (octets).</p>
 
+<p class="list">The following data sources are provided by the base implementation:</p>
 <ul>
 <li><SCHEMA>b:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
 <li><SCHEMA>b:resource</SCHEMA>, contained in another Unit; and</li>

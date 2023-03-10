@@ -9,18 +9,22 @@ top-level Namespace.</p>
 <element name="subspace" type="b:Subspace" />
 
 <complexType name="Subspace">
-  <sequence />
+  <sequence>
+    <element name="namespace" type="b:UnitRef" />
+  </sequence>
   <attribute name="path"      type="b:UnitRef"   use="required" />
-  <attribute name="namespace" type="b:UnitRef" />
 </complexType>
 ==end
 
 =description
 
 <p>The element of the <SCHEMA>b:namespace</SCHEMA> structure explains
-which components of the Namespace have their own specification.  The
-Subspace can overrule any aspect of its parent Namespace, but inherits
-the settings (like permissions) as defaults.</p>
+which components of the Namespace have their own specification.  For
+instance, which parts use a different storage architecture.</p>
+
+<p>Subspaces are a subset of sub-collections (see <SCHEMA>c:collection</SCHEMA>).
+In most cases, some Collection will use the same hardware configuration
+as its parent, but in complex set-ups you may differ.</p>
 
 =attribute path
 
@@ -33,58 +37,11 @@ where is ensured that each component is separated by the locally active
 <p>The path MUST be in the same root Namespace: it cannot refer to
 external namespaces.</p>
 
-=attribute namespace
+=element namespace
 
-<p>Refers to a <SCHEMA>b:unit</SCHEMA> of type
-<UNIT>ms:Type/Namespace</UNIT> which describes how the sub-namespace
-behaves.  It depends on the feature in the Namespace whether configuration
-is inherited from the "parent" namespace.</p>
+<p>Refers to a <SCHEMA>b:unit</SCHEMA> which implements
+<UNIT>ms:Role/Namespace</UNIT>, which describes how the sub-namespace
+physically behaves.</p>
 
-=discuss Absolute location of a Subspace
-
-<p>The root Namespace (the Unit which is opened when you address the
-namespace itself) has absolute path <code>(namespace, '')</code>.
-When it has a Subspace with <code>path</code> value <code>'a'</code>,
-then that Subspace has absolute path <code>(namespace, 'a/')</code>.
-It is possible that Subspace <code>'a'</code> has a Subspace by itself,
-for instance <code>'b'</code>.  The full path for it is <code>(namespace,
-'a/b')</code>.</p>
-
-<p class="list">The following are equivalent, and all result in absolute
-path <code>"namespace:a/b/"</code>:</p>
-<ul>
-<li><code>'a'</code> and <code>'b'</code></li>
-<li><code>'/a'</code> and <code>'/b'</code></li>
-<li><code>'a/'</code> and <code>'b/'</code></li>
-<li><code>'/a/'</code> and <code>'/b/'</code></li>
-<li><code>'/a/b/'</code></li>
-</ul>
-
-<p>This mimics how HTTP-servers map to a directory structure on disk,
-where the user does not know whether the namespace is homogeneous or
-not simply based on the Unit reference.  This enabled smooth storage
-redesign on the supplier side.</p>
-
-=discuss Absolute locations of Units
-
-<p>Any Unit has one absolute location, but there may be different
-routes to reach it: namespace rewrite rules polute the view.  The rewrite
-rules only exist to migrate set-ups, not to offer an alternative
-reality.</p>
-
-<p>When a reference of a Unit is followed, you start at the
-top Namespace description.  First apply namespace rewrite rules
-(<SCHEMA>b:moved</SCHEMA>) on the remaining of the path.  Look
-for matching Subspaces for the rewritten path (MAY be in a different
-namespace).  Recursively go through the Subspaces.  Meanwhile: construct
-a new absolute path from the rewrites.  The Unit's name CAN also
-contain slashes.</p>
-
-<p>You SHALL only use the new absolute path when producing new Units to
-be released.</p>
-
-=short
-
-<p>A unit <i>has</i> references to another unit for a certain
-reason.</p>
-
+<p>The namespace MAY refer to a Unit which thinks it has a different location.
+This way, you implement a redirect or alias.</p>
