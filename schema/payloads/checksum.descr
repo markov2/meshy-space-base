@@ -35,7 +35,7 @@ applied.  In the <code>ms:</code> namespace, they are named
 
 <XML>
 <b:unit id="cv.html">
-  <b:type>ms:Mime/text/html</b:type>
+  <b:type>iana:MimeType/text/html</b:type>
   <b:content>
     <b:checksum b:by="ms:Checksum/MD5">
        490201fd0ae7192044e0a18f270182e3

@@ -22,8 +22,6 @@ convention.</p>
 <li><code>ms:Language/</code> names for languages, in ISO-639-[123] form
     with region indicator but without the script and modifiers you see in
     locales;</li>
-<li><UNIT>ms:Mime/</UNIT> contains all official
-    MIME-types as defined by IANA;</li>
 <li><UNIT>ms:Pack/</UNIT> lists names for packagers, like <code>tar</code>;</li>
 <li><UNIT>ms:Role/</UNIT> is used to express the relation in
     <UNIT>ms:has</UNIT> attribute <code>is</code>;</li>
@@ -33,4 +31,10 @@ convention.</p>
     <UNIT>ms:native</UNIT> payload structures;</li>
 <li><code>ms:{Error,Warning,Notice,Info}/</code>, status codes;</li>
 <li>Other TODO</li>
+</ul>
+
+<p class="list">Other namespaces:</p>
+<ul>
+<li><UNIT>iana:MediaType/</UNIT> contains all official MediaTypes (previously
+    known as MIME-Types) as defined by IANA;</li>
 </ul>

@@ -10,9 +10,7 @@
 <complexType name="Storage">
   <complexContent>
     <extension base="b:Reusable">
-      <sequence>
-        </element>
-      </sequence>
+      <sequence />
     </extension>
   </complexContent>
 </complexType>

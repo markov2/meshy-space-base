@@ -5,22 +5,46 @@
 =schema
 
 ==xml
-<element name="let" type="b:Let" />
+<element name="let" type="b:Let"
+  substitutionGroup="b:reusable" />
 
 <complexType name="Let">
-  <sequence />
-  <attribute ref="b:name" />
-  <attribute name="be" type="b:Expression" />
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence />
+      <attribute name="expr"   type="b:Expression" />
+      <attribute name="string" type="string" />
+      <attribute name="regexp" type="string" />
+    </extension>
+  </complexContent>
 </complexType>
 ==end
 
 =description
 
 <p>Expressions which are defined with <tt>let</tt> can be used in
-other expressions.</p>
+other expressions. See <a href="/explain/base/expressions.html">expressions</a>.</p>
 
 <p>Many objects produce expressions.  For instance, the server
 will offer some <tt>system</tt> values via this mechanism, like
 <tt>system.now</tt>.  The Collection will provide expressions
 about, for instance, it's contained number of Units.  In a Unit
 context, the <tt>unit.state</tt> will be set.</p>
+
+<p>You MUST either use exactly one attribute from <code>b:expr</code>,
+<code>b:string</code>, or <code>b:regexp</code>.  Attribute
+<code>b:string</code> can be converted into a <code>b:expr</code> by
+wrapping it in quotes.</p>
+
+=example Relation between b:expr and b:string
+
+<p class="list">These three produce the same result:</p>
+<XML>
+<b:let b:name="address" b:string="Postbus 1428AB" />
+<b:let b:name="address" b:expr="'Postbus 1428AB'" />
+<b:let b:name="address" b:expr='"Postbus 1428AB"' />
+
+<b:let b:name="pobox_nr" b:string="1428AB" />
+<b:let b:name="address" b:expr="'Postbus ' ~ pobox_nr" />
+<b:let b:name="address" b:expr='"Postbus " ~ pobox_nr' />
+</XML>

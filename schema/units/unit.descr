@@ -16,7 +16,6 @@ generalization of many protocols and system features.</p>
     <element ref="b:life_cycle"    nillable="true" />
     <element ref="b:payload"       minOccurs="0" nillable="true" />
     <element ref="b:documentation" minOccurs="0" maxOccurs="unbounded" />
-    <element ref="b:has"           minOccurs="0" maxOccurs="unbounded" />
   </sequence>
   <attribute name="id" type="b:UnitID" use="required" />
 </complexType>

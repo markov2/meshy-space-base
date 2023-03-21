@@ -6,12 +6,11 @@ as rather stand-alone things, but tied together via their name.</p>
 =schema
 
 ==xml
+<element name="reusable" type="b:Reusable" abstract="true" />
+
 <complexType name="Reusable">
-  <sequence>
-    <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
-  </sequence>
+  <sequence />
   <attribute      ref="b:name" />
-  <attributeGroup ref="b:selector" />
 </complexType>
 ==end
 

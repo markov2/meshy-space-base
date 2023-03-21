@@ -1,0 +1,48 @@
+=short
+
+<p>The payload of Constant describing Unit.</p>
+
+=schema
+
+==xml
+<element name="constant" type="b:Constant_"
+  substitutionGroup="b:native" />
+
+<complexType name="Constant_">
+  <complexContent>
+    <extension base="b:Native">
+      <sequence>
+        <element ref="b:param" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+
+==end
+
+=description
+
+<p>Constants are basically names which are unique, as 'enum'-types
+in many languages show.  But they also have implications.  The Unit
+which MAY be linked to the Constant supports life-cycle management
+over this constant and MAY contain documentation.  But also: it can
+explain the constant to client and server.
+
+=element params
+
+<p>A Constant (<SCHEMA>b:Constant</SCHEMA> is a
+<SCHEMA>b:UnitRef</SCHEMA>) points to a fact within a group of facts.
+However, to be useable, that fact may need more information: additional
+details to the constant to reduce exploding dimensions of possible
+parameters.</p>
+
+<p>For instance, when the Constant is named
+<UNIT>ms:Signature/SHA256</UNIT>, then it is useful to know that the
+algorithm is <code>SHA</code> and the version <code>256</code>.
+Either the backend must interpret the UnitID <code>SHA256</code>, or
+this is resolved via parameters, typically "algorithm=SHA, bits=256".</p>
+
+=discuss Why parameters and not cleanly spec'd
+
+<p>Purist would certainly prefer to have clean schemas over a list of
+keu-value parameters, but it is simply too much work with little to add.</p>

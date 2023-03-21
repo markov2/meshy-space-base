@@ -10,7 +10,7 @@ which is part of a <i>tar</i>-archive which is gzip-compressed.  This is
 a common format in the UNIX/Linux environment.</p>
 <XML>
 <b:unit>
-  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:type>iana:MediaType/image/jpeg</b:type>
   <b:name>logo.jpg</b:name>
   <b:content>
     <b:size>12121</b:size>
@@ -32,7 +32,7 @@ a common format in the UNIX/Linux environment.</p>
 </XML>
 <JSON>
 "b:unit" : {
-  "b:type" : "ms:Mime/image/jpeg",
+  "b:type" : "iana:MediaType/image/jpeg",
   "b:name" : "logo.jpg",
   "b:content" : {
     "b:size" : "12121",
@@ -58,6 +58,7 @@ a common format in the UNIX/Linux environment.</p>
   }
 }
 </JSON>
+
 <p>Probably, the SHA1 checksum type includes Base64 encoding, so it
 should not be specified explicitly.  However, it is included in the
 example to demonstrate how it could work.</p>
@@ -67,17 +68,17 @@ example to demonstrate how it could work.</p>
 <p>Getting to the data which is distributed via a unit is potentionally
 recursive.  In the example below, the details about where to get the
 <i>tar</i>-archive is contained in an other unit.  Of course, that
-<i>resource</i> can be shared easily by units which describe the separate
+<i>source</i> can be shared easily by units which describe the separate
 data elements in that tar.</p>
 
 <XML>
 <b:unit b:id="default-logo.jpg">
-  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:type>iana:MediaType/image/jpeg</b:type>
   <b:name>logo.jpg</b:name>
   <b:content>
     <b:size>12121</b:size>
     <b:packaged b:by="ms:Pack/Tar">
-      <b:resource b:ref="dist:style.tar" />
+      <b:source b:ref="dist:style.tar" />
       <b:entry>logo-50x124.jpg</b:entry>
     </b:packaged>
     <b:checksum b:by="ms:Checksum/SHA1">
@@ -88,7 +89,7 @@ data elements in that tar.</p>
 
 <!-- in the Namespace with prefix "dist" -->
 <b:unit b:id="style.tar">
-  <b:type>ms:Mime/application/tar</b:type>
+  <b:type>iana:MediaType/application/tar</b:type>
   <b:content>
     <b:size>314156</b:size>
     <b:compressed b:by="ms:Compress/Gzip">
@@ -101,13 +102,13 @@ data elements in that tar.</p>
 <JSON>
 "b:unit" : {
   "b:id" : "default-logo.jpg",
-  "b:type" : "ms:Mime/image/jpeg",
+  "b:type" : "iana:MediaType/image/jpeg",
   "b:name" : "logo.jpg",
   "b:content" : {
     "b:size" : "12121",
     "b:packaged" : {
       "b:by" : "ms:Pack/Tar",
-      "b:resource" : { "b:ref" : "dist:style.tar" },
+      "b:source" : { "b:ref" : "dist:style.tar" },
       "b:entry" : "logo-50x124.jpg"
     },
     "b:checksum" : {
@@ -122,7 +123,7 @@ data elements in that tar.</p>
 
 "b:unit" : {
   "b:id" : "style.tar",
-  "b:type" : "ms:Mime/application/tar",
+  "b:type" : "iana:MediaType/application/tar",
   "b:content" : {
     "b:size" : "314156",
     "b:compressed" : {

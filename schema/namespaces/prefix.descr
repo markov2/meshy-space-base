@@ -8,11 +8,14 @@
 <element name="prefix" type="b:Prefix" />
 
 <complexType name="Prefix">
-  <sequence>
-    <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
-  </sequence>
-  <attribute ref="b:name" use="required" />
-  <attribute name="namespace" type="anyURI" />
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence>
+        <element name="endpoint"  type="anyURI" minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+      <attribute name="namespace" type="anyURI" />
+    </extension>
+  </complexContent>
 </complexType>
 ==end
 
@@ -23,14 +26,8 @@ namespaces, and refer to those via prefixes.  Some data formats (like
 XML) are very careful with prefixes, where other data formats do not
 support them in a clean way.</p>
 
-<p>These prefix specifications are commonly found in the Namespace
-and Subnamespace Units, but may appear in any Unit.</p>
-
-<p><b>Warning:</b> Where elements of type <SCHEMA>b:UnitRef</SCHEMA>
-(may) use a <code>prefix</code>, they are not XML QName typed: the
-data itself may not contain the prefix declarations.  Prefix declarations
-are extended with the ones defined by the context of Subspace and
-top Namespace Units.</p>
+<p>These prefix specifications are commonly found in the <UNIT>ms:Role/Namespace<UNIT>
+and <UNIT>msc:Role/Collection</UNIT> Units, but may appear in any Unit.</p>
 
 <p>It is permitted to use more than one prefix for the same namespace,
 but using the same prefix twice in one Subspace for different namespaces
@@ -51,7 +48,7 @@ Prefix names are restricted to <code>\w[\w-]*</code> in ASCII space.</p>
 
 <p>When the <code>namespace</code> attribute is missing, the prefix
 is used as alternative for the current Namespace.  Therefore, top
-level Namespace will need such element.</p>
+level Namespace REQUIRE such element.</p>
 
 =element endpoint
 
@@ -64,3 +61,9 @@ need to add transport parameters like authorization or a port number
 to help users to reach the server.  To avoid unclean <code>namespace</code>,
 you can add a <code>endpoint</code> elements.  You MAY also give alternative
 endpoints for the same namespace.</p>
+
+=discuss This is not XML!
+
+<p><b>Warning:</b> Where elements of type <SCHEMA>b:UnitRef</SCHEMA>
+(may) use a <code>prefix</code>, they are not XML QName typed entities: the
+data itself may not contain the prefix declarations.</p>

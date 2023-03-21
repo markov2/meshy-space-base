@@ -6,10 +6,10 @@ requested data.</p>
 =schema
 
 ==xml
-<element name="resource" type="b:Resource"
+<element name="source" type="b:Source"
    substitutionGroup="b:data-source" />
 
-<complexType name="Resource">
+<complexType name="Source">
   <complexContent>
     <extension base="b:DataSource">
       <sequence />

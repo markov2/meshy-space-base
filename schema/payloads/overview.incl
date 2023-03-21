@@ -3,10 +3,11 @@ This has two main variations:</p>
 
 <ul>
 <li><SCHEMA>b:native</SCHEMA> payloads are (XML) message components which
-    nicely integrate in the unit structure.  In these units, not only the
+    nicely integrate in the Unit structure.  In these units, not only the
     wrapper, but also the payload data is defined in one of the Meshy Space
     schemas.</li>
-<li><SCHEMA>b:content</SCHEMA> payloads produce bytes.</li>
+<li><SCHEMA>b:content</SCHEMA> payloads produce bytes for user
+    applications, like a picture.</li>
 </ul>
 
 <p>Please see <a href="examples.html">the examples</a> to learn about

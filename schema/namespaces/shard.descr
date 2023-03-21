@@ -12,7 +12,7 @@ of the Units.</p>
   <sequence>
     <element name="storage" type="b:UnitRef" minOccurs="0" />
   </sequence>
-  <attributeGroup name="selector" />
+  <attributeGroup ref="b:selector" />
 </complexType>
 ==end
 

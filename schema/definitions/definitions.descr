@@ -12,8 +12,8 @@ Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
   <complexContent>
     <extension base="b:Reusable">
       <sequence>
-        <element ref="b:prefix" minOccurs="0" maxOccurs="unbounded" />
-        <element ref="b:let"    minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:reusable" minOccurs="0" maxOccurs="unbounded" />
       </sequence>
     </extension>
   </complexContent>
@@ -22,12 +22,14 @@ Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
 
 =description
 
-=element prefix
+<p>A set of definitions contains facts which are used by the
+content of the Unit, but are not the payload.  Especially the
+<UNIT>msc:Role/Collection</UNIT> and <UNIT>ms:Role/Namespace</UNIT>
+Units may carry a lot of those.
 
-<p>Declarations of prefixes used in, for instance, constants and
-unit references.  These are not ment to be used for XML schema
-prefixes.</p>
-
-=element let
-
-<p>Declarations of <a href="/explain/base/expressions.html">expressions</a></p>
+<p class="list">Typical definitions you will encounter here:</p>
+<ul>
+<li><SCHEMA>b:has</SCHEMA>
+<li><SCHEMA>b:prefix</SCHEMA>
+<li><SCHEMA>c:let</SCHEMA>
+</ul>

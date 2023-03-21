@@ -6,63 +6,33 @@
 
 ==xml
 <simpleType name="UnitID">
-  <restriction base="NMTOKEN">
-    <pattern value="[A-Za-z0-9_%]+" />
-  </restriction>
+  <restriction base="NMTOKEN" />
 </simpleType>
 ==end
 
 =description
 
 <p>The <code>UnitID</code> uniquely identifies a <SCHEMA>b:unit</SCHEMA>
-with in <SCHEMA>b:Namespace</SCHEMA> or Subspace.  You may best compare
-this with a filename with in directory.</p>
+within a <SCHEMA>b:Namespace</SCHEMA>.  You may best compare this with
+a filename within a directory.</p>
 
-<p class="list">This identifier has a few rules, which distinguishes it
-from the standard <code>xsd:ID</code>:</p>
-<ul>
-<li>The UnitID is to interpreted in the context of references to
-    Units (<SCHEMA>b:UnitRef</SCHEMA>) with a Subspace;</li>
-<li>The Subspace defines a <code>path-separator</code> (type <SCHEMA>b:PathSep</SCHEMA>);
-    by default a <code>'/'</code> (in <SCHEMA>b:namespace</SCHEMA>).
-    When a actual path-separator is used in a <code>UnitID</code>, it needs to be
-    percent-encoded.</li>
-<li>The UnitID is normalized URL-Encoded, which means that &mdash;in each
-    path component&mdash; all <i>reserved characters</i>
-    SHALL be percent-encoded, and all <i>unreserved characters</i> SHALL not
-    be percent-encoded according to [% rfc(3986) %] and explained in
-    <a href="https://en.wikipedia.org/wiki/Percent-encoding">on Wikipedia</a>.</li>
-<li>It is RECOMMENDED to limit UnitIDs to printable, non-whitespace ASCII.  Use
-    the <code>unit.name</code> attribute to keep the UTF-8 name of the Unit.</li>
-<li>Multi-byte UTF-8 in the path-component MUST be normalized into NFKC form
-    before percent-encoding.  Percent-encoding is per byte separately, as
-    practice in URIs.
-    See <a href="https://unicode.org/reports/tr15/">TR15</a> of the Unicode
-    consortium and [% rfc(3986) %] section 2.5.</li>
-<li>In its encoded form, the UnitID MUST be unique within its enclosing Subspace.</li>
-</ul>
+<p>The UnitID may be derived from the <code>name</code>, with some
+encoding as defined by the <SCHEMA>b:subspace</SCHEMA>.</p>
 
-=discuss Uniqueness of UnitIDs in messages
+=discuss Uniqueness of UnitIDs within XML messages
 
 <p>The uniqueness of UnitIDs is preserved within a Subspace. However,
 (XML) messages between clients and servers may contain multiple Units
-from different Subspaces which may use relations (<SCHEMA>b:has"</SCHEMA>)
-in relative addressing form.  Hence, you always need to be away of the
+from different Subspaces which may use relations (<SCHEMA>b:has</SCHEMA>)
+in relative addressing form.  Hence, you always need to be aware of the
 context in which the UnitID is used to interpret it correctly.</p>
 
 <p>This possible non-uniqueness is incompatible with XMLs concept of IDs.</p>
 
-=discuss NFKC normalization
+=discuss From Unit name to UnitID
 
-<p>Operating Systems and editors use different Unicode ways to
-express exactly the same.  For instance, <code>ö</code> can
-be represented as a single symbol, but also as two: <code>" + o</code>.
-These (and other kinds of) alternatives make comparison for the human
-idea of "equality" hard.</p>
-
-<p>It is RECOMMENDED not to use UnitIDs which are based on an external
-source, for instance a filename: these may require utf-8 normalization
-and percent-encoding.  On the other hand: this way they are easier to
-discover than via the <code>unit.name</code> field.</p>
-
-<p>See <a href="https://unicode.org/reports/tr15/">Unicode TR15</a>.</p>
+<p>When a Unit is created without explicit (unique) id, then one is
+derived from its <code>name</code> (which is NFKC normalized).  It depends
+on the <SCHEMA>b:subspace</SCHEMA> configuration which characters are
+removed or get escaped ('%'-encoded). This does not need to protect from
+constructs which are dangerous in the storage (like file-system).</p>

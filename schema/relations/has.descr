@@ -18,6 +18,7 @@ reason.</p>
       <attribute name="type"  type="b:Constant"  />
       <attribute name="is"    type="b:Constant"   default="b:Role/Unknown" />
       <attribute name="seqnr" type="unsignedLong" default="1" />
+      <attributeGroup ref="b:selector" />
     </extension>
   </complexContent>
 </complexType>
@@ -100,12 +101,12 @@ a unit into a separate unit: for instance the history of the unit.</p>
 </b:unit>
 <b:unit b:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
   <b:name>puppy 3.14 sources</b:name>
-  <b:type>ms:Mime/application/rpm</b:type>
+  <b:type>iana:MediaType/application/rpm</b:type>
   <b:extern />
 </b:unit>
 <b:unit b:id="puppy-3.14.rpm">      <!-- in dist:Package/ -->
   <b:name>puppy 3.14</b:name>
-  <b:type>ms:Mime/application/rpm</b:type>
+  <b:type>iana:MediaType/application/rpm</b:type>
   <b:owner>dist:User/MarkOv</b:owner>
   <b:extern />
   <b:has b:ref="dist:Sources/puppy" b:is="dist:Role/Source" />
@@ -130,13 +131,13 @@ a unit into a separate unit: for instance the history of the unit.</p>
 "b:unit" : {
   "b:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
   "b:name": "puppy 3.14 sources",
-  "b:type": "ms:Mime/application/rpm"
+  "b:type": "iana:MediaType/application/rpm"
   "b:extern" : {}
 },
 "b:unit" : {
   "b:id" : "puppy-3.14.rpm",       // in dist:Package/
   "b:name" : "puppy 3.14",
-  "b:type" : "ms:Mime/application/rpm",
+  "b:type" : "iana:MediaType/application/rpm",
   "b:owner" : "dist:User/MarkOv"
   "b:extern" : {},
   "b:has" : [ {

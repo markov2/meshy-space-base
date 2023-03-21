@@ -10,7 +10,8 @@ within the context.</p>
   <attribute name="unit"     type="b:UnitRef" />
   <attribute name="fragment" type="b:Fragment" />
   <attribute name="language" type="b:Constant" />
-  <attribute name="format"   type="b:Constant" default="ms:Mime/text/plain" />
+  <attribute name="type"     type="b:Constant"
+     default="iana:MediaType/text/plain" />
 </attributeGroup>
 ==end
 
@@ -43,8 +44,8 @@ any <SCHEMA>b:Reusable</SCHEMA> type will do.</p>
 to the prefered <code>language</code> of the Namespace.  Relative
 Constants are with respect to collection <UNIT>ms:Language</UNIT>.</p>
 
-=attribute format
+=attribute type
 
-<p>When used, it overrides the (mime)type of the content.  The type
-MAY be from <UNIT>ms:Mime/</UNIT> or <UNIT>ms:Type/</UNIT>.
-For instance, <UNIT>ms:Mime/text/html</UNIT>.
+<p>The type MAY be from <UNIT>iana:MediaType/</UNIT> or <UNIT>ms:Type/</UNIT>.
+For instance, <UNIT>ms:Type/HTML-fragment</UNIT>.  The default is
+<UNIT>iana:MediaType/text/plain</UNIT>.</p>

@@ -10,9 +10,11 @@ top-level Namespace.</p>
 
 <complexType name="Subspace">
   <sequence>
-    <element name="namespace" type="b:UnitRef" />
+    <element name="namespace"         type="b:UnitRef" minOccurs="0" />
+    <element name="id_unwanted_chars" type="b:Expression" minOccurs="0" />
+    <element name="id_encode_ascii"   type="b:Expression" default="'[/]'" />
   </sequence>
-  <attribute name="path"      type="b:UnitRef"   use="required" />
+  <attribute name="path"              type="b:UnitRef" use="required" />
 </complexType>
 ==end
 
@@ -22,9 +24,14 @@ top-level Namespace.</p>
 which components of the Namespace have their own specification.  For
 instance, which parts use a different storage architecture.</p>
 
-<p>Subspaces are a subset of sub-collections (see <SCHEMA>c:collection</SCHEMA>).
-In most cases, some Collection will use the same hardware configuration
-as its parent, but in complex set-ups you may differ.</p>
+<p>One <SCHEMA>c:collection</SCHEMA> can use multiple subspaces which
+describe some practical and physical restrictions.  In most cases,
+the Collection will use the same hardware configuration as its parent,
+but in complex set-ups you may need to differentiate.</p>
+
+<p><b>Be warned:</b> <code>id_unwanted_chars</code> and
+<code>id_encode_ascii</code> expect a formula: a plain regexp
+must be encapsulated in single or double quotes.</p>
 
 =attribute path
 
@@ -43,5 +50,55 @@ external namespaces.</p>
 <UNIT>ms:Role/Namespace</UNIT>, which describes how the sub-namespace
 physically behaves.</p>
 
-<p>The namespace MAY refer to a Unit which thinks it has a different location.
-This way, you implement a redirect or alias.</p>
+=element id_unwanted_chars
+
+<p>When no <code>id</code> is given when a Unit is created, then one
+is generated from its <code>name</code>.  This elements contains a
+regular expression for all characters and constructs which are to be
+removed.</p>
+
+=element id_encode_ascii
+
+<p>When no <code>id</code> is given when a Unit is created, then one
+is generated from its <code>name</code>.  In the context, some of the
+characters in the name may be dangerous: they play a role in the path
+splitting or for any other reason.</p>
+
+<p class="list">The following characters are always encoded:</p>
+<ul>
+<li>'<code> </code>': all sequences of WhiteSpace are compressed to a
+    single blank.  The Unit's full path is a word, so that blank will
+    be encoded;</li>
+<li>'<code>:</code>': the colon is used after a prefix. Its use indicates
+    an absolute SCHEMA>b:UnitRef</SCHEMA>;</li>
+<li>'<code>#</code>': the fragment indictors, at the end of a
+    <SCHEMA>b:UnitRef</SCHEMA>;</li>
+<li>'<code>\</code>': the backslash, which is horribly confusing to
+    everyone; and</li>
+<li>'<code>%</code>': the encoding indicator.</li>
+</ul>
+
+<p>Other characters to be encoded than these can be specified with this
+element.</p>
+
+=example for id_unwanted_chars
+
+<p class="list">Stripping characters:</p>
+<CODE>
+'[: -]'                  # removed all colons, blanks, and dashes.
+'( -> | [ ] | \.$ )'     # remove ->, blanks, and trailing dots
+'( \.tar\.gz | \.zip )$' # remove trailing .tar.gz and .zip
+</CODE>
+
+=example more complex use
+
+<p class="list">More powerfull:</p>
+<XML>
+<b:let b:name="is_tgz"  b:regexp="\\.tar\.gz$" />
+<b:let b:name="is_zip"  b:regexp="\\.zip$" />
+<b:let b:name="exts"    b:expr="'(' ~ is_tgz ~ '|' ~ is_zip ~ ')'" />
+<b:subspace b:name="releases">
+  <b:id_unwanted_chars>exts</id_unwanted_chars>
+</b:subspace>
+</XML>
+

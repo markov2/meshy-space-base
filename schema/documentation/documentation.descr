@@ -65,7 +65,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 <XML>
 <b:unit b:id="IMG00001.jpg">
   <b:name>2022-02-04 picture 1</b:name>
-  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:type>iana:MediaType/image/jpeg</b:type>
   <b:payload />
   <b:documentation b:language="ms:Language/nl-NL">
     <b:name>2022-02-04 foto 1</b:name>
@@ -76,7 +76,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 <JSON>
 "b:unit" : {
    "b:id" : "IMG00001.jpg",
-   "b:type" : "ms:Mime/image/jpeg",
+   "b:type" : "iana:MediaType/image/jpeg",
    "b:payload" : { },
    "b:documentation" : {
      "b:language" : "ms:Language/nl-NL",
@@ -91,9 +91,9 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 
 <XML>
 <b:unit b:id="IMG00001.jpg">
-  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:type>iana:MediaType/image/jpeg</b:type>
   <b:content />
-  <b:documentation b:type="ms:Mime/text/plain">
+  <b:documentation b:type="iana:MediaType/text/plain">
     <b:documentation b:language="nl-NL">
       <b:name>2022-02-04 foto 1</b:name>
       <b:hint>Vakantie in Zeeland</b:hint>
@@ -108,10 +108,10 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 <JSON>
 "b:unit" : {
    "b:id" : "IMG00001.jpg",
-   "b:type" : "ms:Mime/image/jpeg",
+   "b:type" : "iana:MediaType/image/jpeg",
    "b:content" : { },
    "b:documentation" : { 
-      "b:type" : "ms:Mime/text/plain",
+      "b:type" : "iana:MediaType/text/plain",
       "b:documentation" : [ {
          "b:language" : "nl-NL",
          "b:name" : "2022-02-04 foto 1",
@@ -130,7 +130,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 
 <XML>
 <b:unit b:id="IMG00001.jpg">
-  <b:type>ms:Mime/image/jpeg</b:type>
+  <b:type>iana:MediaType/image/jpeg</b:type>
   <b:content />
   <b:has b:is="ms:Role/Documentation" b:ref="Story/IMG00001" />
 </b:unit>
@@ -138,7 +138,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 <JSON>
 "b:unit" : {
    "b:id" : "IMG00001.jpg",
-   "b:type" : "ms:Mime/image/jpeg",
+   "b:type" : "iana:MediaType/image/jpeg",
    "b:content" : { },
    "b:has" : {
       "b:is" : "ms:Role/Documentation",

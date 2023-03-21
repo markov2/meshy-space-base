@@ -6,7 +6,7 @@
 
 ==xml
 <simpleType name="UnitRef">
-  <restriction base="token" />
+  <restriction base="NMTOKEN" />
 </simpleType>
 ==end
 

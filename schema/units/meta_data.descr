@@ -8,13 +8,26 @@ unit, independent of how the payload is included.</p>
 ==xml
 <group name="meta_data">
   <sequence>
+    <element name="name"     type="string"     minOccurs="0" />
     <element name="type"     type="b:Constant" />
-    <element name="name"     type="string"       minOccurs="0" />
-    <element name="language" type="b:Constants"  minOccurs="0" />
-    <element name="charset"  type="token"        minOccurs="0" />
+    <element name="role"     type="b:Constant" minOccurs="0" />
+    <element name="language" type="b:Constant" minOccurs="0" />
+    <element name="charset"  type="token"      minOccurs="0" />
   </sequence>
 </group>
 ==end
+
+=element name
+
+<p>A Unit always has a name which can be presented to users: it defaults
+to the Unit's ID.  The generated Unit-id may not be the nicest way to
+present the Unit to a person, but the name is probably be better.  Best is
+to present users with the content of the <SCHEMA>b:documentation</SCHEMA>
+structure, which is translatable.</p>
+
+<p><strong>Be warned</strong> that the name is (like everything else)
+in the UTF8 charset.  See the discussions below about NFKC normalization
+ans the problem with using filenames here.</p>
 
 =element type
 
@@ -23,26 +36,19 @@ This is equivalent to the type of attachments in emails.  The data itself
 may come in a serialization (<code>format</code>) which can be converted
 to the indicated type.</p>
 
-=element name
+=element role
 
-<p>A unit may have a name which is shown to users.  The chosen unit-ids
-may not be the nicest way to present the Unit to a person.</p>
+<p>The Unit explains why it is there. Not all Units know.</p>
 
-<p>The name defaults to the percent-decoded version of Unit's
-<code>id</code>.</p>
-
-<p><strong>Be warned</strong> that the name is (like everything else)
-in the UTF8 charset.  See the discussion below about the problem with
-using filenames here.</p>
+<p>For instance, a Unit which represents a Constant will indicate in
+to which constant set it belongs.  This makes automatic verification
+possible during Unit creation.</p>
 
 =element language
 
-<p>The languages used in the payload, when it contains text.
-This fact MAY be used by search filters. Values are constants in
-one of the <UNIT>ms:Language/</UNIT> sets.</p>
-
-<p>The concept of language in text is complex: more details about
-contained languages may be included in other ways.</p>
+<p>The default language for things like name and documentation
+in thuis Unit.  This fact MAY be used by search filters. Values are
+constants in one of the <UNIT>ms:Language/</UNIT> sets.</p>
 
 =element charset
 
@@ -54,6 +60,20 @@ like images, will not contain a charset specification.</p>
 <p>The content of this field is defined by [% rfc('2978') %].
 See the page with all
 <a href="https://www.iana.org/assignments/character-sets/character-sets.xhtml">character-sets at IANA</a>.</p>
+
+=discuss Unit names get NFKC normalized
+
+<p>When a Unit is created, the name will get "NFKC normalized" first.
+When the Unit's ID is automatically derived from the name, it will
+therefore also be in NFKC normalized form.</p>
+
+<p>Operating Systems and editors use different Unicode ways to
+express exactly the same.  For instance, <code>ö</code> can
+be represented as a single symbol, but also as two: <code>" + o</code>.
+These (and other kinds of) alternatives make comparison for the human
+idea of "equality" hard.</p>
+
+<p>See <a href="https://unicode.org/reports/tr15/">Unicode TR15</a>.</p>
 
 =discuss Using filenames as name
 

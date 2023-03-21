@@ -17,8 +17,9 @@
     <!-- element ref="b:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
     <choice>
       <element ref="b:data-apply" />
-      <element ref="b:data-source" maxOccurs="unbounded" />
-      <element ref="b:blob" />
+      <element ref="b:fetch"  />
+      <element ref="b:source" />
+      <element ref="b:blob"   />
     </choice>
   </sequence>
 </complexType>
@@ -35,10 +36,11 @@ perform these tasks.</p>
 the result of the <code>data-apply</code> or <code>data-source</code>
 activities.</p>
 
-<p>Some <code>data-source</code> components may be able to fill-in 
-values for the meta-data.  For instance, the <SCHEMA>b:fetch</SCHEMA>
-can derive a default <code>name</code> and <type>type</type> based on
-its <code>href</code> attribute.</p>
+<ul>
+<li><SCHEMA>b:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
+<li><SCHEMA>b:resource</SCHEMA>, contained in another Unit; and</li>
+<li><SCHEMA>b:blob</SCHEMA>, inlined in this Unit.</li>
+</ul>
 
 =group meta-data
 
@@ -56,7 +58,7 @@ probably want to undo before using the data.  This element can be
 =element data-source
 
 <p>Describes the location where the processed bytes are, via a
-<SCHEMA>b:resource</SCHEMA> or <SCHEMA>b:fetch</SCHEMA>.</p>
+<SCHEMA>b:source</SCHEMA> or <SCHEMA>b:fetch</SCHEMA>.</p>
 
 <p>This element can be used more than once, to suggest alternative
 routes to the same data.  This is especially useful when you offer

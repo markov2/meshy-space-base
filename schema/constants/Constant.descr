@@ -23,32 +23,18 @@ what the flag means, maybe not.</p>
 =description
 
 <p>A Constant is used express something.  It does not relate to
-a value, but implicitly it means "true": it's use indicates
-something.</p>
+a value, but represents a fact.</p>
 
-<p>Constants are represented by (absolute or relative) unit
-reference (<SCHEMA>b:UnitRef</SCHEMA>).  Traditionally, the
-<SCHEMA>b:UnitID</SCHEMA> component of the address is in capitals.</p>
+<p>Constants are represented by an (absolute or relative) unit
+reference (<SCHEMA>b:UnitRef</SCHEMA>).</p>
 
-<p>Often, the Unit with the Address will not exist, but of it does exist
-then it may keep track of the history of the constant, define ownership,
-and contain documentation.</p>
+<p>Often, the Unit with the address will not exist, but when it does existj
+it MAY keep track of the history of the constant, define ownership,
+and contain useful documentation.</p>
 
 <p>Extensions may add their own constants to enumeration sets, which are
 defined by Meshy Space itself, when they feel the need.  One SHALL not
 use numeric values to represent anything else than a numeric value.</p>
 
-<h4>Constant grouping</h4>
-
-<p>For instance: the following example has three layers of grouping:
-<code>ms:Mime</code>, <code>text</code>, and <code>html</code>.
-
-<CODE>
-ms:Mime/text/html
-</CODE>
-
-<p>You cannot see whether <code>Mime</code> is a grouping which only
-contains constants, or whether <code>Mime/text/</code> together groups a
-constant collection. You should not want to have ungrouped constants.
-Nor do you want to merge constants into Subspaces which also contain
-other data.</p>
+<p>You should not want to have ungrouped constants.
+Nor do you want to merge constants with other data.</p>
