@@ -1,0 +1,89 @@
+=short
+
+<p>Abstract base-class for various data processing elements.</p>
+
+=schema
+
+==xml
+<group name="data">
+  <sequence>
+    <group   ref="b:meta-data" />
+    <element name="size" type="unsignedLong" minOccurs="0" />
+    <element ref="b:checksum"  minOccurs="0" maxOccurs="unbounded" />
+    <!-- element ref="b:signature" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <!-- element ref="b:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
+    <choice>
+      <element ref="b:fetch"      />
+      <element ref="b:source"     />
+      <element ref="b:blob"       />
+      <element ref="b:packaged"   />
+      <element ref="b:encoded"    />
+      <element ref="b:compressed" />
+    </choice>
+  </sequence>
+</group>
+==end
+
+=description
+
+<p>Elements which extend this describe processing actions needed to
+undo transport wrappings.  Processors have hard-coded algorithms to
+perform these tasks.</p>
+
+<p>The <code>meta-data</code>, <code>size</code>, <code>checksum</code>,
+<code>signature</code>s, and <code>encrypted</code> facts describe
+the result of the <code>data-apply</code> or <code>data-source</code>
+activities.</p>
+
+<ul>
+<li><SCHEMA>b:fetch</SCHEMA>, download via a browser-like <i>user agent</i>;</li>
+<li><SCHEMA>b:resource</SCHEMA>, contained in another Unit; and</li>
+<li><SCHEMA>b:blob</SCHEMA>, inlined in this Unit.</li>
+</ul>
+
+=group meta-data
+
+<p>These elements describe characteristics of the result of the
+<code>data-apply</code> or <code>data-source</code>.</p>
+
+=element data-apply
+
+<p>Describes processing has has been done on the bytes, which you
+probably want to undo before using the data.  This element can be
+<SCHEMA>b:encoded</SCHEMA>,
+<SCHEMA>b:compressed</SCHEMA>, or
+<SCHEMA>b:packaged</SCHEMA>.</p>
+
+=element data-source
+
+<p>Describes the location where the processed bytes are, via a
+<SCHEMA>b:source</SCHEMA> or <SCHEMA>b:fetch</SCHEMA>.</p>
+
+<p>This element can be used more than once, to suggest alternative
+routes to the same data.  This is especially useful when you offer
+alternative download protocols with <code>fetch</code>, or introduce
+rarely supported compression methods.  The user's Client decides
+which path to follow.</p>
+
+=element blob
+
+<p>Although the <SCHEMA>b:blob</SCHEMA> can be seen as data source,
+it is a <code>simpleType</code> where all the
+<SCHEMA>b:data-source</SCHEMA> options are <code>complexType</code>.</p>
+
+=element checksum
+
+<p>Checksums may add some protection when the data is
+<SCHEMA>b:fetch</SCHEMA>ed from a different source than the sum.
+Specifically: when the data is on an external server and the checksum
+is included in a <SCHEMA>b:blob</SCHEMA> in this Unit.
+See <SCHEMA>b:checksum</SCHEMA>.</p>
+
+=element signature
+
+=element encrypted
+
+=element size
+
+<p>The number of octets (bytes) of the actual payload, not including
+the size of indirect units used.</p>

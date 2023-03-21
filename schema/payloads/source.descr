@@ -6,19 +6,12 @@ requested data.</p>
 =schema
 
 ==xml
-<element name="source" type="b:Source"
-   substitutionGroup="b:data-source" />
+<element name="source" type="b:Source" />
 
 <complexType name="Source">
-  <complexContent>
-    <extension base="b:DataSource">
-      <sequence />
-      <attribute name="ref" type="b:UnitRef" />
-    </extension>
-  </complexContent>
+  <sequence />
+  <attribute name="ref" type="b:UnitRef" />
 </complexType>
 ==end
 
 =description
-
-=attribute ref

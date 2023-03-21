@@ -12,7 +12,8 @@
   <complexContent>
     <extension base="b:Payload">
       <sequence>
-        <element ref="b:data-apply">
+        <group ref="b:data" />
+        <element ref="b:preview" minOccurs="0" />
       </sequence>
     </extension>
   </complexContent>
@@ -26,4 +27,16 @@ payload: data which is interpreted by applications, not by the Meshy
 Space (Concept) infrastructure itself.</p>
 
 <p>The content MAY produce bytes which exactly match the unit's
-<code>type</code>, but usually it is a serialization of that data.</p>
+<code>type</code>, but usually it is a serialization of that data.
+This can happen in a nested definition.</p>
+
+=group data
+
+<p>All kinds of elements which describe the contained data, plus the data
+itself.</p>
+
+=element preview
+
+<p>For many reasons, it may require effort to collect the full data.
+Therefore, it is possible to include <b>a few</b> facts from the data.
+This may avoid the need for full data retreival and help searching.</p>

@@ -1,0 +1,19 @@
+=short
+
+<p>Some extracted information from the data, which may help
+performance and indexing.</p>
+
+=schema
+
+==xml
+<element name="preview" type="b:Preview" />
+
+<complexType name="Preview">
+  <sequence>
+    <element ref="b:param" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+</complexType>
+==end
+
+=description
+

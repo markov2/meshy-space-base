@@ -1,0 +1,31 @@
+=short
+
+<p>Refer to a external data source, relative to a resource or
+absolution.</p>
+
+=schema
+
+==xml
+<element name="location" type="b:Location" />
+
+<complexType name="Location">
+  <sequence />
+  <attribute name="resource" type="b:UnitRef" />
+  <attribute name="ref" type="AnyURI" use="required" />
+</complexType>
+==end
+
+=description
+
+<p>The relative or absolute location of an external data-source, as
+part of <SCHEMA>b:fetch</SCHEMA>.  
+
+=attribute resource
+
+<p>Refers to a storage mechanism of type <SCHEMA>b:resource</SCHEMA>.</p>
+
+=attribute ref
+
+<p>Absolute or relative URI.  In either case, the <code>resource</code> can
+help accessing the resource.</p>
+

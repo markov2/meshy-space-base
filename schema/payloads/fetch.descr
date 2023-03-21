@@ -6,18 +6,13 @@ which can be represented with a URI.</p>
 =schema
 
 ==xml
-<element name="fetch" type="b:Fetch"
-  substitutionGroup="b:data-source" />
+<element name="fetch" type="b:Fetch" />
 
 <complexType name="Fetch">
-  <complexContent>
-    <extension base="b:DataSource">
-      <sequence>
-        <element ref="b:authorization" minOccurs="0" maxOccurs="unbounded" />
-      </sequence>
-      <attribute name="href" type="AnyURI" use="required" />
-    </extension>
-  </complexContent>
+  <sequence>
+    <group ref="b:data" />
+    <element ref="b:location" />
+  </sequence>
 </complexType>
 ==end
 
@@ -28,6 +23,7 @@ browser-like user agent.</p>
 
 <p>Redirections and retries MAY be hidden, but errors MUST be reported.</p>
 
-=attribute href
+=element location
 
-=element authorization
+<p>The <SCHEMA>b:location</SCHEMA> refers the external location of the data, usually
+relative to a <SCHEMA>b:resource</SCHEMA> defined in the context.</p>

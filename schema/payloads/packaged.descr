@@ -6,18 +6,14 @@ element refers to an internet location which contains those bytes.</p>
 =schema
 
 ==xml
-<element name="packaged" type="b:Packaged"
-  substitutionGroup="b:data-apply" />
+<element name="packaged" type="b:Packaged" />
 
 <complexType name="Packaged">
-  <complexContent>
-    <extension base="b:DataApply">
-      <sequence>
-        <element name="entry" type="b:Bytes" />
-      </sequence>
-      <attribute name="uncompress" type="boolean" default="false" />
-    </extension>
-  </complexContent>
+  <sequence>
+    <group ref="b:data" />
+    <element name="entry" type="b:Bytes" />
+  </sequence>
+  <attribute name="uncompress" type="boolean" default="false" />
 </complexType>
 ==end
 
