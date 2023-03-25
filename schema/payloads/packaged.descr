@@ -1,7 +1,6 @@
 =short
 
-<p>Your data is serialized into bytes which can be stored.  The <i>packaged</i>
-element refers to an internet location which contains those bytes.</p>
+<p>Take an entry from the wrapped data.</p>
 
 =schema
 
@@ -13,22 +12,34 @@ element refers to an internet location which contains those bytes.</p>
     <group ref="b:data" />
     <element name="entry" type="b:Bytes" />
   </sequence>
-  <attribute name="uncompress" type="boolean" default="false" />
+  <attribute name="by" type="b:Constant" />
+  <attributeGroup ref="b:encapsulate" />
 </complexType>
 ==end
 
 =description
 
+<p>This recursive data element takes an extry from the a package.  The
+<code>entry</code> has a meaning within that package.  The <code>data</code>
+is usually a <SCHEMA>b:fetch</SCHEMA>, <SCHEMA>b:attachement</SCHEMA>, or
+<SCHEMA>b:source</SCHEMA> (contained in another Unit).</p>
+
+=attributeGroup encapsulate
+
+<p>Describes what we have to do with the extract from the package to
+get to the result we need.  It does not describe what the packager
+applies internally.</p>
+
 =element entry
 
 <p>The location of the data inside the package.  For most packagers,
-this will be a name.  For some a seek position, but it could also be
-a byte range.  Find the details in <UNIT>ms:Pack/</UNIT>.</p>
+this will be a name.  For some, it may be a seek position, but it could
+also be a byte range.  Find the details in specific <UNIT>ms:Pack/</UNIT>
+implementation.</p>
 
-=element uncompress
+<p><strong>Be aware</strong> that many packers do not use utf8 for their
+entry keys.  You may need to encode your entries.</p>
 
-<p>Most packers use internal compression, where the exact algorithm
-is hidden.  Some packers even do not support extracting an entry
-without uncompressing it.  For those cases, it is incovenient to use a
-<SCHEMA>b:compress</SCHEMA> wrapper.</p>
+=element attribute by
 
+<p>A constant in the set <UNIT>ms:Packer/</UNIT>.</p>

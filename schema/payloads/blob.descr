@@ -19,21 +19,11 @@ cannot extend from <SCHEMA>b:data-source</SCHEMA>.</p>
 
 =example Blob with Encoding
 
-<p class="list">The <code>encoded</code> attribute is an abbreviation.
-The following two are the same:</p>
 <XML>
 <b:blob b:encoded="ms:Encode/Base64">DATA</b:blob>
-
-<b:encoded b:by="ms:Encode/Base64">
-  <b:blob>DATA</b:blob>
-</b:encoded>
 </XML>
 
 =example Blob using Compression
-
-<p>The <code>compressed</code> attribute is an abbreviation.
-It is nearly always encompanied by the <code>encoding</code> attribute,
-because compression algorithms usually produce binary output.</p>
 
 <p class="list">The following two are the same:</p>
 <XML>
@@ -42,12 +32,4 @@ because compression algorithms usually produce binary output.</p>
    b:encoded="ms:Encode/Base64">
     DATA
 </b:blob>
-
-<b:encoded b:by="ms:Encode/Base64">
-  <b:compressed b:by="ms:Compress/Gzip">
-    <b:blob>
-      DATA
-    </b:blob>
-  </b:compressed>
-</b:encoded>
 </XML>

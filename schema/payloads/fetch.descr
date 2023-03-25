@@ -10,9 +10,9 @@ which can be represented with a URI.</p>
 
 <complexType name="Fetch">
   <sequence>
-    <group ref="b:data" />
     <element ref="b:location" />
   </sequence>
+  <attributeGroup ref="b:encapsulate" />
 </complexType>
 ==end
 

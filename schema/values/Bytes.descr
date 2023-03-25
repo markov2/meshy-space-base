@@ -10,8 +10,7 @@ possible without help.</p>
 <complexType name="Bytes">
   <simpleContent>
     <extension base="string">
-      <attribute name="encoded"    type="b:Constant" />
-      <attribute name="compressed" type="b:Constant" />
+      <attributeGroup ref="b:encapsulate" />
     </extension>
   </simpleContent>
 </complexType>
@@ -23,16 +22,3 @@ possible without help.</p>
 cases this is not possible.  For instance, filenames or entry names in
 an archive cannot be converted to UTF-8 because it may render them
 unusable.  Those "octet sequences" should be encoded.</p>
-
-=attribute encoded
-
-<p>When a byte (octet) string contains characters outside the
-ascii printable range, it SHALL be encoded with any format defined
-in <UNIT>ms:Encode/</UNIT>.</p>
-
-=attribute compressed
-
-<p>Contains a <UNIT>ms:Compress/</UNIT> compression constant
-which explains which compression has taken place (before the
-optional encoding)</p>
-

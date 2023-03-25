@@ -1,0 +1,36 @@
+=short
+
+<p>Describes how to convert bytes into bytes.</p>
+
+=schema
+
+==xml
+<attributeGroup name="encapsulate">
+  <attribute name="encoded"    type="b:Constant" />
+  <attribute name="compressed" type="b:Constant" />
+</attributeGroup>
+==end
+
+=description
+
+<p>Not all data is text, and not all text uses character-set
+UTF-8 (which is this library's native character-set). Therefore,
+quite a number of elements carry these optional attributes to
+indicate that processing has been done.</p>
+
+<p>When the data is added, it will first compress and then encode.
+When the data is consumed, it will be first decoded, and then
+uncompressed.</p>
+
+=attribute encoded
+
+<p>When a byte (octet) string contains characters outside the
+ascii printable range, it SHALL be encoded with any format defined
+in <UNIT>ms:Encode/</UNIT>.</p>
+
+=attribute compressed
+
+<p>Contains a <UNIT>ms:Compress/</UNIT> compression constant
+which explains which compression has taken place (before the
+optional encoding)</p>
+

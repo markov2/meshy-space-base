@@ -11,7 +11,9 @@ generalization of many protocols and system features.</p>
 
 <complexType name="Unit">
   <sequence>
-    <group   ref="b:meta_data"  />
+    <element name="name"     type="string"     minOccurs="0" />
+    <element name="role"     type="b:Constant" minOccurs="0" />
+    <group   ref="b:mediatype"  />
     <element ref="b:definitions"   minOccurs="0" maxOccurs="unbounded" />
     <element ref="b:life_cycle"    nillable="true" />
     <element ref="b:payload"       minOccurs="0" nillable="true" />
@@ -50,6 +52,33 @@ referred to, either within this same information structure, or from
 other information structures.  Applications will decide to cache
 the units based on this <code>b:id</code> for performance.</p>
 
+=element name
+
+<p>A Unit always has a name which can be presented to users: it defaults
+to the Unit's ID.  The generated Unit-id may not be the nicest way to
+present the Unit to a person, but the name is probably be better.  Best is
+to present users with the content of the <SCHEMA>b:documentation</SCHEMA>
+structure, which is translatable.</p>
+
+<p><strong>Be warned</strong> that the name is (like everything else)
+in the UTF8 charset.  See the discussions below about NFKC normalization
+ans the problem with using filenames here.</p>
+
+=element role
+
+<p>The Unit explains why it is there. Not all Units know.</p>
+
+<p>For instance, a Unit which represents a Constant will indicate in
+to which constant set it belongs.  This makes automatic verification
+possible during Unit creation.</p>
+
+=group mediatype
+
+<p>A number of fields describe what the unit represents.  If the unit
+contains a payload, it gives facts about the payload.  All these facts
+are independent from the way the payload is being transported and
+stored.</p>
+
 =element definitions
 
 <p>Rules which help to interpret fields with expressions.  These
@@ -62,13 +91,6 @@ more than one block of definitions.</p>
 when it was created, was deprecated, and is to be removed.  The base
 is the revision of the unit.  There is only one revision of a unit in
 your cache: the newest.</p>
-
-=group meta_data
-
-<p>A number of fields describe what the unit represents.  If the unit
-contains a payload, it gives facts about the payload.  All these facts
-are independent from the way the payload is being transported and
-stored.</p>
 
 =element payload
 
@@ -149,3 +171,36 @@ you can get three answers:</p>
 <li>a newer version of the same information (update); or</li>
 <li>a denial of existence: removed (or never stored in the service)</li>
 </ul>
+
+=discuss Unit names get NFKC normalized
+
+<p>When a Unit is created, the name will get "NFKC normalized" first.
+When the Unit's ID is automatically derived from the name, it will
+therefore also be in NFKC normalized form.</p>
+
+<p>Operating Systems and editors use different Unicode ways to
+express exactly the same.  For instance, <code>ö</code> can
+be represented as a single symbol, but also as two: <code>" + o</code>.
+These (and other kinds of) alternatives make comparison for the human
+idea of "equality" hard.</p>
+
+<p>See <a href="https://unicode.org/reports/tr15/">Unicode TR15</a>.</p>
+
+=discuss Using filenames as name
+
+<p>When you want to use a filename as <code>name</code> (which makes a
+good case), you will need to include an encoded version of the filename
+because those are often <code>UTF-16</code> (NTFS) or "bytes" (UNIX/Linux).</p>
+
+<p>Also, the use of hidden files (leading dot on UNIX/Linux) and hidden
+meta-data directories (<code>__MACOSX</code> on Apple) will complicate
+the set-up.  It hurts even more when file-systems are considered
+case-insensitive, may contain control characters, and use white-spaces.
+Some operating systems use UTF8 for <code>ö</code>, other use <code>o +
+"</code>, which are not equivalent under simple comparison.</p>
+
+<p>This Meshy Space Base does not solve any of these problems.  Extensions,
+like the Meshy Space <i>Concept</i> may offer a better solution.  They start
+with using the filename's precise byte-sequence percent-encoded as unit
+<code>id</code>, and a readable UTF-8 version of it as <code>name</code>.
+Search on <code>name</code> can be made case-insensitive.</p>

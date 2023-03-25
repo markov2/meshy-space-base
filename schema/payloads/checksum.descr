@@ -8,7 +8,7 @@
 <element name="checksum">
   <complexType>
     <simpleContent>
-      <extension base="token">
+      <extension base="b:Bytes">
         <attribute name="by" type="b:Constant" use="required" />
       </extension>
     </simpleContent>
@@ -36,10 +36,10 @@ over unprotected infrastructure, then you should use better sums.</p>
 <b:unit id="cv.html">
   <b:type>iana:MimeType/text/html</b:type>
   <b:content>
-    <b:checksum b:by="ms:Checksum/MD5">
+    <b:checksum b:encoded="ms:Encoding/Hex" b:by="ms:Checksum/MD5">
        490201fd0ae7192044e0a18f270182e3
     </b:checksum>
-    <b:checksum b:by="ms:Checksum/SHA256">
+    <b:checksum b:encoded="ms:Encoding/Base64" b:by="ms:Checksum/SHA256">
        03bea1dc02b7756f7393ba0d10121081f7348542769f2328bd93c262a719a46f
     </b:checksum>
     <b:fetch />

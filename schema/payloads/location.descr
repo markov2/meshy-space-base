@@ -11,7 +11,7 @@ absolution.</p>
 <complexType name="Location">
   <sequence />
   <attribute name="resource" type="b:UnitRef" />
-  <attribute name="ref" type="AnyURI" use="required" />
+  <attribute name="href" type="anyURI" use="required" />
 </complexType>
 ==end
 
@@ -24,7 +24,7 @@ part of <SCHEMA>b:fetch</SCHEMA>.
 
 <p>Refers to a storage mechanism of type <SCHEMA>b:resource</SCHEMA>.</p>
 
-=attribute ref
+=attribute href
 
 <p>Absolute or relative URI.  In either case, the <code>resource</code> can
 help accessing the resource.</p>

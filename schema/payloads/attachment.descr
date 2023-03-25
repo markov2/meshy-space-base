@@ -1,0 +1,28 @@
+=short
+
+<p>The data is transported in the same connection to the server,
+but as separate bytes.</p>
+
+=schema
+
+==xml
+<element name="attachment" type="b:Attachment" />
+
+<complexType name="Attachment">
+  <sequence />
+  <attribute name="content_id" type="string" use="required" />
+</complexType>
+==end
+
+=description
+
+<p>Data which is wrapped in the content of a Unit needs to be encoded
+to be sure that it is not in conflict with the serializer of the Unit
+itself.  For small amounts of data, that does not matter.  However, when
+the contained data is larger, it is better to keep it as attachment.</p>
+
+=attribute content_id
+
+<p>The Subspace keeps track of the content-ids, which will be generated
+collision free.</p>
+

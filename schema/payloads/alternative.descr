@@ -1,0 +1,55 @@
+=short
+
+<p>The data is provided in different forms.</p>
+
+=schema
+
+==xml
+<element name="alternative" type="b:Alternative" />
+
+<complexType name="Alternative">
+  <sequence>
+    <group ref="b:data" />
+  </sequence>
+  <attribute name="name" type="NMTOKEN" />
+</complexType>
+==end
+
+=description
+
+<p class="list">There can be many reasons to specify alternatives, and those
+can be different in many, many ways.  For instance:</p>
+<ul>
+<li>different protocols to fetch the same data;</li>
+<li>one source provides the data as single bytes, the other as
+    part of a packages; or</li>
+<li>one version contains a rare encoding or compression algorithm,
+    where the other uses none, hence is larger;</li>
+</ul>
+
+<p>The user may give preferences for one alternative (by name), or
+the application MAY decide based on preference for supported algoritms
+and such.  Basically, the automated systems will attempt the alternatives
+in order (until we design a better algorithm).</p>
+
+=example providing alternative download methods
+
+<XML>
+<b:unit>
+  <b:content>
+    <b:size>234141</b:size>
+    <b:alternative name="via_http">
+      <b:fetch>
+        <b:location b:ref="https://a.nl/xyz" />
+      </b:fetch>
+    <b:alternative>
+    <b:alternative name="via_s3">
+      <b:fetch>
+        <b:location b:ref="s3://a.nl/xyz" />
+      </b:fetch>
+    </b:alternative>
+  </b:content>
+</b:unit>
+</XML>
+
+=attribute name

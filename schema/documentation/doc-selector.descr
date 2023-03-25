@@ -9,9 +9,6 @@ within the context.</p>
 <attributeGroup name="doc-selector">
   <attribute name="unit"     type="b:UnitRef" />
   <attribute name="fragment" type="b:Fragment" />
-  <attribute name="language" type="b:Constant" />
-  <attribute name="type"     type="b:Constant"
-     default="iana:MediaType/text/plain" />
 </attributeGroup>
 ==end
 
@@ -37,15 +34,3 @@ manual element (defaults to the current collection).</p>
 This could be a unit which has a named relation (<SCHEMA>b:has</SCHEMA>),
 or something else which has a <SCHEMA>b:Name</SCHEMA> in this unit:
 any <SCHEMA>b:Reusable</SCHEMA> type will do.</p>
-
-=attribute language
-
-<p>When used, it overrides the language of the context, which defaults
-to the prefered <code>language</code> of the Namespace.  Relative
-Constants are with respect to collection <UNIT>ms:Language</UNIT>.</p>
-
-=attribute type
-
-<p>The type MAY be from <UNIT>iana:MediaType/</UNIT> or <UNIT>ms:Type/</UNIT>.
-For instance, <UNIT>ms:Type/HTML-fragment</UNIT>.  The default is
-<UNIT>iana:MediaType/text/plain</UNIT>.</p>

@@ -9,6 +9,7 @@
 
 <complexType name="Documentation">
   <sequence>
+    <group ref="b:mediatype" />
     <element name="name"        type="string" minOccurs="0" />
     <element name="title"       type="string" minOccurs="0" />
     <element name="hint"        type="string" minOccurs="0" />
@@ -67,7 +68,8 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
   <b:name>2022-02-04 picture 1</b:name>
   <b:type>iana:MediaType/image/jpeg</b:type>
   <b:payload />
-  <b:documentation b:language="ms:Language/nl-NL">
+  <b:documentation>
+    <b:language>ms:Language/nl_NL</b:language>
     <b:name>2022-02-04 foto 1</b:name>
     <b:title>Vakantie in Zeeland</b:title>
   </b:documentation>
@@ -79,7 +81,7 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
    "b:type" : "iana:MediaType/image/jpeg",
    "b:payload" : { },
    "b:documentation" : {
-     "b:language" : "ms:Language/nl-NL",
+     "b:language" : "ms:Language/nl_NL",
      "b:name" : "2022-02-04 foto 1",
      "b:hint" : "Vakantie in Zeeland"
    }
@@ -93,12 +95,15 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
 <b:unit b:id="IMG00001.jpg">
   <b:type>iana:MediaType/image/jpeg</b:type>
   <b:content />
-  <b:documentation b:type="iana:MediaType/text/plain">
-    <b:documentation b:language="nl-NL">
+  <b:documentation>
+    <b:type>iana:MediaType/text/plain</b:type>
+    <b:documentation>
+      <b:language>nl_NL</b:language>
       <b:name>2022-02-04 foto 1</b:name>
       <b:hint>Vakantie in Zeeland</b:hint>
     </b:documentation>
-    <b:documentation b:language="en-US">
+    <b:documentation>
+      <b:language>en_US</b:language>
       <b:name>04-02-2022 photo 1</b:name>
       <b:hint>Holidays in Zeeland (NL)</b:hint>
     </b:documentation>
@@ -113,11 +118,11 @@ web-page, maybe on some website which is also owned by the Namespace holder.</p>
    "b:documentation" : { 
       "b:type" : "iana:MediaType/text/plain",
       "b:documentation" : [ {
-         "b:language" : "nl-NL",
+         "b:language" : "nl_NL",
          "b:name" : "2022-02-04 foto 1",
          "b:hint" : "Vakantie in Zeeland"
       }, {
-         "b:language" : "en-US",
+         "b:language" : "en_US",
          "b:name" : "04-02-2022 photo 1",
          "b:hint" : "Holidays in Zeeland (NL)"
       } ]
