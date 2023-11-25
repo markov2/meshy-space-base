@@ -12,8 +12,8 @@ be used.</p>
   <complexContent>
     <extension base="b:Reusable">
       <sequence>
-        <element name="storage" type="b:UnitRef" minOccurs="0" />
         <element ref="b:shard" minOccurs="0" maxOccurs="unbounded" />
+        <element name="storage" type="b:UnitRef" minOccurs="0" />
       </sequence>
     </extension>
   </complexContent>
@@ -51,6 +51,7 @@ of <code>storage</code> will be used when no shard fits.</p>
     <b:shard b:when="unit.name like '*.jpg'">
       <storage>daemon:Storage/Disk1</b:storage>
     </b:shard>
+    <b:storage>daemon:Storage/Disk2</b:storage>
   </b:store>
 </b:namespace>
 </XML>

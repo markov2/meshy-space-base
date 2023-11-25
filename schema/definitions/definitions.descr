@@ -13,7 +13,10 @@ Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
     <extension base="b:Reusable">
       <sequence>
         <element ref="b:use" minOccurs="0" maxOccurs="unbounded" />
-        <element ref="b:reusable" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:has" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:let" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:restrict" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:definitions" minOccurs="0" maxOccurs="unbounded" />
       </sequence>
     </extension>
   </complexContent>
@@ -24,12 +27,13 @@ Those are grouped and reusable by other Units via <SCHEMA>b:use</SCHEMA>.</p>
 
 <p>A set of definitions contains facts which are used by the
 content of the Unit, but are not the payload.  Especially the
-<UNIT>msc:Role/Collection</UNIT> and <UNIT>ms:Role/Namespace</UNIT>
+<UNIT>ms:Role/Collection</UNIT> and <UNIT>ms:Role/Namespace</UNIT>
 Units may carry a lot of those.
 
 <p class="list">Typical definitions you will encounter here:</p>
 <ul>
+<li><SCHEMA>b:use</SCHEMA>
 <li><SCHEMA>b:has</SCHEMA>
-<li><SCHEMA>b:prefix</SCHEMA>
-<li><SCHEMA>c:let</SCHEMA>
+<li><SCHEMA>b:let</SCHEMA>
+<li><SCHEMA>b:restrict</SCHEMA>
 </ul>

@@ -21,7 +21,8 @@ and may have a complex life-cycle.</p>
         </element>
         <element ref="b:store"     minOccurs="0" maxOccurs="unbounded" />
         <element ref="b:subspace"  minOccurs="0" maxOccurs="unbounded" />
-        <element name="manager"    type="b:UnitID"  minOccurs="0" />
+        <element ref="b:prefix"    minOccurs="0" maxOccurs="unbounded" />
+        <element name="manager"    type="b:UnitRef"  minOccurs="0" />
       </sequence>
     </extension>
   </complexContent>
@@ -33,12 +34,15 @@ and may have a complex life-cycle.</p>
 <p>In traditional terminology, the namespace describes the physical
 organization and bootstrapping of connections to Meshy Space servers.</p>
 
-<p>The <code>id</code> of this Unit is blank, to indicate that it is ruling
-the namespace or subspace; when you query a namespace for its blank Unit, you
-get the <i>root</i> Namespace Unit.</p>
+<p>The <code>id</code> of this Unit is blank, to indicate that it is
+ruling the namespace or subspace.  When you query a namespace for its
+blank Unit, you get the <i>root</i> Namespace Unit.</p>
 
-<p>The <i>root</i> namespace requires a <SCHEMA>b:prefix</SCHEMA>
-element to define its default prefix.</p>
+=element prefix
+
+<p>The namespace requires a <SCHEMA>b:prefix</SCHEMA> element to define
+its default prefix.  This will also list all the alternative endpoints
+to address the namespace.</p>
 
 =element language
 
@@ -75,3 +79,8 @@ by a management application.</p>
 <p>There currently is only one manager type, which is implemented by the
 Meshy Space Concept: collections.  In that case, the <code>manager</code>
 points to a unit with type <UNIT>msc:Type/Collection</UNIT> unit.</p>
+
+=element store
+
+<p>Describes the storage options available to this namespace: some database,
+locally or remote.</p>

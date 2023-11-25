@@ -5,8 +5,7 @@
 =schema
 
 ==xml
-<element name="let" type="b:Let"
-  substitutionGroup="b:reusable" />
+<element name="let" type="b:Let" />
 
 <complexType name="Let">
   <complexContent>

@@ -1,0 +1,29 @@
+=short
+
+<p>Key-value pairs for constant parameters.</p>
+
+=schema
+
+==xml
+<element name="param" type="b:Param" />
+
+<complexType name="Param">
+  <simpleContent>
+    <extension base="string">
+      <attribute name="name" type="NMTOKEN" use="required" />
+      <attribute name="type" type="b:Constant" />
+      <attributeGroup ref="b:encapsulate" />
+    </extension>
+  </simpleContent>
+</complexType>
+==end
+
+=description
+
+=attribute name
+
+=attribute type
+
+<p>Usually a type from <UNIT>ms:Type/</UNIT> or <UNIT>msc:Type/</UNIT>.</p>
+
+=attributeGroup encapsulate

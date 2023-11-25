@@ -8,18 +8,21 @@
 <group name="data">
   <sequence>
     <group   ref="b:mediatype" />
-    <element name="size" type="unsignedLong" minOccurs="0" />
+    <element name="license" type="b:Constant"   minOccurs="0" />
+    <element name="size"    type="unsignedLong" minOccurs="0" />
     <element ref="b:checksum"  minOccurs="0" maxOccurs="unbounded" />
     <!-- element ref="b:signature" minOccurs="0" maxOccurs="unbounded" TBD -->
     <!-- element ref="b:encrypted" minOccurs="0" maxOccurs="unbounded" TBD -->
     <choice>
+      <element ref="b:blob"       />
       <element ref="b:fetch"      />
       <element ref="b:source"     />
-      <element ref="b:blob"       />
-      <element ref="b:attachment" />
-      <element ref="b:alternative" maxOccurs="unbounded" />
       <element ref="b:packaged"   />
+      <element ref="b:attachment"  maxOccurs="unbounded" />
+      <element ref="b:alternative" maxOccurs="unbounded" />
+      <element ref="b:part"        maxOccurs="unbounded" />
     </choice>
+    <element ref="b:preview" minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -60,7 +63,17 @@ the size of indirect units used.</p>
 <SCHEMA>b:fetch</SCHEMA> or <SCHEMA>b:attachment</SCHEMA> from a different
 source than the sum.  See <SCHEMA>b:checksum</SCHEMA>.</p>
 
-=element signature
+=element preview
 
-=element encrypted
+<p>For many reasons, it may require effort to collect the full data.
+Therefore, it is possible to include <b>a few</b> facts from the data.
+This may avoid the need for full data retreival and help searching.</p>
 
+<p>This element is probably most useful when on the top of the content
+structure.  Do not overdo this use, because it hinders standardization.</p>
+
+=element license
+
+<p>Explains the license of the data where is referred to.  This MUST
+be pointing to a Unit of type <UNIT>ms:Role/Constant.License</UNIT>,
+of which many are available in <UNIT>spdx:License/</UNIT>.</p>

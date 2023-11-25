@@ -1,0 +1,45 @@
+=short
+
+<p>The data is composed of different parts.</p>
+
+=schema
+
+==xml
+<element name="part" type="b:Part" />
+
+<complexType name="Part">
+  <sequence>
+    <group ref="b:data" />
+  </sequence>
+  <attribute name="name" type="NMTOKEN" use="required" />
+</complexType>
+==end
+
+=description
+
+<p>The content is devided in <i>parts</i> means that they do belong
+together, but for some reason are not packaged as one set of bytes.
+For instance, one part is contained as blob, and the other available
+via a fetch.</p>
+
+<p>Of course, parts can also be nested in alternatives, encoded,
+and compressed.</p>
+
+=example use of parts
+<XML>
+<b:unit>
+  <b:content>
+    <b:size>234141</b:size>
+    <b:part name="html">
+      <b:type>iana:MediaType/text/html"</b:type>
+      <b:blob>...
+    <b:part>
+    <b:part name="image1">
+      <b:type>iana:MediaType/image/gif"</b:type>
+      <b:blob>...
+    </b:part>
+  </b:content>
+</b:unit>
+</XML>
+
+=attribute name

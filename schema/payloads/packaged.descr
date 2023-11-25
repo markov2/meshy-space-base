@@ -10,7 +10,7 @@
 <complexType name="Packaged">
   <sequence>
     <group ref="b:data" />
-    <element name="entry" type="b:Bytes" />
+    <element name="entry" type="b:Bytes" minOccurs="0" />
   </sequence>
   <attribute name="by" type="b:Constant" />
   <attributeGroup ref="b:encapsulate" />
@@ -21,8 +21,11 @@
 
 <p>This recursive data element takes an extry from the a package.  The
 <code>entry</code> has a meaning within that package.  The <code>data</code>
-is usually a <SCHEMA>b:fetch</SCHEMA>, <SCHEMA>b:attachement</SCHEMA>, or
+is usually a <SCHEMA>b:fetch</SCHEMA>, <SCHEMA>b:attachment</SCHEMA>, or
 <SCHEMA>b:source</SCHEMA> (contained in another Unit).</p>
+
+<p>When no entry is given, then the full data is addressed.  This can be
+used to apply encapsulate information on the full data.</p>
 
 =attributeGroup encapsulate
 
@@ -40,6 +43,6 @@ implementation.</p>
 <p><strong>Be aware</strong> that many packers do not use utf8 for their
 entry keys.  You may need to encode your entries.</p>
 
-=element attribute by
+=attribute by
 
 <p>A constant in the set <UNIT>ms:Packer/</UNIT>.</p>

@@ -1,0 +1,37 @@
+=short
+
+<p>Permit some values for a certain role, in <SCHEMA>b:restrict</SCHEMA>.</p>
+
+=schema
+
+==xml
+<element name="allow" type="b:Allow" />
+
+<complexType name="Allow">
+  <sequence>
+    <element ref="b:param" minOccurs="0" maxOccurs="unbounded" />
+  </sequence>
+  <attribute name="match" type="b:UnitRef" use="required" />
+  <attribute name="deprecated" type="boolean" default="false" />
+</complexType>
+==end
+
+=description
+
+=attribute match
+
+<p>Refers to a constant or constant group (collection) which is a
+valid alternative to fulfill the role (see <SCHEMA>b:restrict</SCHEMA>
+attribute <tt>role</tt>).</p>
+
+=attribute default
+
+<p>Use this constant alternative, when no explict choice is made.</p>
+
+=attribute deprecated
+
+<p>Although allowed, the use of the matching constant (or constant set)
+SHOULD be avoided.  When encountered, the unit MAY get an automatic
+upgrade into a new revision.</p>
+
+=element param

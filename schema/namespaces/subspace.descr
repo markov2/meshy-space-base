@@ -10,7 +10,7 @@ top-level Namespace.</p>
 
 <complexType name="Subspace">
   <sequence>
-    <element name="namespace"         type="b:UnitRef" minOccurs="0" />
+    <element name="inherit"           type="b:UnitRef"    minOccurs="0" />
     <element name="id_unwanted_chars" type="b:Expression" minOccurs="0" />
     <element name="id_encode_ascii"   type="b:Expression" default="'[/]'" />
   </sequence>
@@ -35,20 +35,16 @@ must be encapsulated in single or double quotes.</p>
 
 =attribute path
 
-<p>The relative location of the Subspace with respect to the location of
-the Namespace it is listed in.  The full location of the Subspace is the
-concatenation of the paths from the root Namespace into the Subspace,
-where is ensured that each component is separated by the locally active
-<code>path-separator</code>.</p>
+<p>The absolute location of the Subspace within the Namespace.</p>
 
 <p>The path MUST be in the same root Namespace: it cannot refer to
 external namespaces.</p>
 
-=element namespace
+=element inherit
 
-<p>Refers to a <SCHEMA>b:unit</SCHEMA> which implements
-<UNIT>ms:Role/Namespace</UNIT>, which describes how the sub-namespace
-physically behaves.</p>
+<p>Include all the settings from an other Subspace, by default from the
+root Subspace.  This works recursively.  The root Subspace will ignore
+this parameter.</p>
 
 =element id_unwanted_chars
 
@@ -83,7 +79,8 @@ element.</p>
 
 =example for id_unwanted_chars
 
-<p class="list">Stripping characters:</p>
+<p class="list">Stripping characters: (mind the single/double quotes!)</p>
+
 <CODE>
 '[: -]'                  # removed all colons, blanks, and dashes.
 '( -> | [ ] | \.$ )'     # remove ->, blanks, and trailing dots

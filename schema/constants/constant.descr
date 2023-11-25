@@ -12,7 +12,7 @@
   <complexContent>
     <extension base="b:Native">
       <sequence>
-        <element ref="b:param" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:preview" minOccurs="0" />
       </sequence>
     </extension>
   </complexContent>
@@ -28,7 +28,7 @@ which MAY be linked to the Constant supports life-cycle management
 over this constant and MAY contain documentation.  But also: it can
 explain the constant to client and server.
 
-=element params
+=element preview
 
 <p>A Constant (<SCHEMA>b:Constant</SCHEMA> is a
 <SCHEMA>b:UnitRef</SCHEMA>) points to a fact within a group of facts.

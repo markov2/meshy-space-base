@@ -11,7 +11,7 @@
   <sequence>
     <group ref="b:data" />
   </sequence>
-  <attribute name="name" type="NMTOKEN" />
+  <attribute name="name" type="NMTOKEN" use="required" />
 </complexType>
 ==end
 

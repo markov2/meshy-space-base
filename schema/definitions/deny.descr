@@ -1,0 +1,25 @@
+=short
+
+<p>Forbid some values for a certain role, in <SCHEMA>b:for</SCHEMA>.</p>
+
+=schema
+
+==xml
+<element name="deny" type="b:Deny" />
+
+<complexType name="Deny">
+  <sequence />
+  <attribute name="match" type="b:UnitRef" />
+</complexType>
+==end
+
+=description
+
+<p>Do not allow the use of the matching constants.</p>
+
+<p>When no specific constant or group of constants is mentioned, then
+all alternatives for the role (see <SCHEMA>b:restrict</SCHEMA> attribute
+<tt>role</tt>) which are not explicitly allowed (<SCHEMA>b:allow</SCHEMA>)
+will be refused.</p>
+
+=attribute match

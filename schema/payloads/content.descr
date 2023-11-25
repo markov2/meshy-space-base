@@ -6,17 +6,14 @@
 
 ==xml
 <element name="content" type="b:Content"
-    substitutionGroup="b:payload" />
+    substitutionGroup="b:payload" nillable="true" />
 
 <complexType name="Content">
   <complexContent>
     <extension base="b:Payload">
       <sequence>
         <group ref="b:data" />
-        <element name="license" type="b:Constant" minOccurs="0" />
-        <element ref="b:preview" minOccurs="0" />
       </sequence>
-      <attributeGroup ref="b:encapsulate" />
     </extension>
   </complexContent>
 </complexType>
@@ -36,15 +33,3 @@ This can happen in a nested definition.</p>
 
 <p>All kinds of elements which describe the contained data, plus the data
 itself.</p>
-
-=element preview
-
-<p>For many reasons, it may require effort to collect the full data.
-Therefore, it is possible to include <b>a few</b> facts from the data.
-This may avoid the need for full data retreival and help searching.</p>
-
-=element license
-
-<p>Explains the license of the data where is referred to.  This MUST
-be pointing to a Unit of type <UNIT>ms:Role/Constant.License</UNIT>,
-of which many are available in <UNIT>spdx:License/</UNIT>.</p>

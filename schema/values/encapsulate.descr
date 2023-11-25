@@ -6,6 +6,7 @@
 
 ==xml
 <attributeGroup name="encapsulate">
+  <attribute name="charset"    type="b:Constant" />
   <attribute name="encoded"    type="b:Constant" />
   <attribute name="compressed" type="b:Constant" />
 </attributeGroup>
@@ -18,9 +19,16 @@ UTF-8 (which is this library's native character-set). Therefore,
 quite a number of elements carry these optional attributes to
 indicate that processing has been done.</p>
 
-<p>When the data is added, it will first compress and then encode.
-When the data is consumed, it will be first decoded, and then
-uncompressed.</p>
+<p>When the data is added, it will first convert from character-set to
+bytes, then compress, and finally encode.  When the data is consumed,
+it will be first decoded, then uncompressed, and is than in the specified
+character-set</p>
+
+<p>When decompression and/or decoding takes place, then the charset
+will default to <UNIT>ms:Charset/None</UNIT>.  You MAY want to specify
+<UNIT>ms:Charset/Unknown</UNIT> when you think it is text.  When no
+encoding or compression takes place, then the charset is inherited
+from the nested data structure.</p>
 
 =attribute encoded
 
@@ -34,3 +42,10 @@ in <UNIT>ms:Encode/</UNIT>.</p>
 which explains which compression has taken place (before the
 optional encoding)</p>
 
+=element charset
+
+<p><code>Charset</code> is a common abbreviation of <i>character
+set</i>.  Data elements (Unit content) always carry a character-set.
+By default, it is <UNIT>ms:Charset/None</UNIT>, expressing binary
+data.  When it is character data, of undefined encoding, use
+<UNIT>ms:Charset/Unknown</UNIT>: maybe the application does not care.</p>

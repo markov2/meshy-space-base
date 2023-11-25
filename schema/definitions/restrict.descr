@@ -1,0 +1,55 @@
+=short
+
+<p>Restrict and configure the set of permitted constants.</p>
+
+=schema
+
+==xml
+<element name="restrict" type="b:Restrict" />
+
+<complexType name="Restrict">
+  <complexContent>
+    <extension base="b:Reusable">
+      <choice minOccurs="0" maxOccurs="unbounded">
+        <element ref="b:allow" />
+        <element ref="b:deny"  />
+      </choice>
+      <attribute name="role"    type="b:Constant" use="required" />
+      <attribute name="default" type="b:Constant" />
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Configure which algoritms or settings are permitted in the context.
+When the enclosing definition block has a <tt>use</tt>, then it will
+be inspected when the current rules do not lead to a decission.</p>
+
+=attribute role
+
+<p>Must be a constant with type <UNIT>ms:Role/ConstantSet</UNIT></p>
+
+=element allow
+
+<p>List of constants which have as role the value of the <tt>role</tt>
+attribute.  These constants are allowed to be used in the context.</p>
+
+=element deny
+
+<p>List of constants which  have as role the value of the <tt>role</tt>
+attribute.  These constants are not allowed to be used.</p>
+
+=example Setting the default checksum algorithm
+
+=xml
+<b:definitions>
+  <b:restrict b:role="wp:Role/Checksum" b:default="wp:Checkum/Base64">
+    <b:allow b:alt="wp:Checkum/Base64">
+      <b:param name="folded">0</b:param>
+    </b:allow>
+    <b:deny />
+  </b:restrict>
+</b:definitions>
+=cut

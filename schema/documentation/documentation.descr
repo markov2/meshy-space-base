@@ -11,6 +11,7 @@
   <sequence>
     <group ref="b:mediatype" />
     <element name="name"        type="string" minOccurs="0" />
+    <element name="altname"     type="string" minOccurs="0" />
     <element name="title"       type="string" minOccurs="0" />
     <element name="hint"        type="string" minOccurs="0" />
     <element name="description" type="string" minOccurs="0" />
@@ -37,6 +38,12 @@ as defined by Concept for bulk documentation: Units of type
 <p>The <code>name</code> is displayed as translation of the Unit's
 <code>name</code>.  When missing, that value will be used, which
 defaults to the Unit's <code>id</code>.</p>
+
+=element altname
+
+<p>Alternatives for the name, which can also be used to address the Unit.
+Alternatives could be alternative spellings, the name in lowercase, 
+abbreviation, name without accent, etc.</p>
 
 =element title
 

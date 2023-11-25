@@ -13,12 +13,12 @@ reason.</p>
     <extension base="b:Reusable">
       <sequence>
         <element ref="b:shadow" minOccurs="0" maxOccurs="unbounded" />
+		<element name="max_age" type="b:Expression" default="P1D"  />
       </sequence>
-      <attribute name="ref"   type="b:UnitRef"    default='.' />
+      <attribute name="ref"   type="b:UnitRef"  use="required" />
       <attribute name="type"  type="b:Constant"  />
-      <attribute name="is"    type="b:Constant"   default="b:Role/Unknown" />
+      <attribute name="role"  type="b:Constant"  />
       <attribute name="seqnr" type="unsignedLong" default="1" />
-      <attributeGroup ref="b:selector" />
     </extension>
   </complexContent>
 </complexType>
@@ -38,16 +38,23 @@ relation is between a Unit and a fragment of a different Unit, then
 a rewrite is needed which translates the Unit name into a Fragment
 indicator.</p>
 
+=element max_age
+
+<p>The <SCHEMA>b:expression</SCHEMA> evaluation into a duration.
+The status of the Unit must have been checked at the most that long ago.
+So: this should trigger a freshness check in the Subspace where this
+Unit resides.</p>
+
 =attribute ref
 
 <p>This required attribute tells the Unit where we describe the relation
 with.  This Unit could be a Namespace, but usually it is a simple data
 Unit in a collection or a whole Collection.</p>
 
-=attribute is
+=attribute role
 
-<p>The <code>b:is</code> attribute explains the <SCHEMA>b:has</SCHEMA>
-relation.  When the relation unknown, the client may need to collect
+<p>The <code>b:role</code> attribute explains the <SCHEMA>b:has</SCHEMA>
+relation.  When that relation unknown, the client may need to collect
 the related unit to inspect its content, but that is expensive so
 should be avoided.</p>
 
@@ -96,8 +103,8 @@ a unit into a separate unit: for instance the history of the unit.</p>
 </b:unit>
 <b:unit b:id="Sources">              <!-- in dist: -->
   <b:type>ms:Role/Collection</b:type>  <!-- is a Subspace -->
-  <b:has b:is="dist:Role/Source" b:ref="puppy-src-3.14.rpm" />
-  <b:has b:is="dist:Role/Source" b:ref="wolf-src-12.2.rpm" />
+  <b:has b:role="dist:Role/Source" b:ref="puppy-src-3.14.rpm" />
+  <b:has b:roleis="dist:Role/Source" b:ref="wolf-src-12.2.rpm" />
 </b:unit>
 <b:unit b:id="puppy-src-3.14.rpm" /> <!-- in dist:Sources/ -->
   <b:name>puppy 3.14 sources</b:name>
@@ -109,40 +116,39 @@ a unit into a separate unit: for instance the history of the unit.</p>
   <b:type>iana:MediaType/application/rpm</b:type>
   <b:owner>dist:User/MarkOv</b:owner>
   <b:extern />
-  <b:has b:ref="dist:Sources/puppy" b:is="dist:Role/Source" />
+  <b:has b:ref="dist:Sources/puppy" b:role="dist:Role/Source" />
 </b:unit>
 ==json
-"b:unit" : {
-  "b:id" : "MarkOv",               // in dist:User/
-  "b:type" : "msc:Role/Identity"
-  "c:identity" : {}
+"b_unit" : {
+  "b_id" : "MarkOv",               // in dist:User/
+  "b_type" : "msc:Role/Identity"
 },
-"b:unit" : {
-  "b:id": "Sources",                // in dist:
-  "b:type" : "ms:Role/Collection",  // is a Subspace
-  "b:has" : [ {
-    "b:is" : "dist:Role/Source",
-    "b:ref" : "puppy-src-3.14.rpm"
+"b_unit" : {
+  "b_id": "Sources",                // in dist:
+  "b_type" : "ms:Role/Collection",  // is a Subspace
+  "b_has" : [ {
+    "b_role" : "dist:Role/Source",
+    "b_ref" : "puppy-src-3.14.rpm"
   }, {
-    "b:is" : "dist:Role/Source",
-    "b:ref" : "wolf-src-12.2.rpm"
+    "b_role" : "dist:Role/Source",
+    "b_ref" : "wolf-src-12.2.rpm"
   } ]
 },
-"b:unit" : {
-  "b:id" : "puppy-src-3.14.rpm",   // in dist:Sources/
-  "b:name": "puppy 3.14 sources",
-  "b:type": "iana:MediaType/application/rpm"
-  "b:extern" : {}
+"b_unit" : {
+  "b_id" : "puppy-src-3.14.rpm",   // in dist:Sources/
+  "b_name": "puppy 3.14 sources",
+  "b_type": "iana:MediaType/application/rpm"
+  "b_extern" : {}
 },
-"b:unit" : {
-  "b:id" : "puppy-3.14.rpm",       // in dist:Package/
-  "b:name" : "puppy 3.14",
-  "b:type" : "iana:MediaType/application/rpm",
-  "b:owner" : "dist:User/MarkOv"
-  "b:extern" : {},
-  "b:has" : [ {
-     "b:ref" : "dist:Sources/puppy",
-     "b:is" : "dist:Role/Source"
+"b_unit" : {
+  "b_id" : "puppy-3.14.rpm",       // in dist:Package/
+  "b_name" : "puppy 3.14",
+  "b_type" : "iana:MediaType/application/rpm",
+  "b_owner" : "dist:User/MarkOv"
+  "b_extern" : {},
+  "b_has" : [ {
+     "b_ref" : "dist:Sources/puppy",
+     "b_role" : "dist:Role/Source"
   } ]
 }
 ==end

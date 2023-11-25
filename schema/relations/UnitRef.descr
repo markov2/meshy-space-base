@@ -6,60 +6,48 @@
 
 ==xml
 <simpleType name="UnitRef">
-  <restriction base="NMTOKEN" />
+  <restriction base="string">
+    <pattern value="[\p{IsCommon}-\p{IsSpace}]+" />
+  </restriction>
 </simpleType>
 ==end
 
 =description
 
-<p>Elements and attributes of type <code>b:UnitRef</code>
-refer to a <SCHEMA>b:unit</SCHEMA> instance.  This can be in a
-namespace qualified form or in a relative form.  The accepted
-syntax mimics HTTP URI syntax as defined by [% rfc(3986) %].</p>
+<p>Elements and attributes of type <code>b:UnitRef</code> refer to a
+<SCHEMA>b:unit</SCHEMA> instance.  This can be in a namespace qualified
+form or in a relative form.  The interpretation has some similarities with
+the HTTP URI syntax as defined by [% rfc(3986) %].</p>
 
-<p>When the <code>ref</code> matches with <code>/^(\w+):/</code>, it
-is an absolute reference.  Otherwise, it is a reference relative to the
-absolute path to the Unit in which it is used.  Absolute and relative path
-resolution may pass through Namespaces and Subspaces which have different
-rules, for instance for Access.</p>
+<p>When the reference matches with <code>/^(\w+):/</code>, it is
+an absolute reference: it starts with a namespace prefix.  When the
+reference starts with a colon (<code>:</code>), it is a full path
+starting at the root of the namespace.  Otherwise, it is a reference
+relative to the path to the Unit in which it is used.  Absolute and
+relative path resolution may pass through Namespaces and Subspaces which
+have different rules, for instance different path separators.</p>
+
+<h2>Fragment</h2>
+
+<p>The UnitRef can contain a fragment (<code>#</code> followed by a
+name), which refers to a <SCHEMA>b:has</SCHEMA> unit reference in
+the select unit (defaults to the current unit).  This is useful when
+you need to add more details to the reference.
+
+<h2>Advices</h2>
 
 <p>The prefix may not be known when the data is received: it SHOULD
 be linked to a namespace only when it is actually used by an
 application.</p>
 
-<p>It is RECOMMENDED not to use absolute references within the same Namespace
-(to use prefixes which refer to the context of the Unit itself).  This will
-make a restructuring of a namespace harder, because Units will need to be
-rewritten.</p>
-
-<p><b>Be aware</b> that the path components need to be compared in NFJK
-normalized form.  One Unit may use multiple path components in its
-<code>unit-id</code> (of type <SCHEMA>b:UnitID</SCHEMA>).</p>
-
-=attribute ref
-
-<p>When a relative reference is used which starts with the
-<code>path-separator</code> of the Unit's Subspace, it is considered
-relative to the root of the namespace.  That character is not part of
-the absolute address of the Unit.  Example: when the Unit on
-<code>p:a/b/c</code> refers to <code>/c/d</code>, it ends-up
-on address <code>p:c/d</code>.</p>
+<p>It is RECOMMENDED not to absolute references within the same Namespace
+(to use prefixes which refers to the context of the Unit itself). This will
+make a restructuring of a namespace harder, because Units may need to be
+rewritten for some changes.</p>
 
 <p><b>WARNING:</b> this reference is not the same as a
 <code>xsd:IDREF</code>, which MUST refer inside the XML document when
 the document is being read.</p>
-
-=discuss Mixing path-seperators
-
-<p>Because the World is flawed, we may end-up with inconsistent
-path separators.  When using absolute Unit addresses, you need to
-follow the preference of the Namespace.  This may be different
-for Subspaces: the external user cannot see this.</p>
-
-<p>When the reference does not start with a prefix, but does start
-with the <code>path-separator</code> or the <i>root</i> namespace,
-it will resolve starting at the root Unit, not relative to the
-Unit where the reference was found.</p>
 
 =example Absolute references
 
@@ -91,10 +79,9 @@ was found as start.</p>
 
 <p>Examples, starting from the Unit at address <code>pref:a/b</code>:</p>
 <CODE>
-ref="c"        --> pref:a/c
-ref="../c"     --> pref:c
-ref="/c"       --> pref:c    (via root)
-ref="d/.././f" --> pref:f
+  "owner" : "c"    --> pref:a/c  # relative
+  "owner" : ":c"   --> pref:c    # absolute, same namespace
+  "owner" : "my:c" --> my:c      # absolute, other namespace
 </CODE>
 
 =example Designed with mixed path-separators

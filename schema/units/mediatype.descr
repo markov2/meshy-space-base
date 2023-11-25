@@ -10,7 +10,6 @@ unit, independent of how the payload is included.</p>
   <sequence>
     <element name="type"     type="b:Constant" minOccurs="0" />
     <element name="language" type="b:Constant" minOccurs="0" />
-    <element name="charset"  type="token"      minOccurs="0" />
   </sequence>
 </group>
 ==end
@@ -30,14 +29,3 @@ but not in the (sometimes complex nested) payload with Content.</p>
 <p>The default language for things like name and documentation
 in thuis Unit.  This fact MAY be used by search filters. Values are
 constants in one of the <UNIT>ms:Language/</UNIT> sets.</p>
-
-=element charset
-
-<p><code>Charset</code> is a common abbreviation of <i>character
-set</i>.  Which charset is used by the payload data is only useful
-for applications which process that data.  Binary data formats,
-like images, will not contain a charset specification.</p>
-
-<p>The content of this field is defined by [% rfc('2978') %].
-See the page with all
-<a href="https://www.iana.org/assignments/character-sets/character-sets.xhtml">character-sets at IANA</a>.</p>

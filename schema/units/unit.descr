@@ -12,11 +12,12 @@ generalization of many protocols and system features.</p>
 <complexType name="Unit">
   <sequence>
     <element name="name"     type="string"     minOccurs="0" />
+    <element name="altname"  type="string"     minOccurs="0" maxOccurs="unbounded" />
     <element name="role"     type="b:Constant" minOccurs="0" />
     <group   ref="b:mediatype"  />
     <element ref="b:definitions"   minOccurs="0" maxOccurs="unbounded" />
-    <element ref="b:life_cycle"    nillable="true" />
-    <element ref="b:payload"       minOccurs="0" nillable="true" />
+    <element ref="b:life_cycle" />
+    <element ref="b:payload"    />
     <element ref="b:documentation" minOccurs="0" maxOccurs="unbounded" />
   </sequence>
   <attribute name="id" type="b:UnitID" use="required" />
@@ -63,6 +64,15 @@ structure, which is translatable.</p>
 <p><strong>Be warned</strong> that the name is (like everything else)
 in the UTF8 charset.  See the discussions below about NFKC normalization
 ans the problem with using filenames here.</p>
+
+=element altname
+
+<p>Alternatives for the name, which can also be used to address the Unit.
+Alternatives could be alternative spellings, the name in lowercase,
+abbreviation, name without accent, etc.</p>
+
+<p>Just as the name itself, they do not need to be unique within a collection,
+but it certainly helps for clarity.</p>
 
 =element role
 
