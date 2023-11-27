@@ -1,0 +1,53 @@
+=short
+
+<p>Declares additional prefixes used in the context.</p>
+
+=schema
+
+==xml
+<element name="prefix" type="b:Prefix" />
+
+<complexType name="Prefix">
+  <sequence />
+    <attribute name="name"      type="string"    use="required" />
+    <attribute name="urn"       type="string"    use="required" />
+    <attribute name="namespace" type="b:UnitRef" use="required" />
+  </extension>
+</complexType>
+==end
+
+=description
+
+<p>Units and data which is distributed in a Namespace may use other
+namespaces, and refer to those via prefixes.</p>
+
+<p>These prefix specifications are commonly found in the
+<UNIT>ms:Role/Namespace<UNIT> and <UNIT>msc:Role/Collection</UNIT> Units,
+but may appear in any Unit.</p>
+
+<p>You MUST avoid using prefixes of popular protocols, like
+<code>http</code>, <code>https</code>, <code>ftp</code>, and
+<code>s3</code>, where this will probably create confusion to less
+experienced readers.</p>
+
+=attribute name
+
+<p>Prefix names are restricted to <code>\w[\w-]*</code> in ASCII space.
+Usually they are short.</p>
+
+=element urn
+
+<p>The universal unique identifier for the namespace.  This must be
+an domain-name within a domain you own.  For instance, Meshy Space
+uses <tt>base.meshy.space</tt> as urn with prefix <tt>ms</tt>.</p>
+
+=element namespace
+
+<p>Refers to the location (of a mirror) of the namespace describing
+unit.</p>
+
+=discuss This is not XML!
+
+<p><b>Warning:</b> Where elements of type <SCHEMA>b:UnitRef</SCHEMA>
+(may) use a <code>prefix</code>, they are not XML QName typed entities: the
+data itself may not contain the prefix declarations.</p>

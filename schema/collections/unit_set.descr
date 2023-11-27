@@ -1,0 +1,40 @@
+=short
+
+<p>Rules for set of <SCHEMA>b:unit</SCHEMA> objects within a
+<SCHEMA>b:collection</SCHEMA>.</p>
+
+=schema
+
+==xml
+<element name="unit_set" type="b:UnitSet" />
+
+<complexType name="UnitSet">
+  <complexContent>
+    <extension base="b:Reusable">
+      <sequence>
+        <element name="id_chars_unreserved" minOccurs="0" />
+        <element name="id_chars_reserved"   minOccurs="0" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>Elements or attributes of type <SCHEMA>b:UnitID</SCHEMA> can only be
+created with characters which are in <code>id_chars_unreserved</code> or
+<code>id_chars_reserved</code>. Other characters will cause an error.</p>
+
+=element id_chars_unreserved
+
+<p>Some regular expression component, which explains which characters
+are allowed in any <SCHEMA>b:UnitID</SCHEMA> within this unit-set,
+but only in <strong>unencoded</strong> form.</p>
+
+=element id_chars_reserved
+
+<p>Some regular expression component, which explains which characters
+are allowed in any <SCHEMA>b:UnitID</SCHEMA> within this unit-set,
+but only in <strong>encoded</strong> form.</p>
+

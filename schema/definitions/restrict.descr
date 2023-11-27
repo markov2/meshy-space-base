@@ -10,10 +10,10 @@
 <complexType name="Restrict">
   <complexContent>
     <extension base="b:Reusable">
-      <choice minOccurs="0" maxOccurs="unbounded">
-        <element ref="b:allow" />
-        <element ref="b:deny"  />
-      </choice>
+      <sequence>
+        <element ref="b:allow" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:deny"  minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
       <attribute name="role"    type="b:Constant" use="required" />
       <attribute name="default" type="b:Constant" />
     </extension>

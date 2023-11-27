@@ -9,7 +9,8 @@
 
 <complexType name="Deny">
   <sequence />
-  <attribute name="match" type="b:UnitRef" />
+  <attribute name="pattern"     type="b:Expression" />
+  <attribute name="overridable" type="b:Expression" />
 </complexType>
 ==end
 
@@ -22,4 +23,7 @@ all alternatives for the role (see <SCHEMA>b:restrict</SCHEMA> attribute
 <tt>role</tt>) which are not explicitly allowed (<SCHEMA>b:allow</SCHEMA>)
 will be refused.</p>
 
-=attribute match
+=attribute pattern
+
+=attribute overridable
+The deny is overridable by an explicit allow when the expression it true.

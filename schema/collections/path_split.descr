@@ -1,0 +1,122 @@
+=short
+
+<p>Explains which part of a path is a sub-collection name, and what
+is a local Unit name.</p>
+
+=schema
+
+==xml
+<element name="path_split" type="b:Expression" />
+==end
+
+=description
+
+<p>The external name of a Unit might by <code>picts:Holiday/2023</code>.
+The <SCHEMA>b:namespace</SCHEMA> takes care of physical addressing the
+right servers for <code>picts:</code>.  The namespace is managed by the
+owner of the server.</p>
+
+<p>The <SCHEMA>b:collection<SCHEMA> determines how <code>Holiday/2023</code>
+is interpreted.  Either it contains a Unit named <code>Holiday/2023</code>,
+or it has a sub-collection <code>Holiday</code> which contains a Unit
+named <code>2023</code>.  This <code>path_split</code> expression determines
+how to interpret that relative path.  See examples.</p>
+
+<p class="list">The <code>path_split</code> expression should either return</p>
+<ol>
+<li>one single local unit-id,
+<li>a single new relative <SCHEMA>b:UnitRef</SCHEMA>,
+<li>a (blank separated) triplet of local unit-id, detected separator,
+    and relative path within a sub-collection, or
+<li>a (blank separated) triplet of <SCHEMA>b:UnitRef</SCHEMA>, detected separator,
+    and relative path within a sub-collection, or
+</ol>
+
+<p>In the first case, when the unit-id is not the same as the path,
+then <code>path_split</code> will be re-evaluated with the new value.
+This will also happen to the unit-id returned in the third case.</p>
+
+<p>When a UnitRef is returned, it will be re-evaluated according to
+the usual look-up process.  This will probably lead to a different
+collection.</p>
+
+=example The default path_split rule
+
+<p class="list">The default expression splits on a '<code>/</code>'.</p>
+<CODE>
+path =~ "^([^/]+)(/)(.*)" -> $1 ~ ' ' ~ $2 ~ ' ' ~ $3
+</CODE>
+
+<p>It is RECOMMENDED to stick to the default separator rule, which
+implements the commonly used <code>"/"</code> separator, like in HTTP
+URLs.  Also, it is RECOMMENDED to stick to one separator for the whole
+namespace.  However, there are reasons to diverge (see other examples)</p>
+
+=example Multiple strategies within on Namespace for path_split
+
+<p>It is useful to keep life simple, but reality may catch-up.  For
+instance: originally, the documentation of product "xyz" was in a
+unit inside the same Namespace (Collection) named "xyz.pdf".  Later
+was decided to create a separate namespace for the documentation.
+All pdfs were moved to a new subspace "Docs". However, the path of the
+old location is still known on other places.</p>
+
+<p>This can be solved like this:</p>
+<XML>
+<b:definitions>
+  <b:let b:name="moved_pdfs"
+      b:be="path =~ '^([^/]+\.pdf)$' -> 'Docs/' ~ $1" />
+
+  <b:let b:name="default_path_split"
+      b:be="path =~ '^([^/]+)(/)(.*)' -> $1 ~' '~ $2 ~' '~ $3" />
+
+</b:definitions>
+<b:collection>
+  <b:path_split>moved_pdfs // default_path_split</b:path_split>
+</b:collection>
+</XML>
+<JSON>
+{ "b_definitions" : {
+    "b_let" : [ {
+      "b_name" : "moved_pdfs",
+      "b_be" : "path =~ '^([^/]+\.pdf)$' -> 'Docs/' ~ $1"
+    }, {
+      "b_name" : "default_path_split",
+      "b_be" : "path =~ '^([^/]+)(/)(.*)' -> $1 ~' '~ $2 ~' '~ $3"
+    } ]
+  },
+  "c_collection" : {
+    "c_path_split" : "moved_pdfs // default_path_split"
+  }
+}
+</JSON>
+
+<p>When a pdf name is encountered, it is first rewriten into <code>Docs/*.pdf</code>,
+which is different than the original so the splitting is started again.  Now the
+<code>default_path_split</code> rule is triggered, which returns three components.
+The first <code>Docs</code> will be split again, now not leading to anything new.</p>
+
+=example Useful playing with different path seperators
+
+<p>Let us assume that our collection of company internal network information
+is accessible via endpoint <code>https://facts.example.com/network</code>.
+When assign prefix <code>net:</code> to that namespace for our convenience.</p>
+
+<p class="list">The collection tree could be designed like this:</p>
+<CODE>
+net:                path-split on '/'
+ ├─> ipv4           path-split on '.'
+ │     ├─> 10           Subnet free to use
+ │     └─> 192.168.1    Subnet managed by someone
+ │           ├─> 11     Unit describing one interface
+ │           └─> 12
+ └─> ipv6           path-split on ':'
+       └─> 2001:0db8:85a3:0000:0000
+             └─> 8a2e   Subnet managed by someone
+                  └─> 0370:7334   Unit for service
+</CODE>
+<p>The absolute <SCHEMA>b:UnitRef</SCHEMA> of host <code>11</code> is
+<code>net:ipv4/192.168.1.11</code>. Per sub-collection, you may have different
+access-rights: different maintainers.  Physical server maintains can, using
+<SCHEMA>b:namespace</SCHEMA>, map the private network sets to local storage,
+where the rest is globally visible.</p>

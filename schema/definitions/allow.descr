@@ -11,14 +11,14 @@
   <sequence>
     <element ref="b:param" minOccurs="0" maxOccurs="unbounded" />
   </sequence>
-  <attribute name="match" type="b:UnitRef" use="required" />
+  <attribute name="pattern"    type="b:Expression" use="required" />
   <attribute name="deprecated" type="boolean" default="false" />
 </complexType>
 ==end
 
 =description
 
-=attribute match
+=attribute pattern
 
 <p>Refers to a constant or constant group (collection) which is a
 valid alternative to fulfill the role (see <SCHEMA>b:restrict</SCHEMA>

@@ -21,7 +21,6 @@ and may have a complex life-cycle.</p>
         </element>
         <element ref="b:store"     minOccurs="0" maxOccurs="unbounded" />
         <element ref="b:subspace"  minOccurs="0" maxOccurs="unbounded" />
-        <element ref="b:prefix"    minOccurs="0" maxOccurs="unbounded" />
         <element name="manager"    type="b:UnitRef"  minOccurs="0" />
       </sequence>
     </extension>

@@ -1,0 +1,103 @@
+=short
+
+=schema
+
+==xml
+<element name="collection" type="b:Collection"
+   substitutionGroup="b:native" />
+
+<complexType name="Collection">
+  <complexContent>
+    <extension base="b:Native">
+      <sequence>
+        <element name="is_root"     type="boolean" default="false" />
+        <element ref="b:prefix"     minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:path_split" minOccurs="0" maxOccurs="unbounded" />
+        <element ref="b:unit_set"   minOccurs="0" maxOccurs="unbounded" />
+      </sequence>
+    </extension>
+  </complexContent>
+</complexType>
+==end
+
+=description
+
+<p>The <i>Collection</i> is a <SCHEMA>b:unit</SCHEMA> which groups
+(large numbers of) Units.  It may also be a wrapping sub-collections:
+sub-groups of its units.</p>
+
+<p>The collection may have sub-collections.</p>
+
+=element is_root
+
+<p>when a root, then this collection is the start of a namespace.  All context
+information on parent directories is forgotten.</p>
+
+=element prefix
+
+<p>Declare new prefixes, to be included in the context.</p>
+
+=element path_split
+
+<p class="list">The element explains how the relative
+<SCHEMA>c:UnitRef</SCHEMA> path is to be interpreted.  This path is
+either</p>
+<ul>
+<li>a name within this Collection, or</li>
+<li>a name of a Unit which refers to a sub-collection, followed by a 
+    path inside that sub-collection.</li>
+</ul>
+<p>See <SCHEMA>c:path_split</SCHEMA> for the full details.</p>
+
+=element unit_set
+
+<p>This describes how a set of Units within this collection
+behaves.</p>
+
+<p>See <SCHEMA>c:unit_set</SCHEMA> for full details.</p>
+
+=example Tying the Collection into the Namespace
+
+==xml
+<!-- namespace cc -->
+<b:unit b:id="">    <!-- cc: -->
+  <b:type>ms:Type/Namespace</b:type>
+  <b:namespace>
+    <b:fetch    b:base="s3:crawl-data" />
+    <b:fetch    b:base="https://aws/crawl-data" />
+    <b:manager>collector</b:manager>
+    <b:subspace b:path="crawl-data" />
+  </b:namespace>
+</b:unit>
+
+<b:unit b:id="/crawl-data">
+  <b:type>ms:Type/Namespace</b:type>
+  <b:namespace>
+    <b:subspace b:path="2020nov-crawl" />
+    <b:subspace b:path="2020dec-crawl" />
+    <!-- and hundreds more -->
+  </b:namespace>
+</b:unit>
+
+<b:unit b:id="/crawl-data/2020dec-crawl">
+  <b:type>ms:Type/Namespace</b:type>
+  <b:namespace>
+     <b:manager>./collector</b:manager>
+  </b:namespace>
+</b:unit>
+==end
+
+<p>The final Unit has address <UNIT>cc:crawl-data/2020dec-crawl</UNIT>
+and organizes the Units below it.  Namespaces <UNIT>cc</UNIT> and
+<UNIT>cc:crawl-data</UNIT> use the same collector configuration
+in Unit <UNIT>cc:collector</UNIT>.  The last one uses collector
+<UNIT>cc:crawl-data/2020dec-crawl/collector</UNIT></p>
+
+=discuss Where to put the Collection definition
+
+<p>You may put all your Namespace and Collection Units in a
+separate part of your namespace, but the it is cleaner to put
+the Collection configuration inside the Collection itself.  Of
+course, you need to be more carefull about accidental collisions
+with the ids in the Collection content and the permissions on
+the administrative Units.</p>
